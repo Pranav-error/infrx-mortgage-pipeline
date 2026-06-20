@@ -280,6 +280,71 @@ DOC_SIGNALS = {
 HEURISTIC_SHORTCUT_THRESHOLD = 0.6
 
 
+# ── 1b. Table-header fingerprints — format-agnostic structural classification ──
+# Column headers extracted by extract.py are consistent regardless of bank/lender.
+# Matched BEFORE keyword heuristic — higher precision than text patterns.
+# Each entry: (frozenset of normalised header tokens, doc_type, confidence)
+
+_HEADER_FINGERPRINTS: list[tuple[frozenset, str, float]] = [
+    # Bank transactions
+    (frozenset({"date", "description", "withdrawals", "deposits", "balance"}),   "bank_stmt_checking", 0.98),
+    (frozenset({"date", "description", "debit", "credit", "balance"}),           "bank_stmt_checking", 0.98),
+    (frozenset({"date", "description", "amount", "balance"}),                    "bank_stmt_checking", 0.92),
+    (frozenset({"posting date", "description", "amount", "balance"}),            "bank_stmt_checking", 0.95),
+    (frozenset({"transaction date", "description", "debit", "credit"}),          "bank_stmt_checking", 0.95),
+    # Combo statement
+    (frozenset({"account name", "beginning balance", "ending balance"}),         "bank_stmt_combo",    0.97),
+    (frozenset({"account name", "deposits", "withdrawals", "ending balance"}),   "bank_stmt_combo",    0.97),
+    # Brokerage
+    (frozenset({"symbol", "shares", "price", "value"}),                          "brokerage_stmt",     0.98),
+    (frozenset({"symbol", "quantity", "price", "market value"}),                 "brokerage_stmt",     0.98),
+    (frozenset({"description", "shares", "price per share", "market value"}),    "brokerage_stmt",     0.96),
+    # Paystub
+    (frozenset({"description", "hours", "rate", "current", "ytd"}),              "paystub",            0.98),
+    (frozenset({"earnings", "hours", "rate", "amount", "ytd"}),                  "paystub",            0.97),
+    (frozenset({"description", "current", "year to date"}),                      "paystub",            0.90),
+    # URLA liability table
+    (frozenset({"creditor", "account type", "unpaid balance", "monthly payment"}),"urla_1003",         0.98),
+    (frozenset({"financial institution", "account type", "account number", "cash or market value"}), "urla_1003", 0.97),
+    (frozenset({"company name", "account type", "account number", "monthly payment"}), "urla_1003",   0.97),
+    # Credit report
+    (frozenset({"credit grantor", "type", "account number", "balance"}),         "credit_report",      0.97),
+    (frozenset({"creditor", "account number", "balance", "payment status"}),     "credit_report",      0.95),
+    # DU / LPA findings
+    (frozenset({"category", "finding", "condition"}),                            "du_findings",        0.92),
+    (frozenset({"code", "verification message"}),                                "lpa_feedback",       0.92),
+    # W-2 boxes
+    (frozenset({"wages tips", "federal income tax", "social security wages"}),   "w2",                 0.98),
+]
+
+def classify_by_table_headers(fragment_headers_list: list[list[str]]) -> dict | None:
+    """
+    Classify a page using its extracted table column headers.
+    More robust than text keywords — works across all banks and formats.
+
+    Args:
+        fragment_headers_list: list of header rows from this page's fragments
+                               e.g. [["Date","Description","Amount","Balance"], [...]]
+
+    Returns classification dict or None if no fingerprint matched.
+    """
+    for headers in fragment_headers_list:
+        if not headers:
+            continue
+        # Normalise: lowercase, strip whitespace, remove empty
+        norm = frozenset(h.lower().strip() for h in headers if str(h).strip())
+        for fp_set, doc_type, conf in _HEADER_FINGERPRINTS:
+            # Match if fingerprint is a subset of the actual headers (handles extra cols)
+            if fp_set <= norm or norm <= fp_set and len(norm) >= 2:
+                return {
+                    "doc_type":           doc_type,
+                    "doc_type_label_id":  LABEL_ID.get(doc_type, -1),
+                    "confidence":         conf,
+                    "method":             "table_header",
+                }
+    return None
+
+
 # ── 2. Heuristic scorer ───────────────────────────────────────────────────────
 
 def _score_page(text: str) -> dict[str, float]:
@@ -481,6 +546,16 @@ async def _classify_pages_async(page_records, max_concurrent: int) -> list[dict]
                 "method": "carry_forward",
                 "confidence": 0.5,
             }
+            continue
+
+        # Table-header fingerprint — most robust signal, runs before text keywords
+        fragment_headers = getattr(pr, "fragment_headers", None) or []
+        th = classify_by_table_headers(fragment_headers)
+        if th:
+            entry = {"page_index": pr.page_index, **th}
+            results[idx] = entry
+            last_confident = {"doc_type": th["doc_type"],
+                               "doc_type_label_id": th["doc_type_label_id"]}
             continue
 
         h = classify_heuristic(text)
