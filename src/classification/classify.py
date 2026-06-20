@@ -374,14 +374,14 @@ _LLM_MODEL = "claude-haiku-4-5-20251001"
 _MAX_TEXT   = 1200  # increased from 600 — more context = better accuracy on ambiguous pages
 
 _SYSTEM = """\
-You are a document classifier for US mortgage loan files.
-You classify individual pages by their CONTENT and STRUCTURE — not by specific keywords,
-because the same document type can come from many different banks, lenders, and formats.
-
+You are a document page classifier for US mortgage loan files.
+Classify by CONTENT and STRUCTURE — not by specific keywords, because formatting varies by bank.
 Reply with ONLY a JSON object. No markdown. No explanation."""
 
+# Used when page has at least one mortgage signal (keyword score > 0 or known table header)
+# Closed-set: always returns one of the 27 types
 _USER_TMPL = """\
-Classify this page. Choose the best match from:
+Classify this page into one of these US mortgage document types:
 
   APPLICATION:    urla_1003, form_1008
   DISCLOSURES:    loan_estimate, closing_disclosure
@@ -392,17 +392,16 @@ Classify this page. Choose the best match from:
   PROPERTY:       purchase_contract, purchase_addendum, options_addendum, insurance_declaration
   MISC:           email_correspondence, letter_of_explanation, gift_letter, filler
 
-How to classify by STRUCTURE (not keywords):
-- Transaction rows (date/desc/amount/balance columns) with no document header → bank_stmt_checking
-- Liability table rows (creditor/account type/unpaid balance/monthly payment) → urla_1003
+Classify by STRUCTURE — these patterns hold across ALL banks and lenders:
+- Transaction rows (date/desc/amount/balance columns) → bank_stmt_checking
+- Liability table (creditor/account type/unpaid balance/monthly payment) → urla_1003
 - Stock/portfolio rows (symbol/shares/price/value) → brokerage_stmt
 - Earnings columns (gross/net/YTD/federal tax/state tax) → paystub
-- Two-column tax form with box numbers → w2
-- Multi-page legal form with numbered fields and checkboxes → urla_1003 or form_1008
-- Dense regulatory text with no tables (privacy notice, ECOA, disclosures) → filler
-- Mostly blank or just a section title → filler
-- Loan terms table + projected payments table → loan_estimate
+- Two-column tax form with numbered boxes → w2
+- Loan terms table + projected payments → loan_estimate
 - Final closing cost breakdown with cash-to-close → closing_disclosure
+- Dense legal/regulatory boilerplate (privacy notices, ECOA, disclosures) → filler
+- Blank or section title only → filler
 
 Page text (first {max_chars} chars):
 ---
@@ -410,6 +409,27 @@ Page text (first {max_chars} chars):
 ---
 
 JSON only: {{"doc_type": "<type>", "confidence": <0.0–1.0>, "reasoning": "<one line>"}}"""
+
+# Used when page has ZERO mortgage signals — open-set, can return "unknown"
+_USER_TMPL_OPENSET = """\
+Does this page belong to a US mortgage loan file?
+
+If YES, classify it:
+  APPLICATION: urla_1003, form_1008 | DISCLOSURES: loan_estimate, closing_disclosure
+  INCOME: paystub, w2, voe, form_1040, schedule_1, schedule_c
+  ASSETS: bank_stmt_checking, bank_stmt_combo, brokerage_stmt, check_image, deposit_receipt
+  CREDIT: credit_report | UNDERWRITING: du_findings, lpa_feedback, loan_summary
+  PROPERTY: purchase_contract, purchase_addendum, options_addendum, insurance_declaration
+  MISC: email_correspondence, letter_of_explanation, gift_letter, filler
+
+If NO (magazine article, recipe, medical record, news, fiction, product manual, etc.) → "unknown"
+
+Page text (first {max_chars} chars):
+---
+{text}
+---
+
+JSON only: {{"doc_type": "<type or unknown>", "confidence": <0.0–1.0>, "reasoning": "<one line>"}}"""
 
 
 def _parse_llm_response(raw: str) -> dict:
@@ -426,6 +446,17 @@ def _parse_llm_response(raw: str) -> dict:
     return result
 
 
+def _pick_prompt(text: str) -> str:
+    """
+    Use open-set prompt (allows unknown) only when text has zero mortgage signals.
+    For pages with any financial/legal signal, use the closed-set prompt —
+    it's more accurate on mortgage docs and won't confuse filler for unknown.
+    """
+    scores = _score_page(text)
+    has_any_signal = any(v > 0 for v in scores.values())
+    return _USER_TMPL if has_any_signal else _USER_TMPL_OPENSET
+
+
 def classify_llm_sync(text: str) -> dict:
     """Sync LLM call — use only for single-page classification."""
     client = Anthropic()
@@ -433,7 +464,7 @@ def classify_llm_sync(text: str) -> dict:
         model=_LLM_MODEL,
         max_tokens=128,
         system=_SYSTEM,
-        messages=[{"role": "user", "content": _USER_TMPL.format(
+        messages=[{"role": "user", "content": _pick_prompt(text).format(
             max_chars=_MAX_TEXT,
             text=text[:_MAX_TEXT],
         )}],
@@ -441,14 +472,14 @@ def classify_llm_sync(text: str) -> dict:
     return _parse_llm_response(msg.content[0].text)
 
 
-async def _classify_llm_async(client: AsyncAnthropic, text: str, sem: asyncio.Semaphore) -> dict:
+async def _classify_llm_async(client: AsyncAnthropic, text: str, sem: asyncio.Semaphore) -> dict:  # noqa: E501
     """Single async LLM call, rate-limited by semaphore."""
     async with sem:
         msg = await client.messages.create(
             model=_LLM_MODEL,
             max_tokens=128,
             system=_SYSTEM,
-            messages=[{"role": "user", "content": _USER_TMPL.format(
+            messages=[{"role": "user", "content": _pick_prompt(text).format(
                 max_chars=_MAX_TEXT,
                 text=text[:_MAX_TEXT],
             )}],
