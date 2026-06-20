@@ -3,5 +3,10 @@ DataSet */
 __pycache__/
 *.pyc
 .env
+.DS_Store
 FAQ.md
 EXPLANATION.md
+test_2000pages.pdf
+test_2000pages_output.json
+results/*/run.log
+results/*/package.pdf

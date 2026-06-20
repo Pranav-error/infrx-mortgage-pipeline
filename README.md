@@ -76,6 +76,18 @@ src/
 DataSet /
 ├── pkg_000000/ … pkg_000039/   # 40 packages with labels.json ground truth
 
+pagination-test/
+├── doc_000.pdf … doc_016.pdf   # 17 test PDFs (2,295 pages total)
+
+results/
+├── summary.json                # Aggregated results for all 17 test PDFs
+├── README.md                   # How to verify results
+├── doc_000/
+│   └── pipeline_output.json    # Full output: pages[], documents[], tables[]
+├── ...
+└── doc_016/
+    └── pipeline_output.json
+
 run.sh                  # Convenience runner (eval / pipeline modes)
 Algorithm.md            # Detailed algorithm reference
 requirements.txt        # pip dependencies

@@ -1,0 +1,5628 @@
+{
+  "doc_000": {
+    "total_pages": 161,
+    "total_documents": 60,
+    "doc_type_distribution": {
+      "bank_stmt_checking": 78,
+      "filler": 21,
+      "narrative_chapter": 9,
+      "loan_estimate": 6,
+      "paystub": 6,
+      "unknown": 4,
+      "closing_disclosure": 4,
+      "assets: bank_stmt_checking": 3,
+      "purchase_contract": 3,
+      "credit_report": 3,
+      "letter_of_explanation": 3,
+      "urla_1003": 3,
+      "du_findings": 2,
+      "w2": 2,
+      "form_1040": 2,
+      "purchase_addendum": 2,
+      "check_image": 2,
+      "insurance_declaration": 2,
+      "schedule_c": 1,
+      "schedule_1": 1,
+      "email_correspondence": 1,
+      "form_1008": 1,
+      "voe": 1,
+      "bank_stmt_combo": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "du_findings#1",
+        "doc_type": "du_findings",
+        "start_page": 0,
+        "end_page": 0,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_c#1",
+        "doc_type": "schedule_c",
+        "start_page": 1,
+        "end_page": 1,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 2,
+        "end_page": 12,
+        "page_count": 11
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 13,
+        "end_page": 13,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 14,
+        "end_page": 18,
+        "page_count": 5
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 19,
+        "end_page": 19,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 20,
+        "end_page": 22,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#1",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 23,
+        "end_page": 23,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 24,
+        "end_page": 25,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 26,
+        "end_page": 26,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 27,
+        "end_page": 28,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 29,
+        "end_page": 29,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 30,
+        "end_page": 39,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 40,
+        "end_page": 40,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 41,
+        "end_page": 60,
+        "page_count": 20
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#2",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 61,
+        "end_page": 61,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 62,
+        "end_page": 79,
+        "page_count": 18
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 80,
+        "end_page": 80,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 81,
+        "end_page": 82,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#3",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 83,
+        "end_page": 83,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 84,
+        "end_page": 86,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "unknown#4",
+        "doc_type": "unknown",
+        "start_page": 87,
+        "end_page": 87,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 88,
+        "end_page": 90,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "schedule_1#1",
+        "doc_type": "schedule_1",
+        "start_page": 91,
+        "end_page": 91,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#10",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 92,
+        "end_page": 95,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 96,
+        "end_page": 96,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "w2#2",
+        "doc_type": "w2",
+        "start_page": 97,
+        "end_page": 97,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "email_correspondence#1",
+        "doc_type": "email_correspondence",
+        "start_page": 98,
+        "end_page": 98,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 99,
+        "end_page": 100,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "form_1040#1",
+        "doc_type": "form_1040",
+        "start_page": 101,
+        "end_page": 101,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1040#2",
+        "doc_type": "form_1040",
+        "start_page": 102,
+        "end_page": 102,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_addendum#1",
+        "doc_type": "purchase_addendum",
+        "start_page": 103,
+        "end_page": 104,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "form_1008#1",
+        "doc_type": "form_1008",
+        "start_page": 105,
+        "end_page": 105,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "voe#1",
+        "doc_type": "voe",
+        "start_page": 106,
+        "end_page": 106,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 107,
+        "end_page": 107,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 108,
+        "end_page": 109,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#1",
+        "doc_type": "letter_of_explanation",
+        "start_page": 110,
+        "end_page": 112,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 113,
+        "end_page": 113,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 114,
+        "end_page": 114,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 115,
+        "end_page": 116,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "check_image#1",
+        "doc_type": "check_image",
+        "start_page": 117,
+        "end_page": 118,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 119,
+        "end_page": 123,
+        "page_count": 5
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 124,
+        "end_page": 124,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 125,
+        "end_page": 126,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "loan_estimate#3",
+        "doc_type": "loan_estimate",
+        "start_page": 127,
+        "end_page": 129,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 130,
+        "end_page": 131,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "loan_estimate#4",
+        "doc_type": "loan_estimate",
+        "start_page": 132,
+        "end_page": 132,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 133,
+        "end_page": 134,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "narrative_chapter#1",
+        "doc_type": "narrative_chapter",
+        "start_page": 135,
+        "end_page": 143,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "insurance_declaration#1",
+        "doc_type": "insurance_declaration",
+        "start_page": 144,
+        "end_page": 144,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 145,
+        "end_page": 151,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "insurance_declaration#2",
+        "doc_type": "insurance_declaration",
+        "start_page": 152,
+        "end_page": 152,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "du_findings#2",
+        "doc_type": "du_findings",
+        "start_page": 153,
+        "end_page": 153,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 154,
+        "end_page": 154,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 155,
+        "end_page": 155,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 156,
+        "end_page": 156,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#4",
+        "doc_type": "paystub",
+        "start_page": 157,
+        "end_page": 157,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#11",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 158,
+        "end_page": 158,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#5",
+        "doc_type": "paystub",
+        "start_page": 159,
+        "end_page": 159,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#6",
+        "doc_type": "paystub",
+        "start_page": 160,
+        "end_page": 160,
+        "page_count": 1
+      }
+    ]
+  },
+  "doc_001": {
+    "total_pages": 151,
+    "total_documents": 58,
+    "doc_type_distribution": {
+      "bank_stmt_checking": 58,
+      "unknown": 23,
+      "filler": 18,
+      "narrative_chapter": 18,
+      "paystub": 8,
+      "urla_1003": 5,
+      "credit_report": 3,
+      "form_1008": 2,
+      "closing_disclosure": 2,
+      "brokerage_stmt": 2,
+      "loan_estimate": 2,
+      "letter_of_explanation": 2,
+      "check_image": 1,
+      "gift_letter": 1,
+      "assets: bank_stmt_checking": 1,
+      "du_findings": 1,
+      "schedule_1": 1,
+      "purchase_addendum": 1,
+      "voe": 1,
+      "purchase_contract": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "form_1008#1",
+        "doc_type": "form_1008",
+        "start_page": 0,
+        "end_page": 0,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 1,
+        "end_page": 1,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "brokerage_stmt#1",
+        "doc_type": "brokerage_stmt",
+        "start_page": 2,
+        "end_page": 3,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "form_1008#2",
+        "doc_type": "form_1008",
+        "start_page": 4,
+        "end_page": 4,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "check_image#1",
+        "doc_type": "check_image",
+        "start_page": 5,
+        "end_page": 5,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "gift_letter#1",
+        "doc_type": "gift_letter",
+        "start_page": 6,
+        "end_page": 6,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 7,
+        "end_page": 7,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 8,
+        "end_page": 8,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 9,
+        "end_page": 9,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#4",
+        "doc_type": "paystub",
+        "start_page": 10,
+        "end_page": 10,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#5",
+        "doc_type": "paystub",
+        "start_page": 11,
+        "end_page": 11,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#6",
+        "doc_type": "paystub",
+        "start_page": 12,
+        "end_page": 12,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#7",
+        "doc_type": "paystub",
+        "start_page": 13,
+        "end_page": 13,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#8",
+        "doc_type": "paystub",
+        "start_page": 14,
+        "end_page": 14,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 15,
+        "end_page": 24,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 25,
+        "end_page": 28,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 29,
+        "end_page": 29,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 30,
+        "end_page": 36,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 37,
+        "end_page": 46,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 47,
+        "end_page": 50,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 51,
+        "end_page": 51,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 52,
+        "end_page": 59,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 60,
+        "end_page": 60,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 61,
+        "end_page": 61,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 62,
+        "end_page": 63,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 64,
+        "end_page": 65,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 66,
+        "end_page": 67,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "unknown#4",
+        "doc_type": "unknown",
+        "start_page": 68,
+        "end_page": 76,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 77,
+        "end_page": 77,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 78,
+        "end_page": 80,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 81,
+        "end_page": 81,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#10",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 82,
+        "end_page": 84,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#1",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 85,
+        "end_page": 85,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#11",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 86,
+        "end_page": 98,
+        "page_count": 13
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 99,
+        "end_page": 99,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 100,
+        "end_page": 100,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 101,
+        "end_page": 103,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 104,
+        "end_page": 104,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 105,
+        "end_page": 110,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "narrative_chapter#1",
+        "doc_type": "narrative_chapter",
+        "start_page": 111,
+        "end_page": 119,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "du_findings#1",
+        "doc_type": "du_findings",
+        "start_page": 120,
+        "end_page": 120,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 121,
+        "end_page": 121,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_1#1",
+        "doc_type": "schedule_1",
+        "start_page": 122,
+        "end_page": 122,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#5",
+        "doc_type": "unknown",
+        "start_page": 123,
+        "end_page": 123,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_addendum#1",
+        "doc_type": "purchase_addendum",
+        "start_page": 124,
+        "end_page": 124,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#6",
+        "doc_type": "unknown",
+        "start_page": 125,
+        "end_page": 125,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 126,
+        "end_page": 129,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 130,
+        "end_page": 132,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#1",
+        "doc_type": "letter_of_explanation",
+        "start_page": 133,
+        "end_page": 134,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#9",
+        "doc_type": "filler",
+        "start_page": 135,
+        "end_page": 135,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 136,
+        "end_page": 136,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#12",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 137,
+        "end_page": 137,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 138,
+        "end_page": 138,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#10",
+        "doc_type": "filler",
+        "start_page": 139,
+        "end_page": 139,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "voe#1",
+        "doc_type": "voe",
+        "start_page": 140,
+        "end_page": 140,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "narrative_chapter#2",
+        "doc_type": "narrative_chapter",
+        "start_page": 141,
+        "end_page": 148,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "narrative_chapter#3",
+        "doc_type": "narrative_chapter",
+        "start_page": 149,
+        "end_page": 149,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 150,
+        "end_page": 150,
+        "page_count": 1
+      }
+    ]
+  },
+  "doc_002": {
+    "total_pages": 152,
+    "total_documents": 60,
+    "doc_type_distribution": {
+      "bank_stmt_checking": 76,
+      "filler": 22,
+      "narrative_chapter": 13,
+      "paystub": 6,
+      "closing_disclosure": 5,
+      "unknown": 4,
+      "urla_1003": 4,
+      "bank_stmt_combo": 3,
+      "schedule_c": 2,
+      "w2": 2,
+      "form_1040": 2,
+      "purchase_contract": 2,
+      "insurance_declaration": 1,
+      "brokerage_stmt": 1,
+      "assets: bank_stmt_checking": 1,
+      "purchase_addendum": 1,
+      "loan_summary": 1,
+      "form_1008": 1,
+      "deposit_receipt": 1,
+      "loan_estimate": 1,
+      "du_findings": 1,
+      "voe": 1,
+      "credit_report": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 0,
+        "end_page": 5,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 6,
+        "end_page": 6,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 7,
+        "end_page": 7,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "insurance_declaration#1",
+        "doc_type": "insurance_declaration",
+        "start_page": 8,
+        "end_page": 8,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 9,
+        "end_page": 10,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "narrative_chapter#1",
+        "doc_type": "narrative_chapter",
+        "start_page": 11,
+        "end_page": 14,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "narrative_chapter#2",
+        "doc_type": "narrative_chapter",
+        "start_page": 15,
+        "end_page": 23,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 24,
+        "end_page": 25,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 26,
+        "end_page": 31,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 32,
+        "end_page": 32,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "brokerage_stmt#1",
+        "doc_type": "brokerage_stmt",
+        "start_page": 33,
+        "end_page": 33,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 34,
+        "end_page": 34,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 35,
+        "end_page": 35,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_c#1",
+        "doc_type": "schedule_c",
+        "start_page": 36,
+        "end_page": 36,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 37,
+        "end_page": 37,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_c#2",
+        "doc_type": "schedule_c",
+        "start_page": 38,
+        "end_page": 38,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 39,
+        "end_page": 39,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "w2#2",
+        "doc_type": "w2",
+        "start_page": 40,
+        "end_page": 40,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 41,
+        "end_page": 44,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 45,
+        "end_page": 45,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 46,
+        "end_page": 50,
+        "page_count": 5
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 51,
+        "end_page": 51,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 52,
+        "end_page": 60,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 61,
+        "end_page": 62,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 63,
+        "end_page": 73,
+        "page_count": 11
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 74,
+        "end_page": 74,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 75,
+        "end_page": 75,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 76,
+        "end_page": 83,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 84,
+        "end_page": 84,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 85,
+        "end_page": 95,
+        "page_count": 11
+      },
+      {
+        "doc_instance_id": "filler#9",
+        "doc_type": "filler",
+        "start_page": 96,
+        "end_page": 96,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#10",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 97,
+        "end_page": 106,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#1",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 107,
+        "end_page": 107,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#11",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 108,
+        "end_page": 114,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#12",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 115,
+        "end_page": 121,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "purchase_addendum#1",
+        "doc_type": "purchase_addendum",
+        "start_page": 122,
+        "end_page": 122,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_summary#1",
+        "doc_type": "loan_summary",
+        "start_page": 123,
+        "end_page": 123,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1040#1",
+        "doc_type": "form_1040",
+        "start_page": 124,
+        "end_page": 124,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1040#2",
+        "doc_type": "form_1040",
+        "start_page": 125,
+        "end_page": 125,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1008#1",
+        "doc_type": "form_1008",
+        "start_page": 126,
+        "end_page": 126,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 127,
+        "end_page": 127,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 128,
+        "end_page": 128,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 129,
+        "end_page": 129,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#4",
+        "doc_type": "paystub",
+        "start_page": 130,
+        "end_page": 130,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#5",
+        "doc_type": "paystub",
+        "start_page": 131,
+        "end_page": 131,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "deposit_receipt#1",
+        "doc_type": "deposit_receipt",
+        "start_page": 132,
+        "end_page": 132,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 133,
+        "end_page": 134,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 135,
+        "end_page": 136,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#2",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 137,
+        "end_page": 137,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 138,
+        "end_page": 138,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#13",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 139,
+        "end_page": 139,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#3",
+        "doc_type": "closing_disclosure",
+        "start_page": 140,
+        "end_page": 140,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 141,
+        "end_page": 143,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "closing_disclosure#4",
+        "doc_type": "closing_disclosure",
+        "start_page": 144,
+        "end_page": 145,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "du_findings#1",
+        "doc_type": "du_findings",
+        "start_page": 146,
+        "end_page": 146,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "voe#1",
+        "doc_type": "voe",
+        "start_page": 147,
+        "end_page": 147,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 148,
+        "end_page": 148,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 149,
+        "end_page": 149,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#6",
+        "doc_type": "paystub",
+        "start_page": 150,
+        "end_page": 150,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#10",
+        "doc_type": "filler",
+        "start_page": 151,
+        "end_page": 151,
+        "page_count": 1
+      }
+    ]
+  },
+  "doc_003": {
+    "total_pages": 155,
+    "total_documents": 49,
+    "doc_type_distribution": {
+      "filler": 76,
+      "bank_stmt_checking": 31,
+      "narrative_chapter": 18,
+      "loan_estimate": 4,
+      "closing_disclosure": 3,
+      "credit_report": 3,
+      "gift_letter": 2,
+      "w2": 2,
+      "purchase_contract": 2,
+      "du_findings": 2,
+      "schedule_c": 2,
+      "voe": 2,
+      "insurance_declaration": 1,
+      "loan_summary": 1,
+      "assets: bank_stmt_checking": 1,
+      "form_1040": 1,
+      "schedule_1": 1,
+      "bank_stmt_combo": 1,
+      "unknown": 1,
+      "paystub": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "gift_letter#1",
+        "doc_type": "gift_letter",
+        "start_page": 0,
+        "end_page": 1,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 2,
+        "end_page": 2,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 3,
+        "end_page": 3,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "w2#2",
+        "doc_type": "w2",
+        "start_page": 4,
+        "end_page": 4,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 5,
+        "end_page": 5,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 6,
+        "end_page": 7,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 8,
+        "end_page": 8,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 9,
+        "end_page": 10,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "narrative_chapter#1",
+        "doc_type": "narrative_chapter",
+        "start_page": 11,
+        "end_page": 19,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "purchase_contract#2",
+        "doc_type": "purchase_contract",
+        "start_page": 20,
+        "end_page": 20,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 21,
+        "end_page": 21,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 22,
+        "end_page": 22,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "insurance_declaration#1",
+        "doc_type": "insurance_declaration",
+        "start_page": 23,
+        "end_page": 23,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 24,
+        "end_page": 32,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "narrative_chapter#2",
+        "doc_type": "narrative_chapter",
+        "start_page": 33,
+        "end_page": 41,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "du_findings#1",
+        "doc_type": "du_findings",
+        "start_page": 42,
+        "end_page": 42,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_summary#1",
+        "doc_type": "loan_summary",
+        "start_page": 43,
+        "end_page": 43,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#3",
+        "doc_type": "loan_estimate",
+        "start_page": 44,
+        "end_page": 44,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 45,
+        "end_page": 45,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#4",
+        "doc_type": "loan_estimate",
+        "start_page": 46,
+        "end_page": 46,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "du_findings#2",
+        "doc_type": "du_findings",
+        "start_page": 47,
+        "end_page": 47,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 48,
+        "end_page": 48,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 49,
+        "end_page": 50,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#1",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 51,
+        "end_page": 51,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 52,
+        "end_page": 52,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 53,
+        "end_page": 55,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "form_1040#1",
+        "doc_type": "form_1040",
+        "start_page": 56,
+        "end_page": 56,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 57,
+        "end_page": 59,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "schedule_c#1",
+        "doc_type": "schedule_c",
+        "start_page": 60,
+        "end_page": 60,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 61,
+        "end_page": 61,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_c#2",
+        "doc_type": "schedule_c",
+        "start_page": 62,
+        "end_page": 62,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "voe#1",
+        "doc_type": "voe",
+        "start_page": 63,
+        "end_page": 64,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "schedule_1#1",
+        "doc_type": "schedule_1",
+        "start_page": 65,
+        "end_page": 65,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 66,
+        "end_page": 67,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 68,
+        "end_page": 75,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "filler#9",
+        "doc_type": "filler",
+        "start_page": 76,
+        "end_page": 76,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 77,
+        "end_page": 79,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "filler#10",
+        "doc_type": "filler",
+        "start_page": 80,
+        "end_page": 80,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 81,
+        "end_page": 81,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 82,
+        "end_page": 82,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#11",
+        "doc_type": "filler",
+        "start_page": 83,
+        "end_page": 83,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 84,
+        "end_page": 89,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "filler#12",
+        "doc_type": "filler",
+        "start_page": 90,
+        "end_page": 90,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 91,
+        "end_page": 93,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 94,
+        "end_page": 94,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 95,
+        "end_page": 101,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "filler#13",
+        "doc_type": "filler",
+        "start_page": 102,
+        "end_page": 149,
+        "page_count": 48
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 150,
+        "end_page": 150,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#14",
+        "doc_type": "filler",
+        "start_page": 151,
+        "end_page": 154,
+        "page_count": 4
+      }
+    ]
+  },
+  "doc_004": {
+    "total_pages": 24,
+    "total_documents": 1,
+    "doc_type_distribution": {
+      "unknown": 24
+    },
+    "documents": [
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 0,
+        "end_page": 23,
+        "page_count": 24
+      }
+    ]
+  },
+  "doc_005": {
+    "total_pages": 137,
+    "total_documents": 54,
+    "doc_type_distribution": {
+      "bank_stmt_checking": 53,
+      "filler": 47,
+      "closing_disclosure": 4,
+      "unknown": 4,
+      "loan_estimate": 3,
+      "credit_report": 3,
+      "paystub": 3,
+      "urla_1003": 2,
+      "form_1040": 2,
+      "brokerage_stmt": 2,
+      "schedule_c": 2,
+      "letter_of_explanation": 2,
+      "gift_letter": 2,
+      "options_addendum": 1,
+      "email_correspondence": 1,
+      "schedule_1": 1,
+      "w2": 1,
+      "bank_stmt_combo": 1,
+      "deposit_receipt": 1,
+      "purchase_contract": 1,
+      "du_findings": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 0,
+        "end_page": 0,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 1,
+        "end_page": 3,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "options_addendum#1",
+        "doc_type": "options_addendum",
+        "start_page": 4,
+        "end_page": 4,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 5,
+        "end_page": 5,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 6,
+        "end_page": 8,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 9,
+        "end_page": 9,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 10,
+        "end_page": 11,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 12,
+        "end_page": 12,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 13,
+        "end_page": 13,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "email_correspondence#1",
+        "doc_type": "email_correspondence",
+        "start_page": 14,
+        "end_page": 14,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 15,
+        "end_page": 17,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "schedule_1#1",
+        "doc_type": "schedule_1",
+        "start_page": 18,
+        "end_page": 18,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 19,
+        "end_page": 19,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 20,
+        "end_page": 20,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 21,
+        "end_page": 21,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 22,
+        "end_page": 22,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 23,
+        "end_page": 23,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 24,
+        "end_page": 24,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 25,
+        "end_page": 25,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 26,
+        "end_page": 26,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 27,
+        "end_page": 27,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1040#1",
+        "doc_type": "form_1040",
+        "start_page": 28,
+        "end_page": 29,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "deposit_receipt#1",
+        "doc_type": "deposit_receipt",
+        "start_page": 30,
+        "end_page": 30,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 31,
+        "end_page": 31,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 32,
+        "end_page": 33,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 34,
+        "end_page": 34,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "brokerage_stmt#1",
+        "doc_type": "brokerage_stmt",
+        "start_page": 35,
+        "end_page": 35,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 36,
+        "end_page": 36,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "brokerage_stmt#2",
+        "doc_type": "brokerage_stmt",
+        "start_page": 37,
+        "end_page": 37,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_c#1",
+        "doc_type": "schedule_c",
+        "start_page": 38,
+        "end_page": 38,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#4",
+        "doc_type": "unknown",
+        "start_page": 39,
+        "end_page": 39,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_c#2",
+        "doc_type": "schedule_c",
+        "start_page": 40,
+        "end_page": 40,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 41,
+        "end_page": 41,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 42,
+        "end_page": 42,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#3",
+        "doc_type": "loan_estimate",
+        "start_page": 43,
+        "end_page": 43,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#1",
+        "doc_type": "letter_of_explanation",
+        "start_page": 44,
+        "end_page": 44,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "gift_letter#1",
+        "doc_type": "gift_letter",
+        "start_page": 45,
+        "end_page": 45,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#2",
+        "doc_type": "letter_of_explanation",
+        "start_page": 46,
+        "end_page": 46,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "gift_letter#2",
+        "doc_type": "gift_letter",
+        "start_page": 47,
+        "end_page": 47,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "du_findings#1",
+        "doc_type": "du_findings",
+        "start_page": 48,
+        "end_page": 48,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 49,
+        "end_page": 49,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 50,
+        "end_page": 50,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 51,
+        "end_page": 51,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 52,
+        "end_page": 60,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 61,
+        "end_page": 61,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 62,
+        "end_page": 67,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 68,
+        "end_page": 69,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 70,
+        "end_page": 79,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#10",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 80,
+        "end_page": 84,
+        "page_count": 5
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 85,
+        "end_page": 85,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#11",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 86,
+        "end_page": 95,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "filler#9",
+        "doc_type": "filler",
+        "start_page": 96,
+        "end_page": 119,
+        "page_count": 24
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#12",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 120,
+        "end_page": 125,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "filler#10",
+        "doc_type": "filler",
+        "start_page": 126,
+        "end_page": 136,
+        "page_count": 11
+      }
+    ]
+  },
+  "doc_006": {
+    "total_pages": 138,
+    "total_documents": 49,
+    "doc_type_distribution": {
+      "bank_stmt_checking": 65,
+      "filler": 15,
+      "narrative_chapter": 13,
+      "paystub": 9,
+      "urla_1003": 4,
+      "purchase_contract": 4,
+      "purchase_addendum": 3,
+      "closing_disclosure": 3,
+      "unknown": 2,
+      "credit_report": 2,
+      "letter_of_explanation": 2,
+      "gift_letter": 2,
+      "form_1008": 2,
+      "du_findings": 2,
+      "w2": 2,
+      "check_image": 2,
+      "loan_estimate": 2,
+      "form_1040": 1,
+      "schedule_1": 1,
+      "deposit_receipt": 1,
+      "assets: bank_stmt_checking": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 0,
+        "end_page": 0,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 1,
+        "end_page": 1,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 2,
+        "end_page": 2,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#4",
+        "doc_type": "paystub",
+        "start_page": 3,
+        "end_page": 3,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#5",
+        "doc_type": "paystub",
+        "start_page": 4,
+        "end_page": 4,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#6",
+        "doc_type": "paystub",
+        "start_page": 5,
+        "end_page": 5,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#7",
+        "doc_type": "paystub",
+        "start_page": 6,
+        "end_page": 6,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 7,
+        "end_page": 7,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 8,
+        "end_page": 9,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "narrative_chapter#1",
+        "doc_type": "narrative_chapter",
+        "start_page": 10,
+        "end_page": 18,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 19,
+        "end_page": 19,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "narrative_chapter#2",
+        "doc_type": "narrative_chapter",
+        "start_page": 20,
+        "end_page": 23,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 24,
+        "end_page": 25,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 26,
+        "end_page": 29,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "purchase_addendum#1",
+        "doc_type": "purchase_addendum",
+        "start_page": 30,
+        "end_page": 31,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#1",
+        "doc_type": "letter_of_explanation",
+        "start_page": 32,
+        "end_page": 32,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "gift_letter#1",
+        "doc_type": "gift_letter",
+        "start_page": 33,
+        "end_page": 33,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#2",
+        "doc_type": "letter_of_explanation",
+        "start_page": 34,
+        "end_page": 34,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1008#1",
+        "doc_type": "form_1008",
+        "start_page": 35,
+        "end_page": 36,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 37,
+        "end_page": 38,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "purchase_addendum#2",
+        "doc_type": "purchase_addendum",
+        "start_page": 39,
+        "end_page": 39,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1040#1",
+        "doc_type": "form_1040",
+        "start_page": 40,
+        "end_page": 40,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "du_findings#1",
+        "doc_type": "du_findings",
+        "start_page": 41,
+        "end_page": 42,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 43,
+        "end_page": 43,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_1#1",
+        "doc_type": "schedule_1",
+        "start_page": 44,
+        "end_page": 44,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 45,
+        "end_page": 46,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 47,
+        "end_page": 47,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "w2#2",
+        "doc_type": "w2",
+        "start_page": 48,
+        "end_page": 48,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "deposit_receipt#1",
+        "doc_type": "deposit_receipt",
+        "start_page": 49,
+        "end_page": 49,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 50,
+        "end_page": 50,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "check_image#1",
+        "doc_type": "check_image",
+        "start_page": 51,
+        "end_page": 52,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "gift_letter#2",
+        "doc_type": "gift_letter",
+        "start_page": 53,
+        "end_page": 53,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 54,
+        "end_page": 54,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 55,
+        "end_page": 55,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 56,
+        "end_page": 56,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_contract#2",
+        "doc_type": "purchase_contract",
+        "start_page": 57,
+        "end_page": 59,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 60,
+        "end_page": 70,
+        "page_count": 11
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#1",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 71,
+        "end_page": 71,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 72,
+        "end_page": 88,
+        "page_count": 17
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 89,
+        "end_page": 89,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 90,
+        "end_page": 91,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 92,
+        "end_page": 94,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "paystub#8",
+        "doc_type": "paystub",
+        "start_page": 95,
+        "end_page": 95,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 96,
+        "end_page": 113,
+        "page_count": 18
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 114,
+        "end_page": 122,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 123,
+        "end_page": 124,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "paystub#9",
+        "doc_type": "paystub",
+        "start_page": 125,
+        "end_page": 125,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#10",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 126,
+        "end_page": 126,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 127,
+        "end_page": 137,
+        "page_count": 11
+      }
+    ]
+  },
+  "doc_007": {
+    "total_pages": 154,
+    "total_documents": 37,
+    "doc_type_distribution": {
+      "filler": 71,
+      "bank_stmt_checking": 47,
+      "unknown": 11,
+      "narrative_chapter": 9,
+      "urla_1003": 3,
+      "credit_report": 3,
+      "closing_disclosure": 3,
+      "loan_estimate": 2,
+      "bank_stmt_combo": 1,
+      "insurance_declaration": 1,
+      "assets: bank_stmt_checking": 1,
+      "loan_summary": 1,
+      "income: voe": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 0,
+        "end_page": 0,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 1,
+        "end_page": 1,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 2,
+        "end_page": 3,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "insurance_declaration#1",
+        "doc_type": "insurance_declaration",
+        "start_page": 4,
+        "end_page": 4,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 5,
+        "end_page": 5,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 6,
+        "end_page": 6,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 7,
+        "end_page": 9,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 10,
+        "end_page": 10,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 11,
+        "end_page": 11,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 12,
+        "end_page": 12,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 13,
+        "end_page": 19,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 20,
+        "end_page": 20,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 21,
+        "end_page": 33,
+        "page_count": 13
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 34,
+        "end_page": 34,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 35,
+        "end_page": 35,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 36,
+        "end_page": 36,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 37,
+        "end_page": 42,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 43,
+        "end_page": 43,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#4",
+        "doc_type": "unknown",
+        "start_page": 44,
+        "end_page": 44,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 45,
+        "end_page": 46,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 47,
+        "end_page": 47,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 48,
+        "end_page": 51,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 52,
+        "end_page": 52,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 53,
+        "end_page": 60,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 61,
+        "end_page": 61,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 62,
+        "end_page": 70,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#1",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 71,
+        "end_page": 71,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#10",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 72,
+        "end_page": 72,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 73,
+        "end_page": 111,
+        "page_count": 39
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 112,
+        "end_page": 113,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 114,
+        "end_page": 134,
+        "page_count": 21
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 135,
+        "end_page": 135,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#9",
+        "doc_type": "filler",
+        "start_page": 136,
+        "end_page": 140,
+        "page_count": 5
+      },
+      {
+        "doc_instance_id": "narrative_chapter#1",
+        "doc_type": "narrative_chapter",
+        "start_page": 141,
+        "end_page": 149,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "loan_summary#1",
+        "doc_type": "loan_summary",
+        "start_page": 150,
+        "end_page": 150,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#5",
+        "doc_type": "unknown",
+        "start_page": 151,
+        "end_page": 152,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "income: voe#1",
+        "doc_type": "income: voe",
+        "start_page": 153,
+        "end_page": 153,
+        "page_count": 1
+      }
+    ]
+  },
+  "doc_008": {
+    "total_pages": 149,
+    "total_documents": 34,
+    "doc_type_distribution": {
+      "filler": 73,
+      "bank_stmt_checking": 48,
+      "closing_disclosure": 4,
+      "urla_1003": 3,
+      "loan_estimate": 3,
+      "narrative_chapter": 3,
+      "w2": 2,
+      "check_image": 2,
+      "insurance_declaration": 2,
+      "gift_letter": 1,
+      "voe": 1,
+      "unknown": 1,
+      "letter_of_explanation": 1,
+      "bank_stmt_combo": 1,
+      "form_1040": 1,
+      "dislosures": 1,
+      "purchase_contract": 1,
+      "paystub": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 0,
+        "end_page": 1,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 2,
+        "end_page": 2,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "w2#2",
+        "doc_type": "w2",
+        "start_page": 3,
+        "end_page": 3,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "check_image#1",
+        "doc_type": "check_image",
+        "start_page": 4,
+        "end_page": 5,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "gift_letter#1",
+        "doc_type": "gift_letter",
+        "start_page": 6,
+        "end_page": 6,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "voe#1",
+        "doc_type": "voe",
+        "start_page": 7,
+        "end_page": 7,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 8,
+        "end_page": 8,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#1",
+        "doc_type": "letter_of_explanation",
+        "start_page": 9,
+        "end_page": 9,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 10,
+        "end_page": 10,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 11,
+        "end_page": 11,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 12,
+        "end_page": 13,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 14,
+        "end_page": 14,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 15,
+        "end_page": 16,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "form_1040#1",
+        "doc_type": "form_1040",
+        "start_page": 17,
+        "end_page": 17,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 18,
+        "end_page": 20,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "dislosures#1",
+        "doc_type": "dislosures",
+        "start_page": 21,
+        "end_page": 21,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 22,
+        "end_page": 35,
+        "page_count": 14
+      },
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 36,
+        "end_page": 36,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 37,
+        "end_page": 37,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "insurance_declaration#1",
+        "doc_type": "insurance_declaration",
+        "start_page": 38,
+        "end_page": 39,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 40,
+        "end_page": 47,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "loan_estimate#3",
+        "doc_type": "loan_estimate",
+        "start_page": 48,
+        "end_page": 48,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "narrative_chapter#1",
+        "doc_type": "narrative_chapter",
+        "start_page": 49,
+        "end_page": 51,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 52,
+        "end_page": 57,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 58,
+        "end_page": 58,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 59,
+        "end_page": 77,
+        "page_count": 19
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 78,
+        "end_page": 82,
+        "page_count": 5
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 83,
+        "end_page": 83,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 84,
+        "end_page": 99,
+        "page_count": 16
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 100,
+        "end_page": 100,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 101,
+        "end_page": 102,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 103,
+        "end_page": 135,
+        "page_count": 33
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 136,
+        "end_page": 136,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 137,
+        "end_page": 148,
+        "page_count": 12
+      }
+    ]
+  },
+  "doc_009": {
+    "total_pages": 166,
+    "total_documents": 50,
+    "doc_type_distribution": {
+      "filler": 72,
+      "bank_stmt_checking": 55,
+      "narrative_chapter": 9,
+      "loan_estimate": 6,
+      "paystub": 3,
+      "credit_report": 3,
+      "urla_1003": 2,
+      "bank_stmt_combo": 2,
+      "brokerage_stmt": 2,
+      "form_1008": 2,
+      "closing_disclosure": 2,
+      "schedule_1": 2,
+      "du_findings": 1,
+      "voe": 1,
+      "disclosures: loan_estimate": 1,
+      "w2": 1,
+      "insurance_declaration": 1,
+      "disclosures: closing_disclosure": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 0,
+        "end_page": 0,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 1,
+        "end_page": 1,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "du_findings#1",
+        "doc_type": "du_findings",
+        "start_page": 2,
+        "end_page": 2,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 3,
+        "end_page": 3,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 4,
+        "end_page": 5,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 6,
+        "end_page": 7,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 8,
+        "end_page": 8,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 9,
+        "end_page": 9,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "credit_report#2",
+        "doc_type": "credit_report",
+        "start_page": 10,
+        "end_page": 10,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "brokerage_stmt#1",
+        "doc_type": "brokerage_stmt",
+        "start_page": 11,
+        "end_page": 12,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "credit_report#3",
+        "doc_type": "credit_report",
+        "start_page": 13,
+        "end_page": 13,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1008#1",
+        "doc_type": "form_1008",
+        "start_page": 14,
+        "end_page": 15,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "voe#1",
+        "doc_type": "voe",
+        "start_page": 16,
+        "end_page": 16,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 17,
+        "end_page": 19,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 20,
+        "end_page": 20,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 21,
+        "end_page": 21,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "disclosures: loan_estimate#1",
+        "doc_type": "disclosures: loan_estimate",
+        "start_page": 22,
+        "end_page": 22,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 23,
+        "end_page": 23,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 24,
+        "end_page": 24,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#3",
+        "doc_type": "loan_estimate",
+        "start_page": 25,
+        "end_page": 27,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 28,
+        "end_page": 29,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "loan_estimate#4",
+        "doc_type": "loan_estimate",
+        "start_page": 30,
+        "end_page": 30,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 31,
+        "end_page": 31,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 32,
+        "end_page": 32,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "narrative_chapter#1",
+        "doc_type": "narrative_chapter",
+        "start_page": 33,
+        "end_page": 41,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 42,
+        "end_page": 49,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 50,
+        "end_page": 50,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "insurance_declaration#1",
+        "doc_type": "insurance_declaration",
+        "start_page": 51,
+        "end_page": 51,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 52,
+        "end_page": 52,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "disclosures: closing_disclosure#1",
+        "doc_type": "disclosures: closing_disclosure",
+        "start_page": 53,
+        "end_page": 53,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 54,
+        "end_page": 57,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 58,
+        "end_page": 59,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 60,
+        "end_page": 69,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 70,
+        "end_page": 70,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#9",
+        "doc_type": "filler",
+        "start_page": 71,
+        "end_page": 71,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 72,
+        "end_page": 73,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#10",
+        "doc_type": "filler",
+        "start_page": 74,
+        "end_page": 74,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 75,
+        "end_page": 83,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "filler#11",
+        "doc_type": "filler",
+        "start_page": 84,
+        "end_page": 84,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 85,
+        "end_page": 99,
+        "page_count": 15
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 100,
+        "end_page": 109,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "filler#12",
+        "doc_type": "filler",
+        "start_page": 110,
+        "end_page": 110,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 111,
+        "end_page": 112,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#13",
+        "doc_type": "filler",
+        "start_page": 113,
+        "end_page": 141,
+        "page_count": 29
+      },
+      {
+        "doc_instance_id": "schedule_1#1",
+        "doc_type": "schedule_1",
+        "start_page": 142,
+        "end_page": 142,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_1#2",
+        "doc_type": "schedule_1",
+        "start_page": 143,
+        "end_page": 143,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#14",
+        "doc_type": "filler",
+        "start_page": 144,
+        "end_page": 159,
+        "page_count": 16
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 160,
+        "end_page": 160,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 161,
+        "end_page": 161,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#15",
+        "doc_type": "filler",
+        "start_page": 162,
+        "end_page": 165,
+        "page_count": 4
+      }
+    ]
+  },
+  "doc_010": {
+    "total_pages": 160,
+    "total_documents": 49,
+    "doc_type_distribution": {
+      "bank_stmt_checking": 74,
+      "filler": 25,
+      "narrative_chapter": 22,
+      "paystub": 10,
+      "urla_1003": 5,
+      "closing_disclosure": 4,
+      "assets: bank_stmt_checking": 4,
+      "credit_report": 3,
+      "gift_letter": 2,
+      "insurance_declaration": 2,
+      "letter_of_explanation": 2,
+      "bank_stmt_combo": 1,
+      "loan_estimate": 1,
+      "email_correspondence": 1,
+      "lpa_feedback": 1,
+      "purchase_addendum": 1,
+      "voe": 1,
+      "w2": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 0,
+        "end_page": 0,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 1,
+        "end_page": 1,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 2,
+        "end_page": 3,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "gift_letter#1",
+        "doc_type": "gift_letter",
+        "start_page": 4,
+        "end_page": 5,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 6,
+        "end_page": 6,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 7,
+        "end_page": 7,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 8,
+        "end_page": 8,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 9,
+        "end_page": 9,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#4",
+        "doc_type": "paystub",
+        "start_page": 10,
+        "end_page": 10,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#5",
+        "doc_type": "paystub",
+        "start_page": 11,
+        "end_page": 11,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#6",
+        "doc_type": "paystub",
+        "start_page": 12,
+        "end_page": 12,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#7",
+        "doc_type": "paystub",
+        "start_page": 13,
+        "end_page": 13,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#8",
+        "doc_type": "paystub",
+        "start_page": 14,
+        "end_page": 14,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#9",
+        "doc_type": "paystub",
+        "start_page": 15,
+        "end_page": 15,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 16,
+        "end_page": 17,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "narrative_chapter#1",
+        "doc_type": "narrative_chapter",
+        "start_page": 18,
+        "end_page": 25,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 26,
+        "end_page": 26,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "narrative_chapter#2",
+        "doc_type": "narrative_chapter",
+        "start_page": 27,
+        "end_page": 31,
+        "page_count": 5
+      },
+      {
+        "doc_instance_id": "narrative_chapter#3",
+        "doc_type": "narrative_chapter",
+        "start_page": 32,
+        "end_page": 40,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 41,
+        "end_page": 42,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "insurance_declaration#1",
+        "doc_type": "insurance_declaration",
+        "start_page": 43,
+        "end_page": 44,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 45,
+        "end_page": 46,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 47,
+        "end_page": 47,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 48,
+        "end_page": 49,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "urla_1003#3",
+        "doc_type": "urla_1003",
+        "start_page": 50,
+        "end_page": 51,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "email_correspondence#1",
+        "doc_type": "email_correspondence",
+        "start_page": 52,
+        "end_page": 52,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 53,
+        "end_page": 53,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "lpa_feedback#1",
+        "doc_type": "lpa_feedback",
+        "start_page": 54,
+        "end_page": 54,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 55,
+        "end_page": 56,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "purchase_addendum#1",
+        "doc_type": "purchase_addendum",
+        "start_page": 57,
+        "end_page": 57,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "voe#1",
+        "doc_type": "voe",
+        "start_page": 58,
+        "end_page": 58,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 59,
+        "end_page": 59,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#1",
+        "doc_type": "letter_of_explanation",
+        "start_page": 60,
+        "end_page": 61,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 62,
+        "end_page": 64,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 65,
+        "end_page": 70,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 71,
+        "end_page": 80,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 81,
+        "end_page": 82,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "paystub#10",
+        "doc_type": "paystub",
+        "start_page": 83,
+        "end_page": 83,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 84,
+        "end_page": 97,
+        "page_count": 14
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 98,
+        "end_page": 107,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#1",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 108,
+        "end_page": 109,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 110,
+        "end_page": 121,
+        "page_count": 12
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 122,
+        "end_page": 128,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#2",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 129,
+        "end_page": 129,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 130,
+        "end_page": 130,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 131,
+        "end_page": 137,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 138,
+        "end_page": 149,
+        "page_count": 12
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#3",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 150,
+        "end_page": 150,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 151,
+        "end_page": 159,
+        "page_count": 9
+      }
+    ]
+  },
+  "doc_011": {
+    "total_pages": 145,
+    "total_documents": 34,
+    "doc_type_distribution": {
+      "filler": 64,
+      "bank_stmt_checking": 38,
+      "narrative_chapter": 16,
+      "purchase_contract": 3,
+      "urla_1003": 3,
+      "unknown": 3,
+      "credit_report": 3,
+      "loan_estimate": 2,
+      "check_image": 2,
+      "bank_stmt_combo": 1,
+      "schedule_c": 1,
+      "paystub": 1,
+      "form_1040": 1,
+      "schedule_1": 1,
+      "form_1008": 1,
+      "closing_disclosure": 1,
+      "w2": 1,
+      "letter_of_explanation": 1,
+      "email_correspondence": 1,
+      "purchase_addendum": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 0,
+        "end_page": 2,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 3,
+        "end_page": 3,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 4,
+        "end_page": 4,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 5,
+        "end_page": 6,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "schedule_c#1",
+        "doc_type": "schedule_c",
+        "start_page": 7,
+        "end_page": 7,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 8,
+        "end_page": 9,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 10,
+        "end_page": 15,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "narrative_chapter#1",
+        "doc_type": "narrative_chapter",
+        "start_page": 16,
+        "end_page": 24,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 25,
+        "end_page": 30,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 31,
+        "end_page": 31,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 32,
+        "end_page": 32,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "narrative_chapter#2",
+        "doc_type": "narrative_chapter",
+        "start_page": 33,
+        "end_page": 39,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 40,
+        "end_page": 40,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "check_image#1",
+        "doc_type": "check_image",
+        "start_page": 41,
+        "end_page": 42,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "form_1040#1",
+        "doc_type": "form_1040",
+        "start_page": 43,
+        "end_page": 43,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_1#1",
+        "doc_type": "schedule_1",
+        "start_page": 44,
+        "end_page": 44,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 45,
+        "end_page": 45,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1008#1",
+        "doc_type": "form_1008",
+        "start_page": 46,
+        "end_page": 46,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 47,
+        "end_page": 47,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 48,
+        "end_page": 50,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 51,
+        "end_page": 51,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 52,
+        "end_page": 52,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 53,
+        "end_page": 67,
+        "page_count": 15
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 68,
+        "end_page": 75,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 76,
+        "end_page": 82,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 83,
+        "end_page": 101,
+        "page_count": 19
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 102,
+        "end_page": 109,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 110,
+        "end_page": 133,
+        "page_count": 24
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#1",
+        "doc_type": "letter_of_explanation",
+        "start_page": 134,
+        "end_page": 134,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 135,
+        "end_page": 136,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "email_correspondence#1",
+        "doc_type": "email_correspondence",
+        "start_page": 137,
+        "end_page": 137,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 138,
+        "end_page": 141,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "purchase_addendum#1",
+        "doc_type": "purchase_addendum",
+        "start_page": 142,
+        "end_page": 142,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 143,
+        "end_page": 144,
+        "page_count": 2
+      }
+    ]
+  },
+  "doc_012": {
+    "total_pages": 130,
+    "total_documents": 51,
+    "doc_type_distribution": {
+      "bank_stmt_checking": 64,
+      "filler": 20,
+      "unknown": 13,
+      "paystub": 6,
+      "purchase_addendum": 4,
+      "urla_1003": 3,
+      "loan_estimate": 3,
+      "purchase_contract": 3,
+      "closing_disclosure": 2,
+      "form_1008": 2,
+      "assets: bank_stmt_checking": 2,
+      "bank_stmt_combo": 1,
+      "disclosures: closing_disclosure": 1,
+      "brokerage_stmt": 1,
+      "credit_report": 1,
+      "loan_summary": 1,
+      "w2": 1,
+      "email_correspondence": 1,
+      "income: voe": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 0,
+        "end_page": 1,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 2,
+        "end_page": 2,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 3,
+        "end_page": 3,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 4,
+        "end_page": 4,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 5,
+        "end_page": 5,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 6,
+        "end_page": 10,
+        "page_count": 5
+      },
+      {
+        "doc_instance_id": "disclosures: closing_disclosure#1",
+        "doc_type": "disclosures: closing_disclosure",
+        "start_page": 11,
+        "end_page": 11,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 12,
+        "end_page": 12,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 13,
+        "end_page": 15,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 16,
+        "end_page": 18,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 19,
+        "end_page": 19,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_addendum#1",
+        "doc_type": "purchase_addendum",
+        "start_page": 20,
+        "end_page": 21,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "brokerage_stmt#1",
+        "doc_type": "brokerage_stmt",
+        "start_page": 22,
+        "end_page": 22,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 23,
+        "end_page": 24,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 25,
+        "end_page": 25,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 26,
+        "end_page": 26,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#3",
+        "doc_type": "loan_estimate",
+        "start_page": 27,
+        "end_page": 27,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 28,
+        "end_page": 28,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 29,
+        "end_page": 29,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 30,
+        "end_page": 30,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_addendum#2",
+        "doc_type": "purchase_addendum",
+        "start_page": 31,
+        "end_page": 32,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "loan_summary#1",
+        "doc_type": "loan_summary",
+        "start_page": 33,
+        "end_page": 33,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#3",
+        "doc_type": "urla_1003",
+        "start_page": 34,
+        "end_page": 34,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 35,
+        "end_page": 37,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 38,
+        "end_page": 38,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "email_correspondence#1",
+        "doc_type": "email_correspondence",
+        "start_page": 39,
+        "end_page": 39,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 40,
+        "end_page": 40,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 41,
+        "end_page": 41,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 42,
+        "end_page": 42,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#4",
+        "doc_type": "paystub",
+        "start_page": 43,
+        "end_page": 43,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#5",
+        "doc_type": "paystub",
+        "start_page": 44,
+        "end_page": 44,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#6",
+        "doc_type": "paystub",
+        "start_page": 45,
+        "end_page": 45,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "income: voe#1",
+        "doc_type": "income: voe",
+        "start_page": 46,
+        "end_page": 46,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1008#1",
+        "doc_type": "form_1008",
+        "start_page": 47,
+        "end_page": 48,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 49,
+        "end_page": 49,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#4",
+        "doc_type": "unknown",
+        "start_page": 50,
+        "end_page": 56,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 57,
+        "end_page": 57,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 58,
+        "end_page": 65,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "unknown#5",
+        "doc_type": "unknown",
+        "start_page": 66,
+        "end_page": 66,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 67,
+        "end_page": 73,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 74,
+        "end_page": 77,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 78,
+        "end_page": 80,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 81,
+        "end_page": 81,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 82,
+        "end_page": 97,
+        "page_count": 16
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#1",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 98,
+        "end_page": 98,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 99,
+        "end_page": 104,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 105,
+        "end_page": 110,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#10",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 111,
+        "end_page": 115,
+        "page_count": 5
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 116,
+        "end_page": 119,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#11",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 120,
+        "end_page": 128,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#2",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 129,
+        "end_page": 129,
+        "page_count": 1
+      }
+    ]
+  },
+  "doc_013": {
+    "total_pages": 150,
+    "total_documents": 37,
+    "doc_type_distribution": {
+      "filler": 95,
+      "bank_stmt_checking": 23,
+      "unknown": 4,
+      "loan_estimate": 3,
+      "brokerage_stmt": 3,
+      "closing_disclosure": 3,
+      "bank_stmt_combo": 3,
+      "paystub": 3,
+      "insurance_declaration": 2,
+      "letter_of_explanation": 2,
+      "urla_1003": 1,
+      "gift_letter": 1,
+      "voe": 1,
+      "deposit_receipt": 1,
+      "purchase_addendum": 1,
+      "email_correspondence": 1,
+      "loan_summary": 1,
+      "du_findings": 1,
+      "lpa_feedback": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 0,
+        "end_page": 1,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 2,
+        "end_page": 2,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 3,
+        "end_page": 8,
+        "page_count": 6
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 9,
+        "end_page": 9,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 10,
+        "end_page": 10,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 11,
+        "end_page": 11,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 12,
+        "end_page": 12,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "insurance_declaration#1",
+        "doc_type": "insurance_declaration",
+        "start_page": 13,
+        "end_page": 14,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 15,
+        "end_page": 22,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 23,
+        "end_page": 23,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 24,
+        "end_page": 24,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 25,
+        "end_page": 25,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#1",
+        "doc_type": "letter_of_explanation",
+        "start_page": 26,
+        "end_page": 27,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "gift_letter#1",
+        "doc_type": "gift_letter",
+        "start_page": 28,
+        "end_page": 28,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "voe#1",
+        "doc_type": "voe",
+        "start_page": 29,
+        "end_page": 29,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "brokerage_stmt#1",
+        "doc_type": "brokerage_stmt",
+        "start_page": 30,
+        "end_page": 32,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "deposit_receipt#1",
+        "doc_type": "deposit_receipt",
+        "start_page": 33,
+        "end_page": 33,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 34,
+        "end_page": 34,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#3",
+        "doc_type": "loan_estimate",
+        "start_page": 35,
+        "end_page": 35,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 36,
+        "end_page": 36,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 37,
+        "end_page": 37,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 38,
+        "end_page": 38,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#2",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 39,
+        "end_page": 40,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 41,
+        "end_page": 42,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "purchase_addendum#1",
+        "doc_type": "purchase_addendum",
+        "start_page": 43,
+        "end_page": 43,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "email_correspondence#1",
+        "doc_type": "email_correspondence",
+        "start_page": 44,
+        "end_page": 44,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 45,
+        "end_page": 45,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 46,
+        "end_page": 46,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 47,
+        "end_page": 47,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 48,
+        "end_page": 48,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_summary#1",
+        "doc_type": "loan_summary",
+        "start_page": 49,
+        "end_page": 49,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#4",
+        "doc_type": "unknown",
+        "start_page": 50,
+        "end_page": 50,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "du_findings#1",
+        "doc_type": "du_findings",
+        "start_page": 51,
+        "end_page": 51,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "lpa_feedback#1",
+        "doc_type": "lpa_feedback",
+        "start_page": 52,
+        "end_page": 52,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 53,
+        "end_page": 64,
+        "page_count": 12
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 65,
+        "end_page": 74,
+        "page_count": 10
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 75,
+        "end_page": 149,
+        "page_count": 75
+      }
+    ]
+  },
+  "doc_014": {
+    "total_pages": 18,
+    "total_documents": 5,
+    "doc_type_distribution": {
+      "unknown": 16,
+      "filler": 2
+    },
+    "documents": [
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 0,
+        "end_page": 8,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 9,
+        "end_page": 9,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 10,
+        "end_page": 10,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 11,
+        "end_page": 11,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 12,
+        "end_page": 17,
+        "page_count": 6
+      }
+    ]
+  },
+  "doc_015": {
+    "total_pages": 147,
+    "total_documents": 57,
+    "doc_type_distribution": {
+      "bank_stmt_checking": 78,
+      "filler": 25,
+      "closing_disclosure": 5,
+      "unknown": 5,
+      "purchase_contract": 4,
+      "urla_1003": 4,
+      "credit_report": 3,
+      "paystub": 3,
+      "loan_estimate": 3,
+      "schedule_c": 3,
+      "du_findings": 2,
+      "letter_of_explanation": 2,
+      "brokerage_stmt": 2,
+      "voe": 2,
+      "w2": 1,
+      "purchase_addendum": 1,
+      "insurance_declaration": 1,
+      "assets: bank_stmt_checking": 1,
+      "gift_letter": 1,
+      "form_1008": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 0,
+        "end_page": 1,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "start_page": 2,
+        "end_page": 2,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "purchase_addendum#1",
+        "doc_type": "purchase_addendum",
+        "start_page": 3,
+        "end_page": 3,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "insurance_declaration#1",
+        "doc_type": "insurance_declaration",
+        "start_page": 4,
+        "end_page": 4,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "du_findings#1",
+        "doc_type": "du_findings",
+        "start_page": 5,
+        "end_page": 5,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 6,
+        "end_page": 6,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 7,
+        "end_page": 15,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#1",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 16,
+        "end_page": 16,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 17,
+        "end_page": 27,
+        "page_count": 11
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 28,
+        "end_page": 30,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 31,
+        "end_page": 31,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 32,
+        "end_page": 35,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 36,
+        "end_page": 36,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 37,
+        "end_page": 57,
+        "page_count": 21
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 58,
+        "end_page": 58,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 59,
+        "end_page": 67,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 68,
+        "end_page": 78,
+        "page_count": 11
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 79,
+        "end_page": 79,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 80,
+        "end_page": 80,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 81,
+        "end_page": 84,
+        "page_count": 4
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 85,
+        "end_page": 86,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#10",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 87,
+        "end_page": 89,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#11",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 90,
+        "end_page": 91,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 92,
+        "end_page": 92,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 93,
+        "end_page": 93,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 94,
+        "end_page": 94,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 95,
+        "end_page": 96,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 97,
+        "end_page": 97,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 98,
+        "end_page": 98,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 99,
+        "end_page": 107,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 108,
+        "end_page": 108,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 109,
+        "end_page": 109,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "credit_report#2",
+        "doc_type": "credit_report",
+        "start_page": 110,
+        "end_page": 110,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 111,
+        "end_page": 111,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 112,
+        "end_page": 112,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 113,
+        "end_page": 113,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#9",
+        "doc_type": "filler",
+        "start_page": 114,
+        "end_page": 115,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "unknown#4",
+        "doc_type": "unknown",
+        "start_page": 116,
+        "end_page": 116,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#10",
+        "doc_type": "filler",
+        "start_page": 117,
+        "end_page": 119,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "loan_estimate#3",
+        "doc_type": "loan_estimate",
+        "start_page": 120,
+        "end_page": 120,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 121,
+        "end_page": 122,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#1",
+        "doc_type": "letter_of_explanation",
+        "start_page": 123,
+        "end_page": 123,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "gift_letter#1",
+        "doc_type": "gift_letter",
+        "start_page": 124,
+        "end_page": 124,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#2",
+        "doc_type": "letter_of_explanation",
+        "start_page": 125,
+        "end_page": 125,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1008#1",
+        "doc_type": "form_1008",
+        "start_page": 126,
+        "end_page": 126,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#3",
+        "doc_type": "closing_disclosure",
+        "start_page": 127,
+        "end_page": 128,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "purchase_contract#2",
+        "doc_type": "purchase_contract",
+        "start_page": 129,
+        "end_page": 131,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "filler#11",
+        "doc_type": "filler",
+        "start_page": 132,
+        "end_page": 132,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_c#1",
+        "doc_type": "schedule_c",
+        "start_page": 133,
+        "end_page": 133,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#5",
+        "doc_type": "unknown",
+        "start_page": 134,
+        "end_page": 134,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "schedule_c#2",
+        "doc_type": "schedule_c",
+        "start_page": 135,
+        "end_page": 135,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "brokerage_stmt#1",
+        "doc_type": "brokerage_stmt",
+        "start_page": 136,
+        "end_page": 137,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "schedule_c#3",
+        "doc_type": "schedule_c",
+        "start_page": 138,
+        "end_page": 138,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "du_findings#2",
+        "doc_type": "du_findings",
+        "start_page": 139,
+        "end_page": 139,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "voe#1",
+        "doc_type": "voe",
+        "start_page": 140,
+        "end_page": 141,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#12",
+        "doc_type": "filler",
+        "start_page": 142,
+        "end_page": 142,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 143,
+        "end_page": 146,
+        "page_count": 4
+      }
+    ]
+  },
+  "doc_016": {
+    "total_pages": 158,
+    "total_documents": 57,
+    "doc_type_distribution": {
+      "bank_stmt_checking": 74,
+      "filler": 35,
+      "paystub": 9,
+      "unknown": 7,
+      "closing_disclosure": 4,
+      "purchase_contract": 4,
+      "credit_report": 3,
+      "assets: bank_stmt_checking": 3,
+      "urla_1003": 3,
+      "loan_estimate": 2,
+      "du_findings": 2,
+      "insurance_declaration": 2,
+      "letter_of_explanation": 2,
+      "gift_letter": 2,
+      "check_image": 2,
+      "lpa_feedback": 1,
+      "form_1008": 1,
+      "voe": 1,
+      "bank_stmt_combo": 1
+    },
+    "documents": [
+      {
+        "doc_instance_id": "loan_estimate#1",
+        "doc_type": "loan_estimate",
+        "start_page": 0,
+        "end_page": 0,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#1",
+        "doc_type": "closing_disclosure",
+        "start_page": 1,
+        "end_page": 1,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "loan_estimate#2",
+        "doc_type": "loan_estimate",
+        "start_page": 2,
+        "end_page": 2,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "credit_report#1",
+        "doc_type": "credit_report",
+        "start_page": 3,
+        "end_page": 5,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 6,
+        "end_page": 14,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "filler#1",
+        "doc_type": "filler",
+        "start_page": 15,
+        "end_page": 15,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 16,
+        "end_page": 22,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "filler#2",
+        "doc_type": "filler",
+        "start_page": 23,
+        "end_page": 23,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#3",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 24,
+        "end_page": 43,
+        "page_count": 20
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#1",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 44,
+        "end_page": 44,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#4",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 45,
+        "end_page": 46,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#2",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 47,
+        "end_page": 47,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#5",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 48,
+        "end_page": 55,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "assets: bank_stmt_checking#3",
+        "doc_type": "assets: bank_stmt_checking",
+        "start_page": 56,
+        "end_page": 56,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#6",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 57,
+        "end_page": 67,
+        "page_count": 11
+      },
+      {
+        "doc_instance_id": "filler#3",
+        "doc_type": "filler",
+        "start_page": 68,
+        "end_page": 69,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#7",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 70,
+        "end_page": 80,
+        "page_count": 11
+      },
+      {
+        "doc_instance_id": "closing_disclosure#2",
+        "doc_type": "closing_disclosure",
+        "start_page": 81,
+        "end_page": 82,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "start_page": 83,
+        "end_page": 83,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "start_page": 84,
+        "end_page": 84,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "start_page": 85,
+        "end_page": 85,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#4",
+        "doc_type": "paystub",
+        "start_page": 86,
+        "end_page": 86,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#5",
+        "doc_type": "paystub",
+        "start_page": 87,
+        "end_page": 87,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#6",
+        "doc_type": "paystub",
+        "start_page": 88,
+        "end_page": 88,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#7",
+        "doc_type": "paystub",
+        "start_page": 89,
+        "end_page": 89,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#8",
+        "doc_type": "paystub",
+        "start_page": 90,
+        "end_page": 90,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "paystub#9",
+        "doc_type": "paystub",
+        "start_page": 91,
+        "end_page": 91,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "du_findings#1",
+        "doc_type": "du_findings",
+        "start_page": 92,
+        "end_page": 92,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "lpa_feedback#1",
+        "doc_type": "lpa_feedback",
+        "start_page": 93,
+        "end_page": 93,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "insurance_declaration#1",
+        "doc_type": "insurance_declaration",
+        "start_page": 94,
+        "end_page": 94,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "form_1008#1",
+        "doc_type": "form_1008",
+        "start_page": 95,
+        "end_page": 95,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "letter_of_explanation#1",
+        "doc_type": "letter_of_explanation",
+        "start_page": 96,
+        "end_page": 97,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "gift_letter#1",
+        "doc_type": "gift_letter",
+        "start_page": 98,
+        "end_page": 99,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "filler#4",
+        "doc_type": "filler",
+        "start_page": 100,
+        "end_page": 100,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#8",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 101,
+        "end_page": 101,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#1",
+        "doc_type": "unknown",
+        "start_page": 102,
+        "end_page": 102,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#5",
+        "doc_type": "filler",
+        "start_page": 103,
+        "end_page": 107,
+        "page_count": 5
+      },
+      {
+        "doc_instance_id": "unknown#2",
+        "doc_type": "unknown",
+        "start_page": 108,
+        "end_page": 108,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#6",
+        "doc_type": "filler",
+        "start_page": 109,
+        "end_page": 115,
+        "page_count": 7
+      },
+      {
+        "doc_instance_id": "unknown#3",
+        "doc_type": "unknown",
+        "start_page": 116,
+        "end_page": 117,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "purchase_contract#1",
+        "doc_type": "purchase_contract",
+        "start_page": 118,
+        "end_page": 118,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#4",
+        "doc_type": "unknown",
+        "start_page": 119,
+        "end_page": 119,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#7",
+        "doc_type": "filler",
+        "start_page": 120,
+        "end_page": 120,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "unknown#5",
+        "doc_type": "unknown",
+        "start_page": 121,
+        "end_page": 121,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#8",
+        "doc_type": "filler",
+        "start_page": 122,
+        "end_page": 129,
+        "page_count": 8
+      },
+      {
+        "doc_instance_id": "insurance_declaration#2",
+        "doc_type": "insurance_declaration",
+        "start_page": 130,
+        "end_page": 130,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "filler#9",
+        "doc_type": "filler",
+        "start_page": 131,
+        "end_page": 139,
+        "page_count": 9
+      },
+      {
+        "doc_instance_id": "unknown#6",
+        "doc_type": "unknown",
+        "start_page": 140,
+        "end_page": 140,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "voe#1",
+        "doc_type": "voe",
+        "start_page": 141,
+        "end_page": 141,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "du_findings#2",
+        "doc_type": "du_findings",
+        "start_page": 142,
+        "end_page": 142,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "closing_disclosure#3",
+        "doc_type": "closing_disclosure",
+        "start_page": 143,
+        "end_page": 143,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "check_image#1",
+        "doc_type": "check_image",
+        "start_page": 144,
+        "end_page": 145,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "purchase_contract#2",
+        "doc_type": "purchase_contract",
+        "start_page": 146,
+        "end_page": 148,
+        "page_count": 3
+      },
+      {
+        "doc_instance_id": "urla_1003#1",
+        "doc_type": "urla_1003",
+        "start_page": 149,
+        "end_page": 149,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "bank_stmt_combo#1",
+        "doc_type": "bank_stmt_combo",
+        "start_page": 150,
+        "end_page": 150,
+        "page_count": 1
+      },
+      {
+        "doc_instance_id": "urla_1003#2",
+        "doc_type": "urla_1003",
+        "start_page": 151,
+        "end_page": 152,
+        "page_count": 2
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#9",
+        "doc_type": "bank_stmt_checking",
+        "start_page": 153,
+        "end_page": 157,
+        "page_count": 5
+      }
+    ]
+  }
+}
