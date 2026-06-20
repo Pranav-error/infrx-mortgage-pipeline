@@ -719,22 +719,30 @@ def classify_llm_sync(text: str) -> dict:
 
 
 async def _classify_llm_async(client, text: str, sem: asyncio.Semaphore) -> dict:
-    """Single async LLM call, rate-limited by semaphore."""
+    """Single async LLM call, rate-limited by semaphore. Retries on 429."""
     prompt = _pick_prompt(text).format(max_chars=_MAX_TEXT, text=text[:_MAX_TEXT])
-    async with sem:
-        if _USE_OPENAI:
-            resp = await client.chat.completions.create(
-                model=_LLM_MODEL, max_tokens=128,
-                messages=[{"role": "system", "content": _SYSTEM},
-                          {"role": "user",   "content": prompt}],
-            )
-            return _parse_llm_response(resp.choices[0].message.content)
-        else:
-            msg = await client.messages.create(
-                model=_LLM_MODEL, max_tokens=128, system=_SYSTEM,
-                messages=[{"role": "user", "content": prompt}],
-            )
-            return _parse_llm_response(msg.content[0].text)
+    for attempt in range(5):
+        async with sem:
+            try:
+                if _USE_OPENAI:
+                    resp = await client.chat.completions.create(
+                        model=_LLM_MODEL, max_tokens=128,
+                        messages=[{"role": "system", "content": _SYSTEM},
+                                  {"role": "user",   "content": prompt}],
+                    )
+                    return _parse_llm_response(resp.choices[0].message.content)
+                else:
+                    msg = await client.messages.create(
+                        model=_LLM_MODEL, max_tokens=128, system=_SYSTEM,
+                        messages=[{"role": "user", "content": prompt}],
+                    )
+                    return _parse_llm_response(msg.content[0].text)
+            except Exception as e:
+                if "429" in str(e) or "rate" in str(e).lower():
+                    await asyncio.sleep(2 ** attempt)
+                    continue
+                raise
+    return {"doc_type": "unknown", "confidence": 0.0, "method": "llm_rate_limited"}
 
 
 # ── 4. Single-page entry point ────────────────────────────────────────────────
