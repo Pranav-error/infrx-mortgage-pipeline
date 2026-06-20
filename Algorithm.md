@@ -13,7 +13,7 @@ Raw PDF (jumbled, multi-doc, mixed scan/digital)
         │
         ▼
 ┌──────────────────┐
-│  1. EXTRACT      │  pdfplumber (digital) + async Claude Haiku VLM (scanned)
+│  1. EXTRACT      │  pdfplumber (digital) + async GPT-4o-mini VLM (scanned)
 │                  │  Output: pages[], tables[] (fragments), raw text per page
 └────────┬─────────┘
          │
@@ -55,9 +55,13 @@ Two-pass extraction on the raw PDF.
 - Digital pages: extract text + table cells with exact bboxes
 - Scanned pages: queued for Pass 2
 
-**Pass 2 — Claude Haiku VLM (async parallel)**
-- Step A: Batch-render all scanned pages to PNG via poppler (one contiguous run per page group — amortises PDF parsing cost)
-- Step B: Fire all VLM API calls concurrently using `AsyncAnthropic` + `asyncio.gather` with a semaphore (default: 10 concurrent)
+**Pass 2 — GPT-4o-mini VLM (async parallel, with Tesseract triage)**
+- Step A: Batch-render scanned pages to JPEG (512px max width, quality 70) in batches of 50 via poppler
+- Step B: Blank page detection — numpy pixel density check skips near-white pages
+- Step C: Tesseract triage — parallel OCR (ThreadPoolExecutor(8)) classifies each page as text-only vs table-bearing
+- Step D: Fire VLM API calls concurrently (50 workers) via `AsyncOpenAI` + `asyncio.gather` with semaphore
+  - Text-only pages → lightweight OCR prompt (max 1500 tokens)
+  - Table pages → full extraction prompt with JSON structure (max 4096 tokens)
 - VLM returns `page_text` + table structure per page
 
 ### Output per page
@@ -89,15 +93,23 @@ Two-pass extraction on the raw PDF.
 ### Time complexity
 | Component | Complexity | Wall time (2000 pages) |
 |-----------|-----------|------------------------|
-| pdfplumber Pass 1 | O(n) serial | ~30–60 s |
-| Batch render | O(n) one poppler call | ~20 s |
-| VLM Pass 2 | O(n/k) where k=concurrency | ~180–240 s |
-| **Total** | **O(n)** | **~4–5 min** |
+| pdfplumber Pass 1 | O(n) serial | ~50–60 s |
+| Batch render (50/batch, 512px JPEG) | O(n) | ~120–130 s |
+| Tesseract triage (8 threads) | O(n/8) | ~70 s |
+| VLM Pass 2 (50 concurrent, OCR-only split) | O(n/50) | ~120–180 s |
+| **Total** | **O(n)** | **~6–8 min** |
 
-### What needs optimising
-- **Rendering bottleneck:** `convert_from_path` is CPU-bound. Could parallelise across multiple processes if >500 scanned pages in one run.
-- **VLM truncation:** Currently `max_tokens=8192`. Very dense pages (>50 rows) can still overflow. Could split dense tables into chunks.
-- **No caching:** Re-running on the same PDF re-extracts everything. A page-level hash cache (SHA256 of page content → cached fragment) would make reruns near-instant.
+### Speed optimizations (implemented)
+- **Batch rendering**: 50 pages per batch to avoid OOM, JPEG at 512px max width / quality 70
+- **Blank page detection**: Numpy pixel density check — skips near-white pages
+- **Tesseract triage**: Parallel OCR (8 threads) classifies pages into text-only vs table-bearing
+- **Dual VLM prompts**: Text-only pages use lightweight OCR prompt (1500 tokens); table pages use full extraction (4096 tokens)
+- **50 concurrent VLM workers**: Saturates API rate limits
+- **GPT-4o-mini backend**: Lower cost per token than Claude Haiku for vision tasks
+
+### What could still be optimised
+- **No caching:** Re-running on the same PDF re-extracts everything. A page-level hash cache would make reruns near-instant.
+- **VLM truncation:** Very dense pages (>50 rows) can still overflow max_tokens.
 
 ---
 
@@ -306,36 +318,34 @@ P < 0.30  →  reject edge
 | Render | 0.1 ms | |
 | **Total** | **44.6 ms** | |
 
-### Real run (pkg_000000, 52 pages, mixed)
+### Real run (pkg_000027, 200 pages, mixed)
 | Stage | Time | Notes |
 |-------|------|-------|
-| Extract Pass 1 | ~5 s | pdfplumber on 52 pages |
-| Extract Pass 2 | ~180 s | 148 scanned pages, 10 concurrent VLM |
+| Extract Pass 1 | ~5 s | pdfplumber on 200 pages |
+| Extract Pass 2 | ~60 s | scanned pages, 50 concurrent VLM, Tesseract triage |
 | Classify | ~2–4 s | ~5% LLM escalation |
 | Segment | <1 s | |
 | Stitch | <1 s | |
 | Render | <1 s | |
-| **Total** | **~3–4 min** | bottleneck: VLM extraction |
+| **Total** | **~70 s** | bottleneck: VLM extraction |
 
-### Projected (2000 pages, 80% scanned)
-| Stage | Projected time |
-|-------|---------------|
-| Extract Pass 1 | ~3–5 min |
-| Extract Pass 2 | ~3–4 min (1600 scanned, concurrency=10) |
-| Classify | ~10–15 s |
-| Segment | ~1 s |
-| Stitch | ~2–5 s (if LLM arbiter hits) |
-| Render | <1 s |
-| **Total** | **~7–10 min** |
+### Measured (2049 pages, 77% scanned)
+| Stage | Time | Notes |
+|-------|------|-------|
+| Extract Pass 1 | ~57 s | 471 digital + 1578 scanned |
+| Batch render | ~128 s | 50 pages/batch, 512px JPEG |
+| Tesseract triage | ~71 s | 622 table pages, 955 OCR-only |
+| VLM Pass 2 | ~120–180 s | 50 concurrent workers |
+| Classify | ~15 s | |
+| Segment + Stitch + Render | <2 s | |
+| **Total** | **~6–8 min** | |
 
 ---
 
 ## What Needs Optimising (Priority Order)
 
-### 1. VLM extraction concurrency (HIGH impact)
-Currently `max_workers=10`. The API supports up to 50 concurrent requests on Tier 2+.
-Raising to 30–50 would cut Pass 2 from ~4 min to ~60–80 s on 2000 pages.
-**Fix:** `--workers 30` flag already exists. Just needs a higher-tier API key.
+### ~~1. VLM extraction concurrency~~ ✅ DONE
+Raised to 50 concurrent workers. Added Tesseract triage + OCR-only lightweight prompt. Image resize to 512px, JPEG quality 70.
 
 ### 2. LLM stitch arbiter is synchronous (MEDIUM impact)
 `llm_arbiter()` in `stitch.py` uses the sync `Anthropic` client.
@@ -344,16 +354,15 @@ On a heavily fragmented file, 50+ arbiter calls run one by one.
 
 ### 3. No extraction cache (MEDIUM impact)
 Every pipeline run re-extracts every page from scratch.
-For the demo presentation, re-running a 2000-page file costs 4–7 minutes of VLM time.
 **Fix:** SHA256(page_index + pdf_mtime) → cache fragment to disk. Skip VLM if cache hit.
 
 ### 4. Balance-break false positives (LOW impact, HIGH correctness)
 The balance-break signal over-splits bank statements in jumbled PDFs.
-**Fix:** Only fire balance-break if the ending balance row is explicitly labelled "Closing Balance" / "Ending Balance", not any row containing a large number.
+**Fix:** Only fire balance-break if the ending balance row is explicitly labelled "Closing Balance" / "Ending Balance".
 
 ### 5. Synthetic column fingerprints for VLM pages (LOW impact)
 VLM pages all get `[0.0, 0.2, 0.4, ...]` fingerprints → fingerprint signal is always neutral.
-**Fix:** Prompt VLM to return column x-positions as percentages. Already part of `bbox_pct` in the VLM response — just needs wiring into `_column_fingerprint_synthetic`.
+**Fix:** Prompt VLM to return column x-positions as percentages.
 
 ---
 

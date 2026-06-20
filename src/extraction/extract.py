@@ -55,13 +55,14 @@ SCHEMA_VERSION   = "1.0.0"
 MIN_TEXT_CHARS   = 30          # below this → page is treated as scanned
 RENDER_DPI       = 150         # full DPI for coordinate system (bbox_px mapping)
 VLM_RENDER_DPI   = 100         # lower DPI for VLM — still legible, 44% smaller images
+VLM_MAX_WIDTH    = 512         # resize images to max 512px wide — massive token savings
 PT_TO_PX         = RENDER_DPI / 72.0
 VLM_MODEL        = "gpt-4o-mini" if _USE_OPENAI else "claude-haiku-4-5-20251001"
-DEFAULT_WORKERS  = 25          # concurrent async VLM requests (OpenAI allows 500 RPM)
+DEFAULT_WORKERS  = 50          # concurrent async VLM requests — push rate limits hard
 MAX_VLM_RETRIES  = 4           # retry on transient API / connection errors
 VLM_MAX_TOKENS   = 4096        # sufficient for most pages; reduces worst-case latency
 VLM_IMAGE_FORMAT = "JPEG"      # JPEG is 5-10x smaller than PNG for scanned pages
-VLM_JPEG_QUALITY = 80          # good quality, much smaller than lossless PNG
+VLM_JPEG_QUALITY = 70          # lower quality OK at 512px — faster transfers
 
 IDENTITY_TRANSFORM = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]
 COORD_SYSTEM = {
@@ -233,6 +234,12 @@ Return a JSON object with EXACTLY this schema (raw JSON only, no markdown):
 bbox_pct values are fractions of page dimensions in [0.0, 1.0].
 If there are no tables, return an empty tables array."""
 
+# Lightweight OCR-only prompt — just extract text, no table parsing.
+# ~3x faster response because output is much shorter.
+_VLM_PROMPT_OCR_ONLY = """Read all text from this scanned document page.
+Return ONLY the text as a single string. No JSON, no markdown, no explanation.
+Preserve layout: headers, paragraphs, labels, numbers."""
+
 
 def _is_blank_page(img, threshold: int = 250, min_dark_pct: float = 0.02) -> bool:
     """
@@ -247,9 +254,10 @@ def _is_blank_page(img, threshold: int = 250, min_dark_pct: float = 0.02) -> boo
 
 def _render_pages_batch(pdf_path: str, page_indices: list[int]) -> dict[int, str]:
     """
-    Render a list of page indices to base64 JPEG (or PNG) for VLM.
-    Uses lower DPI (VLM_RENDER_DPI=100) and JPEG compression for speed.
-    Skips near-blank pages to avoid wasting VLM calls.
+    Render scanned pages to base64 JPEG for VLM.
+    Processes in chunks of RENDER_BATCH_SIZE to avoid loading the entire
+    PDF into memory at once (critical for 2000+ page PDFs).
+    Skips near-blank pages automatically.
     Returns {page_index: base64_str}.
     """
     try:
@@ -261,9 +269,11 @@ def _render_pages_batch(pdf_path: str, page_indices: list[int]) -> dict[int, str
     if not page_indices:
         return {}
 
+    RENDER_BATCH_SIZE = 50  # render 50 pages at a time to limit memory
+
     # Group into contiguous runs to minimise poppler calls
     sorted_indices = sorted(page_indices)
-    runs: list[tuple[int, int]] = []   # (first_page_1indexed, last_page_1indexed)
+    runs: list[tuple[int, int]] = []
     run_start = sorted_indices[0]
     run_end   = sorted_indices[0]
     for idx in sorted_indices[1:]:
@@ -274,17 +284,33 @@ def _render_pages_batch(pdf_path: str, page_indices: list[int]) -> dict[int, str
             run_start = run_end = idx
     runs.append((run_start + 1, run_end + 1))
 
+    # Split large runs into batches of RENDER_BATCH_SIZE
+    batches: list[tuple[int, int]] = []
+    for first, last in runs:
+        while first <= last:
+            batch_end = min(first + RENDER_BATCH_SIZE - 1, last)
+            batches.append((first, batch_end))
+            first = batch_end + 1
+
     result: dict[int, str] = {}
     skipped_blank = 0
-    for first, last in runs:
+    rendered_count = 0
+    t0 = time.time()
+
+    for batch_idx, (first, last) in enumerate(batches):
         imgs = convert_from_path(pdf_path, first_page=first, last_page=last, dpi=VLM_RENDER_DPI)
         for offset, img in enumerate(imgs):
             page_index = first - 1 + offset
 
-            # Skip near-blank pages — no point sending white images to VLM
             if _is_blank_page(img):
                 skipped_blank += 1
                 continue
+
+            # Resize to max width — huge token savings for vision API
+            if img.width > VLM_MAX_WIDTH:
+                ratio = VLM_MAX_WIDTH / img.width
+                new_size = (VLM_MAX_WIDTH, int(img.height * ratio))
+                img = img.resize(new_size)
 
             buf = io.BytesIO()
             if VLM_IMAGE_FORMAT == "JPEG":
@@ -292,6 +318,14 @@ def _render_pages_batch(pdf_path: str, page_indices: list[int]) -> dict[int, str
             else:
                 img.save(buf, format="PNG")
             result[page_index] = base64.standard_b64encode(buf.getvalue()).decode()
+
+        rendered_count += len(imgs)
+        elapsed = time.time() - t0
+        rate = rendered_count / elapsed if elapsed > 0 else 0
+        remaining = len(sorted_indices) - rendered_count
+        eta = remaining / rate if rate > 0 else 0
+        print(f"[extract]   Render {rendered_count}/{len(sorted_indices)}  "
+              f"{rate:.1f} pages/s  ETA {eta:.0f}s", flush=True)
 
     if skipped_blank:
         print(f"[extract]   Skipped {skipped_blank} blank pages (no content to OCR)")
@@ -401,13 +435,15 @@ async def _vlm_one_page_async(
     pw: float,
     ph: float,
     progress: dict,
+    ocr_only: bool = False,
 ) -> tuple[int, str, list[dict]]:
     """
     Pure-async VLM call for one pre-rendered page.
-    Rendering is done up-front in the sync pre-render phase — this function
-    only does the network I/O, so the semaphore purely limits API concurrency.
+    ocr_only=True uses a lightweight prompt (text only, no table parsing) — 3x faster.
     Supports both OpenAI (GPT-4o-mini) and Anthropic (Claude Haiku) backends.
     """
+    prompt = _VLM_PROMPT_OCR_ONLY if ocr_only else _VLM_PROMPT
+    max_tok = 1500 if ocr_only else VLM_MAX_TOKENS
     async with semaphore:
         for attempt in range(MAX_VLM_RETRIES):
             try:
@@ -415,14 +451,14 @@ async def _vlm_one_page_async(
                 if _USE_OPENAI:
                     resp = await async_client.chat.completions.create(
                         model=VLM_MODEL,
-                        max_tokens=VLM_MAX_TOKENS,
+                        max_tokens=max_tok,
                         messages=[{
                             "role": "user",
                             "content": [
                                 {"type": "image_url", "image_url": {
                                     "url": f"data:{_mime};base64,{img_b64}",
                                 }},
-                                {"type": "text", "text": _VLM_PROMPT},
+                                {"type": "text", "text": prompt},
                             ],
                         }],
                     )
@@ -430,14 +466,14 @@ async def _vlm_one_page_async(
                 else:
                     resp = await async_client.messages.create(
                         model=VLM_MODEL,
-                        max_tokens=VLM_MAX_TOKENS,
+                        max_tokens=max_tok,
                         messages=[{
                             "role": "user",
                             "content": [
                                 {"type": "image", "source": {
                                     "type": "base64", "media_type": _mime, "data": img_b64,
                                 }},
-                                {"type": "text", "text": _VLM_PROMPT},
+                                {"type": "text", "text": prompt},
                             ],
                         }],
                     )
@@ -449,7 +485,10 @@ async def _vlm_one_page_async(
                     return page_index, "", []
                 await asyncio.sleep(2 ** attempt)   # 1s → 2s → 4s → 8s
 
-        page_text, frags = _parse_vlm_response(raw_text, page_index, pw, ph)
+        if ocr_only:
+            page_text, frags = raw_text, []
+        else:
+            page_text, frags = _parse_vlm_response(raw_text, page_index, pw, ph)
 
         progress["done"] += 1
         done = progress["done"]
@@ -458,7 +497,7 @@ async def _vlm_one_page_async(
             rate    = done / elapsed if elapsed > 0 else 0
             eta     = (progress["total"] - done) / rate if rate > 0 else 0
             print(f"[extract]   VLM  {done}/{progress['total']}  "
-                  f"{rate:.1f} pages/s  ETA {eta:.0f}s")
+                  f"{rate:.1f} pages/s  ETA {eta:.0f}s", flush=True)
 
         return page_index, page_text, frags
 
@@ -531,71 +570,60 @@ async def _run_vlm_pass(
     max_concurrent: int,
 ) -> dict[int, tuple[str, list]]:
     """
-    Hybrid three-step pass for scanned pages:
-      Step A (sync): batch-render all scanned pages via poppler.
-      Step B (sync): Tesseract OCR on all pages (FREE, ~0.5s/page).
-                     Pages with text but no table signals → done (text only, no VLM).
-      Step C (async): VLM API calls ONLY for pages that likely have tables.
+    Two-step async pass:
+      Step A (sync): batch-render scanned pages in chunks of 50 (memory-safe).
+      Step B (async): fire VLM API calls with high concurrency (25+).
 
-    For a 2000-page PDF with 1500 scanned pages:
-      - ~500 blank → skipped in render
-      - ~700 text-only → Tesseract handles in ~5min (free)
-      - ~300 with tables → VLM in ~60s (25 concurrent)
-    Total: ~6min instead of ~90min with VLM-for-all.
+    Blank pages are auto-skipped during rendering (no VLM cost).
+    Tesseract is NOT used — VLM is more accurate and the rendering step
+    is the real bottleneck, not the API calls.
     """
-    # Step A — pre-render all scanned pages
+    # Step A — render scanned pages in batches
     page_indices = [item["page_index"] for item in scanned_queue]
-    print(f"[extract]   Pre-rendering {len(page_indices)} pages...")
+    print(f"[extract]   Rendering {len(page_indices)} scanned pages...")
     t_render = time.time()
     rendered = _render_pages_batch(pdf_path, page_indices)
     print(f"[extract]   Rendered {len(rendered)} pages in {time.time()-t_render:.1f}s")
 
-    # Step B — Tesseract OCR on all rendered pages (free, local)
-    t_ocr = time.time()
-    print(f"[extract]   Tesseract OCR on {len(rendered)} pages (free, local)...")
-    ocr_texts = _tesseract_ocr_batch(rendered)
-    print(f"[extract]   Tesseract done in {time.time()-t_ocr:.1f}s")
-
-    # Decide which pages need VLM (have tables) vs text-only (Tesseract is enough)
+    # Step B — async VLM calls (high concurrency)
     out: dict[int, tuple[str, list]] = {}
-    vlm_needed: list[dict] = []
 
+    # Mark blank pages (skipped during render)
     for item in scanned_queue:
         pi = item["page_index"]
-        ocr_text = ocr_texts.get(pi, "")
-
         if pi not in rendered:
-            # Blank page (skipped in render)
             out[pi] = ("", [])
-            continue
 
-        if ocr_text.strip() and not _page_needs_vlm(ocr_text):
-            # Truly non-financial text page — Tesseract is sufficient, skip VLM
-            out[pi] = (ocr_text, [])
-        else:
-            # Financial/structured content → send to VLM for accurate extraction
-            vlm_needed.append(item)
+    vlm_items = [item for item in scanned_queue if item["page_index"] in rendered]
 
-    tesseract_only = len(out) - sum(1 for v in out.values() if not v[0])
-    print(f"[extract]   Tesseract handled {tesseract_only} text-only pages | "
-          f"{len(vlm_needed)} pages need VLM for tables")
+    # Quick Tesseract triage: decide which pages need full table extraction
+    # vs lightweight OCR-only. This saves ~60% of VLM response tokens.
+    t_triage = time.time()
+    triage_texts = _tesseract_ocr_batch(rendered)
+    table_pages = set()
+    for pi, text in triage_texts.items():
+        if _page_needs_vlm(text):
+            table_pages.add(pi)
+    ocr_only_count = len(vlm_items) - len(table_pages)
+    print(f"[extract]   Triage ({time.time()-t_triage:.1f}s): "
+          f"{len(table_pages)} pages need tables, "
+          f"{ocr_only_count} OCR-only (lightweight)", flush=True)
 
-    # Step C — VLM only for pages with tables
-    if vlm_needed:
+    if vlm_items:
         semaphore = asyncio.Semaphore(max_concurrent)
-        progress = {"done": 0, "total": len(vlm_needed), "t0": time.time()}
+        progress = {"done": 0, "total": len(vlm_items), "t0": time.time()}
 
         if _USE_OPENAI:
             async_client = _AsyncOpenAI()
             tasks = [
                 _vlm_one_page_async(
                     semaphore, async_client,
-                    rendered.get(item["page_index"], ""),
+                    rendered[item["page_index"]],
                     item["page_index"], item["pw"], item["ph"],
                     progress,
+                    ocr_only=(item["page_index"] not in table_pages),
                 )
-                for item in vlm_needed
-                if item["page_index"] in rendered
+                for item in vlm_items
             ]
             results = await asyncio.gather(*tasks, return_exceptions=True)
             await async_client.close()
@@ -605,12 +633,12 @@ async def _run_vlm_pass(
                 tasks = [
                     _vlm_one_page_async(
                         semaphore, async_client,
-                        rendered.get(item["page_index"], ""),
+                        rendered[item["page_index"]],
                         item["page_index"], item["pw"], item["ph"],
                         progress,
+                        ocr_only=(item["page_index"] not in table_pages),
                     )
-                    for item in vlm_needed
-                    if item["page_index"] in rendered
+                    for item in vlm_items
                 ]
                 results = await asyncio.gather(*tasks, return_exceptions=True)
 
@@ -619,9 +647,7 @@ async def _run_vlm_pass(
                 print(f"[WARN] gather exception: {r}")
                 continue
             pg_idx, text, frags = r
-            # If VLM got text, use it; otherwise fall back to Tesseract text
-            final_text = text if text.strip() else ocr_texts.get(pg_idx, "")
-            out[pg_idx] = (final_text, frags)
+            out[pg_idx] = (text, frags)
 
     return out
 

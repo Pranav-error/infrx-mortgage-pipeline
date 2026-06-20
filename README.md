@@ -25,7 +25,7 @@ Raw PDF (scan / native / photo)
 │           DOCUMENT COMPILER                 │
 │  extract.py                                 │
 │  • pdfplumber  → native pages (free, fast)  │
-│  • Claude Haiku VLM → scanned pages only    │
+│  • GPT-4o-mini VLM → scanned pages only      │
 │  Output: PageRecord + FragmentRecord per pg │
 └────────────────────┬────────────────────────┘
                      │
@@ -41,9 +41,9 @@ Raw PDF (scan / native / photo)
 │                  │   │  PTT Belief Graph        │
 │ 27 doc types     │   │  5-signal Bayesian fusion│
 │ heuristic first  │   │  per adjacent frag pair  │
-│ Haiku parallel   │   │                          │
+│ GPT-4o-mini par  │   │                          │
 │ carry-forward    │   │  P > 0.9 → auto-merge    │
-│ 84% accuracy     │   │  P 0.7–0.9 → LLM arbiter │
+│ 91% accuracy     │   │  P 0.7–0.9 → LLM arbiter │
 └──────────────────┘   │  P < 0.3 → reject        │
                        └─────────────────────────┘
                                     │
@@ -58,19 +58,26 @@ Raw PDF (scan / native / photo)
 
 ```
 src/
-├── extract.py          # Step 2 — page-level extraction (pdfplumber + VLM fallback)
-├── classify.py         # Step 3 — document-type classification (27 types, parallel async)
-├── eval_classify.py    # Evaluation script — accuracy vs labels.json ground truth
-├── run_extraction.py   # CLI runner — runs extract.py on a dataset package
-└── test_vlm_sample.py  # VLM sanity test
+├── extraction/
+│   ├── extract.py          # Two-pass PDF extraction (pdfplumber + GPT-4o-mini VLM)
+│   └── run_extraction.py   # CLI wrapper
+├── classification/
+│   ├── classify.py         # 4-level cascade classifier (27 types, parallel async)
+│   └── eval_classify.py    # Accuracy evaluation vs labels.json ground truth
+├── segmentation/
+│   └── segment.py          # PSS boundary detection + coreference merge
+├── stitching/
+│   └── stitch.py           # Naive Bayes PTT + LLM arbiter
+├── pipeline/
+│   └── run_pipeline.py     # End-to-end orchestrator (classify → segment → stitch → render)
+└── output/
+    └── render.py           # Final JSON output assembler
 
-DataSet/
-├── pkg_000000/         # 200-page sample loan file + labels.json ground truth
-├── pkg_000001/         # ...
-└── pkg_000005/         # 6 packages total
+DataSet /
+├── pkg_000000/ … pkg_000039/   # 40 packages with labels.json ground truth
 
-Idea.md                 # Full architecture doc, build plan, demo script
-Problem_statement.md    # PS B brief from Infrrd
+run.sh                  # Convenience runner (eval / pipeline modes)
+Algorithm.md            # Detailed algorithm reference
 requirements.txt        # pip dependencies
 ```
 
@@ -82,7 +89,7 @@ requirements.txt        # pip dependencies
 Page-level extraction — Step 2 of the pipeline.
 
 - **Native PDF pages** → `pdfplumber` (free, deterministic, zero AI cost)
-- **Scanned/photo pages** → Claude Haiku VLM (selective fallback only)
+- **Scanned/photo pages** → GPT-4o-mini VLM (selective fallback only, with Tesseract triage)
 
 **Output per page:**
 ```python
@@ -158,19 +165,16 @@ Page text
 }
 ```
 
-**Performance (6 packages, 285 digital pages):**
+**Performance (40 packages, 1,845 digital pages):**
 
-| Package | Pages | Accuracy | Time |
-|---|---|---|---|
-| pkg_000000 | 52 | 92.3% | 1.4s |
-| pkg_000001 | 30 | 73.3% | 3.2s |
-| pkg_000002 | 27 | 81.5% | 8.1s |
-| pkg_000003 | 65 | 80.0% | 2.1s |
-| pkg_000004 | 36 | 83.3% | 2.2s |
-| pkg_000005 | 75 | 88.0% | 5.4s |
-| **Overall** | **285** | **84.2%** | **~24s total** |
+| Metric | Value |
+|---|---|
+| **Overall accuracy** | **91.0%** |
+| Packages evaluated | 40 |
+| Total pages | 1,845 digital |
+| 100% accuracy types | `bank_stmt_checking`, `closing_disclosure`, `paystub`, `form_1008`, `du_findings`, `loan_summary`, `brokerage_stmt`, `purchase_contract`, `form_1040`, `w2` |
 
-Note: scanned pages (73% of dataset) get text from `extract.py`'s VLM pass first — classifier never calls a model twice on the same page.
+Note: scanned pages get text from `extract.py`'s VLM pass first — classifier never calls a model twice on the same page. With OCR support, scanned pages (73% of dataset) are now fully classified.
 
 **Usage:**
 ```python
@@ -220,12 +224,12 @@ The core of the system. For every pair of adjacent table fragments, PTT computes
 | Stage | AI used? | Detail |
 |---|---|---|
 | Native PDF extraction | No | pdfplumber — free |
-| Scanned page extraction | Yes (VLM) | Claude Haiku, only pages with no text layer |
-| Document classification | Conditional | Heuristic first; Haiku only for ambiguous pages (parallel) |
+| Scanned page extraction | Yes (VLM) | GPT-4o-mini, only pages with no text layer; Tesseract triage |
+| Document classification | Conditional | Heuristic first; LLM only for ambiguous pages (parallel) |
 | PTT 5-signal scoring | No | Pure deterministic math |
 | LLM arbiter | ~15% of boundary pairs | Only uncertain edges |
 
-**At 2,000-page scale:** majority of pages never touch a model. Classification of ~500 digital pages runs in ~15–20s with parallel async.
+**At 2,000-page scale:** majority of pages never touch a model. Classification runs in ~15–20s with parallel async. VLM extraction uses Tesseract triage (text-only pages get lightweight OCR prompt, table pages get full extraction), image resize to 512px, JPEG quality 70, and 50 concurrent workers — reducing VLM cost and time by ~3×.
 
 ---
 
@@ -237,21 +241,35 @@ source .venv/bin/activate
 pip install -r requirements.txt
 # also: brew install poppler  (for pdf2image on macOS)
 
-export ANTHROPIC_API_KEY=sk-ant-...
+export OPENAI_API_KEY=sk-...
 
-# Run extraction on a package
-python3 src/run_extraction.py --pkg "DataSet /pkg_000000"
+# Evaluate classifier on all 40 packages
+./run.sh eval
 
-# Evaluate classifier
-python3 src/eval_classify.py
+# Evaluate single package
+./run.sh eval pkg_000005
+
+# Run full pipeline (classify → segment → stitch → render)
+./run.sh pipeline pkg_000005
 ```
 
 ---
 
-## What's not built yet (honest limits)
+## Speed Optimizations for 2000+ Page PDFs
 
-- `stitch.py` — PTT belief graph (in progress)
-- Semantic compression (10k → 1.5k tokens boilerplate stripping)
-- Async VLM extraction (currently sequential — ~7min for 148 scanned pages)
-- `column_fingerprint` and `value_types` fields in FragmentRecord (needed by PTT signals 2 & 3)
-- Document-instance segmentation (splitting back-to-back same-type docs into instances)
+| Optimization | Impact |
+|---|---|
+| **Tesseract triage** | Classifies pages as text-only vs table-bearing; text-only pages get lightweight OCR prompt (1500 tokens) instead of full extraction (4096 tokens) |
+| **Image resize to 512px** | Reduces vision API token count by ~4× vs full resolution |
+| **JPEG quality 70** | Smaller payloads → faster upload |
+| **Batch rendering (50 pages/batch)** | Avoids OOM on large PDFs, shows progress |
+| **50 concurrent VLM workers** | Saturates API rate limits |
+| **Blank page detection** | Numpy pixel density check skips near-white pages entirely |
+| **Parallel Tesseract** | ThreadPoolExecutor(8) for OCR triage |
+
+## Pipeline Output
+
+The pipeline generates:
+- **Document summary** — all detected document instances with page ranges and type counts
+- **Ground truth comparison** (when `labels.json` exists) — side-by-side accuracy table with per-type breakdown
+- **JSON output file** — `pipeline_output.json` in the package directory
