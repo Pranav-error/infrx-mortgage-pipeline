@@ -384,6 +384,7 @@ def run_pipeline(
     jumbled: bool = False,
     output_pdf: str | None = None,
     labels_path: str | None = None,
+    use_vlm: bool = True,
 ) -> dict:
     """
     Run the full pipeline on a single PDF.
@@ -406,7 +407,7 @@ def run_pipeline(
     print("\n" + "="*60)
     print("  STAGE 1 / 5 — EXTRACTION")
     print("="*60)
-    extraction = extract_pdf(pdf_path, api_key, max_extract_workers)
+    extraction = extract_pdf(pdf_path, api_key, max_extract_workers, use_vlm=use_vlm)
     pages  = extraction["pages"]
     tables = extraction["tables"]
     print(f"  => {len(pages)} pages, {len(tables)} fragments extracted")
@@ -663,6 +664,8 @@ def _parse_args() -> argparse.Namespace:
                    help="Output JSON path (default: <pkg_dir>/pipeline_output.json)")
     p.add_argument("--workers",  type=int, default=25,
                    help="Max concurrent VLM workers for extraction (default: 25)")
+    p.add_argument("--no-vlm", action="store_true",
+                   help="Tesseract-only mode: skip VLM on scanned pages (fast, no API cost)")
     p.add_argument("--no-stitch-llm", action="store_true",
                    help="Disable LLM arbiter in stitching (faster, slightly less accurate)")
     p.add_argument("--jumbled", action="store_true",
@@ -706,6 +709,7 @@ def main():
         jumbled              = args.jumbled,
         output_pdf           = args.output_pdf,
         labels_path          = labels_file,
+        use_vlm              = not args.no_vlm,
     )
 
     out_file = Path(out_path)

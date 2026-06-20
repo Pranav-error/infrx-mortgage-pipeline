@@ -661,6 +661,7 @@ def extract_pdf(
     pdf_path: str,
     anthropic_api_key: Optional[str] = None,
     max_workers: int = DEFAULT_WORKERS,
+    use_vlm: bool = True,
 ) -> dict:
     """
     Extract all pages from a multi-page PDF.
@@ -740,7 +741,7 @@ def extract_pdf(
     # ------------------------------------------------------------------ #
     # PASS 2 — async parallel VLM for scanned pages                     #
     # ------------------------------------------------------------------ #
-    has_vlm_key = anthropic_api_key or _USE_OPENAI
+    has_vlm_key = (anthropic_api_key or _USE_OPENAI) and use_vlm
     if scanned_queue and has_vlm_key:
         n_scanned         = len(scanned_queue)
         effective_workers = min(max_workers, n_scanned)
@@ -769,7 +770,19 @@ def extract_pdf(
               f"{vlm_frags} fragments from {vlm_ok}/{n_scanned} pages")
 
     elif scanned_queue and not has_vlm_key:
-        print(f"[extract] Pass 2 skipped — no API key ({len(scanned_queue)} scanned pages unprocessed)")
+        if not use_vlm:
+            # Tesseract-only mode: run OCR triage directly on all scanned pages
+            print(f"[extract] Pass 2 — Tesseract-only mode ({len(scanned_queue)} scanned pages)")
+            t1 = time.time()
+            rendered = asyncio.run(_render_pages_batch(scanned_queue, pdf_path))
+            ocr_texts = _tesseract_ocr_batch(rendered)
+            for item in scanned_queue:
+                pi = item["page_index"]
+                text = ocr_texts.get(pi, "")
+                pages_out[pi]["text"] = text
+            print(f"[extract] Tesseract done in {time.time()-t1:.1f}s")
+        else:
+            print(f"[extract] Pass 2 skipped — no API key ({len(scanned_queue)} scanned pages unprocessed)")
 
     # ------------------------------------------------------------------ #
     # Assemble output                                                     #
