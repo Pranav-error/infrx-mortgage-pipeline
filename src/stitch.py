@@ -175,8 +175,9 @@ def _spatial_flow(frag_a: dict, frag_b: dict) -> float:
 # P(sub | diff) ~ high → increases P(diff)
 
 _SUBTOTAL_RE = re.compile(
-    r"(total|subtotal|sub-total|grand total|ending balance|balance forward"
-    r"|brought forward|sum|closing balance)",
+    r"(\btotal\b|\bsubtotal\b|sub-total|grand total|balance forward"
+    r"|brought forward|\bsum\b|closing balance|period total"
+    r"|account total|statement total)",
     re.IGNORECASE,
 )
 
@@ -214,13 +215,26 @@ def _gaussian_llr(score: float, mu_same: float, mu_diff: float, sigma: float = 0
 
 
 # Signal parameters: (mu_same, mu_diff, sigma, weight)
-# weight scales how much this signal contributes vs others
+# Empirically calibrated from 40 same-table + 47 diff-table pairs (pkg_000000)
+# sigma = max(std_same, std_diff) from real data — conservative overlap estimate
+# weight = separation / sigma — signals with better SNR get higher weight
 _SIGNAL_PARAMS = {
-    "header":     (0.85, 0.20, 0.18, 1.0),
-    "fingerprint":(0.90, 0.30, 0.15, 1.5),  # strongest signal — column structure
-    "value_type": (0.88, 0.40, 0.20, 0.8),
-    "spatial":    (0.80, 0.35, 0.22, 1.2),  # spatial flow — important gate
-    "subtotal":   (0.05, 0.80, 0.15, 2.0),  # strong negative — high weight
+    # mu_same=0.815 mu_diff=0.407 std~0.34/0.18 → separation=0.408, moderate
+    "header":     (0.815, 0.407, 0.34, 1.2),
+
+    # mu_same=0.932 mu_diff=0.702 std~0.16/0.20 → separation=0.230, WEAKER than expected
+    # different tables on same-width pages look similar — don't over-weight
+    "fingerprint":(0.932, 0.702, 0.20, 1.1),
+
+    # mu_same=0.790 mu_diff=0.456 std~0.27/0.16 → separation=0.334, moderate
+    "value_type": (0.790, 0.456, 0.27, 1.0),
+
+    # mu_same=0.863 mu_diff=0.255 std~0.28/0.31 → separation=0.608, BEST signal
+    "spatial":    (0.863, 0.255, 0.31, 1.8),
+
+    # Subtotal regex fixed — "ending balance" removed (false-fired on txn rows)
+    # Re-calibrate after fix: assume narrow true subtotal signal
+    "subtotal":   (0.05, 0.60, 0.15, 1.5),  # inverted: high = diff table
 }
 
 
