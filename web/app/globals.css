@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.pdf-page-wrapper .react-pdf__Page {
+  display: flex;
+  justify-content: center;
+}
