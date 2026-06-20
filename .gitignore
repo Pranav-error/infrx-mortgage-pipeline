@@ -2,3 +2,5 @@ DataSet/
 __pycache__/
 *.pyc
 .env
+FAQ.md
+EXPLANATION.md

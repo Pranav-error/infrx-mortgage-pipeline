@@ -157,7 +157,7 @@ def main():
     if args.pkg:
         pkgs = [Path(args.pkg)]
     else:
-        pkgs = sorted([base / f"pkg_00000{i}" for i in range(6)])
+        pkgs = sorted([p for p in base.iterdir() if p.is_dir() and p.name.startswith("pkg_")])
 
     all_results = []
     for pkg in pkgs:

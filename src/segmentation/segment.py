@@ -41,6 +41,11 @@ _ATTR_PATTERNS: dict[str, list[re.Pattern]] = {
         re.compile(r"statement\s+(?:period|date)[:\s]+(\w+\s+\d{4}|\d{4}-\d{2})", re.I),
         re.compile(r"account\s+(?:number|#|no\.?)[:\s#]+([X*\d\-]{4,})", re.I),
         re.compile(r"for\s+the\s+period\s+(\w+\s+\d+,?\s*\d{4})", re.I),
+        # "Oct 01 – Oct 31, 2024" or "10/01/2024 – 10/31/2024" style
+        re.compile(r"(\w{3,9}\s+\d{1,2}\s*[–\-]\s*\w{3,9}\s+\d{1,2},?\s*\d{4})", re.I),
+        re.compile(r"(\d{1,2}/\d{1,2}/\d{4})\s*[–\-—]\s*\d{1,2}/\d{1,2}/\d{4}", re.I),
+        # "through MM/DD/YYYY" or "as of MM/DD/YYYY"
+        re.compile(r"(?:through|as\s+of|thru)\s+(\d{1,2}[/-]\d{1,2}[/-]\d{2,4})", re.I),
         # Bank name on header page — Chase vs Wells Fargo vs CapitalOne etc.
         re.compile(r"^(chase|wells\s+fargo|bank\s+of\s+america|citibank|capital\s+one|us\s+bank|pnc|td\s+bank|truist|regions|suntrust|bb&t|citizens|fifth\s+third|keybank|huntington)", re.I),
     ],
@@ -351,6 +356,84 @@ def segment_documents(
     _close_span(len(pages) - 1)
 
     return instances
+
+
+def merge_coreference_instances(instances: list[DocInstance]) -> list[DocInstance]:
+    """
+    Second-pass global coreference merge.
+
+    Problem: segment_documents() is a single left-to-right pass — it can only
+    merge ADJACENT pages. If page 1 and page 2000 belong to the same bank
+    statement (same account number, same period) but are separated by 1998
+    other pages, they come out as two separate instances.
+
+    Fix: after the first pass, group instances by (doc_type, distinguishing_attr).
+    Any two instances with the same key → same logical document → merge them.
+
+    Example:
+        bank_stmt_checking#1  p1–p3    [****1234, Feb 2024]   ← fragment 1
+        bank_stmt_checking#5  p1998–p2000 [****1234, Feb 2024] ← fragment 2
+        → merged into:
+        bank_stmt_checking#1  p1–p2000  page_count=6  [****1234, Feb 2024]
+
+    Only merges when BOTH instances have a distinguishing_attr (account number
+    or statement period). Instances with no attr are left as-is to avoid
+    false merges on generic types like filler.
+    """
+    if not instances:
+        return instances
+
+    # Separate instances that have a usable attr from those that don't
+    keyed:   dict[tuple, list[DocInstance]] = {}
+    no_attr: list[DocInstance] = []
+
+    for inst in instances:
+        if inst.distinguishing_attr:
+            key = (inst.doc_type, inst.distinguishing_attr.lower().strip())
+            keyed.setdefault(key, []).append(inst)
+        else:
+            no_attr.append(inst)
+
+    merged: list[DocInstance] = []
+
+    for (doc_type, _attr), group in keyed.items():
+        if len(group) == 1:
+            merged.append(group[0])
+        else:
+            # Merge: span from earliest start_page to latest end_page
+            # page_count = sum of all fragment page counts (we know these pages belong here)
+            merged.append(DocInstance(
+                doc_instance_id    = group[0].doc_instance_id,   # renumbered below
+                doc_type           = doc_type,
+                doc_type_label_id  = group[0].doc_type_label_id,
+                start_page         = min(i.start_page for i in group),
+                end_page           = max(i.end_page   for i in group),
+                page_count         = sum(i.page_count  for i in group),
+                instance_ordinal   = group[0].instance_ordinal,  # renumbered below
+                distinguishing_attr= group[0].distinguishing_attr,
+            ))
+
+    merged.extend(no_attr)
+
+    # Re-sort by start_page and re-number ordinals cleanly
+    merged.sort(key=lambda i: i.start_page)
+    ordinal_counter: dict[str, int] = {}
+    result: list[DocInstance] = []
+    for inst in merged:
+        ordinal_counter[inst.doc_type] = ordinal_counter.get(inst.doc_type, 0) + 1
+        ord_n = ordinal_counter[inst.doc_type]
+        result.append(DocInstance(
+            doc_instance_id    = f"{inst.doc_type}#{ord_n}",
+            doc_type           = inst.doc_type,
+            doc_type_label_id  = inst.doc_type_label_id,
+            start_page         = inst.start_page,
+            end_page           = inst.end_page,
+            page_count         = inst.page_count,
+            instance_ordinal   = ord_n,
+            distinguishing_attr= inst.distinguishing_attr,
+        ))
+
+    return result
 
 
 def instances_to_dict(instances: list[DocInstance]) -> list[dict]:

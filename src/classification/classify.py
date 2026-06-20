@@ -19,40 +19,66 @@ import json
 import os
 import re
 import time
-from anthropic import Anthropic, AsyncAnthropic
+import os as _os
 
-# ── 0. Label ID map — matches labels.json doctype_label_id exactly ───────────
+# Support both Anthropic and OpenAI backends.
+# OpenAI is used when OPENAI_API_KEY is set (Anthropic credits exhausted fallback).
+_USE_OPENAI = bool(_os.environ.get("OPENAI_API_KEY"))
 
-LABEL_ID = {
-    "urla_1003":             0,
-    "form_1008":             1,
-    "loan_estimate":         2,
-    "closing_disclosure":    3,
-    "paystub":               4,
-    "w2":                    5,
-    "voe":                   6,
-    "form_1040":             7,
-    "schedule_1":            8,
-    "schedule_c":            9,
-    "bank_stmt_checking":    10,
-    "bank_stmt_combo":       11,
-    "brokerage_stmt":        12,
-    "check_image":           13,
-    "deposit_receipt":       14,
-    "credit_report":         15,
-    "du_findings":           16,
-    "lpa_feedback":          17,
-    "purchase_contract":     18,
-    "purchase_addendum":     19,
-    "options_addendum":      20,
-    "email_correspondence":  21,
-    "letter_of_explanation": 22,
-    "gift_letter":           23,
-    "insurance_declaration": 24,
-    "loan_summary":          25,
-    "filler":                26,
-    "unknown":               -1,
+if _USE_OPENAI:
+    import openai as _openai
+    from openai import AsyncOpenAI as _AsyncOpenAI
+else:
+    from anthropic import Anthropic, AsyncAnthropic
+
+# ── 0. Label ID map — auto-discovered from labels.json, with fallback ────────
+
+# Default mapping (used when no labels.json is available — e.g., blind classification
+# on a new PDF with no ground truth). If labels.json exists, we merge any new types
+# discovered there so the system adapts to schema changes automatically.
+_DEFAULT_LABEL_ID = {
+    "urla_1003": 0, "form_1008": 1, "loan_estimate": 2, "closing_disclosure": 3,
+    "paystub": 4, "w2": 5, "voe": 6, "form_1040": 7, "schedule_1": 8,
+    "schedule_c": 9, "bank_stmt_checking": 10, "bank_stmt_combo": 11,
+    "brokerage_stmt": 12, "check_image": 13, "deposit_receipt": 14,
+    "credit_report": 15, "du_findings": 16, "lpa_feedback": 17,
+    "purchase_contract": 18, "purchase_addendum": 19, "options_addendum": 20,
+    "email_correspondence": 21, "letter_of_explanation": 22, "gift_letter": 23,
+    "insurance_declaration": 24, "loan_summary": 25, "filler": 26, "unknown": -1,
 }
+
+
+def _discover_label_ids(dataset_root: str = "DataSet ") -> dict[str, int]:
+    """
+    Scan labels.json files in the dataset to auto-discover doc_type → label_id mapping.
+    Falls back to _DEFAULT_LABEL_ID if no labels.json is found (blind run on new PDF).
+    Merges any new types found in labels.json into the default map so the system
+    adapts to schema changes automatically.
+    """
+    import json
+    from pathlib import Path
+
+    discovered = dict(_DEFAULT_LABEL_ID)
+    root = Path(dataset_root)
+    if not root.exists():
+        return discovered
+
+    # Scan up to a few labels.json files to discover all types
+    for labels_path in list(root.glob("pkg_*/labels.json"))[:5]:
+        try:
+            data = json.loads(labels_path.read_text())
+            for page in data.get("pages", []):
+                dt = page.get("doc_type", "")
+                lid = page.get("doc_type_label_id")
+                if dt and lid is not None and dt not in discovered:
+                    discovered[dt] = lid
+        except (json.JSONDecodeError, OSError):
+            continue
+
+    return discovered
+
+
+LABEL_ID = _discover_label_ids()
 
 KNOWN_TYPES = [k for k in LABEL_ID if k != "unknown"]
 
@@ -112,18 +138,15 @@ DOC_SIGNALS = {
         r"account (number|#).*\*{2,}",
     ],
     "bank_stmt_combo": [
-        r"combined statement",
-        r"savings.*checking|checking.*savings",
-        r"multiple accounts",
-        r"combined account summary",
-        r"in all accounts",                 # "TOTAL ENDING BALANCE IN ALL ACCOUNTS"
-        r"total ending balance",
-        r"360\b",                           # Capital One 360
-        r"savings account",
+        r"in all accounts",                                # "TOTAL ENDING BALANCE IN ALL ACCOUNTS"
+        r"total ending balance",                           # same phrase, split so both count
+        r"thanks for saving with",                         # Capital One 360 greeting
+        r"cashflow summary",                               # Capital One 360 section
+        r"360 checking|360 performance|performance savings", # Capital One 360 account names
+        r"combined statement|combined account summary",
+        r"savings.*checking|checking.*savings|checking and savings",
+        r"all accounts summary|relationship summary",
         r"money market",
-        r"checking and savings",
-        r"all accounts summary",
-        r"relationship summary",
     ],
     "brokerage_stmt": [
         r"brokerage (account|statement)",
@@ -227,6 +250,14 @@ DOC_SIGNALS = {
         r"equifax|experian|transunion",
         r"derogatory\b",
         r"tradeline",
+        r"tri.?merge|merged credit",        # "Tri-Merge Merged Credit Report"
+        r"beacon\s+\d|fico\s+v\d",          # "Beacon 5.0" / "FICO V2" score model names
+        r"repository sources",              # "Repository Sources: Equifax · Experian"
+        r"revolving account utilization",   # credit report section header
+        r"trade lines|trade line",          # "TRADE LINES — CREDIT GRANTOR HISTORY"
+        r"credit grantor",                  # column header in credit tables
+        r"representative score",            # tri-merge score label
+        r"payment history|lmt\b",           # credit report column headers
     ],
     "letter_of_explanation": [
         r"letter of explanation",
@@ -345,6 +376,40 @@ def classify_by_table_headers(fragment_headers_list: list[list[str]]) -> dict | 
     return None
 
 
+# ── 1c. Structural combo detection — format-agnostic ─────────────────────────
+# bank_stmt_combo has a summary table listing MULTIPLE accounts with balances.
+# This appears regardless of bank name or template.
+# Pattern: 2+ lines each containing an account-like identifier + two dollar amounts
+#          (beginning and ending balance columns)
+
+_COMBO_ACCOUNT_ROW = re.compile(
+    r"(checking|savings|money\s+market|360\s+checking|360\s+performance|"
+    r"performance\s+savings|savings\s+account|checking\s+account)"
+    r".*(?:[.]{2,}|[*]{2,})\d{4}"      # masked account number: ...XXXX or ****XXXX
+    r".*\$?[\d,]+\.\d{2}"              # plus a dollar amount
+    r".*\$?[\d,]+\.\d{2}",             # and a second dollar amount
+    re.IGNORECASE,
+)
+
+_COMBO_SUMMARY_TOTAL = re.compile(
+    r"(total|all\s+accounts)\s+.*\$?[\d,]+\.\d{2}.*\$?[\d,]+\.\d{2}",
+    re.IGNORECASE,
+)
+
+def _is_combo_statement(text: str) -> bool:
+    """
+    Returns True if page is a multi-account combo summary.
+    Requires: 2+ named account rows (checking/savings + masked account number + two amounts)
+    OR: account rows + a total row.
+    This prevents false positives on single-account summaries (Chase ACCOUNT SUMMARY).
+    """
+    lines = text.splitlines()
+    account_rows = sum(1 for line in lines if _COMBO_ACCOUNT_ROW.search(line))
+    has_total_row = any(_COMBO_SUMMARY_TOTAL.search(line) for line in lines)
+    # Need either 2+ typed account rows, or 1 account row + explicit total row
+    return account_rows >= 2 or (account_rows >= 1 and has_total_row)
+
+
 # ── 2. Heuristic scorer ───────────────────────────────────────────────────────
 
 def _score_page(text: str) -> dict[str, float]:
@@ -358,6 +423,17 @@ def _score_page(text: str) -> dict[str, float]:
 
 def classify_heuristic(text: str) -> dict:
     scores = _score_page(text)
+
+    # Priority override: more-specific type wins over its parent type
+    # bank_stmt_combo IS a bank statement, so checking signals also fire on it.
+    # When both score above threshold, prefer the more specific one.
+    _SPECIFICITY_OVERRIDES = [
+        ("bank_stmt_combo", "bank_stmt_checking"),  # combo > checking
+    ]
+    for specific, general in _SPECIFICITY_OVERRIDES:
+        if scores.get(specific, 0) >= 0.5 and scores.get(general, 0) >= 0.5:
+            scores[general] = scores[specific] - 0.01  # specific wins by a nose
+
     best_type = max(scores, key=scores.get)
     best_score = scores[best_type]
     return {
@@ -370,8 +446,8 @@ def classify_heuristic(text: str) -> dict:
 
 # ── 3. LLM classification (sync + async) ─────────────────────────────────────
 
-_LLM_MODEL = "claude-haiku-4-5-20251001"
-_MAX_TEXT   = 1200  # increased from 600 — more context = better accuracy on ambiguous pages
+_LLM_MODEL       = "gpt-4o-mini" if _USE_OPENAI else "claude-haiku-4-5-20251001"
+_MAX_TEXT        = 1200  # increased from 600 — more context = better accuracy on ambiguous pages
 
 _SYSTEM = """\
 You are a document page classifier for US mortgage loan files.
@@ -394,6 +470,7 @@ Classify this page into one of these US mortgage document types:
 
 Classify by STRUCTURE — these patterns hold across ALL banks and lenders:
 - Transaction rows (date/desc/amount/balance columns) → bank_stmt_checking
+- Multi-account summary table: 2+ rows each with [account type]...[last 4 digits] + two balance columns, plus "All Accounts" total row → bank_stmt_combo
 - Liability table (creditor/account type/unpaid balance/monthly payment) → urla_1003
 - Stock/portfolio rows (symbol/shares/price/value) → brokerage_stmt
 - Earnings columns (gross/net/YTD/federal tax/state tax) → paystub
@@ -407,6 +484,8 @@ Page text (first {max_chars} chars):
 ---
 {text}
 ---
+
+IMPORTANT: doc_type must be one of the exact type names listed above (e.g. "bank_stmt_checking", "urla_1003") — NOT a category name like "ASSETS" or "INCOME".
 
 JSON only: {{"doc_type": "<type>", "confidence": <0.0–1.0>, "reasoning": "<one line>"}}"""
 
@@ -441,8 +520,27 @@ def _parse_llm_response(raw: str) -> dict:
         if not match:
             return {"doc_type": "unknown", "confidence": 0.0, "method": "llm_parse_error"}
         result = json.loads(match.group())
+
+    # Normalize doc_type: lowercase, strip whitespace, fix common LLM typos
+    dt = result.get("doc_type", "unknown").lower().strip()
+
+    # Fix common typos/variants from GPT-4o-mini
+    _TYPO_MAP = {"voie": "voe", "voe_form": "voe", "w-2": "w2"}
+    dt = _TYPO_MAP.get(dt, dt)
+
+    # GPT-4o-mini sometimes returns category names instead of specific types.
+    _CATEGORY_FALLBACK = {
+        "application": "urla_1003", "disclosures": "loan_estimate",
+        "income": "paystub", "assets": "bank_stmt_checking",
+        "credit": "credit_report", "underwriting": "du_findings",
+        "property": "purchase_contract", "misc": "filler",
+    }
+    if dt in _CATEGORY_FALLBACK:
+        dt = _CATEGORY_FALLBACK[dt]
+
+    result["doc_type"] = dt
     result["method"] = "llm"
-    result["doc_type_label_id"] = LABEL_ID.get(result.get("doc_type", "unknown"), -1)
+    result["doc_type_label_id"] = LABEL_ID.get(dt, -1)
     return result
 
 
@@ -459,32 +557,42 @@ def _pick_prompt(text: str) -> str:
 
 def classify_llm_sync(text: str) -> dict:
     """Sync LLM call — use only for single-page classification."""
-    client = Anthropic()
-    msg = client.messages.create(
-        model=_LLM_MODEL,
-        max_tokens=128,
-        system=_SYSTEM,
-        messages=[{"role": "user", "content": _pick_prompt(text).format(
-            max_chars=_MAX_TEXT,
-            text=text[:_MAX_TEXT],
-        )}],
-    )
-    return _parse_llm_response(msg.content[0].text)
-
-
-async def _classify_llm_async(client: AsyncAnthropic, text: str, sem: asyncio.Semaphore) -> dict:  # noqa: E501
-    """Single async LLM call, rate-limited by semaphore."""
-    async with sem:
-        msg = await client.messages.create(
-            model=_LLM_MODEL,
-            max_tokens=128,
-            system=_SYSTEM,
-            messages=[{"role": "user", "content": _pick_prompt(text).format(
-                max_chars=_MAX_TEXT,
-                text=text[:_MAX_TEXT],
-            )}],
+    prompt = _pick_prompt(text).format(max_chars=_MAX_TEXT, text=text[:_MAX_TEXT])
+    if _USE_OPENAI:
+        client = _openai.OpenAI()
+        resp = client.chat.completions.create(
+            model=_LLM_MODEL, max_tokens=128,
+            messages=[{"role": "system", "content": _SYSTEM},
+                      {"role": "user",   "content": prompt}],
         )
-    return _parse_llm_response(msg.content[0].text)
+        return _parse_llm_response(resp.choices[0].message.content)
+    else:
+        from anthropic import Anthropic
+        client = Anthropic()
+        msg = client.messages.create(
+            model=_LLM_MODEL, max_tokens=128, system=_SYSTEM,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return _parse_llm_response(msg.content[0].text)
+
+
+async def _classify_llm_async(client, text: str, sem: asyncio.Semaphore) -> dict:
+    """Single async LLM call, rate-limited by semaphore."""
+    prompt = _pick_prompt(text).format(max_chars=_MAX_TEXT, text=text[:_MAX_TEXT])
+    async with sem:
+        if _USE_OPENAI:
+            resp = await client.chat.completions.create(
+                model=_LLM_MODEL, max_tokens=128,
+                messages=[{"role": "system", "content": _SYSTEM},
+                          {"role": "user",   "content": prompt}],
+            )
+            return _parse_llm_response(resp.choices[0].message.content)
+        else:
+            msg = await client.messages.create(
+                model=_LLM_MODEL, max_tokens=128, system=_SYSTEM,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return _parse_llm_response(msg.content[0].text)
 
 
 # ── 4. Single-page entry point ────────────────────────────────────────────────
@@ -551,7 +659,7 @@ def classify_pages(
 
 async def _classify_pages_async(page_records, max_concurrent: int) -> list[dict]:
     sem    = asyncio.Semaphore(max_concurrent)
-    client = AsyncAnthropic()
+    client = _AsyncOpenAI() if _USE_OPENAI else AsyncAnthropic()
 
     # --- Pass 1: resolve continuation pages and collect LLM tasks ---
     results        = [None] * len(page_records)
@@ -589,7 +697,34 @@ async def _classify_pages_async(page_records, max_concurrent: int) -> list[dict]
                                "doc_type_label_id": th["doc_type_label_id"]}
             continue
 
+        # Structural combo detection — format-agnostic, runs before keyword heuristic.
+        # Detects multi-account summary tables regardless of bank name or template.
+        if _is_combo_statement(text):
+            entry = {
+                "page_index": pr.page_index,
+                "doc_type": "bank_stmt_combo",
+                "doc_type_label_id": LABEL_ID["bank_stmt_combo"],
+                "confidence": 0.92,
+                "method": "heuristic",
+            }
+            results[idx] = entry
+            last_confident = {"doc_type": "bank_stmt_combo",
+                               "doc_type_label_id": LABEL_ID["bank_stmt_combo"]}
+            continue
+
         h = classify_heuristic(text)
+        if (h["doc_type"] == "bank_stmt_combo" and h["confidence"] >= 0.45):
+            entry = {
+                "page_index": pr.page_index,
+                "doc_type": "bank_stmt_combo",
+                "doc_type_label_id": LABEL_ID["bank_stmt_combo"],
+                "confidence": h["confidence"],
+                "method": "heuristic",
+            }
+            results[idx] = entry
+            last_confident = {"doc_type": "bank_stmt_combo",
+                               "doc_type_label_id": LABEL_ID["bank_stmt_combo"]}
+            continue
         if h["confidence"] >= HEURISTIC_SHORTCUT_THRESHOLD:
             entry = {
                 "page_index": pr.page_index,
