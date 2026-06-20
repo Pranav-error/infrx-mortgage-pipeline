@@ -1,0 +1,258 @@
+{
+  "_comment": "Demo schema for segmentation module testing — Team Noobda InfrX 2026",
+  "_description": "This file shows exactly what INPUT the segmentation module receives and what OUTPUT it must produce. All fields match labels.json ground truth format.",
+
+  "INPUT": {
+    "_description": "Output of classify.py — one entry per page",
+    "type": "list of page classifications",
+    "sample": [
+      {
+        "page_index": 0,
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "confidence": 0.94,
+        "method": "llm"
+      },
+      {
+        "page_index": 1,
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "confidence": 0.50,
+        "method": "carry_forward"
+      },
+      {
+        "page_index": 2,
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "confidence": 0.50,
+        "method": "carry_forward"
+      },
+      {
+        "page_index": 3,
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "confidence": 0.50,
+        "method": "carry_forward"
+      },
+      {
+        "page_index": 4,
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "confidence": 0.50,
+        "method": "carry_forward"
+      },
+      {
+        "page_index": 5,
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "confidence": 0.50,
+        "method": "carry_forward"
+      },
+      {
+        "page_index": 6,
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "confidence": 0.91,
+        "method": "llm"
+      },
+      {
+        "page_index": 7,
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "confidence": 0.50,
+        "method": "carry_forward"
+      },
+      {
+        "page_index": 8,
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "confidence": 0.50,
+        "method": "carry_forward"
+      },
+      {
+        "page_index": 9,
+        "doc_type": "paystub",
+        "doc_type_label_id": 4,
+        "confidence": 0.87,
+        "method": "heuristic"
+      },
+      {
+        "page_index": 10,
+        "doc_type": "paystub",
+        "doc_type_label_id": 4,
+        "confidence": 0.87,
+        "method": "heuristic"
+      },
+      {
+        "page_index": 11,
+        "doc_type": "paystub",
+        "doc_type_label_id": 4,
+        "confidence": 0.87,
+        "method": "heuristic"
+      },
+      {
+        "page_index": 12,
+        "doc_type": "w2",
+        "doc_type_label_id": 5,
+        "confidence": 0.80,
+        "method": "heuristic"
+      },
+      {
+        "page_index": 13,
+        "doc_type": "form_1040",
+        "doc_type_label_id": 7,
+        "confidence": 0.80,
+        "method": "heuristic"
+      },
+      {
+        "page_index": 14,
+        "doc_type": "form_1040",
+        "doc_type_label_id": 7,
+        "confidence": 0.50,
+        "method": "carry_forward"
+      },
+      {
+        "page_index": 15,
+        "doc_type": "form_1040",
+        "doc_type_label_id": 7,
+        "confidence": 0.78,
+        "method": "llm"
+      },
+      {
+        "page_index": 16,
+        "doc_type": "form_1040",
+        "doc_type_label_id": 7,
+        "confidence": 0.50,
+        "method": "carry_forward"
+      }
+    ]
+  },
+
+  "OUTPUT": {
+    "_description": "What segmentation must produce — matches labels.json documents[] format exactly",
+    "type": "list of document instances",
+    "_key_challenge": "Pages 0–8 are all bank_stmt_checking but they are TWO separate instances (pages 0–5 and 6–8). The distinguishing_attr (statement_date or account_number) tells them apart.",
+    "_key_challenge_2": "Pages 13–16 are all form_1040 but TWO instances (pages 13–14 and 15–16). Distinguishing attr = tax year.",
+    "sample": [
+      {
+        "doc_instance_id": "bank_stmt_checking#1",
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "start_page": 0,
+        "end_page": 5,
+        "page_count": 6,
+        "instance_ordinal": 1,
+        "distinguishing_attr": "2024-02",
+        "_comment": "Statement period Feb 2024 — extracted from page text"
+      },
+      {
+        "doc_instance_id": "bank_stmt_checking#2",
+        "doc_type": "bank_stmt_checking",
+        "doc_type_label_id": 10,
+        "start_page": 6,
+        "end_page": 8,
+        "page_count": 3,
+        "instance_ordinal": 2,
+        "distinguishing_attr": "2024-03",
+        "_comment": "Statement period Mar 2024 — different instance even though same doc_type"
+      },
+      {
+        "doc_instance_id": "paystub#1",
+        "doc_type": "paystub",
+        "doc_type_label_id": 4,
+        "start_page": 9,
+        "end_page": 9,
+        "page_count": 1,
+        "instance_ordinal": 1,
+        "distinguishing_attr": "2024-01-15",
+        "_comment": "Pay period end date"
+      },
+      {
+        "doc_instance_id": "paystub#2",
+        "doc_type": "paystub",
+        "doc_type_label_id": 4,
+        "start_page": 10,
+        "end_page": 10,
+        "page_count": 1,
+        "instance_ordinal": 2,
+        "distinguishing_attr": "2024-01-31"
+      },
+      {
+        "doc_instance_id": "paystub#3",
+        "doc_type": "paystub",
+        "doc_type_label_id": 4,
+        "start_page": 11,
+        "end_page": 11,
+        "page_count": 1,
+        "instance_ordinal": 3,
+        "distinguishing_attr": "2024-02-15"
+      },
+      {
+        "doc_instance_id": "w2#1",
+        "doc_type": "w2",
+        "doc_type_label_id": 5,
+        "start_page": 12,
+        "end_page": 12,
+        "page_count": 1,
+        "instance_ordinal": 1,
+        "distinguishing_attr": "2023",
+        "_comment": "Tax year"
+      },
+      {
+        "doc_instance_id": "form_1040#1",
+        "doc_type": "form_1040",
+        "doc_type_label_id": 7,
+        "start_page": 13,
+        "end_page": 14,
+        "page_count": 2,
+        "instance_ordinal": 1,
+        "distinguishing_attr": "2022"
+      },
+      {
+        "doc_instance_id": "form_1040#2",
+        "doc_type": "form_1040",
+        "doc_type_label_id": 7,
+        "start_page": 15,
+        "end_page": 16,
+        "page_count": 2,
+        "instance_ordinal": 2,
+        "distinguishing_attr": "2023",
+        "_comment": "Same doc_type but different year = different instance"
+      }
+    ]
+  },
+
+  "RULES_FOR_SEGMENTATION": {
+    "1_consecutive_same_type": "Consecutive pages of the same doc_type belong to the same instance UNLESS a distinguishing_attr changes (new statement date, new tax year, new pay period)",
+    "2_distinguishing_attr": "Extract distinguishing_attr using regex patterns: statement_period, tax_year, pay_period_end. Fall back to LLM if regex fails.",
+    "3_known_page_lengths": {
+      "_comment": "Use as heuristic for fixed-length docs — helps split back-to-back instances",
+      "w2": 1,
+      "form_1040": 2,
+      "paystub": 1,
+      "bank_stmt_checking": "variable (3–14 pages)",
+      "closing_disclosure": "variable (3–5 pages)",
+      "loan_estimate": "variable (3 pages)"
+    },
+    "4_boundary_signals": "is_first_page_of_doc = True when: (a) doc_type changes, OR (b) same doc_type but distinguishing_attr changes",
+    "5_instance_ordinal": "Ordinal within same doc_type in this file — bank_stmt_checking#1 is the 1st bank statement, #2 is the second, etc."
+  },
+
+  "HOW_TO_CALL_CLASSIFY_PAGES": {
+    "code": [
+      "import sys; sys.path.insert(0, 'src')",
+      "from classify import classify_pages",
+      "from dataclasses import dataclass",
+      "",
+      "@dataclass",
+      "class FakePage:",
+      "    page_index: int",
+      "    text: str",
+      "",
+      "# Build page list from your extracted text",
+      "pages = [FakePage(page_index=i, text=page_text) for i, page_text in enumerate(texts)]",
+      "classifications = classify_pages(pages)",
+      "# classifications is the INPUT list shown above"
+    ]
+  }
+}
