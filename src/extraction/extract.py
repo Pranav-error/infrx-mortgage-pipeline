@@ -246,10 +246,18 @@ def _is_blank_page(img, threshold: int = 250, min_dark_pct: float = 0.02) -> boo
     Quick check: is this rendered page nearly blank (white/empty)?
     If less than min_dark_pct of pixels are darker than threshold, skip VLM.
     """
-    import numpy as np
-    arr = np.array(img.convert("L"))  # grayscale
-    dark_pixels = np.sum(arr < threshold)
-    return (dark_pixels / arr.size) < min_dark_pct
+    try:
+        import numpy as np
+        arr = np.array(img.convert("L"))  # grayscale
+        dark_pixels = int(np.sum(arr < threshold))
+        return (dark_pixels / arr.size) < min_dark_pct
+    except ImportError:
+        # Fallback without numpy: sample every 10th pixel
+        gray = img.convert("L")
+        pixels = list(gray.getdata())
+        sampled = pixels[::10]
+        dark = sum(1 for p in sampled if p < threshold)
+        return (dark / len(sampled)) < min_dark_pct
 
 
 def _render_pages_batch(pdf_path: str, page_indices: list[int]) -> dict[int, str]:
