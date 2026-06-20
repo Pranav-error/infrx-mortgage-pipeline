@@ -41,6 +41,12 @@ _ATTR_PATTERNS: dict[str, list[re.Pattern]] = {
         re.compile(r"statement\s+(?:period|date)[:\s]+(\w+\s+\d{4}|\d{4}-\d{2})", re.I),
         re.compile(r"account\s+(?:number|#|no\.?)[:\s#]+([X*\d\-]{4,})", re.I),
         re.compile(r"for\s+the\s+period\s+(\w+\s+\d+,?\s*\d{4})", re.I),
+        # Bank name on header page — Chase vs Wells Fargo vs CapitalOne etc.
+        re.compile(r"^(chase|wells\s+fargo|bank\s+of\s+america|citibank|capital\s+one|us\s+bank|pnc|td\s+bank|truist|regions|suntrust|bb&t|citizens|fifth\s+third|keybank|huntington)", re.I),
+    ],
+    "bank_stmt_combo": [
+        re.compile(r"statement\s+(?:period|date)[:\s]+(\w+\s+\d{4}|\d{4}-\d{2})", re.I),
+        re.compile(r"account\s+(?:number|#|no\.?)[:\s#]+([X*\d\-]{4,})", re.I),
     ],
     "paystub": [
         re.compile(r"pay\s+(?:period|date)\s+end[:\s]+(\d{1,2}[/-]\d{1,2}[/-]\d{2,4})", re.I),
@@ -97,6 +103,58 @@ def _extract_distinguishing_attr(doc_type: str, page_text: str) -> Optional[str]
     return None
 
 
+# ── Additional boundary signals ───────────────────────────────────────────────
+
+_ENDING_BAL_RE   = re.compile(r"(?:ending|closing|final)\s+balance[\s:$]*([0-9,]+\.\d{2})", re.I)
+_BEGINNING_BAL_RE = re.compile(r"(?:beginning|opening|starting)\s+balance[\s:$]*([0-9,]+\.\d{2})", re.I)
+
+def _detect_balance_break(text_a: str, text_b: str) -> bool:
+    """
+    Returns True if the ending balance on page A does NOT match the beginning
+    balance on page B. This is the strongest signal that two bank statement
+    pages belong to different accounts — a valid continuation always has:
+        ending_balance(page N) == beginning_balance(page N+1)
+
+    Only fires when BOTH values are extractable (not None) and they differ.
+    A None result (not found) is treated as no signal — not a boundary.
+    """
+    m_end = _ENDING_BAL_RE.search(text_a)
+    m_beg = _BEGINNING_BAL_RE.search(text_b)
+    if not m_end or not m_beg:
+        return False
+    # Normalise: strip commas, compare as strings
+    end_val = m_end.group(1).replace(",", "")
+    beg_val = m_beg.group(1).replace(",", "")
+    return end_val != beg_val
+
+
+_INSTITUTION_RE = re.compile(
+    r"^(chase|wells\s+fargo|bank\s+of\s+america|citibank|capital\s+one"
+    r"|us\s+bank|pnc|td\s+bank|truist|regions|suntrust|bb&t|citizens"
+    r"|fifth\s+third|keybank|huntington|ally|discover|navy\s+federal"
+    r"|usaa|charles\s+schwab|fidelity|vanguard)",
+    re.I | re.MULTILINE,
+)
+
+def _detect_new_doc_header(doc_type: str, text_a: str, text_b: str) -> bool:
+    """
+    Returns True if page B appears to start a NEW bank statement from a
+    DIFFERENT institution than page A.
+
+    Logic: extract the institution name from the first ~200 chars of each page.
+    If both are found and differ → new document.
+    """
+    if doc_type not in ("bank_stmt_checking", "bank_stmt_combo", "brokerage_stmt"):
+        return False
+    m_a = _INSTITUTION_RE.search(text_a[:300])
+    m_b = _INSTITUTION_RE.search(text_b[:300])
+    if not m_a or not m_b:
+        return False
+    name_a = m_a.group(1).lower().replace(" ", "")
+    name_b = m_b.group(1).lower().replace(" ", "")
+    return name_a != name_b
+
+
 # ── Boundary feature extraction ───────────────────────────────────────────────
 
 def _extract_boundary_features(
@@ -137,12 +195,23 @@ def _extract_boundary_features(
     method_b = page_b.get("method", "")
     confidence_reset = method_b in ("llm", "heuristic") and page_b.get("confidence", 0) >= 0.70
 
+    # Balance-break signal: ending balance of page A ≠ beginning balance of page B
+    # When two bank statements from different banks/accounts are concatenated, the
+    # ending balance of statement 1 will NOT match the beginning balance of statement 2.
+    balance_break = _detect_balance_break(text_a, text_b) if text_a and text_b else False
+
+    # New-document header signal: page B looks like the first page of a new document
+    # (has a bank name / institution header that differs from page A's institution)
+    new_doc_header = _detect_new_doc_header(type_b or "", text_a, text_b)
+
     return {
         "doc_type_changed":  doc_type_changed,
         "attr_a":            attr_a,
         "attr_b":            attr_b,
         "attr_changed":      attr_changed,
         "confidence_reset":  confidence_reset,
+        "balance_break":     balance_break,
+        "new_doc_header":    new_doc_header,
     }
 
 
@@ -152,21 +221,32 @@ def _is_boundary(features: dict, current_span_len: int, doc_type: str) -> bool:
 
     Rules (in order of priority):
       1. doc_type changed → always a boundary
-      2. distinguishing_attr changed → boundary (new month, new year, new account)
+      2. distinguishing_attr changed → boundary (new month, new year, new account number)
       3. known fixed length reached (w2=1, paystub=1, form_1040=2) → boundary
-      4. confidence_reset alone is NOT sufficient — carry_forward gaps happen legitimately
+      4. balance_break — ending balance ≠ beginning balance → different accounts
+      5. new_doc_header — different bank institution name detected on page B
+      (confidence_reset alone is NOT sufficient — carry_forward gaps happen legitimately)
     """
     # Rule 1: type change always splits
     if features["doc_type_changed"]:
         return True
 
-    # Rule 2: attribute change within same type
+    # Rule 2: distinguishing attribute changed (account number, statement period, tax year)
     if features["attr_changed"]:
         return True
 
     # Rule 3: fixed-length doc type exhausted its expected page count
     expected = KNOWN_PAGE_LENGTHS.get(doc_type)
     if isinstance(expected, int) and current_span_len >= expected:
+        return True
+
+    # Rule 4: balance break — strongest signal for same-type different-account boundaries.
+    # ending_balance(A) ≠ beginning_balance(B) means these are different accounts.
+    if features.get("balance_break"):
+        return True
+
+    # Rule 5: different institution name found on page B header
+    if features.get("new_doc_header"):
         return True
 
     return False
@@ -402,3 +482,40 @@ if __name__ == "__main__":
         print(f"Missing: {missing}")
     if extra:
         print(f"Extra:   {extra}")
+
+    # ── Hard case test: same doc_type, same period, DIFFERENT banks ──────────────
+    print("\n=== Hard case: Chase + Wells Fargo, same month, same doc_type ===\n")
+
+    hard_input = [
+        {"page_index": 0, "doc_type": "bank_stmt_checking", "doc_type_label_id": 10, "confidence": 0.94, "method": "llm"},
+        {"page_index": 1, "doc_type": "bank_stmt_checking", "doc_type_label_id": 10, "confidence": 0.50, "method": "carry_forward"},
+        {"page_index": 2, "doc_type": "bank_stmt_checking", "doc_type_label_id": 10, "confidence": 0.50, "method": "carry_forward"},
+        {"page_index": 3, "doc_type": "bank_stmt_checking", "doc_type_label_id": 10, "confidence": 0.94, "method": "llm"},
+        {"page_index": 4, "doc_type": "bank_stmt_checking", "doc_type_label_id": 10, "confidence": 0.50, "method": "carry_forward"},
+    ]
+    hard_texts = [
+        # Chase, Feb 2024, account ****1234
+        "Chase\nStatement Period: February 2024\nAccount Number: ****1234\nBeginning Balance: $12,450.00",
+        "Date Description Amount Balance\n02/05 DEBIT TARGET 89.00 12361.00",
+        "Ending Balance: 11,200.00\nThank you for banking with Chase",
+        # Wells Fargo, Feb 2024, account ****5678 — same period, different bank
+        "Wells Fargo\nStatement Period: February 2024\nAccount Number: ****5678\nBeginning Balance: $8,340.00",
+        "Date Description Amount Balance\n02/10 DEBIT WALMART 55.00 8285.00",
+    ]
+    hard_expected = [
+        ("bank_stmt_checking", 0, 2),   # Chase Feb 2024
+        ("bank_stmt_checking", 3, 4),   # Wells Fargo Feb 2024
+    ]
+
+    hard_results = segment_documents(hard_input, hard_texts)
+    hard_got = [(r.doc_type, r.start_page, r.end_page) for r in hard_results]
+
+    print(f"{'ID':<25} {'start':>5} {'end':>5}  {'attr':<15}  {'status'}")
+    print("-" * 70)
+    for inst in hard_results:
+        match = (inst.doc_type, inst.start_page, inst.end_page) in hard_expected
+        status = "PASS" if match else "FAIL"
+        print(f"{inst.doc_instance_id:<25} {inst.start_page:>5} {inst.end_page:>5}  {str(inst.distinguishing_attr):<15}  {status}")
+
+    hard_correct = sum(1 for e in hard_expected if e in hard_got)
+    print(f"\nScore: {hard_correct}/{len(hard_expected)} hard-case instances correct")
