@@ -1,0 +1,3 @@
+# run_pipeline.py — Full end-to-end orchestrator
+# Runs: extract → classify → segment → stitch → render
+# Usage: python3 src/pipeline/run_pipeline.py --pkg DataSet/pkg_000000 --api-key sk-ant-...
