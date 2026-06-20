@@ -289,15 +289,23 @@ _SYSTEM = (
 )
 
 _USER_TMPL = """\
-Classify this page. Known types:
-{types}
+Classify this page from a US mortgage loan file.
+
+Known types: {types}
+
+Examples of hard cases:
+- A page showing "Date Description Withdrawals Deposits Balance" rows with no bank name → bank_stmt_checking (continuation page)
+- A page with "AMEX $13200 revolving $396/mo" liability rows → urla_1003 (URLA liability table)
+- A page with "Symbol Shares Price Value" stock rows → brokerage_stmt
+- A page that is mostly blank or just has a section title → filler
+- A page with "Gross Pay YTD Federal Tax" columns → paystub
 
 Page text:
 ---
 {text}
 ---
 
-JSON only: {{"doc_type": "<type or unknown>", "confidence": <0.0-1.0>}}"""
+JSON only: {{"doc_type": "<type>", "confidence": <0.0-1.0>}}"""
 
 
 def _parse_llm_response(raw: str) -> dict:
@@ -418,11 +426,12 @@ async def _classify_pages_async(page_records, max_concurrent: int) -> list[dict]
     for idx, pr in enumerate(page_records):
         text = pr.text or ""
 
-        if not text.strip():
+        if not text.strip() or len(text.strip()) < 20:
+            # Near-blank pages are almost always filler (cover pages, tab sheets, intentional blanks)
             results[idx] = {
                 "page_index": pr.page_index,
-                "doc_type": "unknown", "doc_type_label_id": -1,
-                "confidence": 0.0, "method": "heuristic",
+                "doc_type": "filler", "doc_type_label_id": LABEL_ID["filler"],
+                "confidence": 0.85, "method": "heuristic",
             }
             continue
 
