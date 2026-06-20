@@ -18,7 +18,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from extract import extract_pdf, pages_to_dict, fragments_to_dict
+from extract import extract_pdf
 
 
 # ---------------------------------------------------------------------------
@@ -59,12 +59,13 @@ def summarise_labels(labels: dict) -> dict:
 # ---------------------------------------------------------------------------
 
 def summarise_extraction(pages, fragments) -> dict:
-    digital = sum(1 for p in pages if p.has_text_layer)
+    digital = sum(1 for p in pages if p["render_mode"] == "digital")
     scanned = len(pages) - digital
-    frags_from_plumber = sum(1 for f in fragments if f.source == "pdfplumber")
-    frags_from_vlm     = sum(1 for f in fragments if f.source == "vlm")
-    pages_with_frags   = len({f.page_index for f in fragments})
+    frags_from_plumber = sum(1 for f in fragments if f["source"] == "pdfplumber")
+    frags_from_vlm     = sum(1 for f in fragments if f["source"] == "vlm")
+    pages_with_frags   = len({f["page_index"] for f in fragments})
 
+    total_cells = sum(len(f.get("cells", [])) for f in fragments)
     return {
         "total_pages":       len(pages),
         "digital_pages":     digital,
@@ -73,6 +74,7 @@ def summarise_extraction(pages, fragments) -> dict:
         "frags_pdfplumber":  frags_from_plumber,
         "frags_vlm":         frags_from_vlm,
         "pages_with_tables": pages_with_frags,
+        "total_cells":       total_cells,
     }
 
 
@@ -127,19 +129,17 @@ def main():
 
     # --- Run extraction ---
     t0 = time.time()
-    pages, fragments = extract_pdf(str(pdf_path), anthropic_api_key=api_key)
+    result = extract_pdf(str(pdf_path), anthropic_api_key=api_key)
     elapsed = time.time() - t0
 
     # --- Save results ---
-    out = {
-        "package_id": pkg_dir.name,
-        "pages":      pages_to_dict(pages),
-        "fragments":  fragments_to_dict(fragments),
-    }
     out_path = pkg_dir / "extraction_results.json"
     with open(out_path, "w") as f:
-        json.dump(out, f, indent=2)
+        json.dump(result, f, indent=2)
     print(f"\n[run] Results saved to {out_path}")
+
+    pages     = result["pages"]
+    fragments = result["tables"]
 
     # --- Compare vs ground truth ---
     labels      = load_labels(pkg_dir)
@@ -158,6 +158,7 @@ def main():
         f"  Total fragments:              {ext_summary['total_fragments']}",
         f"    from pdfplumber:            {ext_summary['frags_pdfplumber']}",
         f"    from VLM:                   {ext_summary['frags_vlm']}",
+        f"  Total cells extracted:        {ext_summary['total_cells']}",
         f"  Pages with >= 1 fragment:     {ext_summary['pages_with_tables']}",
         "",
         "=== vs Ground Truth (labels.json) ===",

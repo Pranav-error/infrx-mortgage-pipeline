@@ -1,149 +1,215 @@
 """
-extract.py — Page-level PDF extraction.
+extract.py — Page-level PDF extraction (parallel-optimised).
 
-Step [2] of the DocCompiler-Lite pipeline:
-  - Native PDF pages  -> pdfplumber (free, deterministic, zero AI cost)
-  - Scanned/photo pages -> Claude Haiku VLM (selective fallback only)
+Two-pass pipeline:
+  Pass 1 (serial)   — pdfplumber over ALL pages: free, deterministic, ~0.1s/page
+                       Identifies digital vs scanned, extracts digital fragments.
+  Pass 2 (parallel) — VLM (Claude Haiku) over SCANNED pages only.
+                       Render + API call run concurrently in a thread pool.
+                       Default 15 workers → ~20 s for 148 pages, ~3-4 min for 2000 pages.
 
-Outputs:
-  PageRecord    — one per PDF page (text, has_text_layer flag, fragment ids)
-  FragmentRecord — one per detected table per page (headers, rows, bbox, ...)
+Output structure mirrors labels.json exactly:
+  {
+    "schema_version", "package_id", "total_pages", "coord_system",
+    "documents",   # [] — filled by segment.py
+    "pages",       # one record per PDF page
+    "tables",      # one fragment per detected table per page
+    "charts",      # [] — out of scope
+    "render_mode"
+  }
+
+Fields filled here:      page_index, width, height, render_mode, has_table,
+                         scan_image_size_px, scan_transform (digital=identity),
+                         cells (row_idx, col_idx, bbox, bbox_px, text, is_header)
+Fields left null (→):   doc_type, doc_instance_id, boundary  → classify.py / segment.py
+                         table_id, page_span, header_repeats  → stitch.py
 """
 
 from __future__ import annotations
 
+import asyncio
 import base64
 import io
 import json
 import re
-from dataclasses import asdict, dataclass, field
+import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Optional
 
 import pdfplumber
 
 # ---------------------------------------------------------------------------
-# Tunables
+# Configuration
 # ---------------------------------------------------------------------------
 
-# A page with fewer than this many non-whitespace chars is treated as scanned.
-MIN_TEXT_CHARS_FOR_NATIVE = 30
+SCHEMA_VERSION   = "1.0.0"
+MIN_TEXT_CHARS   = 30          # below this → page is treated as scanned
+RENDER_DPI       = 150         # matches dataset raster_dpi; used for bbox_px
+PT_TO_PX         = RENDER_DPI / 72.0
+VLM_MODEL        = "claude-haiku-4-5-20251001"
+DEFAULT_WORKERS  = 10          # concurrent async VLM requests
+MAX_VLM_RETRIES  = 4           # retry on transient API / connection errors
+VLM_MAX_TOKENS   = 8192        # enough for dense bank statement pages (4096 caused truncation)
 
-# VLM model to use for scanned pages — Haiku is fast and cheap.
-VLM_MODEL = "claude-haiku-4-5-20251001"
-
-# ---------------------------------------------------------------------------
-# Data structures
-# ---------------------------------------------------------------------------
-
-
-@dataclass
-class FragmentRecord:
-    """One detected table (or table continuation) on a single page."""
-
-    fragment_id: str        # e.g. "frag_12_0" (page_index 12, table 0 on that page)
-    page_index: int         # 0-indexed page number (matches labels.json page_index)
-    bbox: tuple             # (x0, top, x1, bottom) in PDF points
-    headers: list           # first row extracted as column headers
-    rows: list              # data rows — list of lists
-    last_row: list          # last data row (used by spatial_flow_score in stitch.py)
-    page_height: float
-    page_width: float
-    source: str = "pdfplumber"  # "pdfplumber" | "vlm"
-
-
-@dataclass
-class PageRecord:
-    """All extracted data for one PDF page."""
-
-    page_index: int         # 0-indexed (matches labels.json page_index)
-    text: str               # full page text (empty string for unprocessed scanned pages)
-    has_text_layer: bool    # True = digital PDF, False = scanned/photo
-    page_height: float
-    page_width: float
-    fragment_ids: list = field(default_factory=list)  # fragment_id strings on this page
-
+IDENTITY_TRANSFORM = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]
+COORD_SYSTEM = {
+    "space": "pdf_points",
+    "origin": "top_left",
+    "bbox_format": "x0_y0_x1_y1",
+    "raster_dpi": RENDER_DPI,
+}
 
 # ---------------------------------------------------------------------------
-# Internal helpers — native pages
+# Small helpers
 # ---------------------------------------------------------------------------
 
 
 def _has_text_layer(page: pdfplumber.page.Page) -> bool:
-    """Return True if pdfplumber can extract meaningful text from the page."""
     text = page.extract_text() or ""
-    return len(text.replace(" ", "").replace("\n", "")) >= MIN_TEXT_CHARS_FOR_NATIVE
+    return len(text.replace(" ", "").replace("\n", "")) >= MIN_TEXT_CHARS
 
 
-def _clean_rows(rows: list[list]) -> list[list]:
-    """Replace None cells with empty strings."""
-    return [[cell if cell is not None else "" for cell in row] for row in rows]
+def _pt_to_px(bbox: list | tuple) -> list:
+    return [round(v * PT_TO_PX, 3) for v in bbox]
 
 
-def _extract_native_fragments(page: pdfplumber.page.Page, page_index: int) -> list[FragmentRecord]:
-    """Extract all table fragments from a native-text PDF page using pdfplumber."""
-    fragments = []
-    tables = page.find_tables()
+# Regex patterns for value_type inference (order matters)
+_DATE_RE     = re.compile(r"^\d{1,2}[/\-\.]\d{1,2}[/\-\.]\d{2,4}$")
+_CURRENCY_RE = re.compile(r"^[\$\-\+\(]?[\d,]+\.\d{2}\)?$")
+_INTEGER_RE  = re.compile(r"^[\-\+]?\d{1,3}(,\d{3})*$")
+_PCT_RE      = re.compile(r"^[\d\.]+\s*%$")
 
-    for t_idx, table in enumerate(tables):
-        raw_rows = table.extract()
-        if not raw_rows:
+
+def _infer_value_types(rows: list, num_cols: int) -> list[str]:
+    """
+    Infer column value types from the first non-empty data row.
+    Returns a list of type strings, one per column:
+      "date" | "currency" | "integer" | "percent" | "text"
+    Works on any document — no mortgage-specific knowledge assumed.
+    """
+    for row in rows:
+        if any(str(c).strip() for c in row):
+            types = []
+            for i in range(num_cols):
+                s = str(row[i]).strip() if i < len(row) else ""
+                if   _DATE_RE.match(s):     types.append("date")
+                elif _CURRENCY_RE.match(s): types.append("currency")
+                elif _PCT_RE.match(s):      types.append("percent")
+                elif _INTEGER_RE.match(s):  types.append("integer")
+                else:                       types.append("text")
+            return types
+    return ["text"] * num_cols
+
+
+def _column_fingerprint_native(table, page_width: float) -> list[float]:
+    """
+    Compute normalised x-start positions of each column from pdfplumber header row.
+    Example: [0.06, 0.18, 0.64, 0.73, 0.86] for a 5-column bank statement.
+    """
+    header_row = table.rows[0]
+    fps = []
+    for cell_bbox in header_row.cells:
+        if cell_bbox is not None:
+            fps.append(round(cell_bbox[0] / page_width, 3))
+    return fps
+
+
+def _column_fingerprint_synthetic(num_cols: int) -> list[float]:
+    """
+    Fallback fingerprint when real x-positions are unavailable (VLM pages).
+    Evenly-spaced positions are approximate but *consistent across pages*,
+    which is all the stitcher needs to compare two fragments.
+    """
+    if num_cols == 0:
+        return []
+    return [round(i / num_cols, 3) for i in range(num_cols)]
+
+
+# ---------------------------------------------------------------------------
+# PASS 1 — pdfplumber (digital pages)
+# ---------------------------------------------------------------------------
+
+
+def _build_cells_native(table, page_index: int) -> tuple[list, list, int]:
+    """Per-cell extraction from a pdfplumber Table. Returns (cells, columns, row_count)."""
+    raw_rows = table.extract()
+    if not raw_rows:
+        return [], [], 0
+
+    num_cols = max(len(r) for r in raw_rows)
+    columns  = [{"col_idx": i} for i in range(num_cols)]
+    cells    = []
+
+    for r_local, (row_data, pdfrow) in enumerate(zip(raw_rows, table.rows)):
+        is_header  = r_local == 0
+        row_idx    = -1 if is_header else r_local - 1
+
+        for col_idx, (text, cell_bbox) in enumerate(zip(row_data, pdfrow.cells)):
+            if cell_bbox is None:
+                continue
+            bbox = list(cell_bbox)          # (x0, top, x1, bottom)
+            cells.append({
+                "page_index": page_index,
+                "row_idx":    row_idx,
+                "col_idx":    col_idx,
+                "is_header":  is_header,
+                "text":       str(text) if text is not None else "",
+                "bbox":       bbox,
+                "bbox_px":    _pt_to_px(bbox),
+            })
+
+    return cells, columns, max(len(raw_rows) - 1, 0)
+
+
+def _extract_native_fragments(page: pdfplumber.page.Page, page_index: int) -> list[dict]:
+    frags = []
+    for t_idx, table in enumerate(page.find_tables()):
+        cells, columns, row_count = _build_cells_native(table, page_index)
+        if not cells:
             continue
 
-        rows = _clean_rows(raw_rows)
-        headers = rows[0]
-        data_rows = rows[1:]
-        bbox = table.bbox  # (x0, top, x1, bottom)
+        num_cols      = len(columns)
+        headers       = [c["text"] for c in cells if c["is_header"]]
+        last_row_data = [c["text"] for c in cells if c["row_idx"] == row_count - 1]
+        data_rows     = [[c["text"] for c in cells if c["row_idx"] == r]
+                         for r in range(row_count)]
 
-        fragments.append(FragmentRecord(
-            fragment_id=f"frag_{page_index}_{t_idx}",
-            page_index=page_index,
-            bbox=bbox,
-            headers=headers,
-            rows=data_rows,
-            last_row=data_rows[-1] if data_rows else headers,
-            page_height=page.height,
-            page_width=page.width,
-            source="pdfplumber",
-        ))
-
-    return fragments
+        frags.append({
+            # labels.json table fields
+            "table_id":                 None,           # [STITCH]
+            "doc_instance_id":          None,           # [SEGMENT]
+            "doctype":                  None,           # [CLASSIFY]
+            "page_span":                {"start_page": page_index, "end_page": page_index},
+            "header_repeats_each_page": None,           # [STITCH]
+            "columns":                  columns,
+            "row_count_logical":        row_count,
+            "cells":                    cells,
+            # stitcher signals
+            "column_fingerprint": _column_fingerprint_native(table, page.width),
+            "value_types":        _infer_value_types(data_rows, num_cols),
+            # extraction extras
+            "fragment_id":   f"frag_{page_index}_{t_idx}",
+            "page_index":    page_index,
+            "bbox":          list(table.bbox),
+            "headers":       headers,
+            "last_row_text": last_row_data,
+            "page_height":   page.height,
+            "page_width":    page.width,
+            "source":        "pdfplumber",
+        })
+    return frags
 
 
 # ---------------------------------------------------------------------------
-# Internal helpers — scanned pages (VLM fallback)
+# PASS 2 — VLM (scanned pages), parallelised
 # ---------------------------------------------------------------------------
-
-
-def _render_page_to_base64(pdf_path: str, page_num: int) -> Optional[str]:
-    """
-    Render a single PDF page to a PNG and return it as a base64 string.
-    Requires pdf2image + poppler. Returns None if unavailable.
-    """
-    try:
-        from pdf2image import convert_from_path  # type: ignore
-    except ImportError:
-        print(
-            "[WARN] pdf2image not installed — cannot render scanned pages.\n"
-            "       Install with: pip install pdf2image\n"
-            "       Also ensure poppler is installed (brew install poppler on macOS)."
-        )
-        return None
-
-    images = convert_from_path(pdf_path, first_page=page_num, last_page=page_num, dpi=150)
-    if not images:
-        return None
-
-    buf = io.BytesIO()
-    images[0].save(buf, format="PNG")
-    return base64.standard_b64encode(buf.getvalue()).decode("utf-8")
-
 
 _VLM_PROMPT = """You are a document parser. Extract all tables from this scanned document page.
 
-Return a JSON object with EXACTLY this schema (no markdown, no explanation — raw JSON only):
+Return a JSON object with EXACTLY this schema (raw JSON only, no markdown):
 {
-  "page_text": "<all readable text on the page as a single string>",
+  "page_text": "<all readable text as a single string>",
   "tables": [
     {
       "headers": ["col1", "col2", "..."],
@@ -153,88 +219,242 @@ Return a JSON object with EXACTLY this schema (no markdown, no explanation — r
   ]
 }
 
-bbox_pct values are fractions of page width/height in range [0.0, 1.0].
-If there are no tables, return an empty tables array.
-Return ONLY the JSON object."""
+bbox_pct values are fractions of page dimensions in [0.0, 1.0].
+If there are no tables, return an empty tables array."""
 
 
-def _vlm_extract_page(
-    pdf_path: str,
-    page_index: int,
-    page: pdfplumber.page.Page,
-    client,  # anthropic.Anthropic
-) -> tuple[str, list[FragmentRecord]]:
-    """Use Claude Haiku VLM to extract text and tables from a scanned page."""
-    # pdf2image is 1-indexed for first_page/last_page
-    img_b64 = _render_page_to_base64(pdf_path, page_index + 1)
-    if img_b64 is None:
-        return "", []
+def _render_pages_batch(pdf_path: str, page_indices: list[int]) -> dict[int, str]:
+    """
+    Render a list of page indices to base64 PNGs in one poppler call per contiguous run.
+    Much faster than N individual convert_from_path calls because poppler amortises
+    PDF parsing overhead.
+    Returns {page_index: base64_png_str}.
+    """
+    try:
+        from pdf2image import convert_from_path  # type: ignore
+    except ImportError:
+        print("[WARN] pdf2image not installed — pip install pdf2image && brew install poppler")
+        return {}
 
-    response = client.messages.create(
-        model=VLM_MODEL,
-        max_tokens=4096,
-        messages=[
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image",
-                        "source": {
-                            "type": "base64",
-                            "media_type": "image/png",
-                            "data": img_b64,
-                        },
-                    },
-                    {"type": "text", "text": _VLM_PROMPT},
-                ],
-            }
-        ],
-    )
+    if not page_indices:
+        return {}
 
-    raw = response.content[0].text.strip()
-    data = None
+    # Group into contiguous runs to minimise poppler calls
+    sorted_indices = sorted(page_indices)
+    runs: list[tuple[int, int]] = []   # (first_page_1indexed, last_page_1indexed)
+    run_start = sorted_indices[0]
+    run_end   = sorted_indices[0]
+    for idx in sorted_indices[1:]:
+        if idx == run_end + 1:
+            run_end = idx
+        else:
+            runs.append((run_start + 1, run_end + 1))
+            run_start = run_end = idx
+    runs.append((run_start + 1, run_end + 1))
+
+    result: dict[int, str] = {}
+    for first, last in runs:
+        imgs = convert_from_path(pdf_path, first_page=first, last_page=last, dpi=RENDER_DPI)
+        for offset, img in enumerate(imgs):
+            page_index = first - 1 + offset
+            buf = io.BytesIO()
+            img.save(buf, format="PNG")
+            result[page_index] = base64.standard_b64encode(buf.getvalue()).decode()
+
+    return result
+
+
+def _build_cells_vlm(
+    headers: list, rows: list, bbox_pct: list, page_index: int, pw: float, ph: float
+) -> tuple[list, list, int]:
+    """Build cells from VLM output. Column bboxes are evenly approximated."""
+    num_cols = max(len(headers), max((len(r) for r in rows), default=0))
+    if num_cols == 0:
+        return [], [], 0
+    columns  = [{"col_idx": i} for i in range(num_cols)]
+
+    x0 = bbox_pct[0] * pw;  x1 = bbox_pct[2] * pw
+    y0 = bbox_pct[1] * ph;  y1 = bbox_pct[3] * ph
+    col_w  = (x1 - x0) / num_cols
+    total_r = 1 + len(rows)
+    row_h  = (y1 - y0) / total_r if total_r else 1
+
+    cells = []
+    for r_local, row_data in enumerate([headers] + rows):
+        is_header = r_local == 0
+        row_idx   = -1 if is_header else r_local - 1
+        ry0 = y0 + r_local * row_h
+        ry1 = ry0 + row_h
+        for col_idx in range(num_cols):
+            cx0   = x0 + col_idx * col_w
+            bbox  = [round(cx0, 3), round(ry0, 3), round(cx0 + col_w, 3), round(ry1, 3)]
+            text  = str(row_data[col_idx]) if col_idx < len(row_data) else ""
+            cells.append({
+                "page_index": page_index,
+                "row_idx":    row_idx,
+                "col_idx":    col_idx,
+                "is_header":  is_header,
+                "text":       text,
+                "bbox":       bbox,
+                "bbox_px":    _pt_to_px(bbox),
+            })
+    return cells, columns, len(rows)
+
+
+def _parse_vlm_response(raw: str, page_index: int, pw: float, ph: float) -> tuple[str, list[dict]]:
+    """Parse VLM JSON response into (page_text, fragments). Never raises."""
+    data = {}
     try:
         data = json.loads(raw)
     except json.JSONDecodeError:
-        match = re.search(r"\{.*\}", raw, re.DOTALL)
-        if match:
+        # Try to extract the outermost JSON object (handles markdown fences + truncation)
+        m = re.search(r"\{.*\}", raw, re.DOTALL)
+        if m:
             try:
-                data = json.loads(match.group())
+                data = json.loads(m.group())
             except json.JSONDecodeError:
-                pass
-    if data is None:
-        print(f"[WARN] VLM returned unparseable JSON for page_index {page_index} — skipping page")
-        return "", []
+                print(f"[WARN] page {page_index}: VLM returned unparseable JSON — skipping tables")
+                # Still try to extract page_text from raw string
+                t = re.search(r'"page_text"\s*:\s*"(.*?)"', raw, re.DOTALL)
+                return (t.group(1) if t else ""), []
 
     page_text = data.get("page_text", "")
-    fragments: list[FragmentRecord] = []
+    fragments = []
 
     for t_idx, tbl in enumerate(data.get("tables", [])):
-        headers = tbl.get("headers", [])
-        rows = tbl.get("rows", [])
+        headers  = tbl.get("headers", [])
+        rows     = tbl.get("rows", [])
         bbox_pct = tbl.get("bbox_pct", [0.0, 0.0, 1.0, 1.0])
 
-        # Convert percentage bbox -> PDF points
-        bbox = (
-            bbox_pct[0] * page.width,
-            bbox_pct[1] * page.height,
-            bbox_pct[2] * page.width,
-            bbox_pct[3] * page.height,
-        )
+        cells, columns, row_count = _build_cells_vlm(headers, rows, bbox_pct, page_index, pw, ph)
+        if not cells:
+            continue
 
-        fragments.append(FragmentRecord(
-            fragment_id=f"frag_{page_index}_{t_idx}",
-            page_index=page_index,
-            bbox=bbox,
-            headers=headers,
-            rows=rows,
-            last_row=rows[-1] if rows else headers,
-            page_height=page.height,
-            page_width=page.width,
-            source="vlm",
-        ))
-
+        num_cols = len(columns)
+        tbl_bbox = [bbox_pct[0]*pw, bbox_pct[1]*ph, bbox_pct[2]*pw, bbox_pct[3]*ph]
+        fragments.append({
+            "table_id":                 None,
+            "doc_instance_id":          None,
+            "doctype":                  None,
+            "page_span":                {"start_page": page_index, "end_page": page_index},
+            "header_repeats_each_page": None,
+            "columns":                  columns,
+            "row_count_logical":        row_count,
+            "cells":                    cells,
+            # stitcher signals
+            # synthetic fingerprint: consistent across pages for same table structure
+            "column_fingerprint": _column_fingerprint_synthetic(num_cols),
+            "value_types":        _infer_value_types(rows, num_cols),
+            # extraction extras
+            "fragment_id":   f"frag_{page_index}_{t_idx}",
+            "page_index":    page_index,
+            "bbox":          [round(v, 3) for v in tbl_bbox],
+            "headers":       headers,
+            "last_row_text": rows[-1] if rows else headers,
+            "page_height":   ph,
+            "page_width":    pw,
+            "source":        "vlm",
+        })
     return page_text, fragments
+
+
+async def _vlm_one_page_async(
+    semaphore: asyncio.Semaphore,
+    async_client,
+    img_b64: str,
+    page_index: int,
+    pw: float,
+    ph: float,
+    progress: dict,
+) -> tuple[int, str, list[dict]]:
+    """
+    Pure-async VLM call for one pre-rendered page.
+    Rendering is done up-front in the sync pre-render phase — this function
+    only does the network I/O, so the semaphore purely limits API concurrency.
+    """
+    async with semaphore:
+        for attempt in range(MAX_VLM_RETRIES):
+            try:
+                resp = await async_client.messages.create(
+                    model=VLM_MODEL,
+                    max_tokens=VLM_MAX_TOKENS,
+                    messages=[{
+                        "role": "user",
+                        "content": [
+                            {"type": "image", "source": {
+                                "type": "base64", "media_type": "image/png", "data": img_b64,
+                            }},
+                            {"type": "text", "text": _VLM_PROMPT},
+                        ],
+                    }],
+                )
+                break
+            except Exception as e:
+                if attempt == MAX_VLM_RETRIES - 1:
+                    print(f"[WARN] page {page_index}: failed after {MAX_VLM_RETRIES} attempts — {type(e).__name__}")
+                    return page_index, "", []
+                await asyncio.sleep(2 ** attempt)   # 1s → 2s → 4s → 8s
+
+        page_text, frags = _parse_vlm_response(resp.content[0].text.strip(), page_index, pw, ph)
+
+        progress["done"] += 1
+        done = progress["done"]
+        if done % 10 == 0 or done == progress["total"]:
+            elapsed = time.time() - progress["t0"]
+            rate    = done / elapsed if elapsed > 0 else 0
+            eta     = (progress["total"] - done) / rate if rate > 0 else 0
+            print(f"[extract]   VLM  {done}/{progress['total']}  "
+                  f"{rate:.1f} pages/s  ETA {eta:.0f}s")
+
+        return page_index, page_text, frags
+
+
+async def _run_vlm_pass(
+    scanned_queue: list[dict],
+    pdf_path: str,
+    api_key: str,
+    max_concurrent: int,
+) -> dict[int, tuple[str, list]]:
+    """
+    Two-step async pass:
+      Step A (sync, blocking): batch-render ALL scanned pages via poppler in one shot.
+                               Much faster than per-page rendering inside async tasks.
+      Step B (async, parallel): fire all VLM API calls concurrently with a semaphore.
+    """
+    import anthropic as _ant
+
+    # Step A — pre-render all scanned pages (sync, done before event loop starts)
+    page_indices = [item["page_index"] for item in scanned_queue]
+    print(f"[extract]   Pre-rendering {len(page_indices)} pages...")
+    t_render = time.time()
+    rendered = _render_pages_batch(pdf_path, page_indices)   # blocking, intentional
+    print(f"[extract]   Rendered {len(rendered)} pages in {time.time()-t_render:.1f}s")
+
+    # Step B — pure async VLM calls (no rendering overhead inside tasks)
+    semaphore = asyncio.Semaphore(max_concurrent)
+    progress  = {"done": 0, "total": len(scanned_queue), "t0": time.time()}
+
+    async with _ant.AsyncAnthropic(api_key=api_key) as async_client:
+        tasks = [
+            _vlm_one_page_async(
+                semaphore, async_client,
+                rendered.get(item["page_index"], ""),
+                item["page_index"], item["pw"], item["ph"],
+                progress,
+            )
+            for item in scanned_queue
+            if item["page_index"] in rendered   # skip pages that failed to render
+        ]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    out = {}
+    for r in results:
+        if isinstance(r, Exception):
+            print(f"[WARN] gather exception: {r}")
+            continue
+        pg_idx, text, frags = r
+        out[pg_idx] = (text, frags)
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -245,82 +465,141 @@ def _vlm_extract_page(
 def extract_pdf(
     pdf_path: str,
     anthropic_api_key: Optional[str] = None,
-) -> tuple[list[PageRecord], list[FragmentRecord]]:
+    max_workers: int = DEFAULT_WORKERS,
+) -> dict:
     """
-    Main extraction entry point.
+    Extract all pages from a multi-page PDF.
 
-    Args:
-        pdf_path:           Path to the multi-page PDF.
-        anthropic_api_key:  Anthropic API key for VLM fallback on scanned pages.
-                            If None, scanned pages produce empty text and no fragments.
+    Pass 1 (serial, fast): pdfplumber over all pages.
+    Pass 2 (parallel):     Claude Haiku VLM for scanned pages, up to max_workers concurrent.
 
-    Returns:
-        (pages, fragments)
-        - pages:     one PageRecord per PDF page
-        - fragments: one FragmentRecord per detected table per page
+    Returns a dict mirroring the labels.json schema.
     """
-    pdf_path = str(Path(pdf_path).resolve())
+    pdf_path   = str(Path(pdf_path).resolve())
+    package_id = Path(pdf_path).parent.name
 
-    client = None
-    if anthropic_api_key:
-        import anthropic as _anthropic
-        client = _anthropic.Anthropic(api_key=anthropic_api_key)
+    # ------------------------------------------------------------------ #
+    # PASS 1 — pdfplumber: classify every page, extract digital fragments #
+    # ------------------------------------------------------------------ #
+    t0 = time.time()
+    pages_out: list[dict] = []          # one per page, indexed by page_index
+    tables_out: list[dict] = []         # fragments from digital pages
+    scanned_queue: list[dict] = []      # metadata for scanned pages to process in Pass 2
 
-    all_pages: list[PageRecord] = []
-    all_fragments: list[FragmentRecord] = []
-    vlm_call_count = 0
-
+    print(f"[extract] Pass 1 — pdfplumber  ({pdf_path})")
     with pdfplumber.open(pdf_path) as pdf:
         total = len(pdf.pages)
-        print(f"[extract] {pdf_path}: {total} page(s)")
-
-        for page_index, page in enumerate(pdf.pages):  # 0-indexed, matches labels.json
+        for page_index, page in enumerate(pdf.pages):
             native = _has_text_layer(page)
 
             if native:
-                text = page.extract_text() or ""
+                text  = page.extract_text() or ""
                 frags = _extract_native_fragments(page, page_index)
+                scan_transform = IDENTITY_TRANSFORM
             else:
-                if client:
-                    print(f"[extract] page_index={page_index}: scanned — VLM fallback")
-                    text, frags = _vlm_extract_page(pdf_path, page_index, page, client)
-                    vlm_call_count += 1
-                else:
-                    text, frags = "", []
+                text  = ""
+                frags = []
+                scan_transform = None
+                scanned_queue.append({
+                    "page_index": page_index,
+                    "pw": page.width,
+                    "ph": page.height,
+                })
 
-            pr = PageRecord(
-                page_index=page_index,
-                text=text,
-                has_text_layer=native,
-                page_height=page.height,
-                page_width=page.width,
-                fragment_ids=[f.fragment_id for f in frags],
-            )
-            all_pages.append(pr)
-            all_fragments.extend(frags)
+            pages_out.append({
+                # labels.json page fields
+                "page_index":           page_index,
+                "doc_type":             None,   # [CLASSIFY]
+                "doc_type_label_id":    None,   # [CLASSIFY]
+                "doc_instance_id":      None,   # [SEGMENT]
+                "section":              None,   # [SEGMENT]
+                "is_first_page_of_doc": None,   # [SEGMENT]
+                "is_last_page_of_doc":  None,   # [SEGMENT]
+                "page_in_doc":          None,   # [SEGMENT]
+                "total_pages_in_doc":   None,   # [SEGMENT]
+                "boundary":             None,   # [SEGMENT]
+                "width":                page.width,
+                "height":               page.height,
+                "has_table":            len(frags) > 0,
+                "table_ids":            [],     # [STITCH]
+                "has_chart":            False,
+                "chart_ids":            [],
+                "render_mode":          "digital" if native else "scanned",
+                "scan_transform":       scan_transform,
+                "rotation":             0,
+                "scan_image_size_px":   [round(page.width * PT_TO_PX), round(page.height * PT_TO_PX)],
+                # extras
+                "text":         text,
+                "fragment_ids": [f["fragment_id"] for f in frags],
+            })
+            tables_out.extend(frags)
 
-            if (page_index + 1) % 100 == 0 or page_index == total - 1:
-                print(f"[extract]   {page_index + 1}/{total} done")
-
-    native_count = sum(1 for p in all_pages if p.has_text_layer)
-    scanned_count = len(all_pages) - native_count
+    digital_count = total - len(scanned_queue)
+    t1 = time.time()
     print(
-        f"[extract] Complete — {len(all_pages)} pages, {len(all_fragments)} fragments\n"
-        f"          Native (pdfplumber): {native_count}  |  Scanned (VLM): {scanned_count}"
-        + (f"  |  VLM calls: {vlm_call_count}" if vlm_call_count else "")
+        f"[extract] Pass 1 done in {t1-t0:.1f}s — "
+        f"digital={digital_count}, scanned={len(scanned_queue)}, "
+        f"fragments={len(tables_out)}"
     )
 
-    return all_pages, all_fragments
+    # ------------------------------------------------------------------ #
+    # PASS 2 — async parallel VLM for scanned pages                     #
+    # ------------------------------------------------------------------ #
+    if scanned_queue and anthropic_api_key:
+        n_scanned         = len(scanned_queue)
+        effective_workers = min(max_workers, n_scanned)
+        print(
+            f"[extract] Pass 2 — AsyncVLM  {n_scanned} pages  "
+            f"concurrency={effective_workers}  model={VLM_MODEL}"
+        )
 
+        vlm_results = asyncio.run(
+            _run_vlm_pass(scanned_queue, pdf_path, anthropic_api_key, effective_workers)
+        )
 
-# ---------------------------------------------------------------------------
-# Serialisation helpers
-# ---------------------------------------------------------------------------
+        # Merge VLM results back into pages_out (in page_index order)
+        for pg_idx, (pg_text, frags) in vlm_results.items():
+            p = pages_out[pg_idx]
+            p["text"]         = pg_text
+            p["has_table"]    = len(frags) > 0
+            p["fragment_ids"] = [f["fragment_id"] for f in frags]
+            tables_out.extend(frags)
 
+        t2        = time.time()
+        vlm_frags = sum(len(r[1]) for r in vlm_results.values())
+        vlm_ok    = sum(1 for r in vlm_results.values() if r[0] or r[1])
+        print(f"[extract] Pass 2 done in {t2-t1:.1f}s — "
+              f"{vlm_frags} fragments from {vlm_ok}/{n_scanned} pages")
 
-def pages_to_dict(pages: list[PageRecord]) -> list[dict]:
-    return [asdict(p) for p in pages]
+    elif scanned_queue and not anthropic_api_key:
+        print(f"[extract] Pass 2 skipped — no API key ({len(scanned_queue)} scanned pages unprocessed)")
 
+    # ------------------------------------------------------------------ #
+    # Assemble output                                                     #
+    # ------------------------------------------------------------------ #
+    digital_c = sum(1 for p in pages_out if p["render_mode"] == "digital")
+    scanned_c = total - digital_c
+    pkg_mode  = "digital" if scanned_c == 0 else ("scanned" if digital_c == 0 else "mixed")
 
-def fragments_to_dict(fragments: list[FragmentRecord]) -> list[dict]:
-    return [asdict(f) for f in fragments]
+    total_frags = len(tables_out)
+    total_cells = sum(len(f.get("cells", [])) for f in tables_out)
+    total_time  = time.time() - t0
+
+    print(
+        f"[extract] Complete — {total} pages in {total_time:.1f}s  "
+        f"({total/total_time:.1f} pages/s)\n"
+        f"          fragments={total_frags}  cells={total_cells}  "
+        f"digital={digital_c}  scanned={scanned_c}"
+    )
+
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "package_id":     package_id,
+        "total_pages":    total,
+        "coord_system":   COORD_SYSTEM,
+        "documents":      [],           # [SEGMENT]
+        "pages":          pages_out,
+        "tables":         tables_out,
+        "charts":         [],
+        "render_mode":    pkg_mode,
+    }
