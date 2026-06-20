@@ -80,16 +80,16 @@ async def _ocr_scanned_pages(pdf_path: str, scanned_indices: list[int]) -> dict[
     runs.append((run_start + 1, run_end + 1))
 
     for first, last in runs:
-        imgs = convert_from_path(str(pdf_path), first_page=first, last_page=last, dpi=150)
+        imgs = convert_from_path(str(pdf_path), first_page=first, last_page=last, dpi=100)
         for offset, img in enumerate(imgs):
             page_index = first - 1 + offset
             buf = io.BytesIO()
-            img.save(buf, format="PNG")
+            img.save(buf, format="JPEG", quality=80)
             rendered[page_index] = base64.standard_b64encode(buf.getvalue()).decode()
 
     # OCR via GPT-4o-mini vision
     client = AsyncOpenAI()
-    sem = asyncio.Semaphore(15)
+    sem = asyncio.Semaphore(25)
     results: dict[int, str] = {}
 
     async def _ocr_one(pi: int, img_b64: str) -> tuple[int, str]:
@@ -102,7 +102,7 @@ async def _ocr_scanned_pages(pdf_path: str, scanned_indices: list[int]) -> dict[
                         "role": "user",
                         "content": [
                             {"type": "image_url", "image_url": {
-                                "url": f"data:image/png;base64,{img_b64}",
+                                "url": f"data:image/jpeg;base64,{img_b64}",
                             }},
                             {"type": "text", "text": _OCR_PROMPT},
                         ],
