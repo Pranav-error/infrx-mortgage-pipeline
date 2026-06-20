@@ -771,10 +771,11 @@ def extract_pdf(
 
     elif scanned_queue and not has_vlm_key:
         if not use_vlm:
-            # Tesseract-only mode: run OCR triage directly on all scanned pages
+            # Tesseract-only mode: render + Tesseract OCR, no VLM
             print(f"[extract] Pass 2 — Tesseract-only mode ({len(scanned_queue)} scanned pages)")
             t1 = time.time()
-            rendered = asyncio.run(_render_pages_batch(scanned_queue, pdf_path))
+            page_indices = [item["page_index"] for item in scanned_queue]
+            rendered = _render_pages_batch(pdf_path, page_indices)
             ocr_texts = _tesseract_ocr_batch(rendered)
             for item in scanned_queue:
                 pi = item["page_index"]
