@@ -121,6 +121,9 @@ DOC_SIGNALS = {
         r"360\b",                           # Capital One 360
         r"savings account",
         r"money market",
+        r"checking and savings",
+        r"all accounts summary",
+        r"relationship summary",
     ],
     "brokerage_stmt": [
         r"brokerage (account|statement)",
@@ -154,6 +157,11 @@ DOC_SIGNALS = {
         r"save this loan estimate",
         r"before you close",
         r"good faith estimate",
+        r"this form is a statement of final loan terms",
+        r"projected payments",                # LE page 2 header
+        r"comparisons.*in 5 years",           # LE comparisons table
+        r"use these measures",                # LE "Use these measures to compare" section
+        r"other considerations",              # LE page 3 section heading
     ],
     "loan_summary": [
         r"loan summary",
@@ -248,6 +256,23 @@ DOC_SIGNALS = {
         r"adverse action notice",
         r"notice to (applicant|borrower)",
         r"right to receive",
+        r"nmlsr id\b",                      # NMLS licence page — common filler
+        r"applicant'?s? acknowledgement",
+        r"borrower acknowledgment",
+        r"notice of right to copy",
+        r"affiliated business arrangement",
+        r"servicing disclosure",
+        r"appraisal independence",
+        r"we collect|we may share|we do not share",   # privacy notice boilerplate
+        r"why\?.*what\?.*how\?",            # privacy notice table header
+        r"page \d+ of \d+\s*$",            # standalone page-number-only page
+        r"ecoa|equal credit opportunity",   # ECOA notice pages (multi-page legal boilerplate)
+        r"right to receive a copy",
+        r"home loan toolkit",
+        r"your home loan toolkit",
+        r"statement of specific reasons",   # ECOA continuation pages
+        r"creditor'?s? standards",          # ECOA continuation
+        r"the creditor must notify",        # adverse action boilerplate
     ],
 }
 
