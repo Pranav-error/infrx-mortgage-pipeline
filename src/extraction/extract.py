@@ -37,7 +37,15 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Optional
 
+import os as _os
 import pdfplumber
+
+# ---------------------------------------------------------------------------
+# Backend selection — OpenAI fallback when Anthropic credits are exhausted
+# ---------------------------------------------------------------------------
+_USE_OPENAI = bool(_os.environ.get("OPENAI_API_KEY"))
+if _USE_OPENAI:
+    from openai import AsyncOpenAI as _AsyncOpenAI
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -47,7 +55,7 @@ SCHEMA_VERSION   = "1.0.0"
 MIN_TEXT_CHARS   = 30          # below this → page is treated as scanned
 RENDER_DPI       = 150         # matches dataset raster_dpi; used for bbox_px
 PT_TO_PX         = RENDER_DPI / 72.0
-VLM_MODEL        = "claude-haiku-4-5-20251001"
+VLM_MODEL        = "gpt-4o-mini" if _USE_OPENAI else "claude-haiku-4-5-20251001"
 DEFAULT_WORKERS  = 10          # concurrent async VLM requests
 MAX_VLM_RETRIES  = 4           # retry on transient API / connection errors
 VLM_MAX_TOKENS   = 8192        # enough for dense bank statement pages (4096 caused truncation)
@@ -371,23 +379,41 @@ async def _vlm_one_page_async(
     Pure-async VLM call for one pre-rendered page.
     Rendering is done up-front in the sync pre-render phase — this function
     only does the network I/O, so the semaphore purely limits API concurrency.
+    Supports both OpenAI (GPT-4o-mini) and Anthropic (Claude Haiku) backends.
     """
     async with semaphore:
         for attempt in range(MAX_VLM_RETRIES):
             try:
-                resp = await async_client.messages.create(
-                    model=VLM_MODEL,
-                    max_tokens=VLM_MAX_TOKENS,
-                    messages=[{
-                        "role": "user",
-                        "content": [
-                            {"type": "image", "source": {
-                                "type": "base64", "media_type": "image/png", "data": img_b64,
-                            }},
-                            {"type": "text", "text": _VLM_PROMPT},
-                        ],
-                    }],
-                )
+                if _USE_OPENAI:
+                    resp = await async_client.chat.completions.create(
+                        model=VLM_MODEL,
+                        max_tokens=VLM_MAX_TOKENS,
+                        messages=[{
+                            "role": "user",
+                            "content": [
+                                {"type": "image_url", "image_url": {
+                                    "url": f"data:image/png;base64,{img_b64}",
+                                }},
+                                {"type": "text", "text": _VLM_PROMPT},
+                            ],
+                        }],
+                    )
+                    raw_text = resp.choices[0].message.content.strip()
+                else:
+                    resp = await async_client.messages.create(
+                        model=VLM_MODEL,
+                        max_tokens=VLM_MAX_TOKENS,
+                        messages=[{
+                            "role": "user",
+                            "content": [
+                                {"type": "image", "source": {
+                                    "type": "base64", "media_type": "image/png", "data": img_b64,
+                                }},
+                                {"type": "text", "text": _VLM_PROMPT},
+                            ],
+                        }],
+                    )
+                    raw_text = resp.content[0].text.strip()
                 break
             except Exception as e:
                 if attempt == MAX_VLM_RETRIES - 1:
@@ -395,7 +421,7 @@ async def _vlm_one_page_async(
                     return page_index, "", []
                 await asyncio.sleep(2 ** attempt)   # 1s → 2s → 4s → 8s
 
-        page_text, frags = _parse_vlm_response(resp.content[0].text.strip(), page_index, pw, ph)
+        page_text, frags = _parse_vlm_response(raw_text, page_index, pw, ph)
 
         progress["done"] += 1
         done = progress["done"]
@@ -420,9 +446,8 @@ async def _run_vlm_pass(
       Step A (sync, blocking): batch-render ALL scanned pages via poppler in one shot.
                                Much faster than per-page rendering inside async tasks.
       Step B (async, parallel): fire all VLM API calls concurrently with a semaphore.
+    Supports both OpenAI (GPT-4o-mini) and Anthropic (Claude Haiku) backends.
     """
-    import anthropic as _ant
-
     # Step A — pre-render all scanned pages (sync, done before event loop starts)
     page_indices = [item["page_index"] for item in scanned_queue]
     print(f"[extract]   Pre-rendering {len(page_indices)} pages...")
@@ -434,7 +459,8 @@ async def _run_vlm_pass(
     semaphore = asyncio.Semaphore(max_concurrent)
     progress  = {"done": 0, "total": len(scanned_queue), "t0": time.time()}
 
-    async with _ant.AsyncAnthropic(api_key=api_key) as async_client:
+    if _USE_OPENAI:
+        async_client = _AsyncOpenAI()
         tasks = [
             _vlm_one_page_async(
                 semaphore, async_client,
@@ -443,9 +469,24 @@ async def _run_vlm_pass(
                 progress,
             )
             for item in scanned_queue
-            if item["page_index"] in rendered   # skip pages that failed to render
+            if item["page_index"] in rendered
         ]
         results = await asyncio.gather(*tasks, return_exceptions=True)
+        await async_client.close()
+    else:
+        import anthropic as _ant
+        async with _ant.AsyncAnthropic(api_key=api_key) as async_client:
+            tasks = [
+                _vlm_one_page_async(
+                    semaphore, async_client,
+                    rendered.get(item["page_index"], ""),
+                    item["page_index"], item["pw"], item["ph"],
+                    progress,
+                )
+                for item in scanned_queue
+                if item["page_index"] in rendered
+            ]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
 
     out = {}
     for r in results:
@@ -545,11 +586,13 @@ def extract_pdf(
     # ------------------------------------------------------------------ #
     # PASS 2 — async parallel VLM for scanned pages                     #
     # ------------------------------------------------------------------ #
-    if scanned_queue and anthropic_api_key:
+    has_vlm_key = anthropic_api_key or _USE_OPENAI
+    if scanned_queue and has_vlm_key:
         n_scanned         = len(scanned_queue)
         effective_workers = min(max_workers, n_scanned)
+        backend_name = "OpenAI GPT-4o-mini" if _USE_OPENAI else "Anthropic Haiku"
         print(
-            f"[extract] Pass 2 — AsyncVLM  {n_scanned} pages  "
+            f"[extract] Pass 2 — AsyncVLM ({backend_name})  {n_scanned} pages  "
             f"concurrency={effective_workers}  model={VLM_MODEL}"
         )
 
@@ -571,7 +614,7 @@ def extract_pdf(
         print(f"[extract] Pass 2 done in {t2-t1:.1f}s — "
               f"{vlm_frags} fragments from {vlm_ok}/{n_scanned} pages")
 
-    elif scanned_queue and not anthropic_api_key:
+    elif scanned_queue and not has_vlm_key:
         print(f"[extract] Pass 2 skipped — no API key ({len(scanned_queue)} scanned pages unprocessed)")
 
     # ------------------------------------------------------------------ #

@@ -6,13 +6,17 @@ Usage:
     python3 src/eval_classify.py --pkg "DataSet /pkg_000000"  # single package
 
 Reads labels.json for ground truth doc_type per page.
-Extracts text via pdfplumber (digital pages only — scanned pages skipped).
+Extracts text via pdfplumber (digital pages).
+For scanned pages: renders as image → GPT-4o-mini vision OCR → classify.
 Runs classify_pages and compares against ground truth.
 """
 
 from __future__ import annotations
 
 import argparse
+import asyncio
+import base64
+import io
 import json
 import os
 import sys
@@ -25,6 +29,13 @@ import pdfplumber
 sys.path.insert(0, str(Path(__file__).parent))
 from classify import classify_pages, LABEL_ID
 
+# OCR backend for scanned pages
+_USE_OPENAI = bool(os.environ.get("OPENAI_API_KEY"))
+
+_OCR_PROMPT = """Extract ALL readable text from this scanned document page.
+Return ONLY the text content as a plain string — no JSON, no markdown, no explanation.
+Preserve the layout as much as possible (headers, tables, paragraphs)."""
+
 # ── Data structures ───────────────────────────────────────────────────────────
 
 @dataclass
@@ -32,6 +43,85 @@ class FakePage:
     """Minimal stand-in for PageRecord so we can call classify_pages without extract.py."""
     page_index: int
     text: str
+
+
+# ── OCR for scanned pages ────────────────────────────────────────────────────
+
+async def _ocr_scanned_pages(pdf_path: str, scanned_indices: list[int]) -> dict[int, str]:
+    """
+    Render scanned pages as images and use GPT-4o-mini vision to extract text.
+    Returns {page_index: extracted_text}.
+    """
+    if not scanned_indices or not _USE_OPENAI:
+        return {}
+
+    try:
+        from pdf2image import convert_from_path
+    except ImportError:
+        print("[WARN] pdf2image not installed — pip install pdf2image && brew install poppler")
+        return {}
+
+    from openai import AsyncOpenAI
+
+    # Render all scanned pages
+    rendered: dict[int, str] = {}
+    sorted_indices = sorted(scanned_indices)
+
+    # Batch render
+    runs: list[tuple[int, int]] = []
+    run_start = sorted_indices[0]
+    run_end = sorted_indices[0]
+    for idx in sorted_indices[1:]:
+        if idx == run_end + 1:
+            run_end = idx
+        else:
+            runs.append((run_start + 1, run_end + 1))
+            run_start = run_end = idx
+    runs.append((run_start + 1, run_end + 1))
+
+    for first, last in runs:
+        imgs = convert_from_path(str(pdf_path), first_page=first, last_page=last, dpi=150)
+        for offset, img in enumerate(imgs):
+            page_index = first - 1 + offset
+            buf = io.BytesIO()
+            img.save(buf, format="PNG")
+            rendered[page_index] = base64.standard_b64encode(buf.getvalue()).decode()
+
+    # OCR via GPT-4o-mini vision
+    client = AsyncOpenAI()
+    sem = asyncio.Semaphore(15)
+    results: dict[int, str] = {}
+
+    async def _ocr_one(pi: int, img_b64: str) -> tuple[int, str]:
+        async with sem:
+            try:
+                resp = await client.chat.completions.create(
+                    model="gpt-4o-mini",
+                    max_tokens=2000,
+                    messages=[{
+                        "role": "user",
+                        "content": [
+                            {"type": "image_url", "image_url": {
+                                "url": f"data:image/png;base64,{img_b64}",
+                            }},
+                            {"type": "text", "text": _OCR_PROMPT},
+                        ],
+                    }],
+                )
+                return pi, resp.choices[0].message.content.strip()
+            except Exception as e:
+                print(f"[WARN] OCR page {pi}: {type(e).__name__}")
+                return pi, ""
+
+    tasks = [_ocr_one(pi, img_b64) for pi, img_b64 in rendered.items()]
+    ocr_results = await asyncio.gather(*tasks)
+    await client.close()
+
+    for pi, text in ocr_results:
+        if text:
+            results[pi] = text
+
+    return results
 
 
 # ── Per-package eval ──────────────────────────────────────────────────────────
@@ -49,7 +139,7 @@ def eval_package(pkg_dir: str) -> dict:
 
     # Extract text for all pages
     pages: list[FakePage] = []
-    skipped_scanned = 0
+    scanned_indices: list[int] = []
 
     with pdfplumber.open(str(pdf_path)) as pdf:
         for page_index, page in enumerate(pdf.pages):
@@ -57,13 +147,30 @@ def eval_package(pkg_dir: str) -> dict:
             if text.strip():
                 pages.append(FakePage(page_index=page_index, text=text))
             else:
-                skipped_scanned += 1
+                scanned_indices.append(page_index)
+
+    # OCR scanned pages if OpenAI key is available
+    ocr_count = 0
+    if scanned_indices and _USE_OPENAI:
+        ocr_texts = asyncio.run(_ocr_scanned_pages(pdf_path, scanned_indices))
+        for pi, text in ocr_texts.items():
+            if text.strip():
+                pages.append(FakePage(page_index=pi, text=text))
+                ocr_count += 1
+        # Re-sort by page_index
+        pages.sort(key=lambda p: p.page_index)
+
+    skipped_scanned = len(scanned_indices) - ocr_count
 
     if not pages:
-        print(f"[{pkg_dir.name}] No digital pages found — skipping")
+        print(f"[{pkg_dir.name}] No pages found — skipping")
         return {}
 
-    print(f"\n[{pkg_dir.name}] {len(pages)} digital pages + {skipped_scanned} scanned (skipped)")
+    digital_count = len(pages) - ocr_count
+    if ocr_count > 0:
+        print(f"\n[{pkg_dir.name}] {digital_count} digital + {ocr_count} OCR'd + {skipped_scanned} skipped")
+    else:
+        print(f"\n[{pkg_dir.name}] {digital_count} digital pages + {len(scanned_indices)} scanned (skipped)")
 
     t0 = time.time()
     results = classify_pages(pages)
