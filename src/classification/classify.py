@@ -774,12 +774,12 @@ def _is_continuation(text: str) -> bool:
     lines = [l.strip() for l in text.strip().splitlines() if l.strip()]
     if not lines:
         return False
-    # First line matches a known table header pattern
-    if bool(_CONTINUATION_RE.match(lines[0])) and len(lines) > 2:
-        return True
-    # Very short pages with only numbers/amounts — likely a table tail
-    if len(lines) <= 4 and all(re.match(r'^[\d\s\$\.,\*\-\/]+$', l) for l in lines):
-        return True
+    # First line matches a known table header pattern AND page has enough data rows
+    if bool(_CONTINUATION_RE.match(lines[0])) and len(lines) > 5:
+        # Verify at least some lines look like table data (contain numbers/currency)
+        data_lines = sum(1 for l in lines[1:] if re.search(r'\d+\.\d{2}|\$[\d,]+', l))
+        if data_lines >= 2:
+            return True
     return False
 
 
@@ -810,6 +810,8 @@ async def _classify_pages_async(
     results        = [None] * len(page_records)
     llm_tasks      = {}   # index → asyncio task
     last_confident = None
+    carry_streak   = 0    # consecutive carry_forwards — cap to prevent runaway propagation
+    _MAX_CARRY     = 8    # re-evaluate after this many consecutive carry_forwards
 
     for idx, pr in enumerate(page_records):
         text = pr.text or ""
@@ -821,15 +823,17 @@ async def _classify_pages_async(
                 "doc_type": "filler", "doc_type_label_id": LABEL_ID["filler"],
                 "confidence": 0.85, "method": "heuristic",
             }
+            carry_streak = 0
             continue
 
-        if _is_continuation(text) and last_confident:
+        if _is_continuation(text) and last_confident and carry_streak < _MAX_CARRY:
             results[idx] = {
                 "page_index": pr.page_index,
                 **last_confident,
                 "method": "carry_forward",
                 "confidence": 0.5,
             }
+            carry_streak += 1
             continue
 
         # Chapter-header shortcut — fires before any other check.
@@ -841,6 +845,7 @@ async def _classify_pages_async(
             results[idx] = entry
             last_confident = {"doc_type": ch["doc_type"],
                                "doc_type_label_id": ch["doc_type_label_id"]}
+            carry_streak = 0
             continue
 
         # Table-header fingerprint — most robust signal, runs before text keywords
@@ -851,6 +856,7 @@ async def _classify_pages_async(
             results[idx] = entry
             last_confident = {"doc_type": th["doc_type"],
                                "doc_type_label_id": th["doc_type_label_id"]}
+            carry_streak = 0
             continue
 
         # Structural combo detection — format-agnostic, runs before keyword heuristic.
@@ -866,19 +872,21 @@ async def _classify_pages_async(
             results[idx] = entry
             last_confident = {"doc_type": "bank_stmt_combo",
                                "doc_type_label_id": LABEL_ID["bank_stmt_combo"]}
+            carry_streak = 0
             continue
 
         # If the previous confident page was narrative/textbook and THIS page has
         # no competing high-confidence signal, carry-forward the chapter type.
         if last_confident and last_confident["doc_type"] in (
             "narrative_chapter", "textbook_chapter"
-        ):
+        ) and carry_streak < _MAX_CARRY:
             results[idx] = {
                 "page_index": pr.page_index,
                 **last_confident,
                 "method": "carry_forward",
                 "confidence": 0.60,
             }
+            carry_streak += 1
             continue
 
         h = classify_heuristic(text)
@@ -905,6 +913,7 @@ async def _classify_pages_async(
             results[idx] = entry
             last_confident = {"doc_type": entry["doc_type"],
                                "doc_type_label_id": entry["doc_type_label_id"]}
+            carry_streak = 0
         elif client is not None:
             # Schedule async LLM call
             llm_tasks[idx] = asyncio.create_task(
@@ -935,6 +944,7 @@ async def _classify_pages_async(
         if result.get("confidence", 0) >= 0.5 and result.get("doc_type") != "unknown":
             last_confident = {"doc_type": result["doc_type"],
                               "doc_type_label_id": result.get("doc_type_label_id", -1)}
+            carry_streak = 0
 
     # Fill any remaining None (shouldn't happen)
     for idx, pr in enumerate(page_records):
