@@ -192,14 +192,19 @@ def _vlm_extract_page(
     )
 
     raw = response.content[0].text.strip()
+    data = None
     try:
         data = json.loads(raw)
     except json.JSONDecodeError:
         match = re.search(r"\{.*\}", raw, re.DOTALL)
-        if not match:
-            print(f"[WARN] VLM returned unparseable JSON for page_index {page_index}")
-            return "", []
-        data = json.loads(match.group())
+        if match:
+            try:
+                data = json.loads(match.group())
+            except json.JSONDecodeError:
+                pass
+    if data is None:
+        print(f"[WARN] VLM returned unparseable JSON for page_index {page_index} — skipping page")
+        return "", []
 
     page_text = data.get("page_text", "")
     fragments: list[FragmentRecord] = []
