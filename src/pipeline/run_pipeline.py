@@ -661,8 +661,8 @@ def _parse_args() -> argparse.Namespace:
                    help="Anthropic API key (or set ANTHROPIC_API_KEY env var)")
     p.add_argument("--out",      default=None,
                    help="Output JSON path (default: <pkg_dir>/pipeline_output.json)")
-    p.add_argument("--workers",  type=int, default=10,
-                   help="Max concurrent VLM workers for extraction (default: 10)")
+    p.add_argument("--workers",  type=int, default=25,
+                   help="Max concurrent VLM workers for extraction (default: 25)")
     p.add_argument("--no-stitch-llm", action="store_true",
                    help="Disable LLM arbiter in stitching (faster, slightly less accurate)")
     p.add_argument("--jumbled", action="store_true",
