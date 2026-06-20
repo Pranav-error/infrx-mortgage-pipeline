@@ -31,6 +31,7 @@ if str(_SRC) not in sys.path:
 from extraction.extract import extract_pdf
 from classification.classify import classify_pages
 from segmentation.segment import segment_documents
+from segmentation.reorder import reorder_pages
 from stitching.stitch import thread_fragments
 from pipeline.cascade import CascadeController
 from output.render import render_output
@@ -101,6 +102,130 @@ def _group_fragments_by_instance(
 
 
 # ---------------------------------------------------------------------------
+# Stage 2.5 — Reorder helper (for jumbled PDFs)
+# ---------------------------------------------------------------------------
+
+def _reorder_by_doc_type(
+    pages: list[dict],
+    classifications: list[dict],
+    api_key: str | None = None,
+) -> tuple[list[dict], dict[int, int]]:
+    """
+    Two-phase reorder for a completely jumbled mixed-type PDF:
+
+    Phase 1 — Cluster by doc_type.
+        Group all pages by their classified doc_type.
+        Pages of the same type (e.g. all bank statement pages, all story pages)
+        are pulled together into one group.
+
+    Phase 2 — Order within each cluster.
+        For each cluster, run reorder_pages() to recover the correct page
+        sequence using chapter-structure (PATH A), structural signals (PATH B),
+        or LLM (PATH C) — same algorithm as the standalone reorder test.
+
+    After this stage, page_index values are reassigned sequentially so that
+    segment_documents() sees a clean ordered stream where adjacent pages of
+    the same doc_type truly belong together.
+
+    Returns:
+        reordered_pages  — list[dict] with updated page_index values
+        orig_to_new      — dict mapping original_page_index → new page_index
+                           (needed to write the Output.pdf in correct order)
+    """
+    classify_by_page = {c["page_index"]: c for c in classifications}
+
+    # Group page dicts by doc_type (preserve a copy to avoid in-place mutation)
+    groups: dict[str, list[dict]] = {}
+    for p in pages:
+        dt = classify_by_page.get(p["page_index"], {}).get("doc_type", "unknown")
+        groups.setdefault(dt, []).append(dict(p))
+
+    all_reordered: list[dict] = []
+    orig_to_new: dict[int, int] = {}
+    new_idx = 0
+
+    for dt in sorted(groups.keys()):          # sorted for determinism
+        group = groups[dt]
+        n_group = len(group)
+
+        if n_group == 1:
+            orig_idx = group[0]["page_index"]
+            group[0]["original_page_index"] = orig_idx
+            group[0]["page_index"] = new_idx
+            orig_to_new[orig_idx] = new_idx
+            all_reordered.append(group[0])
+            new_idx += 1
+        else:
+            print(f"[reorder] doc_type='{dt}'  {n_group} pages → running reorder...")
+            ordered = reorder_pages(group, api_key=api_key)
+            ordered_seq = sorted(ordered, key=lambda p: p["sorted_page_index"])
+            for p in ordered_seq:
+                orig_idx = p["page_index"]
+                p["original_page_index"] = orig_idx
+                p["page_index"] = new_idx
+                orig_to_new[orig_idx] = new_idx
+                all_reordered.append(p)
+                new_idx += 1
+
+    return all_reordered, orig_to_new
+
+
+# ---------------------------------------------------------------------------
+# Output PDF writer
+# ---------------------------------------------------------------------------
+
+def _write_output_pdf(
+    original_pdf: str,
+    ordered_pages: list[dict],
+    out_path: str = "Output.pdf",
+) -> None:
+    """
+    Write a new PDF with pages in the pipeline's recovered order.
+    Uses original_page_index (set during reorder) to pick the right source page.
+    Falls back to text-content matching when original_page_index is unavailable.
+    """
+    try:
+        from pypdf import PdfReader, PdfWriter
+        import pdfplumber
+    except ImportError:
+        print("[pipeline] pypdf/pdfplumber not installed — skipping Output.pdf")
+        return
+
+    print(f"\n[pipeline] Writing {out_path}...")
+    reader = PdfReader(original_pdf)
+
+    # Build fingerprint: first 200 chars of text → original page index
+    orig_texts: dict[int, str] = {}
+    with pdfplumber.open(original_pdf) as pdf:
+        for i, pg in enumerate(pdf.pages):
+            orig_texts[i] = (pg.extract_text() or "")[:200]
+
+    def _resolve_orig(page_dict: dict) -> int:
+        # Prefer stored original_page_index
+        if "original_page_index" in page_dict:
+            return int(page_dict["original_page_index"])
+        # Fallback: match by text fingerprint
+        target = (page_dict.get("text") or "")[:200].strip()
+        best_i, best_len = 0, 0
+        for oi, ot in orig_texts.items():
+            common = len(set(target.split()) & set(ot.split()))
+            if common > best_len:
+                best_len, best_i = common, oi
+        return best_i
+
+    writer = PdfWriter()
+    for p in ordered_pages:
+        oi = _resolve_orig(p)
+        writer.add_page(reader.pages[oi])
+
+    with open(out_path, "wb") as f:
+        writer.write(f)
+
+    size_kb = Path(out_path).stat().st_size // 1024
+    print(f"[pipeline] Saved → {out_path}  ({len(ordered_pages)} pages, {size_kb} KB)")
+
+
+# ---------------------------------------------------------------------------
 # Core pipeline
 # ---------------------------------------------------------------------------
 
@@ -110,13 +235,23 @@ def run_pipeline(
     max_extract_workers: int = 10,
     max_classify_concurrent: int = 20,
     use_llm_stitcher: bool = True,
+    jumbled: bool = False,
+    output_pdf: str | None = None,
 ) -> dict:
     """
     Run the full pipeline on a single PDF.
     Returns the final labels.json-compatible dict.
+
+    Args:
+        jumbled:    If True, run Stage 2.5 — group pages by doc_type and
+                    reorder within each group before segmentation.
+                    Use this when the input PDF has completely shuffled pages
+                    (e.g. the hackathon test files).
+        output_pdf: If set, write a reordered Output PDF to this path.
     """
     cascade = CascadeController()
     t_total = time.time()
+    orig_to_new: dict[int, int] = {}   # populated by Stage 2.5 if jumbled=True
 
     # ------------------------------------------------------------------ #
     # Stage 1 — Extract                                                   #
@@ -164,6 +299,38 @@ def run_pipeline(
     print(f"  => LLM escalations: {cs.get('llm_calls', 0)}/{cs.get('total_pages', 0)} "
           f"({cs.get('escalation_pct', '0%')})  "
           f"est. cost: ${cs.get('estimated_cost_usd', 0):.5f}")
+
+    # ------------------------------------------------------------------ #
+    # Stage 2.5 — Reorder (jumbled PDFs only)                            #
+    # ------------------------------------------------------------------ #
+    if jumbled:
+        print("\n" + "="*60)
+        print("  STAGE 2.5 — REORDER  (jumbled PDF — group + order by doc_type)")
+        print("="*60)
+        t0 = time.time()
+
+        pages, orig_to_new = _reorder_by_doc_type(pages, classifications, api_key)
+
+        # Remap classifications page_index to the new order
+        new_classify: list[dict] = []
+        for c in classifications:
+            ni = orig_to_new.get(c["page_index"])
+            if ni is not None:
+                nc = dict(c)
+                nc["page_index"] = ni
+                new_classify.append(nc)
+        classifications = sorted(new_classify, key=lambda c: c["page_index"])
+
+        # Remap fragments page_index
+        for frag in tables:
+            old_pi = frag.get("page_index", -1)
+            frag["page_index"] = orig_to_new.get(old_pi, old_pi)
+
+        classify_by_page = {c["page_index"]: c for c in classifications}
+
+        print(f"  => Reorder complete in {time.time()-t0:.1f}s")
+        print(f"     Doc-type groups processed: "
+              f"{len(set(c.get('doc_type','?') for c in classifications))}")
 
     # ------------------------------------------------------------------ #
     # Stage 3 — Segment                                                   #
@@ -309,6 +476,16 @@ def run_pipeline(
           f"({len(pages)/total_elapsed:.1f} pages/s)")
 
     cascade.print_summary()
+
+    # ------------------------------------------------------------------ #
+    # Output PDF (optional)                                               #
+    # ------------------------------------------------------------------ #
+    if output_pdf:
+        # ordered_pages: pages in the order they should appear in the output PDF.
+        # If jumbled=True, pages have already been reordered (page_index = new order).
+        ordered_pages = sorted(pages, key=lambda p: p["page_index"])
+        _write_output_pdf(pdf_path, ordered_pages, out_path=output_pdf)
+
     return final
 
 
@@ -332,6 +509,10 @@ def _parse_args() -> argparse.Namespace:
                    help="Max concurrent VLM workers for extraction (default: 10)")
     p.add_argument("--no-stitch-llm", action="store_true",
                    help="Disable LLM arbiter in stitching (faster, slightly less accurate)")
+    p.add_argument("--jumbled", action="store_true",
+                   help="Input PDF has shuffled pages — run Stage 2.5 reorder before segment")
+    p.add_argument("--output-pdf", default=None,
+                   help="Write reordered Output.pdf to this path (e.g. Output.pdf)")
     return p.parse_args()
 
 
@@ -359,6 +540,8 @@ def main():
         api_key              = args.api_key,
         max_extract_workers  = args.workers,
         use_llm_stitcher     = not args.no_stitch_llm,
+        jumbled              = args.jumbled,
+        output_pdf           = args.output_pdf,
     )
 
     out_file = Path(out_path)

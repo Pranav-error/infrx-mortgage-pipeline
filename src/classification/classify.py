@@ -44,7 +44,12 @@ _DEFAULT_LABEL_ID = {
     "credit_report": 15, "du_findings": 16, "lpa_feedback": 17,
     "purchase_contract": 18, "purchase_addendum": 19, "options_addendum": 20,
     "email_correspondence": 21, "letter_of_explanation": 22, "gift_letter": 23,
-    "insurance_declaration": 24, "loan_summary": 25, "filler": 26, "unknown": -1,
+    "insurance_declaration": 24, "loan_summary": 25, "filler": 26,
+    # ── General document types (non-mortgage) ─────────────────────────────────
+    "utility_bill": 27, "phone_bill": 28, "insurance_policy": 29, "invoice": 30,
+    "narrative_chapter": 31, "textbook_chapter": 32, "medical_record": 33,
+    "legal_contract": 34,
+    "unknown": -1,
 }
 
 
@@ -275,6 +280,74 @@ DOC_SIGNALS = {
         r"to:\s+\S+@\S+",
         r"subject:\s+",
     ],
+    # ── General document types (non-mortgage) ────────────────────────────────
+    "utility_bill": [
+        r"utility bill|electricity bill|electric bill|power bill",
+        r"(electric|gas|water|energy|utility)\s+(company|service|provider|corp)",
+        r"meter reading|kilowatt.?hour|\bkwh\b",
+        r"amount due|payment due",
+        r"service address|account number",
+        r"billing period|bill date",
+    ],
+    "phone_bill": [
+        r"(mobile|wireless|cellular|telecom|telephone)\s+(bill|statement|account|service)",
+        r"(at&t|verizon|t-mobile|sprint|comcast|at&t wireless|metro pcs|cricket)",
+        r"data usage|minutes used|text messages",
+        r"monthly service fee|plan charges|line access",
+        r"phone number.*account|account.*phone number",
+    ],
+    "insurance_policy": [
+        r"insurance policy|policy number|policy #",
+        r"(health|auto|car|life|dental|vision|disability|renters?|liability)\s+insurance",
+        r"premium|deductible|copay|coinsurance",
+        r"effective date|expiration date|coverage period",
+        r"insured|policyholder|beneficiary",
+        r"explanation of benefits|eob\b",
+        r"claims?\s+(number|id|form|history)",
+    ],
+    "invoice": [
+        r"\binvoice\b",
+        r"invoice (number|#|no\.?)",
+        r"bill to|ship to",
+        r"subtotal|tax\s+amount|total\s+due|amount\s+due",
+        r"payment\s+terms|due\s+date",
+        r"purchase\s+order|po\s+number",
+        r"quantity.*unit\s+price|description.*amount",
+    ],
+    "narrative_chapter": [
+        r"(?:^|\n)\s*chapter\s+\d+",
+        r"(?:^|\n)\s*chapter\s+[ivxlcdm]+\b",  # roman numeral chapters
+        r"(?:^|\n)\s*prologue|epilogue|afterword",
+        r"(?:he|she|they|it)\s+(said|asked|replied|thought|whispered|shouted)",
+        r"\"\s*[A-Z].*\"\s*(?:said|replied|asked)",  # dialogue pattern
+    ],
+    "textbook_chapter": [
+        r"(?:^|\n)\s*chapter\s+\d+",
+        r"learning objectives?|objectives?:",
+        r"key\s+(concepts?|terms?|points?|takeaways?)",
+        r"summary\s*$|\bexercises?\s*$|\bproblems?\s*$",
+        r"figure\s+\d+\.\d+|table\s+\d+\.\d+",
+        r"definition\s*:|theorem\s*:|lemma\s*:|proof\s*:",
+        r"review\s+questions?|discussion\s+questions?",
+    ],
+    "medical_record": [
+        r"patient\s+(name|id|dob|date of birth)",
+        r"physician|doctor|dr\.\s+\w+",
+        r"diagnosis|icd.?\d+|cpt\s+code",
+        r"prescription|dosage|medication",
+        r"lab\s+results?|blood\s+test|urinalysis",
+        r"hospital|clinic|medical\s+center",
+        r"discharge\s+summary|admission\s+date",
+    ],
+    "legal_contract": [
+        r"agreement\s+between|this\s+agreement",
+        r"terms\s+and\s+conditions|terms\s+of\s+service",
+        r"whereas\b|now\s*,\s*therefore\b|in\s+witness\s+whereof",
+        r"party\s+of\s+the\s+first\s+part|hereinafter\s+referred\s+to",
+        r"governing\s+law|jurisdiction\b",
+        r"indemnification|liability\s+limitation",
+        r"signature\s+page|executed\s+(on|this)\s+day",
+    ],
     # ── Other ─────────────────────────────────────────────────────────────────
     "filler": [
         r"this page (is )?intentionally left blank",
@@ -347,6 +420,75 @@ _HEADER_FINGERPRINTS: list[tuple[frozenset, str, float]] = [
     # W-2 boxes
     (frozenset({"wages tips", "federal income tax", "social security wages"}),   "w2",                 0.98),
 ]
+
+_CHAPTER_NUM_RE = re.compile(
+    r"^[\s\n]*(?:chapter|ch\.?)\s*(?:\d{1,3}|[ivxlcdmIVXLCDM]{1,6})\b",
+    re.IGNORECASE,
+)
+
+# Narrative prose signals in the second line: pronouns + speech/movement verbs.
+# These confirm the page is fiction/story content, not a financial document header.
+_NARRATIVE_PROSE_RE = re.compile(
+    r"\b(he|she|they|we|i)\s+\w+|"
+    r"\b(said|asked|replied|thought|walked|ran|looked|smiled|laughed|cried|whispered|shouted|sat|stood)\b|"
+    r"['\u2018\u2019\u201C\u201D].{5,}['\u2018\u2019\u201C\u201D]",  # quoted dialogue
+    re.IGNORECASE,
+)
+
+# Financial / legal document keywords — block narrative misclassification
+_FINANCIAL_HEADER_RE = re.compile(
+    r"\b(loan|account|statement|invoice|payment|balance|mortgage|credit|bank|"
+    r"report|underwriting|disclosure|receipt|form|schedule|paystub|tax|federal|"
+    r"insurance|policy|estimate|closing|purchase|contract|agreement|id\s*#|no\s*\.?\s*\d)\b",
+    re.IGNORECASE,
+)
+
+
+def classify_by_chapter_header(text: str) -> dict | None:
+    """
+    Detect pages that begin a new chapter or story.
+
+    Format 1 — Explicit: "Chapter N" in first 100 chars (textbooks, novels)
+    Format 2 — Story title: short first line + the second line is narrative prose
+                            AND the title does NOT contain financial keywords
+
+    Returns high-confidence narrative_chapter, or None.
+    """
+    head = text.strip()
+    if not head:
+        return None
+
+    # Format 1 — explicit "Chapter N" heading
+    if _CHAPTER_NUM_RE.match(head):
+        return {
+            "doc_type":          "narrative_chapter",
+            "doc_type_label_id": LABEL_ID["narrative_chapter"],
+            "confidence":        0.92,
+            "method":            "chapter_header",
+        }
+
+    # Format 2 — story title page
+    # Condition: first line ≤7 words, no financial keywords,
+    #            second line contains narrative prose signals
+    lines = head.split("\n", 2)
+    if len(lines) >= 2:
+        first_line = lines[0].strip()
+        second_line = lines[1].strip()
+        word_count = len(first_line.split())
+        if (
+            3 <= word_count <= 7
+            and not _FINANCIAL_HEADER_RE.search(first_line)
+            and _NARRATIVE_PROSE_RE.search(second_line[:200])
+        ):
+            return {
+                "doc_type":          "narrative_chapter",
+                "doc_type_label_id": LABEL_ID["narrative_chapter"],
+                "confidence":        0.85,
+                "method":            "chapter_header",
+            }
+
+    return None
+
 
 def classify_by_table_headers(fragment_headers_list: list[list[str]]) -> dict | None:
     """
@@ -646,6 +788,7 @@ def _is_continuation(text: str) -> bool:
 def classify_pages(
     page_records,
     max_concurrent: int = 20,
+    api_key: str | None = None,
 ) -> list[dict]:
     """
     Classify a list of PageRecord objects from extract.py.
@@ -654,12 +797,14 @@ def classify_pages(
     Returns list of:
         { page_index, doc_type, doc_type_label_id, confidence, method }
     """
-    return asyncio.run(_classify_pages_async(page_records, max_concurrent))
+    return asyncio.run(_classify_pages_async(page_records, max_concurrent, api_key))
 
 
-async def _classify_pages_async(page_records, max_concurrent: int) -> list[dict]:
+async def _classify_pages_async(
+    page_records, max_concurrent: int, api_key: str | None = None
+) -> list[dict]:
     sem    = asyncio.Semaphore(max_concurrent)
-    client = _AsyncOpenAI() if _USE_OPENAI else AsyncAnthropic()
+    client = _AsyncOpenAI() if _USE_OPENAI else AsyncAnthropic(api_key=api_key) if api_key else AsyncAnthropic()
 
     # --- Pass 1: resolve continuation pages and collect LLM tasks ---
     results        = [None] * len(page_records)
@@ -687,6 +832,17 @@ async def _classify_pages_async(page_records, max_concurrent: int) -> list[dict]
             }
             continue
 
+        # Chapter-header shortcut — fires before any other check.
+        # If a page opens with "Chapter N / Section N", classify immediately
+        # and set carry-forward so body pages inherit the chapter type.
+        ch = classify_by_chapter_header(text)
+        if ch:
+            entry = {"page_index": pr.page_index, **ch}
+            results[idx] = entry
+            last_confident = {"doc_type": ch["doc_type"],
+                               "doc_type_label_id": ch["doc_type_label_id"]}
+            continue
+
         # Table-header fingerprint — most robust signal, runs before text keywords
         fragment_headers = getattr(pr, "fragment_headers", None) or []
         th = classify_by_table_headers(fragment_headers)
@@ -710,6 +866,19 @@ async def _classify_pages_async(page_records, max_concurrent: int) -> list[dict]
             results[idx] = entry
             last_confident = {"doc_type": "bank_stmt_combo",
                                "doc_type_label_id": LABEL_ID["bank_stmt_combo"]}
+            continue
+
+        # If the previous confident page was narrative/textbook and THIS page has
+        # no competing high-confidence signal, carry-forward the chapter type.
+        if last_confident and last_confident["doc_type"] in (
+            "narrative_chapter", "textbook_chapter"
+        ):
+            results[idx] = {
+                "page_index": pr.page_index,
+                **last_confident,
+                "method": "carry_forward",
+                "confidence": 0.60,
+            }
             continue
 
         h = classify_heuristic(text)
@@ -736,11 +905,23 @@ async def _classify_pages_async(page_records, max_concurrent: int) -> list[dict]
             results[idx] = entry
             last_confident = {"doc_type": entry["doc_type"],
                                "doc_type_label_id": entry["doc_type_label_id"]}
-        else:
+        elif client is not None:
             # Schedule async LLM call
             llm_tasks[idx] = asyncio.create_task(
                 _classify_llm_async(client, text, sem)
             )
+        else:
+            # No API key — fall through to heuristic best-guess or unknown
+            best_type, best_score = max(
+                _score_page(text).items(), key=lambda kv: kv[1], default=("unknown", 0.0)
+            )
+            results[idx] = {
+                "page_index": pr.page_index,
+                "doc_type": best_type if best_score > 0 else "unknown",
+                "doc_type_label_id": LABEL_ID.get(best_type if best_score > 0 else "unknown", -1),
+                "confidence": min(best_score, 0.59),
+                "method": "heuristic",
+            }
 
     # --- Pass 2: await all LLM tasks ---
     if llm_tasks:
@@ -772,7 +953,8 @@ async def _classify_pages_async(page_records, max_concurrent: int) -> list[dict]
           f"llm (parallel): {llm_count} "
           f"({100*llm_count/total:.0f}% hit model)")
 
-    await client.close()
+    if client is not None:
+        await client.close()
     return results
 
 

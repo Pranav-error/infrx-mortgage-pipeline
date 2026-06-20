@@ -73,6 +73,15 @@ _ATTR_PATTERNS: dict[str, list[re.Pattern]] = {
     "schedule_c": [
         re.compile(r"(\d{4})", re.I),
     ],
+    # ── Chapter-structured documents ─────────────────────────────────────────
+    "narrative_chapter": [
+        re.compile(r"(?:chapter|ch\.?)\s+(\d{1,3})", re.I),
+        re.compile(r"(?:chapter|ch\.?)\s+([ivxlcdmIVXLCDM]{1,6})\b"),
+    ],
+    "textbook_chapter": [
+        re.compile(r"(?:chapter|section|unit|module|lecture)\s+(\d{1,3})", re.I),
+        re.compile(r"(?:chapter|section)\s+([ivxlcdmIVXLCDM]{1,6})\b"),
+    ],
 }
 
 
@@ -131,6 +140,38 @@ def _detect_balance_break(text_a: str, text_b: str) -> bool:
     end_val = m_end.group(1).replace(",", "")
     beg_val = m_beg.group(1).replace(",", "")
     return end_val != beg_val
+
+
+_CHAPTER_HEADER_RE = re.compile(
+    r"(?:^|\n)\s*(?:chapter|section|unit|module|part|lecture|ch\.?)\s+(\d{1,3}|[ivxlcdmIVXLCDM]{1,6})\b",
+)
+
+def _extract_chapter_num(text: str) -> str | None:
+    """Extract chapter/section number from the first 300 chars of a page."""
+    m = _CHAPTER_HEADER_RE.search(text[:300])
+    return m.group(1).lower() if m else None
+
+
+def _detect_chapter_break(text_a: str, text_b: str, method_b: str = "") -> bool:
+    """
+    Returns True if page B starts a NEW chapter/section.
+
+    Strategy:
+    - If page B was classified via 'chapter_header' method → always a boundary
+      (it's a new chapter title page, regardless of what A looks like)
+    - Otherwise compare explicit chapter numbers (e.g. "Chapter 1" vs "Chapter 2")
+      — only fires when both pages have numeric chapter headers and they differ.
+    Safe for bank stmts / mortgage docs — they don't have chapter headers.
+    """
+    # Strongest signal: page B is an explicit chapter-header page
+    if method_b == "chapter_header":
+        return True
+    # Fallback: compare extracted chapter numbers
+    ch_a = _extract_chapter_num(text_a)
+    ch_b = _extract_chapter_num(text_b)
+    if ch_a is None or ch_b is None:
+        return False
+    return ch_a != ch_b
 
 
 _INSTITUTION_RE = re.compile(
@@ -209,6 +250,11 @@ def _extract_boundary_features(
     # (has a bank name / institution header that differs from page A's institution)
     new_doc_header = _detect_new_doc_header(type_b or "", text_a, text_b)
 
+    # Chapter-break signal: page B starts a different chapter/section than page A.
+    # Fires for story books, textbooks, course notes — safe for financial docs.
+    method_b = page_b.get("method", "")
+    chapter_break = _detect_chapter_break(text_a, text_b, method_b)
+
     return {
         "doc_type_changed":  doc_type_changed,
         "attr_a":            attr_a,
@@ -217,6 +263,7 @@ def _extract_boundary_features(
         "confidence_reset":  confidence_reset,
         "balance_break":     balance_break,
         "new_doc_header":    new_doc_header,
+        "chapter_break":     chapter_break,
     }
 
 
@@ -230,6 +277,7 @@ def _is_boundary(features: dict, current_span_len: int, doc_type: str) -> bool:
       3. known fixed length reached (w2=1, paystub=1, form_1040=2) → boundary
       4. balance_break — ending balance ≠ beginning balance → different accounts
       5. new_doc_header — different bank institution name detected on page B
+      6. chapter_break — page B starts a different chapter/section (story, textbook)
       (confidence_reset alone is NOT sufficient — carry_forward gaps happen legitimately)
     """
     # Rule 1: type change always splits
@@ -252,6 +300,10 @@ def _is_boundary(features: dict, current_span_len: int, doc_type: str) -> bool:
 
     # Rule 5: different institution name found on page B header
     if features.get("new_doc_header"):
+        return True
+
+    # Rule 6: chapter/section header changed — new chapter in a story or textbook
+    if features.get("chapter_break"):
         return True
 
     return False

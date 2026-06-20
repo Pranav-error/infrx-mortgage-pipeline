@@ -1,0 +1,303 @@
+{
+  "pdf": "DataSet/pkg_000000/package.pdf",
+  "total_pages": 200,
+  "chapters": [],
+  "all_segments": [
+    {
+      "segment_id": "filler#1",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 1,
+      "end_page": 56,
+      "page_count": 56
+    },
+    {
+      "segment_id": "closing_disclosure#1",
+      "doc_type": "closing_disclosure",
+      "title": null,
+      "start_page": 57,
+      "end_page": 58,
+      "page_count": 2
+    },
+    {
+      "segment_id": "loan_estimate#1",
+      "doc_type": "loan_estimate",
+      "title": null,
+      "start_page": 59,
+      "end_page": 59,
+      "page_count": 1
+    },
+    {
+      "segment_id": "filler#2",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 60,
+      "end_page": 66,
+      "page_count": 7
+    },
+    {
+      "segment_id": "legal_contract#1",
+      "doc_type": "legal_contract",
+      "title": null,
+      "start_page": 67,
+      "end_page": 67,
+      "page_count": 1
+    },
+    {
+      "segment_id": "credit_report#1",
+      "doc_type": "credit_report",
+      "title": null,
+      "start_page": 68,
+      "end_page": 68,
+      "page_count": 1
+    },
+    {
+      "segment_id": "schedule_1#1",
+      "doc_type": "schedule_1",
+      "title": "6061",
+      "start_page": 69,
+      "end_page": 69,
+      "page_count": 1
+    },
+    {
+      "segment_id": "filler#3",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 70,
+      "end_page": 84,
+      "page_count": 15
+    },
+    {
+      "segment_id": "paystub#1",
+      "doc_type": "paystub",
+      "title": null,
+      "start_page": 85,
+      "end_page": 85,
+      "page_count": 1
+    },
+    {
+      "segment_id": "urla_1003#1",
+      "doc_type": "urla_1003",
+      "title": null,
+      "start_page": 86,
+      "end_page": 86,
+      "page_count": 1
+    },
+    {
+      "segment_id": "brokerage_stmt#1",
+      "doc_type": "brokerage_stmt",
+      "title": null,
+      "start_page": 87,
+      "end_page": 87,
+      "page_count": 1
+    },
+    {
+      "segment_id": "urla_1003#2",
+      "doc_type": "urla_1003",
+      "title": null,
+      "start_page": 88,
+      "end_page": 89,
+      "page_count": 2
+    },
+    {
+      "segment_id": "filler#4",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 90,
+      "end_page": 93,
+      "page_count": 4
+    },
+    {
+      "segment_id": "bank_stmt_checking#1",
+      "doc_type": "bank_stmt_checking",
+      "title": "****4132",
+      "start_page": 94,
+      "end_page": 106,
+      "page_count": 13
+    },
+    {
+      "segment_id": "filler#5",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 107,
+      "end_page": 108,
+      "page_count": 2
+    },
+    {
+      "segment_id": "paystub#2",
+      "doc_type": "paystub",
+      "title": null,
+      "start_page": 109,
+      "end_page": 109,
+      "page_count": 1
+    },
+    {
+      "segment_id": "bank_stmt_checking#2",
+      "doc_type": "bank_stmt_checking",
+      "title": "****4132",
+      "start_page": 110,
+      "end_page": 120,
+      "page_count": 11
+    },
+    {
+      "segment_id": "loan_summary#1",
+      "doc_type": "loan_summary",
+      "title": null,
+      "start_page": 121,
+      "end_page": 121,
+      "page_count": 1
+    },
+    {
+      "segment_id": "filler#6",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 122,
+      "end_page": 122,
+      "page_count": 1
+    },
+    {
+      "segment_id": "credit_report#2",
+      "doc_type": "credit_report",
+      "title": null,
+      "start_page": 123,
+      "end_page": 123,
+      "page_count": 1
+    },
+    {
+      "segment_id": "filler#7",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 124,
+      "end_page": 124,
+      "page_count": 1
+    },
+    {
+      "segment_id": "credit_report#3",
+      "doc_type": "credit_report",
+      "title": null,
+      "start_page": 125,
+      "end_page": 126,
+      "page_count": 2
+    },
+    {
+      "segment_id": "filler#8",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 127,
+      "end_page": 128,
+      "page_count": 2
+    },
+    {
+      "segment_id": "voe#1",
+      "doc_type": "voe",
+      "title": null,
+      "start_page": 129,
+      "end_page": 129,
+      "page_count": 1
+    },
+    {
+      "segment_id": "paystub#3",
+      "doc_type": "paystub",
+      "title": null,
+      "start_page": 130,
+      "end_page": 130,
+      "page_count": 1
+    },
+    {
+      "segment_id": "closing_disclosure#2",
+      "doc_type": "closing_disclosure",
+      "title": null,
+      "start_page": 131,
+      "end_page": 132,
+      "page_count": 2
+    },
+    {
+      "segment_id": "bank_stmt_checking#3",
+      "doc_type": "bank_stmt_checking",
+      "title": "****5571",
+      "start_page": 133,
+      "end_page": 133,
+      "page_count": 1
+    },
+    {
+      "segment_id": "bank_stmt_checking#4",
+      "doc_type": "bank_stmt_checking",
+      "title": "****1410",
+      "start_page": 134,
+      "end_page": 134,
+      "page_count": 1
+    },
+    {
+      "segment_id": "filler#9",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 135,
+      "end_page": 144,
+      "page_count": 10
+    },
+    {
+      "segment_id": "form_1008#1",
+      "doc_type": "form_1008",
+      "title": null,
+      "start_page": 145,
+      "end_page": 145,
+      "page_count": 1
+    },
+    {
+      "segment_id": "du_findings#1",
+      "doc_type": "du_findings",
+      "title": null,
+      "start_page": 146,
+      "end_page": 146,
+      "page_count": 1
+    },
+    {
+      "segment_id": "filler#10",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 147,
+      "end_page": 160,
+      "page_count": 14
+    },
+    {
+      "segment_id": "letter_of_explanation#1",
+      "doc_type": "letter_of_explanation",
+      "title": null,
+      "start_page": 161,
+      "end_page": 161,
+      "page_count": 1
+    },
+    {
+      "segment_id": "voe#2",
+      "doc_type": "voe",
+      "title": null,
+      "start_page": 162,
+      "end_page": 162,
+      "page_count": 1
+    },
+    {
+      "segment_id": "filler#11",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 163,
+      "end_page": 185,
+      "page_count": 23
+    },
+    {
+      "segment_id": "paystub#4",
+      "doc_type": "paystub",
+      "title": null,
+      "start_page": 186,
+      "end_page": 186,
+      "page_count": 1
+    },
+    {
+      "segment_id": "filler#12",
+      "doc_type": "filler",
+      "title": null,
+      "start_page": 187,
+      "end_page": 200,
+      "page_count": 14
+    }
+  ]
+}
