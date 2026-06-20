@@ -1,0 +1,339 @@
+[pipeline] PDF:    results/doc_010/package.pdf
+[pipeline] Output: results/doc_010/pipeline_output.json
+
+============================================================
+  STAGE 1 / 5 — EXTRACTION
+============================================================
+[extract] Pass 1 — pdfplumber  (/Users/saipranav/Documents/GitHub/infrx-comp-noobda/pagination-test/doc_010.pdf)
+[extract] Pass 1 done in 4.2s — digital=61, scanned=99, fragments=51
+[extract] Pass 2 — AsyncVLM (OpenAI GPT-4o-mini)  99 pages  concurrency=25  model=gpt-4o-mini
+[extract]   Rendering 99 scanned pages...
+[extract]   Render 10/99  10.7 pages/s  ETA 8s
+[extract]   Render 15/99  10.5 pages/s  ETA 8s
+[extract]   Render 24/99  10.5 pages/s  ETA 7s
+[extract]   Render 45/99  10.7 pages/s  ETA 5s
+[extract]   Render 62/99  10.8 pages/s  ETA 3s
+[extract]   Render 90/99  10.7 pages/s  ETA 1s
+[extract]   Render 99/99  10.2 pages/s  ETA 0s
+[extract]   Rendered 99 pages in 9.7s
+[extract]   Triage (19.0s): 76 pages need tables, 23 OCR-only (lightweight)
+[extract]   VLM  10/99  1.5 pages/s  ETA 59s
+[extract]   VLM  20/99  1.5 pages/s  ETA 52s
+[extract]   VLM  30/99  1.6 pages/s  ETA 42s
+[WARN] page 83: VLM returned unparseable JSON — skipping tables
+[extract]   VLM  40/99  1.3 pages/s  ETA 45s
+[extract]   VLM  50/99  1.0 pages/s  ETA 48s
+[extract]   VLM  60/99  1.1 pages/s  ETA 35s
+[extract]   VLM  70/99  1.1 pages/s  ETA 26s
+[WARN] page 131: failed after 4 attempts — RateLimitError
+[WARN] page 132: failed after 4 attempts — RateLimitError
+[WARN] page 133: failed after 4 attempts — RateLimitError
+[WARN] page 134: failed after 4 attempts — RateLimitError
+[WARN] page 135: failed after 4 attempts — RateLimitError
+[WARN] page 136: failed after 4 attempts — RateLimitError
+[WARN] page 137: failed after 4 attempts — RateLimitError
+[WARN] page 151: failed after 4 attempts — RateLimitError
+[WARN] page 152: failed after 4 attempts — RateLimitError
+[WARN] page 153: failed after 4 attempts — RateLimitError
+[WARN] page 154: failed after 4 attempts — RateLimitError
+[WARN] page 155: failed after 4 attempts — RateLimitError
+[WARN] page 156: failed after 4 attempts — RateLimitError
+[WARN] page 157: failed after 4 attempts — RateLimitError
+[WARN] page 158: failed after 4 attempts — RateLimitError
+[WARN] page 159: failed after 4 attempts — RateLimitError
+[extract]   VLM  80/99  0.9 pages/s  ETA 21s
+[extract] Pass 2 done in 182.8s — 84 fragments from 82/99 pages
+[extract] Complete — 160 pages in 187.0s  (0.9 pages/s)
+          fragments=135  cells=7041  digital=61  scanned=99
+  => 160 pages, 135 fragments extracted
+
+============================================================
+  STAGE 2 / 5 — CLASSIFICATION
+============================================================
+[classify] 160 pages — heuristic: 24 | carry_forward: 52 | llm (parallel): 40 (25% hit model)
+  => doc_type distribution: {"urla_1003": 5, "bank_stmt_combo": 1, "gift_letter": 2, "filler": 25, "paystub": 10, "narrative_chapter": 22, "insurance_declaration": 2, "loan_estimate": 1, "closing_disclosure": 4, "email_correspondence": 1, "lpa_feedback": 1, "purchase_addendum": 1, "voe": 1, "w2": 1, "letter_of_explanation": 2, "credit_report": 3, "bank_stmt_checking": 74, "assets: bank_stmt_checking": 4}
+  => LLM escalations: 40/160 (25.0%)  est. cost: $0.00650
+
+============================================================
+  STAGE 3 / 5 — SEGMENTATION
+============================================================
+  => 49 document instances found
+     urla_1003#1                     pages 0–0  (1 pages)
+     bank_stmt_combo#1               pages 1–1  (1 pages)
+     urla_1003#2                     pages 2–3  (2 pages)
+     gift_letter#1                   pages 4–5  (2 pages)
+     filler#1                        pages 6–6  (1 pages)
+     paystub#1                       pages 7–7  (1 pages)
+     paystub#2                       pages 8–8  (1 pages)
+     paystub#3                       pages 9–9  (1 pages)
+     paystub#4                       pages 10–10  (1 pages)
+     paystub#5                       pages 11–11  (1 pages)
+     paystub#6                       pages 12–12  (1 pages)
+     paystub#7                       pages 13–13  (1 pages)
+     paystub#8                       pages 14–14  (1 pages)
+     paystub#9                       pages 15–15  (1 pages)
+     filler#2                        pages 16–17  (2 pages)
+     narrative_chapter#1             pages 18–25  (8 pages)
+     filler#3                        pages 26–26  (1 pages)
+     narrative_chapter#2             pages 27–31  (5 pages)
+     narrative_chapter#3             pages 32–40  (9 pages)
+     filler#4                        pages 41–42  (2 pages)
+     insurance_declaration#1         pages 43–44  (2 pages)
+     filler#5                        pages 45–46  (2 pages)
+     loan_estimate#1                 pages 47–47  (1 pages)
+     closing_disclosure#1            pages 48–49  (2 pages)
+     urla_1003#3                     pages 50–51  (2 pages)
+     email_correspondence#1          pages 52–52  (1 pages)
+     filler#6                        pages 53–53  (1 pages)
+     lpa_feedback#1                  pages 54–54  (1 pages)
+     closing_disclosure#2            pages 55–56  (2 pages)
+     purchase_addendum#1             pages 57–57  (1 pages)
+     voe#1                           pages 58–58  (1 pages)
+     w2#1                            pages 59–59  (1 pages)  [3013]
+     letter_of_explanation#1         pages 60–61  (2 pages)
+     credit_report#1                 pages 62–64  (3 pages)
+     bank_stmt_checking#1            pages 65–70  (6 pages)  [***7564]
+     bank_stmt_checking#2            pages 71–80  (10 pages)  [****7654]
+     bank_stmt_checking#3            pages 81–82  (2 pages)  [*7564]
+     paystub#10                      pages 83–83  (1 pages)
+     bank_stmt_checking#4            pages 84–97  (14 pages)  [****7547]
+     bank_stmt_checking#5            pages 98–107  (10 pages)  [10/08/2023]
+     assets: bank_stmt_checking#1    pages 108–109  (2 pages)
+     bank_stmt_checking#6            pages 110–121  (12 pages)  [11/08/2023]
+     bank_stmt_checking#7            pages 122–128  (7 pages)  [*****7654]
+     assets: bank_stmt_checking#2    pages 129–129  (1 pages)
+     bank_stmt_checking#8            pages 130–130  (1 pages)
+     filler#7                        pages 131–137  (7 pages)
+     bank_stmt_checking#9            pages 138–149  (12 pages)  [02/08/2024]
+     assets: bank_stmt_checking#3    pages 150–150  (1 pages)
+     filler#8                        pages 151–159  (9 pages)
+
+============================================================
+  STAGE 4 / 5 — STITCHING  (PTT — per-instance, O(n))
+============================================================
+  => 74 logical table threads from 135 fragments
+  => LLM arbitrations: 0/99 (0.0%)  est. cost: $0.00000
+
+============================================================
+  STAGE 5 / 5 — RENDER
+============================================================
+
+============================================================
+  DEMO — BEFORE (raw page stream)
+============================================================
+  p000 [S]  urla_1003                  tables: table_0020
+  p001 [S]  bank_stmt_combo            tables: table_0021,table_0022
+  p002 [S]  urla_1003                  tables: table_0023,table_0024
+  p003 [S]  urla_1003                  tables: table_0024
+  p004 [S]  gift_letter                tables: -
+  p005 [S]  gift_letter                tables: -
+  p006 [S]  filler                     tables: -
+  p007 [S]  paystub                    tables: table_0025,table_0026,table_0027
+  p008 [S]  paystub                    tables: table_0028,table_0029,table_0030
+  p009 [S]  paystub                    tables: table_0031,table_0032
+  p010 [D]  paystub                    tables: table_0000,table_0001,table_0002
+  p011 [S]  paystub                    tables: table_0033,table_0034,table_0035
+  p012 [S]  paystub                    tables: table_0036,table_0037,table_0038
+  p013 [S]  paystub                    tables: table_0039
+  p014 [S]  paystub                    tables: table_0040,table_0041,table_0042
+  p015 [S]  paystub                    tables: table_0043,table_0044
+  p016 [D]  filler                     tables: -
+  p017 [D]  filler                     tables: -
+  p018 [D]  narrative_chapter          tables: -
+  p019 [D]  narrative_chapter          tables: -
+  ... (140 more pages)
+
+============================================================
+  DEMO — AFTER (structured documents)
+============================================================
+  urla_1003#1                          p0–p0  (1 pages)
+  bank_stmt_combo#1                    p1–p1  (1 pages)
+  urla_1003#2                          p2–p3  (2 pages)
+  gift_letter#1                        p4–p5  (2 pages)
+  filler#1                             p6–p6  (1 pages)
+  paystub#1                            p7–p7  (1 pages)
+  paystub#2                            p8–p8  (1 pages)
+  paystub#3                            p9–p9  (1 pages)
+  paystub#4                            p10–p10  (1 pages)
+  paystub#5                            p11–p11  (1 pages)
+  paystub#6                            p12–p12  (1 pages)
+  paystub#7                            p13–p13  (1 pages)
+  paystub#8                            p14–p14  (1 pages)
+  paystub#9                            p15–p15  (1 pages)
+  filler#2                             p16–p17  (2 pages)
+  narrative_chapter#1                  p18–p25  (8 pages)
+  filler#3                             p26–p26  (1 pages)
+  narrative_chapter#2                  p27–p31  (5 pages)
+  narrative_chapter#3                  p32–p40  (9 pages)
+  filler#4                             p41–p42  (2 pages)
+  insurance_declaration#1              p43–p44  (2 pages)
+  filler#5                             p45–p46  (2 pages)
+  loan_estimate#1                      p47–p47  (1 pages)
+  closing_disclosure#1                 p48–p49  (2 pages)
+  urla_1003#3                          p50–p51  (2 pages)
+  email_correspondence#1               p52–p52  (1 pages)
+  filler#6                             p53–p53  (1 pages)
+  lpa_feedback#1                       p54–p54  (1 pages)
+  closing_disclosure#2                 p55–p56  (2 pages)
+  purchase_addendum#1                  p57–p57  (1 pages)
+  voe#1                                p58–p58  (1 pages)
+  w2#1                                 p59–p59  (1 pages)  [3013]
+  letter_of_explanation#1              p60–p61  (2 pages)
+  credit_report#1                      p62–p64  (3 pages)
+  bank_stmt_checking#1                 p65–p70  (6 pages)  [***7564]
+  bank_stmt_checking#2                 p71–p80  (10 pages)  [****7654]
+  bank_stmt_checking#3                 p81–p82  (2 pages)  [*7564]
+  paystub#10                           p83–p83  (1 pages)
+  bank_stmt_checking#4                 p84–p97  (14 pages)  [****7547]
+  bank_stmt_checking#5                 p98–p107  (10 pages)  [10/08/2023]
+  assets: bank_stmt_checking#1         p108–p109  (2 pages)
+  bank_stmt_checking#6                 p110–p121  (12 pages)  [11/08/2023]
+  bank_stmt_checking#7                 p122–p128  (7 pages)  [*****7654]
+  assets: bank_stmt_checking#2         p129–p129  (1 pages)
+  bank_stmt_checking#8                 p130–p130  (1 pages)
+  filler#7                             p131–p137  (7 pages)
+  bank_stmt_checking#9                 p138–p149  (12 pages)  [02/08/2024]
+  assets: bank_stmt_checking#3         p150–p150  (1 pages)
+  filler#8                             p151–p159  (9 pages)
+
+============================================================
+  STITCHED TABLES (74 logical tables)
+============================================================
+  table_0000    p10–p10     1 rows  paystub                  
+  table_0001    p10–p10     1 rows  paystub                  
+  table_0002    p10–p10     0 rows  paystub                  
+  table_0003    p30–p30     2 rows  narrative_chapter        
+  table_0004    p47–p47     0 rows  loan_estimate            
+  table_0005    p47–p47     3 rows  loan_estimate            
+  table_0006    p47–p47     3 rows  loan_estimate            
+  table_0007    p47–p47     2 rows  loan_estimate            
+  table_0008    p48–p48     1 rows  closing_disclosure       
+  table_0009    p48–p49     6 rows  closing_disclosure         (2 fragments stitched)
+  table_0010    p49–p49     3 rows  closing_disclosure       
+  table_0011    p71–p71     1 rows  bank_stmt_checking       
+  table_0012    p71–p71     1 rows  bank_stmt_checking       
+  table_0013    p71–p80     1 rows  bank_stmt_checking         (10 fragments stitched)
+  table_0014    p98–p98     0 rows  bank_stmt_checking       
+  table_0015    p98–p107     0 rows  bank_stmt_checking         (10 fragments stitched)
+  table_0016    p108–p109     1 rows  assets: bank_stmt_checking  (2 fragments stitched)
+  table_0017    p138–p138     0 rows  bank_stmt_checking       
+  table_0018    p138–p149     0 rows  bank_stmt_checking         (12 fragments stitched)
+  table_0019    p150–p150     1 rows  assets: bank_stmt_checking
+  table_0020    p0–p0     3 rows  urla_1003                
+  table_0021    p1–p1     7 rows  bank_stmt_combo          
+  table_0022    p1–p1     8 rows  bank_stmt_combo          
+  table_0023    p2–p2    19 rows  urla_1003                
+  table_0024    p2–p3    15 rows  urla_1003                  (2 fragments stitched)
+  table_0025    p7–p7     1 rows  paystub                  
+  table_0026    p7–p7     7 rows  paystub                  
+  table_0027    p7–p7     1 rows  paystub                  
+  table_0028    p8–p8     2 rows  paystub                  
+  table_0029    p8–p8     7 rows  paystub                  
+  ... (44 more tables)
+
+
+  => Pipeline complete in 192.3s  (0.8 pages/s)
+
+=======================================================
+  CASCADE CONTROLLER — Cost & Escalation Report
+=======================================================
+
+  CLASSIFICATION  (160 pages)
+    Heuristic (free):       24  pages
+    Carry-forward (free):   52  pages
+    LLM escalated:          40  pages  (25.0%)
+    Estimated cost:       $0.00650
+
+  TABLE STITCHING  (99 fragment pairs)
+    Auto-merge (P>0.9):     61  pairs  (61.6%)
+    Auto-reject (P<0.3):    38  pairs
+    LLM arbiter:             0  pairs  (0.0%)
+    Estimated cost:       $0.00000
+
+  TOTAL ESTIMATED COST:  $0.00650
+
+  Cascade pattern: FrugalGPT (Chen et al. 2023)
+  Cheap-first, LLM only on uncertain edges
+=======================================================
+
+
+======================================================================
+  DOCUMENT SUMMARY — Pipeline Output
+======================================================================
+  #    DOC TYPE                       PAGES           COUNT  ATTR
+----------------------------------------------------------------------
+  1    urla_1003                      p0              1      
+  2    bank_stmt_combo                p1              1      
+  3    urla_1003                      p2 – p3         2      
+  4    gift_letter                    p4 – p5         2      
+  5    filler                         p6              1      
+  6    paystub                        p7              1      
+  7    paystub                        p8              1      
+  8    paystub                        p9              1      
+  9    paystub                        p10             1      
+  10   paystub                        p11             1      
+  11   paystub                        p12             1      
+  12   paystub                        p13             1      
+  13   paystub                        p14             1      
+  14   paystub                        p15             1      
+  15   filler                         p16 – p17       2      
+  16   narrative_chapter              p18 – p25       8      
+  17   filler                         p26             1      
+  18   narrative_chapter              p27 – p31       5      
+  19   narrative_chapter              p32 – p40       9      
+  20   filler                         p41 – p42       2      
+  21   insurance_declaration          p43 – p44       2      
+  22   filler                         p45 – p46       2      
+  23   loan_estimate                  p47             1      
+  24   closing_disclosure             p48 – p49       2      
+  25   urla_1003                      p50 – p51       2      
+  26   email_correspondence           p52             1      
+  27   filler                         p53             1      
+  28   lpa_feedback                   p54             1      
+  29   closing_disclosure             p55 – p56       2      
+  30   purchase_addendum              p57             1      
+  31   voe                            p58             1      
+  32   w2                             p59             1      [3013]
+  33   letter_of_explanation          p60 – p61       2      
+  34   credit_report                  p62 – p64       3      
+  35   bank_stmt_checking             p65 – p70       6      [***7564]
+  36   bank_stmt_checking             p71 – p80       10     [****7654]
+  37   bank_stmt_checking             p81 – p82       2      [*7564]
+  38   paystub                        p83             1      
+  39   bank_stmt_checking             p84 – p97       14     [****7547]
+  40   bank_stmt_checking             p98 – p107      10     [10/08/2023]
+  41   assets: bank_stmt_checking     p108 – p109     2      
+  42   bank_stmt_checking             p110 – p121     12     [11/08/2023]
+  43   bank_stmt_checking             p122 – p128     7      [*****7654]
+  44   assets: bank_stmt_checking     p129            1      
+  45   bank_stmt_checking             p130            1      
+  46   filler                         p131 – p137     7      
+  47   bank_stmt_checking             p138 – p149     12     [02/08/2024]
+  48   assets: bank_stmt_checking     p150            1      
+  49   filler                         p151 – p159     9      
+
+  Total: 49 documents, 160 pages, 18 unique types
+----------------------------------------------------------------------
+  TYPE                           INSTANCES    PAGES   
+----------------------------------------------------------------------
+  bank_stmt_checking             9            74      
+  filler                         8            25      
+  narrative_chapter              3            22      
+  paystub                        10           10      
+  urla_1003                      3            5       
+  closing_disclosure             2            4       
+  assets: bank_stmt_checking     3            4       
+  credit_report                  1            3       
+  gift_letter                    1            2       
+  insurance_declaration          1            2       
+  letter_of_explanation          1            2       
+  bank_stmt_combo                1            1       
+  loan_estimate                  1            1       
+  email_correspondence           1            1       
+  lpa_feedback                   1            1       
+  purchase_addendum              1            1       
+  voe                            1            1       
+  w2                             1            1       
+======================================================================
+
+[pipeline] Saved → results/doc_010/pipeline_output.json  (3162 KB)

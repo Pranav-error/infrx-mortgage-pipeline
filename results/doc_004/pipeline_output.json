@@ -1,0 +1,7341 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "pagination-test",
+  "total_pages": 24,
+  "coord_system": {
+    "space": "pdf_points",
+    "origin": "top_left",
+    "bbox_format": "x0_y0_x1_y1",
+    "raster_dpi": 150
+  },
+  "render_mode": "mixed",
+  "documents": [
+    {
+      "doc_instance_id": "unknown#1",
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "start_page": 0,
+      "end_page": 23,
+      "page_count": 24,
+      "instance_ordinal": 1,
+      "distinguishing_attr": null
+    }
+  ],
+  "pages": [
+    {
+      "page_index": 0,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": true,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 1,
+      "total_pages_in_doc": 24,
+      "boundary": "start",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0000"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "COMPANY BROCHURE\nCORPORATE PROFILES\nA curated snapshot of 6 featured organizations \u2014 2024 edition.\nGutierrez, Kelley and\nGUTI\nMiller\n\u201cFrom concept to scale.\u201d\nINDUSTRY HEADQUARTERS\nGourmet Pet Food Andradeville, AL\nFOUNDED EMPLOYEES\n2003 240\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$2,161,000,000.00 Vanessa Ray www.gutierrezkelleyand.com\nSalinas\nSALI\nPLC\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY HEADQUARTERS\nGourmet Pet Food Lake Robert, AR\nFOUNDED EMPLOYEES\n1981 240\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$128,000,000.00 Christopher Green MD www.salinasplc.com",
+      "fragment_ids": [
+        "frag_0_0"
+      ]
+    },
+    {
+      "page_index": 1,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 2,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0000"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Long\nLONG\nPLC\n\u201cPowering the connected world.\u201d\nINDUSTRY HEADQUARTERS\nBiotechnology Frazierville, AR\nFOUNDED EMPLOYEES\n2019 85\nANNUAL REVENUE CHIEF EXECUTIVE\n$5,057,000,000.00 Julie Ramirez\nWEBSITE\nwww.longplc.com\nMiller\nMILL\nLLC\n\u201cFrom concept to scale.\u201d\nINDUSTRY HEADQUARTERS\nOutdoor Apparel South Tarachester, WA\nFOUNDED EMPLOYEES\n1994 15,000\nANNUAL REVENUE CHIEF EXECUTIVE\n$456,000,000.00 Shawn Gross\nWEBSITE\nwww.millerllc.com",
+      "fragment_ids": [
+        "frag_1_0"
+      ]
+    },
+    {
+      "page_index": 2,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 3,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": false,
+      "table_ids": [],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Waters-\nWATE\nRamirez\n\u201cFrom concept to scale.\u201d\nINDUSTRY HEADQUARTERS\nRenewable Energy Christianton, NE\nFOUNDED EMPLOYEES\n1979 3,400\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$3,361,000,000.00 Troy King www.watersramirez.com\nStafford, Burke and\nSTAF\nReed\n\u201cWhere ideas take flight.\u201d\nINDUSTRY HEADQUARTERS\nIndustrial Automation Johnsonstad, NC\nFOUNDED EMPLOYEES\n2018 240\nANNUAL REVENUE CHIEF EXECUTIVE\n$3,237,000,000.00 Steven Delacruz\nWEBSITE\nwww.staffordburkeandre.com\nThis brochure is provided for general informational purposes only and does not constitute an offer,\nsolicitation, or recommendation regarding any security or financial product.",
+      "fragment_ids": []
+    },
+    {
+      "page_index": 3,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 4,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0001"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "COMPANY BROCHURE\nCORPORATE PROFILES\nA curated snapshot of 5 featured organizations \u2014 2024 edition.\nRamsey-\nRAMS\nWilliamson\n\u201cSmall details, big outcomes.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture Charlesmouth, OR\nFOUNDED EMPLOYEES\n1971 1,200\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$4,422,000,000.00 Miguel Delacruz www.ramseywilliamson.com\nElliott-\nELLI\nRobertson\n\u201cSmall details, big outcomes.\u201d\nINDUSTRY HEADQUARTERS\nBiotechnology New Christy, ID\nFOUNDED EMPLOYEES\n2018 42,000\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$4,828,000,000.00 Wesley Ward www.elliottrobertson.com",
+      "fragment_ids": [
+        "frag_3_0"
+      ]
+    },
+    {
+      "page_index": 4,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 5,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0001"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Turner\nTURN\nGroup\n\u201cBuilt for what's next.\u201d\nINDUSTRY HEADQUARTERS\nLogistics New Terri, KS\nFOUNDED EMPLOYEES\n2013 15,000\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$3,148,000,000.00 Wendy Anderson www.turnergroup.com\nTaylor\nTAYL\nGroup\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY HEADQUARTERS\nLogistics Hannahborough, PR\nFOUNDED EMPLOYEES\n1983 85\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$1,559,000,000.00 Paul Maldonado www.taylorgroup.com\nBerg-\nBERG\nHensley\n\u201cPowering the connected world.\u201d\nINDUSTRY HEADQUARTERS\nRenewable Energy Blackburnstad, VI\nFOUNDED EMPLOYEES\n1982 7,800\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$5,037,000,000.00 Denise Nelson www.berghensley.com",
+      "fragment_ids": [
+        "frag_4_0"
+      ]
+    },
+    {
+      "page_index": 5,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 6,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": false,
+      "table_ids": [],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "This brochure is provided for general informational purposes only and does not constitute an offer,\nsolicitation, or recommendation regarding any security or financial product.",
+      "fragment_ids": []
+    },
+    {
+      "page_index": 6,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 7,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0002",
+        "table_0003",
+        "table_0004",
+        "table_0005"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "COMPANY BROCHURE \u2014 FOR RECIPIENT DOCUMENT Corporate Profiles Register\nCORPORATE PROFILES EDITION 2024\nENTRIES 3 organizations\nAnnual register of featured organizations CLASSIFICATION Informational / Non-binding\nREGISTERED ORGANIZATIONS \u2014 PROFILE SUMMARIES\n01 GILBERT AND SONS GILB\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY Semiconductors HEADQUARTERS Adamsville, WI\nFOUNDED 2001 EMPLOYEES 520\nREVENUE $4,254,000,000.00 CHIEF EXEC. James Thomas\nWEBSITE www.gilbertandsons.com\n02 HOWARD GROUP HOWA\n\u201cSmall details, big outcomes.\u201d\nINDUSTRY Aerospace HEADQUARTERS Susanchester, NM\nFOUNDED 1975 EMPLOYEES 240\nREVENUE $6,340,000,000.00 CHIEF EXEC. Laura Salas\nWEBSITE www.howardgroup.com\n03 PROCTOR LLC PROC\n\u201cBuilt for what's next.\u201d\nINDUSTRY Veterinary Care HEADQUARTERS Davilaburgh, KS\nFOUNDED 1992 EMPLOYEES 15,000\nREVENUE $1,188,000,000.00 CHIEF EXEC. Rebecca Barber\nWEBSITE www.proctorllc.com\nThis brochure is provided for general informational purposes only and does not constitute an offer, solicitation, or recommendation regarding any security or financial product.",
+      "fragment_ids": [
+        "frag_6_0",
+        "frag_6_1",
+        "frag_6_2",
+        "frag_6_3"
+      ]
+    },
+    {
+      "page_index": 7,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 8,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0005"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "scanned",
+      "scan_transform": null,
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "CORPORATE PROFILES\nREGISTERED ORGANIZATIONS - PROFILE SUMMARIES\n01 DOMINGUEZ LTD\nINDUSTRY: Precision Appliances\nFOUNDER: 2015\nEMPLOYEES: 3\nREVENUE: $1,000,000\nWEBSITE: www.dominguezltd.com\n\n02 HUGHES PLC\nINDUSTRY: Industrial Automation\nFOUNDER: 1985\nEMPLOYEES: 300\nREVENUE: $70,000,000\nWEBSITE: www.hughesplc.com\n\n03 PATEL, FORD AND GEORGE\nINDUSTRY: Marine Engineering\nFOUNDER: 1970\nEMPLOYEES: 10\nREVENUE: $17,000,000\nWEBSITE: www.patelfordgeorge.com\n\n04 WEST, WELLS AND VELASQUEZ\nINDUSTRY: Law\nFOUNDER: 1990\nEMPLOYEES: 11\nREVENUE: $10,000,000\nWEBSITE: www.westwells.com",
+      "fragment_ids": [
+        "frag_7_0"
+      ]
+    },
+    {
+      "page_index": 8,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 9,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0005"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "COMPANY BROCHURE\nCORPORATE PROFILES\nA curated snapshot of 5 featured organizations \u2014 2024 edition.\nLane-\nLANE\nReid\n\u201cBuilt for what's next.\u201d\nINDUSTRY HEADQUARTERS\nSemiconductors East Kathleen, ME\nFOUNDED EMPLOYEES\n1972 85\nANNUAL REVENUE CHIEF EXECUTIVE\n$6,305,000,000.00 Nicholas Henry\nWEBSITE\nwww.lanereid.com\nMccarthy-\nMCCA\nBell\n\u201cEngineering tomorrow, today.\u201d\nINDUSTRY HEADQUARTERS\nRenewable Energy Seanmouth, MN\nFOUNDED EMPLOYEES\n2016 15,000\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$2,471,000,000.00 Sarah Wilkins www.mccarthybell.com",
+      "fragment_ids": [
+        "frag_8_0"
+      ]
+    },
+    {
+      "page_index": 9,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 10,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0005"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Ross\nROSS\nLLC\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY HEADQUARTERS\nCloud Software East Logan, AK\nFOUNDED EMPLOYEES\n2014 42,000\nANNUAL REVENUE CHIEF EXECUTIVE\n$5,800,000,000.00 Matthew Hodges\nWEBSITE\nwww.rossllc.com\nCruz\nCRUZ\nPLC\n\u201cDesigned around you.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture Mendozaton, LA\nFOUNDED EMPLOYEES\n1990 7,800\nANNUAL REVENUE CHIEF EXECUTIVE\n$3,664,000,000.00 Madison George\nWEBSITE\nwww.cruzplc.com",
+      "fragment_ids": [
+        "frag_9_0"
+      ]
+    },
+    {
+      "page_index": 10,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 11,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": false,
+      "table_ids": [],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Mccarty, Morrison and\nMCCA\nMartin\n\u201cBuilt for what's next.\u201d\nINDUSTRY HEADQUARTERS\nSpecialty Coffee Lake Lisamouth, VT\nFOUNDED EMPLOYEES\n2019 1,200\nANNUAL REVENUE CHIEF EXECUTIVE\n$1,136,000,000.00 Danny Lara\nWEBSITE\nwww.mccartymorrisonand.com\nThis brochure is provided for general informational purposes only and does not constitute an offer,\nsolicitation, or recommendation regarding any security or financial product.",
+      "fragment_ids": []
+    },
+    {
+      "page_index": 11,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 12,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0006"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "scanned",
+      "scan_transform": null,
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "COMPANY BROCHURE CORPORATE PROFILES A curated snapshot of 5 featured organizations \u2014 2024 edition. Day-Taylor \"Designed around you.\" Industry Outdoor Apparel Founded 2012 Annual Revenue $2,132,000,000.00 Website www.daytaylor.com Headquarters Williamurt, AK Employees 520 Chief Executive Kelly Houston Little-Davis \"Built for what\u2019s next.\" Industry Logistics Founded 2012 Annual Revenue $163,000,000.00 Website www.littledavis.com Headquarters Harrellurt, ME Employees 15,000 Chief Executive Stephen Green",
+      "fragment_ids": [
+        "frag_11_0"
+      ]
+    },
+    {
+      "page_index": 12,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 13,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": false,
+      "table_ids": [],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "scanned",
+      "scan_transform": null,
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Lynch-  \nSalazar  \n\"From concept to scale.\"  \nIndustry  \nLogistics  \nFounder  \n2005  \nAnnual Revenue  \n$2,526,000,000.00  \nHeadquarters  \nWest Tammybury, IA  \nEmployees  \n85  \nChief Executive  \nScott Hodge Jr.  \nWebsite  \nwww.lynchsalazar.com  \n\nDavis-  \nHumphrey  \n\"Relentlessly practical innovation.\"  \nIndustry  \nBiotechnology  \nFounder  \n1988  \nAnnual Revenue  \n$2,984,000,000.00  \nHeadquarters  \nLake Roy, MT  \nEmployees  \n15,000  \nChief Executive  \nMarissa Brown  \nWebsite  \nwww.davishumphrey.com",
+      "fragment_ids": []
+    },
+    {
+      "page_index": 13,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 14,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": false,
+      "table_ids": [],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "scanned",
+      "scan_transform": null,
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Whitney, Vasquez and  \nCraig  \n\"Small details, big outcomes.\"  \n\nINDUSTRY  \nAerospace  \n\nFOUNDED  \n1989  \n\nANNUAL REVENUE  \n$1,973,000,000.00  \n\nHEADQUARTERS  \nMocomorickburgh, WV  \n\nEMPLOYEES  \n85  \n\nCHIEF EXECUTIVE  \nCatherine Lee  \n\nWEBSITE  \nwww.whitneyvasquezc.com  \n\nThis brochure is provided for general informational purposes only and does not constitute an offer, solicitation, or recommendation regarding any security or financial product.",
+      "fragment_ids": []
+    },
+    {
+      "page_index": 14,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 15,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0007"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "COMPANY BROCHURE\nCORPORATE PROFILES\nA curated snapshot of 3 featured organizations \u2014 2024 edition.\nCastaneda, Curry and\nCAST\nPeterson\n\u201cDesigned around you.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture Tammyport, DC\nFOUNDED EMPLOYEES\n2011 7,800\nANNUAL REVENUE CHIEF EXECUTIVE\n$4,645,000,000.00 Nicholas Kaiser\nWEBSITE\nwww.castanedacurryandp.com\nMorris-\nMORR\nPittman\n\u201cSmall details, big outcomes.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture Dunlapshire, ID\nFOUNDED EMPLOYEES\n1987 520\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$3,331,000,000.00 Antonio Johnson www.morrispittman.com",
+      "fragment_ids": [
+        "frag_14_0"
+      ]
+    },
+    {
+      "page_index": 15,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 16,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": false,
+      "table_ids": [],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Raymond, Hunt and\nRAYM\nAyala\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture Catherinebury, PW\nFOUNDED EMPLOYEES\n1976 3,400\nANNUAL REVENUE CHIEF EXECUTIVE\n$2,658,000,000.00 Mr. John Shaw\nWEBSITE\nwww.raymondhuntandayal.com\nThis brochure is provided for general informational purposes only and does not constitute an offer,\nsolicitation, or recommendation regarding any security or financial product.",
+      "fragment_ids": []
+    },
+    {
+      "page_index": 16,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 17,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0008",
+        "table_0009",
+        "table_0010",
+        "table_0011",
+        "table_0012"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "COMPANY BROCHURE \u2014 FOR RECIPIENT DOCUMENT Corporate Profiles Register\nCORPORATE PROFILES EDITION 2024\nENTRIES 4 organizations\nAnnual register of featured organizations CLASSIFICATION Informational / Non-binding\nREGISTERED ORGANIZATIONS \u2014 PROFILE SUMMARIES\n01 BUSH AND SONS BUSH\n\u201cFrom concept to scale.\u201d\nINDUSTRY Precision Agriculture HEADQUARTERS Lake Steveville, DE\nFOUNDED 1977 EMPLOYEES 1,200\nREVENUE $15,000,000.00 CHIEF EXEC. Robert Butler\nWEBSITE www.bushandsons.com\n02 VILLA AND SONS VILL\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY Consumer Robotics HEADQUARTERS Riddleport, OR\nFOUNDED 1974 EMPLOYEES 240\nREVENUE $1,993,000,000.00 CHIEF EXEC. Carol Miller\nWEBSITE www.villaandsons.com\n03 BROWN AND SONS BROW\n\u201cFrom concept to scale.\u201d\nINDUSTRY Cybersecurity HEADQUARTERS Melaniemouth, FM\nFOUNDED 1973 EMPLOYEES 520\nREVENUE $1,332,000,000.00 CHIEF EXEC. David Owens\nWEBSITE www.brownandsons.com\n04 FRYE-KIDD FRYE\n\u201cPowering the connected world.\u201d\nINDUSTRY Precision Agriculture HEADQUARTERS Wareton, AL\nFOUNDED 1987 EMPLOYEES 15,000\nREVENUE $1,381,000,000.00 CHIEF EXEC. Shelby Faulkner\nWEBSITE www.fryekidd.com\nThis brochure is provided for general informational purposes only and does not constitute an offer, solicitation, or recommendation regarding any security or financial product.",
+      "fragment_ids": [
+        "frag_16_0",
+        "frag_16_1",
+        "frag_16_2",
+        "frag_16_3",
+        "frag_16_4"
+      ]
+    },
+    {
+      "page_index": 17,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 18,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0012"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "COMPANY BROCHURE\nCORPORATE PROFILES\nA curated snapshot of 4 featured organizations \u2014 2024 edition.\nClark\nCLAR\nInc\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY HEADQUARTERS\nConsumer Robotics South Michaelville, IL\nFOUNDED EMPLOYEES\n1998 85\nANNUAL REVENUE CHIEF EXECUTIVE\n$551,000,000.00 David Thompson\nWEBSITE\nwww.clarkinc.com\nAllison-\nALLI\nClay\n\u201cFrom concept to scale.\u201d\nINDUSTRY HEADQUARTERS\nSpecialty Coffee Williamstown, NH\nFOUNDED EMPLOYEES\n1984 240\nANNUAL REVENUE CHIEF EXECUTIVE\n$1,752,000,000.00 Anthony Dixon\nWEBSITE\nwww.allisonclay.com",
+      "fragment_ids": [
+        "frag_17_0"
+      ]
+    },
+    {
+      "page_index": 18,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 19,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": false,
+      "table_ids": [],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Moore, Walsh and\nMOOR\nBrown\n\u201cFrom concept to scale.\u201d\nINDUSTRY HEADQUARTERS\nGourmet Pet Food North David, TN\nFOUNDED EMPLOYEES\n1983 520\nANNUAL REVENUE CHIEF EXECUTIVE\n$3,458,000,000.00 Julia Berger\nWEBSITE\nwww.moorewalshandbrown.com\nMoore-\nMOOR\nLopez\n\u201cWhere ideas take flight.\u201d\nINDUSTRY HEADQUARTERS\nCybersecurity North Ryan, FL\nFOUNDED EMPLOYEES\n2001 15,000\nANNUAL REVENUE CHIEF EXECUTIVE\n$398,000,000.00 Brittany Butler\nWEBSITE\nwww.moorelopez.com\nThis brochure is provided for general informational purposes only and does not constitute an offer,\nsolicitation, or recommendation regarding any security or financial product.",
+      "fragment_ids": []
+    },
+    {
+      "page_index": 19,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 20,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0013"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "COMPANY BROCHURE\nCORPORATE PROFILES\nA curated snapshot of 5 featured organizations \u2014 2024 edition.\nLowe-\nLOWE\nFlores\n\u201cPowering the connected world.\u201d\nINDUSTRY HEADQUARTERS\nOutdoor Apparel New Rebecca, MO\nFOUNDED EMPLOYEES\n1989 7,800\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$2,824,000,000.00 Elizabeth Haynes www.loweflores.com\nHarris-\nHARR\nRocha\n\u201cSmall details, big outcomes.\u201d\nINDUSTRY HEADQUARTERS\nLogistics South Gailfurt, AL\nFOUNDED EMPLOYEES\n1996 15,000\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$5,889,000,000.00 Michael Osborn www.harrisrocha.com",
+      "fragment_ids": [
+        "frag_19_0"
+      ]
+    },
+    {
+      "page_index": 20,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 21,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0013"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Bates\nBATE\nPLC\n\u201cEngineering tomorrow, today.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture West Susan, AL\nFOUNDED EMPLOYEES\n2012 3,400\nANNUAL REVENUE CHIEF EXECUTIVE\n$1,661,000,000.00 Jessica Oneill\nWEBSITE\nwww.batesplc.com\nCochran\nCOCH\nPLC\n\u201cDesigned around you.\u201d\nINDUSTRY HEADQUARTERS\nGourmet Pet Food Thorntonton, MP\nFOUNDED EMPLOYEES\n2013 240\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$3,574,000,000.00 Theresa Young www.cochranplc.com",
+      "fragment_ids": [
+        "frag_20_0"
+      ]
+    },
+    {
+      "page_index": 21,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 22,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": false,
+      "table_ids": [],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "digital",
+      "scan_transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "Kidd\nKIDD\nGroup\n\u201cDesigned around you.\u201d\nINDUSTRY HEADQUARTERS\nIndustrial Automation Danielberg, MD\nFOUNDED EMPLOYEES\n1968 240\nANNUAL REVENUE CHIEF EXECUTIVE\n$5,713,000,000.00 Deborah Buck\nWEBSITE\nwww.kiddgroup.com\nThis brochure is provided for general informational purposes only and does not constitute an offer,\nsolicitation, or recommendation regarding any security or financial product.",
+      "fragment_ids": []
+    },
+    {
+      "page_index": 22,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": false,
+      "page_in_doc": 23,
+      "total_pages_in_doc": 24,
+      "boundary": "middle",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0014"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "scanned",
+      "scan_transform": null,
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "COMPANY RESOURCE - FOR ACCIDENT CORPORATE PROFILES REGISTERED ORGANIZATIONS - PROFILE SUMMARIES 01 NGUYEN-HERNANDEZ INDUSTRY Specialty Coffee FOUNDED 2005 REVENUE $41,000,000 HEADQUARTERS Windsor, LA CHIEF EXEC Channing Clark 02 RIOS-HENSLEY INDUSTRY Wholesaling FOUNDED 1976 REVENUE $27,000,000 HEADQUARTERS West Ewing, NJ CHIEF EXEC Alexandra Davenport 03 HUFFMAN AND SONS INDUSTRY International Commerce FOUNDED 1992 REVENUE $80,114,000 HEADQUARTERS North Lido, MI EMPLOYEES 2,200 CHIEF EXEC Noodle Huffy 04 AGUILAR LLC FOUNDED 1972 REVENUE $5,000,000 HEADQUARTERS Pinecrest, AR EMPLOYEES 10 CHIEF EXEC Allison Browning 05 RAMIREZ GROUP FOUNDED 1984 REVENUE $9,800,000 HEADQUARTERS Santa Teresa, NM EMPLOYEES 300 CHIEF EXEC Jonathan Bradley 06 RODRIGUEZ LLC FOUNDED 1991 REVENUE $19,860,000 HEADQUARTERS South Remington, CT EMPLOYEES 40 CHIEF EXEC Michelle Ford",
+      "fragment_ids": [
+        "frag_22_0"
+      ]
+    },
+    {
+      "page_index": 23,
+      "doc_type": "unknown",
+      "doc_type_label_id": -1,
+      "doc_instance_id": "unknown#1",
+      "section": null,
+      "is_first_page_of_doc": false,
+      "is_last_page_of_doc": true,
+      "page_in_doc": 24,
+      "total_pages_in_doc": 24,
+      "boundary": "end",
+      "width": 612,
+      "height": 792,
+      "has_table": true,
+      "table_ids": [
+        "table_0014"
+      ],
+      "has_chart": false,
+      "chart_ids": [],
+      "render_mode": "scanned",
+      "scan_transform": null,
+      "rotation": 0,
+      "scan_image_size_px": [
+        1275,
+        1650
+      ],
+      "text": "CORPORATE PROFILES\nRegistered Organizations - Profile Summaries\n01 O'BRIEN-COLEMAN\nPROVIDER\nFounded: 1986\nREVENUE: $11,000,000.00\nEMPLOYEES: 33\nWEBSITE: www.obrien-coleman.com\nHEADQUARTERS: Minneapolis, MN\nCHIEF EXEC: Justin Roush\n\n02 BOYD-STANLEY\nPROVIDER\nFounded: 1984\nREVENUE: $23,000,000.00\nEMPLOYEES: 41\nWEBSITE: www.boyd-stanley.com\nHEADQUARTERS: Lake Montauk, NY\nCHIEF EXEC: Kimberly Bell\n\n03 FARMER, GARCIA AND SMITH\nPROVIDER\nFounded: 1994\nREVENUE: $974,000,000.00\nEMPLOYEES: 501\nWEBSITE: www.farmergarciasmith.com\nHEADQUARTERS: South Wayne, AZ\nCHIEF EXEC: Tim Hale\n\n04 MELTON-TOWNSEND\nPROVIDER\nFounded: 1985\nREVENUE: $12,000,000.00\nEMPLOYEES: 17\nWEBSITE: www.melton-towns.com\nHEADQUARTERS: Allentown, PA\nCHIEF EXEC: Brian Flint\n\n05 RICE-HERRERA\nPROVIDER\nFounded: 1995\nREVENUE: $1,500,000.00\nEMPLOYEES: 11\nWEBSITE: www.rice-herrera.com\nHEADQUARTERS: Evanston, NY\nCHIEF EXEC: Isabela Thoma\n\n06 HODGES, THOMAS AND ADAMS\nPROVIDER\nFounded: 2000\nREVENUE: $45,000,000.00\nEMPLOYEES: 54\nWEBSITE: www.hodgesthomasadams.com\nHEADQUARTERS: Deerfield, MA\nCHIEF EXEC: Pax Aguilar",
+      "fragment_ids": [
+        "frag_23_0"
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_id": "table_0000",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 0,
+        "end_page": 1
+      },
+      "header_repeats_each_page": true,
+      "columns": [
+        {
+          "col_idx": 0
+        }
+      ],
+      "row_count_logical": 2,
+      "cells": [
+        {
+          "page_index": 0,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Gutierrez, Kelley and\nGUTI\nMiller\n\u201cFrom concept to scale.\u201d\nINDUSTRY HEADQUARTERS\nGourmet Pet Food Andradeville, AL\nFOUNDED EMPLOYEES\n2003 240\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$2,161,000,000.00 Vanessa Ray www.gutierrezkelleyand.com",
+          "bbox": [
+            57.6,
+            168.86647575000006,
+            554.4,
+            388.08397575
+          ],
+          "bbox_px": [
+            120.0,
+            351.805,
+            1155.0,
+            808.508
+          ]
+        },
+        {
+          "page_index": 0,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Salinas\nSALI\nPLC\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY HEADQUARTERS\nGourmet Pet Food Lake Robert, AR\nFOUNDED EMPLOYEES\n1981 240\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$128,000,000.00 Christopher Green MD www.salinasplc.com",
+          "bbox": [
+            57.6,
+            388.08397575,
+            554.4,
+            607.30147575
+          ],
+          "bbox_px": [
+            120.0,
+            808.508,
+            1155.0,
+            1265.211
+          ]
+        },
+        {
+          "page_index": 1,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Long\nLONG\nPLC\n\u201cPowering the connected world.\u201d\nINDUSTRY HEADQUARTERS\nBiotechnology Frazierville, AR\nFOUNDED EMPLOYEES\n2019 85\nANNUAL REVENUE CHIEF EXECUTIVE\n$5,057,000,000.00 Julie Ramirez\nWEBSITE\nwww.longplc.com",
+          "bbox": [
+            57.599999999999994,
+            54.0,
+            554.4,
+            310.7325
+          ],
+          "bbox_px": [
+            120.0,
+            112.5,
+            1155.0,
+            647.359
+          ]
+        },
+        {
+          "page_index": 1,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Miller\nMILL\nLLC\n\u201cFrom concept to scale.\u201d\nINDUSTRY HEADQUARTERS\nOutdoor Apparel South Tarachester, WA\nFOUNDED EMPLOYEES\n1994 15,000\nANNUAL REVENUE CHIEF EXECUTIVE\n$456,000,000.00 Shawn Gross\nWEBSITE\nwww.millerllc.com",
+          "bbox": [
+            57.599999999999994,
+            310.7325,
+            554.4,
+            567.465
+          ],
+          "bbox_px": [
+            120.0,
+            647.359,
+            1155.0,
+            1182.219
+          ]
+        }
+      ],
+      "n_fragments": 2,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0001",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 3,
+        "end_page": 4
+      },
+      "header_repeats_each_page": true,
+      "columns": [
+        {
+          "col_idx": 0
+        }
+      ],
+      "row_count_logical": 2,
+      "cells": [
+        {
+          "page_index": 3,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Ramsey-\nRAMS\nWilliamson\n\u201cSmall details, big outcomes.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture Charlesmouth, OR\nFOUNDED EMPLOYEES\n1971 1,200\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$4,422,000,000.00 Miguel Delacruz www.ramseywilliamson.com",
+          "bbox": [
+            57.6,
+            168.86647575000006,
+            554.4,
+            388.08397575
+          ],
+          "bbox_px": [
+            120.0,
+            351.805,
+            1155.0,
+            808.508
+          ]
+        },
+        {
+          "page_index": 3,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Elliott-\nELLI\nRobertson\n\u201cSmall details, big outcomes.\u201d\nINDUSTRY HEADQUARTERS\nBiotechnology New Christy, ID\nFOUNDED EMPLOYEES\n2018 42,000\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$4,828,000,000.00 Wesley Ward www.elliottrobertson.com",
+          "bbox": [
+            57.6,
+            388.08397575,
+            554.4,
+            607.30147575
+          ],
+          "bbox_px": [
+            120.0,
+            808.508,
+            1155.0,
+            1265.211
+          ]
+        },
+        {
+          "page_index": 4,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Turner\nTURN\nGroup\n\u201cBuilt for what's next.\u201d\nINDUSTRY HEADQUARTERS\nLogistics New Terri, KS\nFOUNDED EMPLOYEES\n2013 15,000\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$3,148,000,000.00 Wendy Anderson www.turnergroup.com",
+          "bbox": [
+            57.599999999999994,
+            54.0,
+            554.4,
+            273.2175
+          ],
+          "bbox_px": [
+            120.0,
+            112.5,
+            1155.0,
+            569.203
+          ]
+        },
+        {
+          "page_index": 4,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Taylor\nTAYL\nGroup\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY HEADQUARTERS\nLogistics Hannahborough, PR\nFOUNDED EMPLOYEES\n1983 85\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$1,559,000,000.00 Paul Maldonado www.taylorgroup.com",
+          "bbox": [
+            57.599999999999994,
+            273.2175,
+            554.4,
+            492.43500000000006
+          ],
+          "bbox_px": [
+            120.0,
+            569.203,
+            1155.0,
+            1025.906
+          ]
+        }
+      ],
+      "n_fragments": 2,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0002",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 6,
+        "end_page": 6
+      },
+      "header_repeats_each_page": false,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        }
+      ],
+      "row_count_logical": 5,
+      "cells": [
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "COMPANY BROCHURE \u2014 FOR RECIPIENT\nCORPORATE PROFILES\nAnnual register of featured organizations",
+          "bbox": [
+            44.58461538461539,
+            40.85000000000002,
+            363.183,
+            91.12499999999997
+          ],
+          "bbox_px": [
+            92.885,
+            85.104,
+            756.631,
+            189.844
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "DOCUMENT Corporate Profiles Register\nEDITION 2024\nENTRIES 3 organizations\nCLASSIFICATION Informational / Non-binding",
+          "bbox": [
+            363.183,
+            40.85000000000002,
+            567.4666666666667,
+            91.12499999999997
+          ],
+          "bbox_px": [
+            756.631,
+            85.104,
+            1182.222,
+            189.844
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "",
+          "bbox": [
+            567.4666666666667,
+            40.85000000000002,
+            598.05,
+            91.12499999999997
+          ],
+          "bbox_px": [
+            1182.222,
+            85.104,
+            1245.938,
+            189.844
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "REGISTERED ORGANIZATIONS \u2014 PROFILE SUMMARIES",
+          "bbox": [
+            44.58461538461539,
+            91.12499999999997,
+            567.4666666666667,
+            105.13125000000002
+          ],
+          "bbox_px": [
+            92.885,
+            189.844,
+            1182.222,
+            219.023
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "01 GILBERT AND SONS GILB\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY Semiconductors HEADQUARTERS Adamsville, WI\nFOUNDED 2001 EMPLOYEES 520\nREVENUE $4,254,000,000.00 CHIEF EXEC. James Thomas\nWEBSITE www.gilbertandsons.com",
+          "bbox": [
+            44.58461538461539,
+            105.13125000000002,
+            567.4666666666667,
+            194.41875000000005
+          ],
+          "bbox_px": [
+            92.885,
+            219.023,
+            1182.222,
+            405.039
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 2,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "02 HOWARD GROUP HOWA\n\u201cSmall details, big outcomes.\u201d\nINDUSTRY Aerospace HEADQUARTERS Susanchester, NM\nFOUNDED 1975 EMPLOYEES 240\nREVENUE $6,340,000,000.00 CHIEF EXEC. Laura Salas\nWEBSITE www.howardgroup.com",
+          "bbox": [
+            44.58461538461539,
+            194.41875000000005,
+            567.4666666666667,
+            283.70625
+          ],
+          "bbox_px": [
+            92.885,
+            405.039,
+            1182.222,
+            591.055
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 3,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "03 PROCTOR LLC PROC\n\u201cBuilt for what's next.\u201d\nINDUSTRY Veterinary Care HEADQUARTERS Davilaburgh, KS\nFOUNDED 1992 EMPLOYEES 15,000\nREVENUE $1,188,000,000.00 CHIEF EXEC. Rebecca Barber\nWEBSITE www.proctorllc.com",
+          "bbox": [
+            44.58461538461539,
+            283.70625,
+            567.4666666666667,
+            376.55625
+          ],
+          "bbox_px": [
+            92.885,
+            591.055,
+            1182.222,
+            784.492
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 4,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "This brochure is provided for general informational purposes only and does not constitute an offer, solicitation, or recommendation regarding any security or financial product.",
+          "bbox": [
+            44.58461538461539,
+            376.55625,
+            567.4666666666667,
+            392.775
+          ],
+          "bbox_px": [
+            92.885,
+            784.492,
+            1182.222,
+            818.281
+          ]
+        }
+      ],
+      "n_fragments": 1,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0003",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 6,
+        "end_page": 6
+      },
+      "header_repeats_each_page": false,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        },
+        {
+          "col_idx": 3
+        }
+      ],
+      "row_count_logical": 3,
+      "cells": [
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "INDUSTRY",
+          "bbox": [
+            52.574999999999996,
+            136.03125,
+            133.671,
+            148.89374999999995
+          ],
+          "bbox_px": [
+            109.531,
+            283.398,
+            278.481,
+            310.195
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Semiconductors",
+          "bbox": [
+            133.671,
+            136.03125,
+            306.0,
+            148.89374999999995
+          ],
+          "bbox_px": [
+            278.481,
+            283.398,
+            637.5,
+            310.195
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "HEADQUARTERS",
+          "bbox": [
+            306.0,
+            136.03125,
+            387.096,
+            148.89374999999995
+          ],
+          "bbox_px": [
+            637.5,
+            283.398,
+            806.45,
+            310.195
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Adamsville, WI",
+          "bbox": [
+            387.096,
+            136.03125,
+            559.425,
+            148.89374999999995
+          ],
+          "bbox_px": [
+            806.45,
+            283.398,
+            1165.469,
+            310.195
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "FOUNDED",
+          "bbox": [
+            52.574999999999996,
+            148.89374999999995,
+            133.671,
+            161.75625000000002
+          ],
+          "bbox_px": [
+            109.531,
+            310.195,
+            278.481,
+            336.992
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "2001",
+          "bbox": [
+            133.671,
+            148.89374999999995,
+            306.0,
+            161.75625000000002
+          ],
+          "bbox_px": [
+            278.481,
+            310.195,
+            637.5,
+            336.992
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "EMPLOYEES",
+          "bbox": [
+            306.0,
+            148.89374999999995,
+            387.096,
+            161.75625000000002
+          ],
+          "bbox_px": [
+            637.5,
+            310.195,
+            806.45,
+            336.992
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "520",
+          "bbox": [
+            387.096,
+            148.89374999999995,
+            559.425,
+            161.75625000000002
+          ],
+          "bbox_px": [
+            806.45,
+            310.195,
+            1165.469,
+            336.992
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "REVENUE",
+          "bbox": [
+            52.574999999999996,
+            161.75625000000002,
+            133.671,
+            174.61874999999995
+          ],
+          "bbox_px": [
+            109.531,
+            336.992,
+            278.481,
+            363.789
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "$4,254,000,000.00",
+          "bbox": [
+            133.671,
+            161.75625000000002,
+            306.0,
+            174.61874999999995
+          ],
+          "bbox_px": [
+            278.481,
+            336.992,
+            637.5,
+            363.789
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "CHIEF EXEC.",
+          "bbox": [
+            306.0,
+            161.75625000000002,
+            387.096,
+            174.61874999999995
+          ],
+          "bbox_px": [
+            637.5,
+            336.992,
+            806.45,
+            363.789
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "James Thomas",
+          "bbox": [
+            387.096,
+            161.75625000000002,
+            559.425,
+            174.61874999999995
+          ],
+          "bbox_px": [
+            806.45,
+            336.992,
+            1165.469,
+            363.789
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 2,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "WEBSITE",
+          "bbox": [
+            52.574999999999996,
+            174.61874999999995,
+            133.671,
+            187.48125000000005
+          ],
+          "bbox_px": [
+            109.531,
+            363.789,
+            278.481,
+            390.586
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 2,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "www.gilbertandsons.com",
+          "bbox": [
+            133.671,
+            174.61874999999995,
+            559.425,
+            187.48125000000005
+          ],
+          "bbox_px": [
+            278.481,
+            363.789,
+            1165.469,
+            390.586
+          ]
+        }
+      ],
+      "n_fragments": 1,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0004",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 6,
+        "end_page": 6
+      },
+      "header_repeats_each_page": false,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        },
+        {
+          "col_idx": 3
+        }
+      ],
+      "row_count_logical": 3,
+      "cells": [
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "INDUSTRY",
+          "bbox": [
+            52.574999999999996,
+            225.50625000000002,
+            133.671,
+            238.36874999999998
+          ],
+          "bbox_px": [
+            109.531,
+            469.805,
+            278.481,
+            496.602
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Aerospace",
+          "bbox": [
+            133.671,
+            225.50625000000002,
+            306.0,
+            238.36874999999998
+          ],
+          "bbox_px": [
+            278.481,
+            469.805,
+            637.5,
+            496.602
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "HEADQUARTERS",
+          "bbox": [
+            306.0,
+            225.50625000000002,
+            387.096,
+            238.36874999999998
+          ],
+          "bbox_px": [
+            637.5,
+            469.805,
+            806.45,
+            496.602
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Susanchester, NM",
+          "bbox": [
+            387.096,
+            225.50625000000002,
+            559.425,
+            238.36874999999998
+          ],
+          "bbox_px": [
+            806.45,
+            469.805,
+            1165.469,
+            496.602
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "FOUNDED",
+          "bbox": [
+            52.574999999999996,
+            238.36874999999998,
+            133.671,
+            251.23125000000005
+          ],
+          "bbox_px": [
+            109.531,
+            496.602,
+            278.481,
+            523.398
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "1975",
+          "bbox": [
+            133.671,
+            238.36874999999998,
+            306.0,
+            251.23125000000005
+          ],
+          "bbox_px": [
+            278.481,
+            496.602,
+            637.5,
+            523.398
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "EMPLOYEES",
+          "bbox": [
+            306.0,
+            238.36874999999998,
+            387.096,
+            251.23125000000005
+          ],
+          "bbox_px": [
+            637.5,
+            496.602,
+            806.45,
+            523.398
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "240",
+          "bbox": [
+            387.096,
+            238.36874999999998,
+            559.425,
+            251.23125000000005
+          ],
+          "bbox_px": [
+            806.45,
+            496.602,
+            1165.469,
+            523.398
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "REVENUE",
+          "bbox": [
+            52.574999999999996,
+            251.23125000000005,
+            133.671,
+            264.09375
+          ],
+          "bbox_px": [
+            109.531,
+            523.398,
+            278.481,
+            550.195
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "$6,340,000,000.00",
+          "bbox": [
+            133.671,
+            251.23125000000005,
+            306.0,
+            264.09375
+          ],
+          "bbox_px": [
+            278.481,
+            523.398,
+            637.5,
+            550.195
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "CHIEF EXEC.",
+          "bbox": [
+            306.0,
+            251.23125000000005,
+            387.096,
+            264.09375
+          ],
+          "bbox_px": [
+            637.5,
+            523.398,
+            806.45,
+            550.195
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "Laura Salas",
+          "bbox": [
+            387.096,
+            251.23125000000005,
+            559.425,
+            264.09375
+          ],
+          "bbox_px": [
+            806.45,
+            523.398,
+            1165.469,
+            550.195
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 2,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "WEBSITE",
+          "bbox": [
+            52.574999999999996,
+            264.09375,
+            133.671,
+            276.95624999999995
+          ],
+          "bbox_px": [
+            109.531,
+            550.195,
+            278.481,
+            576.992
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 2,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "www.howardgroup.com",
+          "bbox": [
+            133.671,
+            264.09375,
+            559.425,
+            276.95624999999995
+          ],
+          "bbox_px": [
+            278.481,
+            550.195,
+            1165.469,
+            576.992
+          ]
+        }
+      ],
+      "n_fragments": 1,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0005",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 6,
+        "end_page": 9
+      },
+      "header_repeats_each_page": true,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        },
+        {
+          "col_idx": 3
+        }
+      ],
+      "row_count_logical": 9,
+      "cells": [
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "INDUSTRY",
+          "bbox": [
+            52.574999999999996,
+            314.98125000000005,
+            133.671,
+            327.84375
+          ],
+          "bbox_px": [
+            109.531,
+            656.211,
+            278.481,
+            683.008
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Veterinary Care",
+          "bbox": [
+            133.671,
+            314.98125000000005,
+            306.0,
+            327.84375
+          ],
+          "bbox_px": [
+            278.481,
+            656.211,
+            637.5,
+            683.008
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "HEADQUARTERS",
+          "bbox": [
+            306.0,
+            314.98125000000005,
+            387.096,
+            327.84375
+          ],
+          "bbox_px": [
+            637.5,
+            656.211,
+            806.45,
+            683.008
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Davilaburgh, KS",
+          "bbox": [
+            387.096,
+            314.98125000000005,
+            559.425,
+            327.84375
+          ],
+          "bbox_px": [
+            806.45,
+            656.211,
+            1165.469,
+            683.008
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "FOUNDED",
+          "bbox": [
+            52.574999999999996,
+            327.84375,
+            133.671,
+            340.70624999999995
+          ],
+          "bbox_px": [
+            109.531,
+            683.008,
+            278.481,
+            709.805
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "1992",
+          "bbox": [
+            133.671,
+            327.84375,
+            306.0,
+            340.70624999999995
+          ],
+          "bbox_px": [
+            278.481,
+            683.008,
+            637.5,
+            709.805
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "EMPLOYEES",
+          "bbox": [
+            306.0,
+            327.84375,
+            387.096,
+            340.70624999999995
+          ],
+          "bbox_px": [
+            637.5,
+            683.008,
+            806.45,
+            709.805
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 0,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "15,000",
+          "bbox": [
+            387.096,
+            327.84375,
+            559.425,
+            340.70624999999995
+          ],
+          "bbox_px": [
+            806.45,
+            683.008,
+            1165.469,
+            709.805
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "REVENUE",
+          "bbox": [
+            52.574999999999996,
+            340.70624999999995,
+            133.671,
+            353.56874999999997
+          ],
+          "bbox_px": [
+            109.531,
+            709.805,
+            278.481,
+            736.602
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "$1,188,000,000.00",
+          "bbox": [
+            133.671,
+            340.70624999999995,
+            306.0,
+            353.56874999999997
+          ],
+          "bbox_px": [
+            278.481,
+            709.805,
+            637.5,
+            736.602
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "CHIEF EXEC.",
+          "bbox": [
+            306.0,
+            340.70624999999995,
+            387.096,
+            353.56874999999997
+          ],
+          "bbox_px": [
+            637.5,
+            709.805,
+            806.45,
+            736.602
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 1,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "Rebecca Barber",
+          "bbox": [
+            387.096,
+            340.70624999999995,
+            559.425,
+            353.56874999999997
+          ],
+          "bbox_px": [
+            806.45,
+            709.805,
+            1165.469,
+            736.602
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 2,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "WEBSITE",
+          "bbox": [
+            52.574999999999996,
+            353.56874999999997,
+            133.671,
+            366.43125
+          ],
+          "bbox_px": [
+            109.531,
+            736.602,
+            278.481,
+            763.398
+          ]
+        },
+        {
+          "page_index": 6,
+          "row_idx": 2,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "www.proctorllc.com",
+          "bbox": [
+            133.671,
+            353.56874999999997,
+            559.425,
+            366.43125
+          ],
+          "bbox_px": [
+            278.481,
+            736.602,
+            1165.469,
+            763.398
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "#",
+          "bbox": [
+            0.0,
+            0.0,
+            87.429,
+            158.4
+          ],
+          "bbox_px": [
+            0.0,
+            0.0,
+            182.144,
+            330.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Company Name",
+          "bbox": [
+            87.429,
+            0.0,
+            174.857,
+            158.4
+          ],
+          "bbox_px": [
+            182.144,
+            0.0,
+            364.285,
+            330.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "Industry",
+          "bbox": [
+            174.857,
+            0.0,
+            262.286,
+            158.4
+          ],
+          "bbox_px": [
+            364.285,
+            0.0,
+            546.429,
+            330.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Founder",
+          "bbox": [
+            262.286,
+            0.0,
+            349.714,
+            158.4
+          ],
+          "bbox_px": [
+            546.429,
+            0.0,
+            728.571,
+            330.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": -1,
+          "col_idx": 4,
+          "is_header": true,
+          "text": "Employees",
+          "bbox": [
+            349.714,
+            0.0,
+            437.143,
+            158.4
+          ],
+          "bbox_px": [
+            728.571,
+            0.0,
+            910.715,
+            330.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": -1,
+          "col_idx": 5,
+          "is_header": true,
+          "text": "Revenue",
+          "bbox": [
+            437.143,
+            0.0,
+            524.571,
+            158.4
+          ],
+          "bbox_px": [
+            910.715,
+            0.0,
+            1092.856,
+            330.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": -1,
+          "col_idx": 6,
+          "is_header": true,
+          "text": "Website",
+          "bbox": [
+            524.571,
+            0.0,
+            612.0,
+            158.4
+          ],
+          "bbox_px": [
+            1092.856,
+            0.0,
+            1275.0,
+            330.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 3,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "01",
+          "bbox": [
+            0.0,
+            158.4,
+            87.429,
+            316.8
+          ],
+          "bbox_px": [
+            0.0,
+            330.0,
+            182.144,
+            660.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 3,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "DOMINGUEZ LTD",
+          "bbox": [
+            87.429,
+            158.4,
+            174.857,
+            316.8
+          ],
+          "bbox_px": [
+            182.144,
+            330.0,
+            364.285,
+            660.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 3,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Precision Appliances",
+          "bbox": [
+            174.857,
+            158.4,
+            262.286,
+            316.8
+          ],
+          "bbox_px": [
+            364.285,
+            330.0,
+            546.429,
+            660.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 3,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "2015",
+          "bbox": [
+            262.286,
+            158.4,
+            349.714,
+            316.8
+          ],
+          "bbox_px": [
+            546.429,
+            330.0,
+            728.571,
+            660.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 3,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "3",
+          "bbox": [
+            349.714,
+            158.4,
+            437.143,
+            316.8
+          ],
+          "bbox_px": [
+            728.571,
+            330.0,
+            910.715,
+            660.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 3,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "$1,000,000",
+          "bbox": [
+            437.143,
+            158.4,
+            524.571,
+            316.8
+          ],
+          "bbox_px": [
+            910.715,
+            330.0,
+            1092.856,
+            660.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 3,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "www.dominguezltd.com",
+          "bbox": [
+            524.571,
+            158.4,
+            612.0,
+            316.8
+          ],
+          "bbox_px": [
+            1092.856,
+            330.0,
+            1275.0,
+            660.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 4,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "02",
+          "bbox": [
+            0.0,
+            316.8,
+            87.429,
+            475.2
+          ],
+          "bbox_px": [
+            0.0,
+            660.0,
+            182.144,
+            990.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 4,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "HUGHES PLC",
+          "bbox": [
+            87.429,
+            316.8,
+            174.857,
+            475.2
+          ],
+          "bbox_px": [
+            182.144,
+            660.0,
+            364.285,
+            990.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 4,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Industrial Automation",
+          "bbox": [
+            174.857,
+            316.8,
+            262.286,
+            475.2
+          ],
+          "bbox_px": [
+            364.285,
+            660.0,
+            546.429,
+            990.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 4,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1985",
+          "bbox": [
+            262.286,
+            316.8,
+            349.714,
+            475.2
+          ],
+          "bbox_px": [
+            546.429,
+            660.0,
+            728.571,
+            990.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 4,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "300",
+          "bbox": [
+            349.714,
+            316.8,
+            437.143,
+            475.2
+          ],
+          "bbox_px": [
+            728.571,
+            660.0,
+            910.715,
+            990.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 4,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "$70,000,000",
+          "bbox": [
+            437.143,
+            316.8,
+            524.571,
+            475.2
+          ],
+          "bbox_px": [
+            910.715,
+            660.0,
+            1092.856,
+            990.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 4,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "www.hughesplc.com",
+          "bbox": [
+            524.571,
+            316.8,
+            612.0,
+            475.2
+          ],
+          "bbox_px": [
+            1092.856,
+            660.0,
+            1275.0,
+            990.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 5,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "03",
+          "bbox": [
+            0.0,
+            475.2,
+            87.429,
+            633.6
+          ],
+          "bbox_px": [
+            0.0,
+            990.0,
+            182.144,
+            1320.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 5,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "PATEL, FORD AND GEORGE",
+          "bbox": [
+            87.429,
+            475.2,
+            174.857,
+            633.6
+          ],
+          "bbox_px": [
+            182.144,
+            990.0,
+            364.285,
+            1320.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 5,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Marine Engineering",
+          "bbox": [
+            174.857,
+            475.2,
+            262.286,
+            633.6
+          ],
+          "bbox_px": [
+            364.285,
+            990.0,
+            546.429,
+            1320.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 5,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1970",
+          "bbox": [
+            262.286,
+            475.2,
+            349.714,
+            633.6
+          ],
+          "bbox_px": [
+            546.429,
+            990.0,
+            728.571,
+            1320.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 5,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "10",
+          "bbox": [
+            349.714,
+            475.2,
+            437.143,
+            633.6
+          ],
+          "bbox_px": [
+            728.571,
+            990.0,
+            910.715,
+            1320.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 5,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "$17,000,000",
+          "bbox": [
+            437.143,
+            475.2,
+            524.571,
+            633.6
+          ],
+          "bbox_px": [
+            910.715,
+            990.0,
+            1092.856,
+            1320.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 5,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "www.patelfordgeorge.com",
+          "bbox": [
+            524.571,
+            475.2,
+            612.0,
+            633.6
+          ],
+          "bbox_px": [
+            1092.856,
+            990.0,
+            1275.0,
+            1320.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 6,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "04",
+          "bbox": [
+            0.0,
+            633.6,
+            87.429,
+            792.0
+          ],
+          "bbox_px": [
+            0.0,
+            1320.0,
+            182.144,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 6,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "WEST, WELLS AND VELASQUEZ",
+          "bbox": [
+            87.429,
+            633.6,
+            174.857,
+            792.0
+          ],
+          "bbox_px": [
+            182.144,
+            1320.0,
+            364.285,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 6,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Law",
+          "bbox": [
+            174.857,
+            633.6,
+            262.286,
+            792.0
+          ],
+          "bbox_px": [
+            364.285,
+            1320.0,
+            546.429,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 6,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1990",
+          "bbox": [
+            262.286,
+            633.6,
+            349.714,
+            792.0
+          ],
+          "bbox_px": [
+            546.429,
+            1320.0,
+            728.571,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 6,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "11",
+          "bbox": [
+            349.714,
+            633.6,
+            437.143,
+            792.0
+          ],
+          "bbox_px": [
+            728.571,
+            1320.0,
+            910.715,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 6,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "$10,000,000",
+          "bbox": [
+            437.143,
+            633.6,
+            524.571,
+            792.0
+          ],
+          "bbox_px": [
+            910.715,
+            1320.0,
+            1092.856,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 7,
+          "row_idx": 6,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "www.westwells.com",
+          "bbox": [
+            524.571,
+            633.6,
+            612.0,
+            792.0
+          ],
+          "bbox_px": [
+            1092.856,
+            1320.0,
+            1275.0,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 8,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Lane-\nLANE\nReid\n\u201cBuilt for what's next.\u201d\nINDUSTRY HEADQUARTERS\nSemiconductors East Kathleen, ME\nFOUNDED EMPLOYEES\n1972 85\nANNUAL REVENUE CHIEF EXECUTIVE\n$6,305,000,000.00 Nicholas Henry\nWEBSITE\nwww.lanereid.com",
+          "bbox": [
+            57.6,
+            168.86647575000006,
+            554.4,
+            425.59897574999997
+          ],
+          "bbox_px": [
+            120.0,
+            351.805,
+            1155.0,
+            886.665
+          ]
+        },
+        {
+          "page_index": 8,
+          "row_idx": 7,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Mccarthy-\nMCCA\nBell\n\u201cEngineering tomorrow, today.\u201d\nINDUSTRY HEADQUARTERS\nRenewable Energy Seanmouth, MN\nFOUNDED EMPLOYEES\n2016 15,000\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$2,471,000,000.00 Sarah Wilkins www.mccarthybell.com",
+          "bbox": [
+            57.6,
+            425.59897574999997,
+            554.4,
+            644.8164757499999
+          ],
+          "bbox_px": [
+            120.0,
+            886.665,
+            1155.0,
+            1343.368
+          ]
+        },
+        {
+          "page_index": 9,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Ross\nROSS\nLLC\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY HEADQUARTERS\nCloud Software East Logan, AK\nFOUNDED EMPLOYEES\n2014 42,000\nANNUAL REVENUE CHIEF EXECUTIVE\n$5,800,000,000.00 Matthew Hodges\nWEBSITE\nwww.rossllc.com",
+          "bbox": [
+            57.599999999999994,
+            54.0,
+            554.4,
+            310.7325
+          ],
+          "bbox_px": [
+            120.0,
+            112.5,
+            1155.0,
+            647.359
+          ]
+        },
+        {
+          "page_index": 9,
+          "row_idx": 8,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Cruz\nCRUZ\nPLC\n\u201cDesigned around you.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture Mendozaton, LA\nFOUNDED EMPLOYEES\n1990 7,800\nANNUAL REVENUE CHIEF EXECUTIVE\n$3,664,000,000.00 Madison George\nWEBSITE\nwww.cruzplc.com",
+          "bbox": [
+            57.599999999999994,
+            310.7325,
+            554.4,
+            567.465
+          ],
+          "bbox_px": [
+            120.0,
+            647.359,
+            1155.0,
+            1182.219
+          ]
+        }
+      ],
+      "n_fragments": 4,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0006",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 11,
+        "end_page": 11
+      },
+      "header_repeats_each_page": false,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        },
+        {
+          "col_idx": 3
+        },
+        {
+          "col_idx": 4
+        },
+        {
+          "col_idx": 5
+        },
+        {
+          "col_idx": 6
+        },
+        {
+          "col_idx": 7
+        }
+      ],
+      "row_count_logical": 2,
+      "cells": [
+        {
+          "page_index": 11,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Company",
+          "bbox": [
+            0.0,
+            0.0,
+            76.5,
+            264.0
+          ],
+          "bbox_px": [
+            0.0,
+            0.0,
+            159.375,
+            550.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Industry",
+          "bbox": [
+            76.5,
+            0.0,
+            153.0,
+            264.0
+          ],
+          "bbox_px": [
+            159.375,
+            0.0,
+            318.75,
+            550.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "Founded",
+          "bbox": [
+            153.0,
+            0.0,
+            229.5,
+            264.0
+          ],
+          "bbox_px": [
+            318.75,
+            0.0,
+            478.125,
+            550.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Annual Revenue",
+          "bbox": [
+            229.5,
+            0.0,
+            306.0,
+            264.0
+          ],
+          "bbox_px": [
+            478.125,
+            0.0,
+            637.5,
+            550.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": -1,
+          "col_idx": 4,
+          "is_header": true,
+          "text": "Website",
+          "bbox": [
+            306.0,
+            0.0,
+            382.5,
+            264.0
+          ],
+          "bbox_px": [
+            637.5,
+            0.0,
+            796.875,
+            550.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": -1,
+          "col_idx": 5,
+          "is_header": true,
+          "text": "Headquarters",
+          "bbox": [
+            382.5,
+            0.0,
+            459.0,
+            264.0
+          ],
+          "bbox_px": [
+            796.875,
+            0.0,
+            956.25,
+            550.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": -1,
+          "col_idx": 6,
+          "is_header": true,
+          "text": "Employees",
+          "bbox": [
+            459.0,
+            0.0,
+            535.5,
+            264.0
+          ],
+          "bbox_px": [
+            956.25,
+            0.0,
+            1115.625,
+            550.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": -1,
+          "col_idx": 7,
+          "is_header": true,
+          "text": "Chief Executive",
+          "bbox": [
+            535.5,
+            0.0,
+            612.0,
+            264.0
+          ],
+          "bbox_px": [
+            1115.625,
+            0.0,
+            1275.0,
+            550.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Day-Taylor",
+          "bbox": [
+            0.0,
+            264.0,
+            76.5,
+            528.0
+          ],
+          "bbox_px": [
+            0.0,
+            550.0,
+            159.375,
+            1100.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 0,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "Outdoor Apparel",
+          "bbox": [
+            76.5,
+            264.0,
+            153.0,
+            528.0
+          ],
+          "bbox_px": [
+            159.375,
+            550.0,
+            318.75,
+            1100.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 0,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "2012",
+          "bbox": [
+            153.0,
+            264.0,
+            229.5,
+            528.0
+          ],
+          "bbox_px": [
+            318.75,
+            550.0,
+            478.125,
+            1100.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 0,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "$2,132,000,000.00",
+          "bbox": [
+            229.5,
+            264.0,
+            306.0,
+            528.0
+          ],
+          "bbox_px": [
+            478.125,
+            550.0,
+            637.5,
+            1100.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 0,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "www.daytaylor.com",
+          "bbox": [
+            306.0,
+            264.0,
+            382.5,
+            528.0
+          ],
+          "bbox_px": [
+            637.5,
+            550.0,
+            796.875,
+            1100.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 0,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "Williamurt, AK",
+          "bbox": [
+            382.5,
+            264.0,
+            459.0,
+            528.0
+          ],
+          "bbox_px": [
+            796.875,
+            550.0,
+            956.25,
+            1100.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 0,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "520",
+          "bbox": [
+            459.0,
+            264.0,
+            535.5,
+            528.0
+          ],
+          "bbox_px": [
+            956.25,
+            550.0,
+            1115.625,
+            1100.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 0,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Kelly Houston",
+          "bbox": [
+            535.5,
+            264.0,
+            612.0,
+            528.0
+          ],
+          "bbox_px": [
+            1115.625,
+            550.0,
+            1275.0,
+            1100.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Little-Davis",
+          "bbox": [
+            0.0,
+            528.0,
+            76.5,
+            792.0
+          ],
+          "bbox_px": [
+            0.0,
+            1100.0,
+            159.375,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 1,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "Logistics",
+          "bbox": [
+            76.5,
+            528.0,
+            153.0,
+            792.0
+          ],
+          "bbox_px": [
+            159.375,
+            1100.0,
+            318.75,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 1,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "2012",
+          "bbox": [
+            153.0,
+            528.0,
+            229.5,
+            792.0
+          ],
+          "bbox_px": [
+            318.75,
+            1100.0,
+            478.125,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 1,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "$163,000,000.00",
+          "bbox": [
+            229.5,
+            528.0,
+            306.0,
+            792.0
+          ],
+          "bbox_px": [
+            478.125,
+            1100.0,
+            637.5,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 1,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "www.littledavis.com",
+          "bbox": [
+            306.0,
+            528.0,
+            382.5,
+            792.0
+          ],
+          "bbox_px": [
+            637.5,
+            1100.0,
+            796.875,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 1,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "Harrellurt, ME",
+          "bbox": [
+            382.5,
+            528.0,
+            459.0,
+            792.0
+          ],
+          "bbox_px": [
+            796.875,
+            1100.0,
+            956.25,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 1,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "15,000",
+          "bbox": [
+            459.0,
+            528.0,
+            535.5,
+            792.0
+          ],
+          "bbox_px": [
+            956.25,
+            1100.0,
+            1115.625,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 11,
+          "row_idx": 1,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Stephen Green",
+          "bbox": [
+            535.5,
+            528.0,
+            612.0,
+            792.0
+          ],
+          "bbox_px": [
+            1115.625,
+            1100.0,
+            1275.0,
+            1650.0
+          ]
+        }
+      ],
+      "n_fragments": 1,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0007",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 14,
+        "end_page": 14
+      },
+      "header_repeats_each_page": false,
+      "columns": [
+        {
+          "col_idx": 0
+        }
+      ],
+      "row_count_logical": 1,
+      "cells": [
+        {
+          "page_index": 14,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Castaneda, Curry and\nCAST\nPeterson\n\u201cDesigned around you.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture Tammyport, DC\nFOUNDED EMPLOYEES\n2011 7,800\nANNUAL REVENUE CHIEF EXECUTIVE\n$4,645,000,000.00 Nicholas Kaiser\nWEBSITE\nwww.castanedacurryandp.com",
+          "bbox": [
+            57.6,
+            168.86647575000006,
+            554.4,
+            425.59897574999997
+          ],
+          "bbox_px": [
+            120.0,
+            351.805,
+            1155.0,
+            886.665
+          ]
+        },
+        {
+          "page_index": 14,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Morris-\nMORR\nPittman\n\u201cSmall details, big outcomes.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture Dunlapshire, ID\nFOUNDED EMPLOYEES\n1987 520\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$3,331,000,000.00 Antonio Johnson www.morrispittman.com",
+          "bbox": [
+            57.6,
+            425.59897574999997,
+            554.4,
+            644.8164757499999
+          ],
+          "bbox_px": [
+            120.0,
+            886.665,
+            1155.0,
+            1343.368
+          ]
+        }
+      ],
+      "n_fragments": 1,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0008",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 16,
+        "end_page": 16
+      },
+      "header_repeats_each_page": false,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        }
+      ],
+      "row_count_logical": 6,
+      "cells": [
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "COMPANY BROCHURE \u2014 FOR RECIPIENT\nCORPORATE PROFILES\nAnnual register of featured organizations",
+          "bbox": [
+            44.6,
+            40.85000000000002,
+            363.183,
+            91.12499999999997
+          ],
+          "bbox_px": [
+            92.917,
+            85.104,
+            756.631,
+            189.844
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "DOCUMENT Corporate Profiles Register\nEDITION 2024\nENTRIES 4 organizations\nCLASSIFICATION Informational / Non-binding",
+          "bbox": [
+            363.183,
+            40.85000000000002,
+            567.4363636363636,
+            91.12499999999997
+          ],
+          "bbox_px": [
+            756.631,
+            85.104,
+            1182.159,
+            189.844
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "",
+          "bbox": [
+            567.4363636363636,
+            40.85000000000002,
+            598.05,
+            91.12499999999997
+          ],
+          "bbox_px": [
+            1182.159,
+            85.104,
+            1245.938,
+            189.844
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "REGISTERED ORGANIZATIONS \u2014 PROFILE SUMMARIES",
+          "bbox": [
+            44.6,
+            91.12499999999997,
+            567.4363636363636,
+            105.13125000000002
+          ],
+          "bbox_px": [
+            92.917,
+            189.844,
+            1182.159,
+            219.023
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "01 BUSH AND SONS BUSH\n\u201cFrom concept to scale.\u201d\nINDUSTRY Precision Agriculture HEADQUARTERS Lake Steveville, DE\nFOUNDED 1977 EMPLOYEES 1,200\nREVENUE $15,000,000.00 CHIEF EXEC. Robert Butler\nWEBSITE www.bushandsons.com",
+          "bbox": [
+            44.6,
+            105.13125000000002,
+            567.4363636363636,
+            194.41875000000005
+          ],
+          "bbox_px": [
+            92.917,
+            219.023,
+            1182.159,
+            405.039
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 2,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "02 VILLA AND SONS VILL\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY Consumer Robotics HEADQUARTERS Riddleport, OR\nFOUNDED 1974 EMPLOYEES 240\nREVENUE $1,993,000,000.00 CHIEF EXEC. Carol Miller\nWEBSITE www.villaandsons.com",
+          "bbox": [
+            44.6,
+            194.41875000000005,
+            567.4363636363636,
+            283.89374999999995
+          ],
+          "bbox_px": [
+            92.917,
+            405.039,
+            1182.159,
+            591.445
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 3,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "03 BROWN AND SONS BROW\n\u201cFrom concept to scale.\u201d\nINDUSTRY Cybersecurity HEADQUARTERS Melaniemouth, FM\nFOUNDED 1973 EMPLOYEES 520\nREVENUE $1,332,000,000.00 CHIEF EXEC. David Owens\nWEBSITE www.brownandsons.com",
+          "bbox": [
+            44.6,
+            283.89374999999995,
+            567.4363636363636,
+            373.18125
+          ],
+          "bbox_px": [
+            92.917,
+            591.445,
+            1182.159,
+            777.461
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 4,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "04 FRYE-KIDD FRYE\n\u201cPowering the connected world.\u201d\nINDUSTRY Precision Agriculture HEADQUARTERS Wareton, AL\nFOUNDED 1987 EMPLOYEES 15,000\nREVENUE $1,381,000,000.00 CHIEF EXEC. Shelby Faulkner\nWEBSITE www.fryekidd.com",
+          "bbox": [
+            44.6,
+            373.18125,
+            567.4363636363636,
+            466.03125
+          ],
+          "bbox_px": [
+            92.917,
+            777.461,
+            1182.159,
+            970.898
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 5,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "This brochure is provided for general informational purposes only and does not constitute an offer, solicitation, or recommendation regarding any security or financial product.",
+          "bbox": [
+            44.6,
+            466.03125,
+            567.4363636363636,
+            482.25
+          ],
+          "bbox_px": [
+            92.917,
+            970.898,
+            1182.159,
+            1004.688
+          ]
+        }
+      ],
+      "n_fragments": 1,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0009",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 16,
+        "end_page": 16
+      },
+      "header_repeats_each_page": false,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        },
+        {
+          "col_idx": 3
+        }
+      ],
+      "row_count_logical": 3,
+      "cells": [
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "INDUSTRY",
+          "bbox": [
+            52.574999999999996,
+            136.03125,
+            133.671,
+            148.89374999999995
+          ],
+          "bbox_px": [
+            109.531,
+            283.398,
+            278.481,
+            310.195
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Precision Agriculture",
+          "bbox": [
+            133.671,
+            136.03125,
+            306.0,
+            148.89374999999995
+          ],
+          "bbox_px": [
+            278.481,
+            283.398,
+            637.5,
+            310.195
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "HEADQUARTERS",
+          "bbox": [
+            306.0,
+            136.03125,
+            387.096,
+            148.89374999999995
+          ],
+          "bbox_px": [
+            637.5,
+            283.398,
+            806.45,
+            310.195
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Lake Steveville, DE",
+          "bbox": [
+            387.096,
+            136.03125,
+            559.4249999374999,
+            148.89374999999995
+          ],
+          "bbox_px": [
+            806.45,
+            283.398,
+            1165.469,
+            310.195
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "FOUNDED",
+          "bbox": [
+            52.574999999999996,
+            148.89374999999995,
+            133.671,
+            161.75625000000002
+          ],
+          "bbox_px": [
+            109.531,
+            310.195,
+            278.481,
+            336.992
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "1977",
+          "bbox": [
+            133.671,
+            148.89374999999995,
+            306.0,
+            161.75625000000002
+          ],
+          "bbox_px": [
+            278.481,
+            310.195,
+            637.5,
+            336.992
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "EMPLOYEES",
+          "bbox": [
+            306.0,
+            148.89374999999995,
+            387.096,
+            161.75625000000002
+          ],
+          "bbox_px": [
+            637.5,
+            310.195,
+            806.45,
+            336.992
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1,200",
+          "bbox": [
+            387.096,
+            148.89374999999995,
+            559.4249999374999,
+            161.75625000000002
+          ],
+          "bbox_px": [
+            806.45,
+            310.195,
+            1165.469,
+            336.992
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "REVENUE",
+          "bbox": [
+            52.574999999999996,
+            161.75625000000002,
+            133.671,
+            174.61874999999995
+          ],
+          "bbox_px": [
+            109.531,
+            336.992,
+            278.481,
+            363.789
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "$15,000,000.00",
+          "bbox": [
+            133.671,
+            161.75625000000002,
+            306.0,
+            174.61874999999995
+          ],
+          "bbox_px": [
+            278.481,
+            336.992,
+            637.5,
+            363.789
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "CHIEF EXEC.",
+          "bbox": [
+            306.0,
+            161.75625000000002,
+            387.096,
+            174.61874999999995
+          ],
+          "bbox_px": [
+            637.5,
+            336.992,
+            806.45,
+            363.789
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "Robert Butler",
+          "bbox": [
+            387.096,
+            161.75625000000002,
+            559.4249999374999,
+            174.61874999999995
+          ],
+          "bbox_px": [
+            806.45,
+            336.992,
+            1165.469,
+            363.789
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 2,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "WEBSITE",
+          "bbox": [
+            52.574999999999996,
+            174.61874999999995,
+            133.671,
+            187.48125000000005
+          ],
+          "bbox_px": [
+            109.531,
+            363.789,
+            278.481,
+            390.586
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 2,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "www.bushandsons.com",
+          "bbox": [
+            133.671,
+            174.61874999999995,
+            559.4249999374999,
+            187.48125000000005
+          ],
+          "bbox_px": [
+            278.481,
+            363.789,
+            1165.469,
+            390.586
+          ]
+        }
+      ],
+      "n_fragments": 1,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0010",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 16,
+        "end_page": 16
+      },
+      "header_repeats_each_page": false,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        },
+        {
+          "col_idx": 3
+        }
+      ],
+      "row_count_logical": 3,
+      "cells": [
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "INDUSTRY",
+          "bbox": [
+            52.574999999999996,
+            225.50625000000002,
+            133.671,
+            238.36874999999998
+          ],
+          "bbox_px": [
+            109.531,
+            469.805,
+            278.481,
+            496.602
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Consumer Robotics",
+          "bbox": [
+            133.671,
+            225.50625000000002,
+            306.0,
+            238.36874999999998
+          ],
+          "bbox_px": [
+            278.481,
+            469.805,
+            637.5,
+            496.602
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "HEADQUARTERS",
+          "bbox": [
+            306.0,
+            225.50625000000002,
+            387.096,
+            238.36874999999998
+          ],
+          "bbox_px": [
+            637.5,
+            469.805,
+            806.45,
+            496.602
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Riddleport, OR",
+          "bbox": [
+            387.096,
+            225.50625000000002,
+            559.4249999374999,
+            238.36874999999998
+          ],
+          "bbox_px": [
+            806.45,
+            469.805,
+            1165.469,
+            496.602
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "FOUNDED",
+          "bbox": [
+            52.574999999999996,
+            238.36874999999998,
+            133.671,
+            251.23125000000005
+          ],
+          "bbox_px": [
+            109.531,
+            496.602,
+            278.481,
+            523.398
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "1974",
+          "bbox": [
+            133.671,
+            238.36874999999998,
+            306.0,
+            251.23125000000005
+          ],
+          "bbox_px": [
+            278.481,
+            496.602,
+            637.5,
+            523.398
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "EMPLOYEES",
+          "bbox": [
+            306.0,
+            238.36874999999998,
+            387.096,
+            251.23125000000005
+          ],
+          "bbox_px": [
+            637.5,
+            496.602,
+            806.45,
+            523.398
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "240",
+          "bbox": [
+            387.096,
+            238.36874999999998,
+            559.4249999374999,
+            251.23125000000005
+          ],
+          "bbox_px": [
+            806.45,
+            496.602,
+            1165.469,
+            523.398
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "REVENUE",
+          "bbox": [
+            52.574999999999996,
+            251.23125000000005,
+            133.671,
+            264.09375
+          ],
+          "bbox_px": [
+            109.531,
+            523.398,
+            278.481,
+            550.195
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "$1,993,000,000.00",
+          "bbox": [
+            133.671,
+            251.23125000000005,
+            306.0,
+            264.09375
+          ],
+          "bbox_px": [
+            278.481,
+            523.398,
+            637.5,
+            550.195
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "CHIEF EXEC.",
+          "bbox": [
+            306.0,
+            251.23125000000005,
+            387.096,
+            264.09375
+          ],
+          "bbox_px": [
+            637.5,
+            523.398,
+            806.45,
+            550.195
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "Carol Miller",
+          "bbox": [
+            387.096,
+            251.23125000000005,
+            559.4249999374999,
+            264.09375
+          ],
+          "bbox_px": [
+            806.45,
+            523.398,
+            1165.469,
+            550.195
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 2,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "WEBSITE",
+          "bbox": [
+            52.574999999999996,
+            264.09375,
+            133.671,
+            276.95624999999995
+          ],
+          "bbox_px": [
+            109.531,
+            550.195,
+            278.481,
+            576.992
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 2,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "www.villaandsons.com",
+          "bbox": [
+            133.671,
+            264.09375,
+            559.4249999374999,
+            276.95624999999995
+          ],
+          "bbox_px": [
+            278.481,
+            550.195,
+            1165.469,
+            576.992
+          ]
+        }
+      ],
+      "n_fragments": 1,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0011",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 16,
+        "end_page": 16
+      },
+      "header_repeats_each_page": false,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        },
+        {
+          "col_idx": 3
+        }
+      ],
+      "row_count_logical": 3,
+      "cells": [
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "INDUSTRY",
+          "bbox": [
+            52.574999999999996,
+            314.98125000000005,
+            133.671,
+            327.84375
+          ],
+          "bbox_px": [
+            109.531,
+            656.211,
+            278.481,
+            683.008
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Cybersecurity",
+          "bbox": [
+            133.671,
+            314.98125000000005,
+            306.0,
+            327.84375
+          ],
+          "bbox_px": [
+            278.481,
+            656.211,
+            637.5,
+            683.008
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "HEADQUARTERS",
+          "bbox": [
+            306.0,
+            314.98125000000005,
+            387.096,
+            327.84375
+          ],
+          "bbox_px": [
+            637.5,
+            656.211,
+            806.45,
+            683.008
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Melaniemouth, FM",
+          "bbox": [
+            387.096,
+            314.98125000000005,
+            559.4249999374999,
+            327.84375
+          ],
+          "bbox_px": [
+            806.45,
+            656.211,
+            1165.469,
+            683.008
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "FOUNDED",
+          "bbox": [
+            52.574999999999996,
+            327.84375,
+            133.671,
+            340.70624999999995
+          ],
+          "bbox_px": [
+            109.531,
+            683.008,
+            278.481,
+            709.805
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "1973",
+          "bbox": [
+            133.671,
+            327.84375,
+            306.0,
+            340.70624999999995
+          ],
+          "bbox_px": [
+            278.481,
+            683.008,
+            637.5,
+            709.805
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "EMPLOYEES",
+          "bbox": [
+            306.0,
+            327.84375,
+            387.096,
+            340.70624999999995
+          ],
+          "bbox_px": [
+            637.5,
+            683.008,
+            806.45,
+            709.805
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "520",
+          "bbox": [
+            387.096,
+            327.84375,
+            559.4249999374999,
+            340.70624999999995
+          ],
+          "bbox_px": [
+            806.45,
+            683.008,
+            1165.469,
+            709.805
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "REVENUE",
+          "bbox": [
+            52.574999999999996,
+            340.70624999999995,
+            133.671,
+            353.56874999999997
+          ],
+          "bbox_px": [
+            109.531,
+            709.805,
+            278.481,
+            736.602
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "$1,332,000,000.00",
+          "bbox": [
+            133.671,
+            340.70624999999995,
+            306.0,
+            353.56874999999997
+          ],
+          "bbox_px": [
+            278.481,
+            709.805,
+            637.5,
+            736.602
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "CHIEF EXEC.",
+          "bbox": [
+            306.0,
+            340.70624999999995,
+            387.096,
+            353.56874999999997
+          ],
+          "bbox_px": [
+            637.5,
+            709.805,
+            806.45,
+            736.602
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "David Owens",
+          "bbox": [
+            387.096,
+            340.70624999999995,
+            559.4249999374999,
+            353.56874999999997
+          ],
+          "bbox_px": [
+            806.45,
+            709.805,
+            1165.469,
+            736.602
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 2,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "WEBSITE",
+          "bbox": [
+            52.574999999999996,
+            353.56874999999997,
+            133.671,
+            366.43125
+          ],
+          "bbox_px": [
+            109.531,
+            736.602,
+            278.481,
+            763.398
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 2,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "www.brownandsons.com",
+          "bbox": [
+            133.671,
+            353.56874999999997,
+            559.4249999374999,
+            366.43125
+          ],
+          "bbox_px": [
+            278.481,
+            736.602,
+            1165.469,
+            763.398
+          ]
+        }
+      ],
+      "n_fragments": 1,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0012",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 16,
+        "end_page": 17
+      },
+      "header_repeats_each_page": true,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        },
+        {
+          "col_idx": 3
+        }
+      ],
+      "row_count_logical": 4,
+      "cells": [
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "INDUSTRY",
+          "bbox": [
+            52.574999999999996,
+            404.45624999999995,
+            133.671,
+            417.31874999999997
+          ],
+          "bbox_px": [
+            109.531,
+            842.617,
+            278.481,
+            869.414
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Precision Agriculture",
+          "bbox": [
+            133.671,
+            404.45624999999995,
+            306.0,
+            417.31874999999997
+          ],
+          "bbox_px": [
+            278.481,
+            842.617,
+            637.5,
+            869.414
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "HEADQUARTERS",
+          "bbox": [
+            306.0,
+            404.45624999999995,
+            387.096,
+            417.31874999999997
+          ],
+          "bbox_px": [
+            637.5,
+            842.617,
+            806.45,
+            869.414
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Wareton, AL",
+          "bbox": [
+            387.096,
+            404.45624999999995,
+            559.4249999374999,
+            417.31874999999997
+          ],
+          "bbox_px": [
+            806.45,
+            842.617,
+            1165.469,
+            869.414
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "FOUNDED",
+          "bbox": [
+            52.574999999999996,
+            417.31874999999997,
+            133.671,
+            430.18125000000003
+          ],
+          "bbox_px": [
+            109.531,
+            869.414,
+            278.481,
+            896.211
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "1987",
+          "bbox": [
+            133.671,
+            417.31874999999997,
+            306.0,
+            430.18125000000003
+          ],
+          "bbox_px": [
+            278.481,
+            869.414,
+            637.5,
+            896.211
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "EMPLOYEES",
+          "bbox": [
+            306.0,
+            417.31874999999997,
+            387.096,
+            430.18125000000003
+          ],
+          "bbox_px": [
+            637.5,
+            869.414,
+            806.45,
+            896.211
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 0,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "15,000",
+          "bbox": [
+            387.096,
+            417.31874999999997,
+            559.4249999374999,
+            430.18125000000003
+          ],
+          "bbox_px": [
+            806.45,
+            869.414,
+            1165.469,
+            896.211
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "REVENUE",
+          "bbox": [
+            52.574999999999996,
+            430.18125000000003,
+            133.671,
+            443.0437500000001
+          ],
+          "bbox_px": [
+            109.531,
+            896.211,
+            278.481,
+            923.008
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "$1,381,000,000.00",
+          "bbox": [
+            133.671,
+            430.18125000000003,
+            306.0,
+            443.0437500000001
+          ],
+          "bbox_px": [
+            278.481,
+            896.211,
+            637.5,
+            923.008
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "CHIEF EXEC.",
+          "bbox": [
+            306.0,
+            430.18125000000003,
+            387.096,
+            443.0437500000001
+          ],
+          "bbox_px": [
+            637.5,
+            896.211,
+            806.45,
+            923.008
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 1,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "Shelby Faulkner",
+          "bbox": [
+            387.096,
+            430.18125000000003,
+            559.4249999374999,
+            443.0437500000001
+          ],
+          "bbox_px": [
+            806.45,
+            896.211,
+            1165.469,
+            923.008
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 2,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "WEBSITE",
+          "bbox": [
+            52.574999999999996,
+            443.0437500000001,
+            133.671,
+            455.90625
+          ],
+          "bbox_px": [
+            109.531,
+            923.008,
+            278.481,
+            949.805
+          ]
+        },
+        {
+          "page_index": 16,
+          "row_idx": 2,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "www.fryekidd.com",
+          "bbox": [
+            133.671,
+            443.0437500000001,
+            559.4249999374999,
+            455.90625
+          ],
+          "bbox_px": [
+            278.481,
+            923.008,
+            1165.469,
+            949.805
+          ]
+        },
+        {
+          "page_index": 17,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Clark\nCLAR\nInc\n\u201cRelentlessly practical innovation.\u201d\nINDUSTRY HEADQUARTERS\nConsumer Robotics South Michaelville, IL\nFOUNDED EMPLOYEES\n1998 85\nANNUAL REVENUE CHIEF EXECUTIVE\n$551,000,000.00 David Thompson\nWEBSITE\nwww.clarkinc.com",
+          "bbox": [
+            57.6,
+            168.86647575000006,
+            554.4,
+            425.59897574999997
+          ],
+          "bbox_px": [
+            120.0,
+            351.805,
+            1155.0,
+            886.665
+          ]
+        },
+        {
+          "page_index": 17,
+          "row_idx": 3,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Allison-\nALLI\nClay\n\u201cFrom concept to scale.\u201d\nINDUSTRY HEADQUARTERS\nSpecialty Coffee Williamstown, NH\nFOUNDED EMPLOYEES\n1984 240\nANNUAL REVENUE CHIEF EXECUTIVE\n$1,752,000,000.00 Anthony Dixon\nWEBSITE\nwww.allisonclay.com",
+          "bbox": [
+            57.6,
+            425.59897574999997,
+            554.4,
+            682.33147575
+          ],
+          "bbox_px": [
+            120.0,
+            886.665,
+            1155.0,
+            1421.524
+          ]
+        }
+      ],
+      "n_fragments": 2,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0013",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 19,
+        "end_page": 20
+      },
+      "header_repeats_each_page": true,
+      "columns": [
+        {
+          "col_idx": 0
+        }
+      ],
+      "row_count_logical": 2,
+      "cells": [
+        {
+          "page_index": 19,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Lowe-\nLOWE\nFlores\n\u201cPowering the connected world.\u201d\nINDUSTRY HEADQUARTERS\nOutdoor Apparel New Rebecca, MO\nFOUNDED EMPLOYEES\n1989 7,800\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$2,824,000,000.00 Elizabeth Haynes www.loweflores.com",
+          "bbox": [
+            57.6,
+            168.86647575000006,
+            554.4,
+            388.08397575
+          ],
+          "bbox_px": [
+            120.0,
+            351.805,
+            1155.0,
+            808.508
+          ]
+        },
+        {
+          "page_index": 19,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Harris-\nHARR\nRocha\n\u201cSmall details, big outcomes.\u201d\nINDUSTRY HEADQUARTERS\nLogistics South Gailfurt, AL\nFOUNDED EMPLOYEES\n1996 15,000\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$5,889,000,000.00 Michael Osborn www.harrisrocha.com",
+          "bbox": [
+            57.6,
+            388.08397575,
+            554.4,
+            607.30147575
+          ],
+          "bbox_px": [
+            120.0,
+            808.508,
+            1155.0,
+            1265.211
+          ]
+        },
+        {
+          "page_index": 20,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "Bates\nBATE\nPLC\n\u201cEngineering tomorrow, today.\u201d\nINDUSTRY HEADQUARTERS\nPrecision Agriculture West Susan, AL\nFOUNDED EMPLOYEES\n2012 3,400\nANNUAL REVENUE CHIEF EXECUTIVE\n$1,661,000,000.00 Jessica Oneill\nWEBSITE\nwww.batesplc.com",
+          "bbox": [
+            57.599999999999994,
+            54.0,
+            554.4,
+            310.7325
+          ],
+          "bbox_px": [
+            120.0,
+            112.5,
+            1155.0,
+            647.359
+          ]
+        },
+        {
+          "page_index": 20,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "Cochran\nCOCH\nPLC\n\u201cDesigned around you.\u201d\nINDUSTRY HEADQUARTERS\nGourmet Pet Food Thorntonton, MP\nFOUNDED EMPLOYEES\n2013 240\nANNUAL REVENUE CHIEF EXECUTIVE WEBSITE\n$3,574,000,000.00 Theresa Young www.cochranplc.com",
+          "bbox": [
+            57.599999999999994,
+            310.7325,
+            554.4,
+            529.95
+          ],
+          "bbox_px": [
+            120.0,
+            647.359,
+            1155.0,
+            1104.063
+          ]
+        }
+      ],
+      "n_fragments": 2,
+      "flagged": false
+    },
+    {
+      "table_id": "table_0014",
+      "doc_instance_id": "unknown#1",
+      "doctype": "unknown",
+      "page_span": {
+        "start_page": 22,
+        "end_page": 23
+      },
+      "header_repeats_each_page": true,
+      "columns": [
+        {
+          "col_idx": 0
+        },
+        {
+          "col_idx": 1
+        },
+        {
+          "col_idx": 2
+        },
+        {
+          "col_idx": 3
+        },
+        {
+          "col_idx": 4
+        },
+        {
+          "col_idx": 5
+        },
+        {
+          "col_idx": 6
+        },
+        {
+          "col_idx": 7
+        }
+      ],
+      "row_count_logical": 12,
+      "cells": [
+        {
+          "page_index": 22,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "#",
+          "bbox": [
+            0.0,
+            0.0,
+            76.5,
+            113.143
+          ],
+          "bbox_px": [
+            0.0,
+            0.0,
+            159.375,
+            235.715
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Organization",
+          "bbox": [
+            76.5,
+            0.0,
+            153.0,
+            113.143
+          ],
+          "bbox_px": [
+            159.375,
+            0.0,
+            318.75,
+            235.715
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "Industry",
+          "bbox": [
+            153.0,
+            0.0,
+            229.5,
+            113.143
+          ],
+          "bbox_px": [
+            318.75,
+            0.0,
+            478.125,
+            235.715
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Founded",
+          "bbox": [
+            229.5,
+            0.0,
+            306.0,
+            113.143
+          ],
+          "bbox_px": [
+            478.125,
+            0.0,
+            637.5,
+            235.715
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": -1,
+          "col_idx": 4,
+          "is_header": true,
+          "text": "Revenue",
+          "bbox": [
+            306.0,
+            0.0,
+            382.5,
+            113.143
+          ],
+          "bbox_px": [
+            637.5,
+            0.0,
+            796.875,
+            235.715
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": -1,
+          "col_idx": 5,
+          "is_header": true,
+          "text": "Headquarters",
+          "bbox": [
+            382.5,
+            0.0,
+            459.0,
+            113.143
+          ],
+          "bbox_px": [
+            796.875,
+            0.0,
+            956.25,
+            235.715
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": -1,
+          "col_idx": 6,
+          "is_header": true,
+          "text": "Employees",
+          "bbox": [
+            459.0,
+            0.0,
+            535.5,
+            113.143
+          ],
+          "bbox_px": [
+            956.25,
+            0.0,
+            1115.625,
+            235.715
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": -1,
+          "col_idx": 7,
+          "is_header": true,
+          "text": "Chief Executive",
+          "bbox": [
+            535.5,
+            0.0,
+            612.0,
+            113.143
+          ],
+          "bbox_px": [
+            1115.625,
+            0.0,
+            1275.0,
+            235.715
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 0,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "01",
+          "bbox": [
+            0.0,
+            113.143,
+            76.5,
+            226.286
+          ],
+          "bbox_px": [
+            0.0,
+            235.715,
+            159.375,
+            471.429
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 0,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "NGUYEN-HERNANDEZ",
+          "bbox": [
+            76.5,
+            113.143,
+            153.0,
+            226.286
+          ],
+          "bbox_px": [
+            159.375,
+            235.715,
+            318.75,
+            471.429
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 0,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Specialty Coffee",
+          "bbox": [
+            153.0,
+            113.143,
+            229.5,
+            226.286
+          ],
+          "bbox_px": [
+            318.75,
+            235.715,
+            478.125,
+            471.429
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 0,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "2005",
+          "bbox": [
+            229.5,
+            113.143,
+            306.0,
+            226.286
+          ],
+          "bbox_px": [
+            478.125,
+            235.715,
+            637.5,
+            471.429
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 0,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$41,000,000",
+          "bbox": [
+            306.0,
+            113.143,
+            382.5,
+            226.286
+          ],
+          "bbox_px": [
+            637.5,
+            235.715,
+            796.875,
+            471.429
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 0,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "Windsor, LA",
+          "bbox": [
+            382.5,
+            113.143,
+            459.0,
+            226.286
+          ],
+          "bbox_px": [
+            796.875,
+            235.715,
+            956.25,
+            471.429
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 0,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "",
+          "bbox": [
+            459.0,
+            113.143,
+            535.5,
+            226.286
+          ],
+          "bbox_px": [
+            956.25,
+            235.715,
+            1115.625,
+            471.429
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 0,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Channing Clark",
+          "bbox": [
+            535.5,
+            113.143,
+            612.0,
+            226.286
+          ],
+          "bbox_px": [
+            1115.625,
+            235.715,
+            1275.0,
+            471.429
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 1,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "02",
+          "bbox": [
+            0.0,
+            226.286,
+            76.5,
+            339.429
+          ],
+          "bbox_px": [
+            0.0,
+            471.429,
+            159.375,
+            707.144
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 1,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "RIOS-HENSLEY",
+          "bbox": [
+            76.5,
+            226.286,
+            153.0,
+            339.429
+          ],
+          "bbox_px": [
+            159.375,
+            471.429,
+            318.75,
+            707.144
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 1,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Wholesaling",
+          "bbox": [
+            153.0,
+            226.286,
+            229.5,
+            339.429
+          ],
+          "bbox_px": [
+            318.75,
+            471.429,
+            478.125,
+            707.144
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 1,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1976",
+          "bbox": [
+            229.5,
+            226.286,
+            306.0,
+            339.429
+          ],
+          "bbox_px": [
+            478.125,
+            471.429,
+            637.5,
+            707.144
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 1,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$27,000,000",
+          "bbox": [
+            306.0,
+            226.286,
+            382.5,
+            339.429
+          ],
+          "bbox_px": [
+            637.5,
+            471.429,
+            796.875,
+            707.144
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 1,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "West Ewing, NJ",
+          "bbox": [
+            382.5,
+            226.286,
+            459.0,
+            339.429
+          ],
+          "bbox_px": [
+            796.875,
+            471.429,
+            956.25,
+            707.144
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 1,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "",
+          "bbox": [
+            459.0,
+            226.286,
+            535.5,
+            339.429
+          ],
+          "bbox_px": [
+            956.25,
+            471.429,
+            1115.625,
+            707.144
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 1,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Alexandra Davenport",
+          "bbox": [
+            535.5,
+            226.286,
+            612.0,
+            339.429
+          ],
+          "bbox_px": [
+            1115.625,
+            471.429,
+            1275.0,
+            707.144
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 2,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "03",
+          "bbox": [
+            0.0,
+            339.429,
+            76.5,
+            452.571
+          ],
+          "bbox_px": [
+            0.0,
+            707.144,
+            159.375,
+            942.856
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 2,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "HUFFMAN AND SONS",
+          "bbox": [
+            76.5,
+            339.429,
+            153.0,
+            452.571
+          ],
+          "bbox_px": [
+            159.375,
+            707.144,
+            318.75,
+            942.856
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 2,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "International Commerce",
+          "bbox": [
+            153.0,
+            339.429,
+            229.5,
+            452.571
+          ],
+          "bbox_px": [
+            318.75,
+            707.144,
+            478.125,
+            942.856
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 2,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1992",
+          "bbox": [
+            229.5,
+            339.429,
+            306.0,
+            452.571
+          ],
+          "bbox_px": [
+            478.125,
+            707.144,
+            637.5,
+            942.856
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 2,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$80,114,000",
+          "bbox": [
+            306.0,
+            339.429,
+            382.5,
+            452.571
+          ],
+          "bbox_px": [
+            637.5,
+            707.144,
+            796.875,
+            942.856
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 2,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "North Lido, MI",
+          "bbox": [
+            382.5,
+            339.429,
+            459.0,
+            452.571
+          ],
+          "bbox_px": [
+            796.875,
+            707.144,
+            956.25,
+            942.856
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 2,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "2,200",
+          "bbox": [
+            459.0,
+            339.429,
+            535.5,
+            452.571
+          ],
+          "bbox_px": [
+            956.25,
+            707.144,
+            1115.625,
+            942.856
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 2,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Noodle Huffy",
+          "bbox": [
+            535.5,
+            339.429,
+            612.0,
+            452.571
+          ],
+          "bbox_px": [
+            1115.625,
+            707.144,
+            1275.0,
+            942.856
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 3,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "04",
+          "bbox": [
+            0.0,
+            452.571,
+            76.5,
+            565.714
+          ],
+          "bbox_px": [
+            0.0,
+            942.856,
+            159.375,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 3,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "AGUILAR LLC",
+          "bbox": [
+            76.5,
+            452.571,
+            153.0,
+            565.714
+          ],
+          "bbox_px": [
+            159.375,
+            942.856,
+            318.75,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 3,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "",
+          "bbox": [
+            153.0,
+            452.571,
+            229.5,
+            565.714
+          ],
+          "bbox_px": [
+            318.75,
+            942.856,
+            478.125,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 3,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1972",
+          "bbox": [
+            229.5,
+            452.571,
+            306.0,
+            565.714
+          ],
+          "bbox_px": [
+            478.125,
+            942.856,
+            637.5,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 3,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$5,000,000",
+          "bbox": [
+            306.0,
+            452.571,
+            382.5,
+            565.714
+          ],
+          "bbox_px": [
+            637.5,
+            942.856,
+            796.875,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 3,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "Pinecrest, AR",
+          "bbox": [
+            382.5,
+            452.571,
+            459.0,
+            565.714
+          ],
+          "bbox_px": [
+            796.875,
+            942.856,
+            956.25,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 3,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "10",
+          "bbox": [
+            459.0,
+            452.571,
+            535.5,
+            565.714
+          ],
+          "bbox_px": [
+            956.25,
+            942.856,
+            1115.625,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 3,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Allison Browning",
+          "bbox": [
+            535.5,
+            452.571,
+            612.0,
+            565.714
+          ],
+          "bbox_px": [
+            1115.625,
+            942.856,
+            1275.0,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 4,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "05",
+          "bbox": [
+            0.0,
+            565.714,
+            76.5,
+            678.857
+          ],
+          "bbox_px": [
+            0.0,
+            1178.571,
+            159.375,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 4,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "RAMIREZ GROUP",
+          "bbox": [
+            76.5,
+            565.714,
+            153.0,
+            678.857
+          ],
+          "bbox_px": [
+            159.375,
+            1178.571,
+            318.75,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 4,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "",
+          "bbox": [
+            153.0,
+            565.714,
+            229.5,
+            678.857
+          ],
+          "bbox_px": [
+            318.75,
+            1178.571,
+            478.125,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 4,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1984",
+          "bbox": [
+            229.5,
+            565.714,
+            306.0,
+            678.857
+          ],
+          "bbox_px": [
+            478.125,
+            1178.571,
+            637.5,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 4,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$9,800,000",
+          "bbox": [
+            306.0,
+            565.714,
+            382.5,
+            678.857
+          ],
+          "bbox_px": [
+            637.5,
+            1178.571,
+            796.875,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 4,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "Santa Teresa, NM",
+          "bbox": [
+            382.5,
+            565.714,
+            459.0,
+            678.857
+          ],
+          "bbox_px": [
+            796.875,
+            1178.571,
+            956.25,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 4,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "300",
+          "bbox": [
+            459.0,
+            565.714,
+            535.5,
+            678.857
+          ],
+          "bbox_px": [
+            956.25,
+            1178.571,
+            1115.625,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 4,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Jonathan Bradley",
+          "bbox": [
+            535.5,
+            565.714,
+            612.0,
+            678.857
+          ],
+          "bbox_px": [
+            1115.625,
+            1178.571,
+            1275.0,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 5,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "06",
+          "bbox": [
+            0.0,
+            678.857,
+            76.5,
+            792.0
+          ],
+          "bbox_px": [
+            0.0,
+            1414.285,
+            159.375,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 5,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "RODRIGUEZ LLC",
+          "bbox": [
+            76.5,
+            678.857,
+            153.0,
+            792.0
+          ],
+          "bbox_px": [
+            159.375,
+            1414.285,
+            318.75,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 5,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "",
+          "bbox": [
+            153.0,
+            678.857,
+            229.5,
+            792.0
+          ],
+          "bbox_px": [
+            318.75,
+            1414.285,
+            478.125,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 5,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1991",
+          "bbox": [
+            229.5,
+            678.857,
+            306.0,
+            792.0
+          ],
+          "bbox_px": [
+            478.125,
+            1414.285,
+            637.5,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 5,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$19,860,000",
+          "bbox": [
+            306.0,
+            678.857,
+            382.5,
+            792.0
+          ],
+          "bbox_px": [
+            637.5,
+            1414.285,
+            796.875,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 5,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "South Remington, CT",
+          "bbox": [
+            382.5,
+            678.857,
+            459.0,
+            792.0
+          ],
+          "bbox_px": [
+            796.875,
+            1414.285,
+            956.25,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 5,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "40",
+          "bbox": [
+            459.0,
+            678.857,
+            535.5,
+            792.0
+          ],
+          "bbox_px": [
+            956.25,
+            1414.285,
+            1115.625,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 22,
+          "row_idx": 5,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Michelle Ford",
+          "bbox": [
+            535.5,
+            678.857,
+            612.0,
+            792.0
+          ],
+          "bbox_px": [
+            1115.625,
+            1414.285,
+            1275.0,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": -1,
+          "col_idx": 0,
+          "is_header": true,
+          "text": "#",
+          "bbox": [
+            0.0,
+            0.0,
+            68.0,
+            113.143
+          ],
+          "bbox_px": [
+            0.0,
+            0.0,
+            141.667,
+            235.715
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": -1,
+          "col_idx": 1,
+          "is_header": true,
+          "text": "Name",
+          "bbox": [
+            68.0,
+            0.0,
+            136.0,
+            113.143
+          ],
+          "bbox_px": [
+            141.667,
+            0.0,
+            283.333,
+            235.715
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": -1,
+          "col_idx": 2,
+          "is_header": true,
+          "text": "Provider",
+          "bbox": [
+            136.0,
+            0.0,
+            204.0,
+            113.143
+          ],
+          "bbox_px": [
+            283.333,
+            0.0,
+            425.0,
+            235.715
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": -1,
+          "col_idx": 3,
+          "is_header": true,
+          "text": "Founded",
+          "bbox": [
+            204.0,
+            0.0,
+            272.0,
+            113.143
+          ],
+          "bbox_px": [
+            425.0,
+            0.0,
+            566.667,
+            235.715
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": -1,
+          "col_idx": 4,
+          "is_header": true,
+          "text": "Revenue",
+          "bbox": [
+            272.0,
+            0.0,
+            340.0,
+            113.143
+          ],
+          "bbox_px": [
+            566.667,
+            0.0,
+            708.333,
+            235.715
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": -1,
+          "col_idx": 5,
+          "is_header": true,
+          "text": "Employees",
+          "bbox": [
+            340.0,
+            0.0,
+            408.0,
+            113.143
+          ],
+          "bbox_px": [
+            708.333,
+            0.0,
+            850.0,
+            235.715
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": -1,
+          "col_idx": 6,
+          "is_header": true,
+          "text": "Website",
+          "bbox": [
+            408.0,
+            0.0,
+            476.0,
+            113.143
+          ],
+          "bbox_px": [
+            850.0,
+            0.0,
+            991.667,
+            235.715
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": -1,
+          "col_idx": 7,
+          "is_header": true,
+          "text": "Headquarters",
+          "bbox": [
+            476.0,
+            0.0,
+            544.0,
+            113.143
+          ],
+          "bbox_px": [
+            991.667,
+            0.0,
+            1133.333,
+            235.715
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": -1,
+          "col_idx": 8,
+          "is_header": true,
+          "text": "Chief Exec",
+          "bbox": [
+            544.0,
+            0.0,
+            612.0,
+            113.143
+          ],
+          "bbox_px": [
+            1133.333,
+            0.0,
+            1275.0,
+            235.715
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 6,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "01",
+          "bbox": [
+            0.0,
+            113.143,
+            68.0,
+            226.286
+          ],
+          "bbox_px": [
+            0.0,
+            235.715,
+            141.667,
+            471.429
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 6,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "O'BRIEN-COLEMAN",
+          "bbox": [
+            68.0,
+            113.143,
+            136.0,
+            226.286
+          ],
+          "bbox_px": [
+            141.667,
+            235.715,
+            283.333,
+            471.429
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 6,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Provider",
+          "bbox": [
+            136.0,
+            113.143,
+            204.0,
+            226.286
+          ],
+          "bbox_px": [
+            283.333,
+            235.715,
+            425.0,
+            471.429
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 6,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1986",
+          "bbox": [
+            204.0,
+            113.143,
+            272.0,
+            226.286
+          ],
+          "bbox_px": [
+            425.0,
+            235.715,
+            566.667,
+            471.429
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 6,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$11,000,000.00",
+          "bbox": [
+            272.0,
+            113.143,
+            340.0,
+            226.286
+          ],
+          "bbox_px": [
+            566.667,
+            235.715,
+            708.333,
+            471.429
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 6,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "33",
+          "bbox": [
+            340.0,
+            113.143,
+            408.0,
+            226.286
+          ],
+          "bbox_px": [
+            708.333,
+            235.715,
+            850.0,
+            471.429
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 6,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "www.obrien-coleman.com",
+          "bbox": [
+            408.0,
+            113.143,
+            476.0,
+            226.286
+          ],
+          "bbox_px": [
+            850.0,
+            235.715,
+            991.667,
+            471.429
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 6,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Minneapolis, MN",
+          "bbox": [
+            476.0,
+            113.143,
+            544.0,
+            226.286
+          ],
+          "bbox_px": [
+            991.667,
+            235.715,
+            1133.333,
+            471.429
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 6,
+          "col_idx": 8,
+          "is_header": false,
+          "text": "Justin Roush",
+          "bbox": [
+            544.0,
+            113.143,
+            612.0,
+            226.286
+          ],
+          "bbox_px": [
+            1133.333,
+            235.715,
+            1275.0,
+            471.429
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 7,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "02",
+          "bbox": [
+            0.0,
+            226.286,
+            68.0,
+            339.429
+          ],
+          "bbox_px": [
+            0.0,
+            471.429,
+            141.667,
+            707.144
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 7,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "BOYD-STANLEY",
+          "bbox": [
+            68.0,
+            226.286,
+            136.0,
+            339.429
+          ],
+          "bbox_px": [
+            141.667,
+            471.429,
+            283.333,
+            707.144
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 7,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Provider",
+          "bbox": [
+            136.0,
+            226.286,
+            204.0,
+            339.429
+          ],
+          "bbox_px": [
+            283.333,
+            471.429,
+            425.0,
+            707.144
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 7,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1984",
+          "bbox": [
+            204.0,
+            226.286,
+            272.0,
+            339.429
+          ],
+          "bbox_px": [
+            425.0,
+            471.429,
+            566.667,
+            707.144
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 7,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$23,000,000.00",
+          "bbox": [
+            272.0,
+            226.286,
+            340.0,
+            339.429
+          ],
+          "bbox_px": [
+            566.667,
+            471.429,
+            708.333,
+            707.144
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 7,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "41",
+          "bbox": [
+            340.0,
+            226.286,
+            408.0,
+            339.429
+          ],
+          "bbox_px": [
+            708.333,
+            471.429,
+            850.0,
+            707.144
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 7,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "www.boyd-stanley.com",
+          "bbox": [
+            408.0,
+            226.286,
+            476.0,
+            339.429
+          ],
+          "bbox_px": [
+            850.0,
+            471.429,
+            991.667,
+            707.144
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 7,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Lake Montauk, NY",
+          "bbox": [
+            476.0,
+            226.286,
+            544.0,
+            339.429
+          ],
+          "bbox_px": [
+            991.667,
+            471.429,
+            1133.333,
+            707.144
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 7,
+          "col_idx": 8,
+          "is_header": false,
+          "text": "Kimberly Bell",
+          "bbox": [
+            544.0,
+            226.286,
+            612.0,
+            339.429
+          ],
+          "bbox_px": [
+            1133.333,
+            471.429,
+            1275.0,
+            707.144
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 8,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "03",
+          "bbox": [
+            0.0,
+            339.429,
+            68.0,
+            452.571
+          ],
+          "bbox_px": [
+            0.0,
+            707.144,
+            141.667,
+            942.856
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 8,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "FARMER, GARCIA AND SMITH",
+          "bbox": [
+            68.0,
+            339.429,
+            136.0,
+            452.571
+          ],
+          "bbox_px": [
+            141.667,
+            707.144,
+            283.333,
+            942.856
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 8,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Provider",
+          "bbox": [
+            136.0,
+            339.429,
+            204.0,
+            452.571
+          ],
+          "bbox_px": [
+            283.333,
+            707.144,
+            425.0,
+            942.856
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 8,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1994",
+          "bbox": [
+            204.0,
+            339.429,
+            272.0,
+            452.571
+          ],
+          "bbox_px": [
+            425.0,
+            707.144,
+            566.667,
+            942.856
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 8,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$974,000,000.00",
+          "bbox": [
+            272.0,
+            339.429,
+            340.0,
+            452.571
+          ],
+          "bbox_px": [
+            566.667,
+            707.144,
+            708.333,
+            942.856
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 8,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "501",
+          "bbox": [
+            340.0,
+            339.429,
+            408.0,
+            452.571
+          ],
+          "bbox_px": [
+            708.333,
+            707.144,
+            850.0,
+            942.856
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 8,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "www.farmergarciasmith.com",
+          "bbox": [
+            408.0,
+            339.429,
+            476.0,
+            452.571
+          ],
+          "bbox_px": [
+            850.0,
+            707.144,
+            991.667,
+            942.856
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 8,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "South Wayne, AZ",
+          "bbox": [
+            476.0,
+            339.429,
+            544.0,
+            452.571
+          ],
+          "bbox_px": [
+            991.667,
+            707.144,
+            1133.333,
+            942.856
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 8,
+          "col_idx": 8,
+          "is_header": false,
+          "text": "Tim Hale",
+          "bbox": [
+            544.0,
+            339.429,
+            612.0,
+            452.571
+          ],
+          "bbox_px": [
+            1133.333,
+            707.144,
+            1275.0,
+            942.856
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 9,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "04",
+          "bbox": [
+            0.0,
+            452.571,
+            68.0,
+            565.714
+          ],
+          "bbox_px": [
+            0.0,
+            942.856,
+            141.667,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 9,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "MELTON-TOWNSEND",
+          "bbox": [
+            68.0,
+            452.571,
+            136.0,
+            565.714
+          ],
+          "bbox_px": [
+            141.667,
+            942.856,
+            283.333,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 9,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Provider",
+          "bbox": [
+            136.0,
+            452.571,
+            204.0,
+            565.714
+          ],
+          "bbox_px": [
+            283.333,
+            942.856,
+            425.0,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 9,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1985",
+          "bbox": [
+            204.0,
+            452.571,
+            272.0,
+            565.714
+          ],
+          "bbox_px": [
+            425.0,
+            942.856,
+            566.667,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 9,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$12,000,000.00",
+          "bbox": [
+            272.0,
+            452.571,
+            340.0,
+            565.714
+          ],
+          "bbox_px": [
+            566.667,
+            942.856,
+            708.333,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 9,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "17",
+          "bbox": [
+            340.0,
+            452.571,
+            408.0,
+            565.714
+          ],
+          "bbox_px": [
+            708.333,
+            942.856,
+            850.0,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 9,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "www.melton-towns.com",
+          "bbox": [
+            408.0,
+            452.571,
+            476.0,
+            565.714
+          ],
+          "bbox_px": [
+            850.0,
+            942.856,
+            991.667,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 9,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Allentown, PA",
+          "bbox": [
+            476.0,
+            452.571,
+            544.0,
+            565.714
+          ],
+          "bbox_px": [
+            991.667,
+            942.856,
+            1133.333,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 9,
+          "col_idx": 8,
+          "is_header": false,
+          "text": "Brian Flint",
+          "bbox": [
+            544.0,
+            452.571,
+            612.0,
+            565.714
+          ],
+          "bbox_px": [
+            1133.333,
+            942.856,
+            1275.0,
+            1178.571
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 10,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "05",
+          "bbox": [
+            0.0,
+            565.714,
+            68.0,
+            678.857
+          ],
+          "bbox_px": [
+            0.0,
+            1178.571,
+            141.667,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 10,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "RICE-HERRERA",
+          "bbox": [
+            68.0,
+            565.714,
+            136.0,
+            678.857
+          ],
+          "bbox_px": [
+            141.667,
+            1178.571,
+            283.333,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 10,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Provider",
+          "bbox": [
+            136.0,
+            565.714,
+            204.0,
+            678.857
+          ],
+          "bbox_px": [
+            283.333,
+            1178.571,
+            425.0,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 10,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "1995",
+          "bbox": [
+            204.0,
+            565.714,
+            272.0,
+            678.857
+          ],
+          "bbox_px": [
+            425.0,
+            1178.571,
+            566.667,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 10,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$1,500,000.00",
+          "bbox": [
+            272.0,
+            565.714,
+            340.0,
+            678.857
+          ],
+          "bbox_px": [
+            566.667,
+            1178.571,
+            708.333,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 10,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "11",
+          "bbox": [
+            340.0,
+            565.714,
+            408.0,
+            678.857
+          ],
+          "bbox_px": [
+            708.333,
+            1178.571,
+            850.0,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 10,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "www.rice-herrera.com",
+          "bbox": [
+            408.0,
+            565.714,
+            476.0,
+            678.857
+          ],
+          "bbox_px": [
+            850.0,
+            1178.571,
+            991.667,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 10,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Evanston, NY",
+          "bbox": [
+            476.0,
+            565.714,
+            544.0,
+            678.857
+          ],
+          "bbox_px": [
+            991.667,
+            1178.571,
+            1133.333,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 10,
+          "col_idx": 8,
+          "is_header": false,
+          "text": "Isabela Thoma",
+          "bbox": [
+            544.0,
+            565.714,
+            612.0,
+            678.857
+          ],
+          "bbox_px": [
+            1133.333,
+            1178.571,
+            1275.0,
+            1414.285
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 11,
+          "col_idx": 0,
+          "is_header": false,
+          "text": "06",
+          "bbox": [
+            0.0,
+            678.857,
+            68.0,
+            792.0
+          ],
+          "bbox_px": [
+            0.0,
+            1414.285,
+            141.667,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 11,
+          "col_idx": 1,
+          "is_header": false,
+          "text": "HODGES, THOMAS AND ADAMS",
+          "bbox": [
+            68.0,
+            678.857,
+            136.0,
+            792.0
+          ],
+          "bbox_px": [
+            141.667,
+            1414.285,
+            283.333,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 11,
+          "col_idx": 2,
+          "is_header": false,
+          "text": "Provider",
+          "bbox": [
+            136.0,
+            678.857,
+            204.0,
+            792.0
+          ],
+          "bbox_px": [
+            283.333,
+            1414.285,
+            425.0,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 11,
+          "col_idx": 3,
+          "is_header": false,
+          "text": "2000",
+          "bbox": [
+            204.0,
+            678.857,
+            272.0,
+            792.0
+          ],
+          "bbox_px": [
+            425.0,
+            1414.285,
+            566.667,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 11,
+          "col_idx": 4,
+          "is_header": false,
+          "text": "$45,000,000.00",
+          "bbox": [
+            272.0,
+            678.857,
+            340.0,
+            792.0
+          ],
+          "bbox_px": [
+            566.667,
+            1414.285,
+            708.333,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 11,
+          "col_idx": 5,
+          "is_header": false,
+          "text": "54",
+          "bbox": [
+            340.0,
+            678.857,
+            408.0,
+            792.0
+          ],
+          "bbox_px": [
+            708.333,
+            1414.285,
+            850.0,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 11,
+          "col_idx": 6,
+          "is_header": false,
+          "text": "www.hodgesthomasadams.com",
+          "bbox": [
+            408.0,
+            678.857,
+            476.0,
+            792.0
+          ],
+          "bbox_px": [
+            850.0,
+            1414.285,
+            991.667,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 11,
+          "col_idx": 7,
+          "is_header": false,
+          "text": "Deerfield, MA",
+          "bbox": [
+            476.0,
+            678.857,
+            544.0,
+            792.0
+          ],
+          "bbox_px": [
+            991.667,
+            1414.285,
+            1133.333,
+            1650.0
+          ]
+        },
+        {
+          "page_index": 23,
+          "row_idx": 11,
+          "col_idx": 8,
+          "is_header": false,
+          "text": "Pax Aguilar",
+          "bbox": [
+            544.0,
+            678.857,
+            612.0,
+            792.0
+          ],
+          "bbox_px": [
+            1133.333,
+            1414.285,
+            1275.0,
+            1650.0
+          ]
+        }
+      ],
+      "n_fragments": 2,
+      "flagged": false
+    }
+  ],
+  "charts": [],
+  "cascade": {
+    "classification": {
+      "total_pages": 24,
+      "heuristic": 0,
+      "carry_forward": 0,
+      "llm_calls": 24,
+      "escalation_rate": 1.0,
+      "escalation_pct": "100.0%",
+      "estimated_cost_usd": 0.0039,
+      "cost_per_page_usd": 0.000162
+    },
+    "stitch": {
+      "total_pairs": 15,
+      "auto_merge": 8,
+      "auto_merge_pct": "53.3%",
+      "auto_reject": 7,
+      "llm_calls": 0,
+      "escalation_rate": 0.0,
+      "escalation_pct": "0.0%",
+      "flagged": 0,
+      "estimated_cost_usd": 0.0
+    },
+    "total_cost_usd": 0.0039
+  }
+}

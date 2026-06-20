@@ -1,0 +1,155 @@
+[pipeline] PDF:    results/doc_014/package.pdf
+[pipeline] Output: results/doc_014/pipeline_output.json
+
+============================================================
+  STAGE 1 / 5 — EXTRACTION
+============================================================
+[extract] Pass 1 — pdfplumber  (/Users/saipranav/Documents/GitHub/infrx-comp-noobda/pagination-test/doc_014.pdf)
+[extract] Pass 1 done in 0.3s — digital=6, scanned=12, fragments=20
+[extract] Pass 2 — AsyncVLM (OpenAI GPT-4o-mini)  12 pages  concurrency=12  model=gpt-4o-mini
+[extract]   Rendering 12 scanned pages...
+[extract]   Render 1/12  5.2 pages/s  ETA 2s
+[extract]   Render 7/12  10.6 pages/s  ETA 0s
+[extract]   Render 8/12  10.4 pages/s  ETA 0s
+[extract]   Render 12/12  10.6 pages/s  ETA 0s
+[extract]   Rendered 12 pages in 1.1s
+[extract]   Triage (0.4s): 8 pages need tables, 4 OCR-only (lightweight)
+[extract]   VLM  10/12  1.3 pages/s  ETA 2s
+[extract]   VLM  12/12  1.3 pages/s  ETA 0s
+[extract] Pass 2 done in 10.8s — 7 fragments from 12/12 pages
+[extract] Complete — 18 pages in 11.1s  (1.6 pages/s)
+          fragments=27  cells=500  digital=6  scanned=12
+  => 18 pages, 27 fragments extracted
+
+============================================================
+  STAGE 2 / 5 — CLASSIFICATION
+============================================================
+[classify] 18 pages — heuristic: 0 | carry_forward: 0 | llm (parallel): 18 (100% hit model)
+  => doc_type distribution: {"unknown": 16, "filler": 2}
+  => LLM escalations: 18/18 (100.0%)  est. cost: $0.00293
+
+============================================================
+  STAGE 3 / 5 — SEGMENTATION
+============================================================
+  => 5 document instances found
+     unknown#1                       pages 0–8  (9 pages)
+     filler#1                        pages 9–9  (1 pages)
+     unknown#2                       pages 10–10  (1 pages)
+     filler#2                        pages 11–11  (1 pages)
+     unknown#3                       pages 12–17  (6 pages)
+
+============================================================
+  STAGE 4 / 5 — STITCHING  (PTT — per-instance, O(n))
+============================================================
+  => 24 logical table threads from 27 fragments
+  => LLM arbitrations: 0/18 (0.0%)  est. cost: $0.00000
+
+============================================================
+  STAGE 5 / 5 — RENDER
+============================================================
+
+============================================================
+  DEMO — BEFORE (raw page stream)
+============================================================
+  p000 [S]  unknown                    tables: table_0000
+  p001 [D]  unknown                    tables: table_0000
+  p002 [D]  unknown                    tables: table_0000
+  p003 [D]  unknown                    tables: -
+  p004 [S]  unknown                    tables: table_0001
+  p005 [S]  unknown                    tables: -
+  p006 [S]  unknown                    tables: -
+  p007 [S]  unknown                    tables: table_0002
+  p008 [S]  unknown                    tables: -
+  p009 [S]  filler                     tables: table_0022
+  p010 [D]  unknown                    tables: table_0003,table_0004,table_0005,table_0006,table_0007,table_0008
+  p011 [S]  filler                     tables: table_0023
+  p012 [D]  unknown                    tables: table_0009,table_0010,table_0011,table_0012,table_0013
+  p013 [S]  unknown                    tables: table_0013
+  p014 [S]  unknown                    tables: -
+  p015 [S]  unknown                    tables: table_0014
+  p016 [S]  unknown                    tables: -
+  p017 [D]  unknown                    tables: table_0015,table_0016,table_0017,table_0018,table_0019,table_0020,table_0021
+
+============================================================
+  DEMO — AFTER (structured documents)
+============================================================
+  unknown#1                            p0–p8  (9 pages)
+  filler#1                             p9–p9  (1 pages)
+  unknown#2                            p10–p10  (1 pages)
+  filler#2                             p11–p11  (1 pages)
+  unknown#3                            p12–p17  (6 pages)
+
+============================================================
+  STITCHED TABLES (24 logical tables)
+============================================================
+  table_0000    p0–p2     8 rows  unknown                    (3 fragments stitched)
+  table_0001    p4–p4     3 rows  unknown                  
+  table_0002    p7–p7     2 rows  unknown                  
+  table_0003    p10–p10     7 rows  unknown                  
+  table_0004    p10–p10     3 rows  unknown                  
+  table_0005    p10–p10     3 rows  unknown                  
+  table_0006    p10–p10     3 rows  unknown                  
+  table_0007    p10–p10     3 rows  unknown                  
+  table_0008    p10–p10     3 rows  unknown                  
+  table_0009    p12–p12     6 rows  unknown                  
+  table_0010    p12–p12     3 rows  unknown                  
+  table_0011    p12–p12     3 rows  unknown                  
+  table_0012    p12–p12     3 rows  unknown                  
+  table_0013    p12–p13     8 rows  unknown                    (2 fragments stitched)
+  table_0014    p15–p15     3 rows  unknown                  
+  table_0015    p17–p17     8 rows  unknown                  
+  table_0016    p17–p17     3 rows  unknown                  
+  table_0017    p17–p17     3 rows  unknown                  
+  table_0018    p17–p17     3 rows  unknown                  
+  table_0019    p17–p17     3 rows  unknown                  
+  table_0020    p17–p17     3 rows  unknown                  
+  table_0021    p17–p17     3 rows  unknown                  
+  table_0022    p9–p9     6 rows  filler                   
+  table_0023    p11–p11     3 rows  filler                   
+
+
+  => Pipeline complete in 14.2s  (1.3 pages/s)
+
+=======================================================
+  CASCADE CONTROLLER — Cost & Escalation Report
+=======================================================
+
+  CLASSIFICATION  (18 pages)
+    Heuristic (free):        0  pages
+    Carry-forward (free):    0  pages
+    LLM escalated:          18  pages  (100.0%)
+    Estimated cost:       $0.00293
+
+  TABLE STITCHING  (18 fragment pairs)
+    Auto-merge (P>0.9):      3  pairs  (16.7%)
+    Auto-reject (P<0.3):    15  pairs
+    LLM arbiter:             0  pairs  (0.0%)
+    Estimated cost:       $0.00000
+
+  TOTAL ESTIMATED COST:  $0.00293
+
+  Cascade pattern: FrugalGPT (Chen et al. 2023)
+  Cheap-first, LLM only on uncertain edges
+=======================================================
+
+
+======================================================================
+  DOCUMENT SUMMARY — Pipeline Output
+======================================================================
+  #    DOC TYPE                       PAGES           COUNT  ATTR
+----------------------------------------------------------------------
+  1    unknown                        p0 – p8         9      
+  2    filler                         p9              1      
+  3    unknown                        p10             1      
+  4    filler                         p11             1      
+  5    unknown                        p12 – p17       6      
+
+  Total: 5 documents, 18 pages, 2 unique types
+----------------------------------------------------------------------
+  TYPE                           INSTANCES    PAGES   
+----------------------------------------------------------------------
+  unknown                        3            16      
+  filler                         2            2       
+======================================================================
+
+[pipeline] Saved → results/doc_014/pipeline_output.json  (243 KB)
