@@ -306,31 +306,45 @@ def classify_heuristic(text: str) -> dict:
 # ── 3. LLM classification (sync + async) ─────────────────────────────────────
 
 _LLM_MODEL = "claude-haiku-4-5-20251001"
-_MAX_TEXT   = 600   # chars sent to LLM — enough for classification, cheap
+_MAX_TEXT   = 1200  # increased from 600 — more context = better accuracy on ambiguous pages
 
-_SYSTEM = (
-    "You classify pages from US mortgage loan files. "
-    "Reply with ONLY a JSON object — no markdown, no explanation."
-)
+_SYSTEM = """\
+You are a document classifier for US mortgage loan files.
+You classify individual pages by their CONTENT and STRUCTURE — not by specific keywords,
+because the same document type can come from many different banks, lenders, and formats.
+
+Reply with ONLY a JSON object. No markdown. No explanation."""
 
 _USER_TMPL = """\
-Classify this page from a US mortgage loan file.
+Classify this page. Choose the best match from:
 
-Known types: {types}
+  APPLICATION:    urla_1003, form_1008
+  DISCLOSURES:    loan_estimate, closing_disclosure
+  INCOME:         paystub, w2, voe, form_1040, schedule_1, schedule_c
+  ASSETS:         bank_stmt_checking, bank_stmt_combo, brokerage_stmt, check_image, deposit_receipt
+  CREDIT:         credit_report
+  UNDERWRITING:   du_findings, lpa_feedback, loan_summary
+  PROPERTY:       purchase_contract, purchase_addendum, options_addendum, insurance_declaration
+  MISC:           email_correspondence, letter_of_explanation, gift_letter, filler
 
-Examples of hard cases:
-- A page showing "Date Description Withdrawals Deposits Balance" rows with no bank name → bank_stmt_checking (continuation page)
-- A page with "AMEX $13200 revolving $396/mo" liability rows → urla_1003 (URLA liability table)
-- A page with "Symbol Shares Price Value" stock rows → brokerage_stmt
-- A page that is mostly blank or just has a section title → filler
-- A page with "Gross Pay YTD Federal Tax" columns → paystub
+How to classify by STRUCTURE (not keywords):
+- Transaction rows (date/desc/amount/balance columns) with no document header → bank_stmt_checking
+- Liability table rows (creditor/account type/unpaid balance/monthly payment) → urla_1003
+- Stock/portfolio rows (symbol/shares/price/value) → brokerage_stmt
+- Earnings columns (gross/net/YTD/federal tax/state tax) → paystub
+- Two-column tax form with box numbers → w2
+- Multi-page legal form with numbered fields and checkboxes → urla_1003 or form_1008
+- Dense regulatory text with no tables (privacy notice, ECOA, disclosures) → filler
+- Mostly blank or just a section title → filler
+- Loan terms table + projected payments table → loan_estimate
+- Final closing cost breakdown with cash-to-close → closing_disclosure
 
-Page text:
+Page text (first {max_chars} chars):
 ---
 {text}
 ---
 
-JSON only: {{"doc_type": "<type>", "confidence": <0.0-1.0>}}"""
+JSON only: {{"doc_type": "<type>", "confidence": <0.0–1.0>, "reasoning": "<one line>"}}"""
 
 
 def _parse_llm_response(raw: str) -> dict:
@@ -352,10 +366,10 @@ def classify_llm_sync(text: str) -> dict:
     client = Anthropic()
     msg = client.messages.create(
         model=_LLM_MODEL,
-        max_tokens=64,
+        max_tokens=128,
         system=_SYSTEM,
         messages=[{"role": "user", "content": _USER_TMPL.format(
-            types=", ".join(KNOWN_TYPES),
+            max_chars=_MAX_TEXT,
             text=text[:_MAX_TEXT],
         )}],
     )
@@ -367,10 +381,10 @@ async def _classify_llm_async(client: AsyncAnthropic, text: str, sem: asyncio.Se
     async with sem:
         msg = await client.messages.create(
             model=_LLM_MODEL,
-            max_tokens=64,
+            max_tokens=128,
             system=_SYSTEM,
             messages=[{"role": "user", "content": _USER_TMPL.format(
-                types=", ".join(KNOWN_TYPES),
+                max_chars=_MAX_TEXT,
                 text=text[:_MAX_TEXT],
             )}],
         )
