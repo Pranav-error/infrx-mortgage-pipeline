@@ -5,7 +5,6 @@ __pycache__/
 .env
 .DS_Store
 FAQ.md
-EXPLANATION.md
 test_2000pages.pdf
 test_2000pages_output.json
 results/*/run.log
