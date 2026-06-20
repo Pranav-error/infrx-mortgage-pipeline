@@ -226,6 +226,152 @@ def _write_output_pdf(
 
 
 # ---------------------------------------------------------------------------
+# Document summary — normal + comparison modes
+# ---------------------------------------------------------------------------
+
+def _print_document_summary(doc_instances):
+    """Print a clean summary of detected documents (no ground truth needed)."""
+    print("\n" + "=" * 70)
+    print("  DOCUMENT SUMMARY — Pipeline Output")
+    print("=" * 70)
+    print(f"  {'#':<4} {'DOC TYPE':<30} {'PAGES':<15} {'COUNT':<6} ATTR")
+    print("-" * 70)
+    for i, inst in enumerate(doc_instances, 1):
+        if inst.start_page == inst.end_page:
+            page_range = f"p{inst.start_page}"
+        else:
+            page_range = f"p{inst.start_page} – p{inst.end_page}"
+        attr = f"[{inst.distinguishing_attr}]" if inst.distinguishing_attr else ""
+        print(f"  {i:<4} {inst.doc_type:<30} {page_range:<15} {inst.page_count:<6} {attr}")
+
+    # Type summary
+    type_counts: dict[str, int] = {}
+    type_pages: dict[str, int] = {}
+    for inst in doc_instances:
+        type_counts[inst.doc_type] = type_counts.get(inst.doc_type, 0) + 1
+        type_pages[inst.doc_type] = type_pages.get(inst.doc_type, 0) + inst.page_count
+
+    print(f"\n  Total: {len(doc_instances)} documents, "
+          f"{sum(type_pages.values())} pages, "
+          f"{len(type_counts)} unique types")
+    print("-" * 70)
+    print(f"  {'TYPE':<30} {'INSTANCES':<12} {'PAGES':<8}")
+    print("-" * 70)
+    for dt in sorted(type_counts, key=lambda x: -type_pages[x]):
+        print(f"  {dt:<30} {type_counts[dt]:<12} {type_pages[dt]:<8}")
+    print("=" * 70)
+
+
+def _print_comparison_summary(doc_instances, labels_path: str):
+    """
+    Compare pipeline output against ground truth labels.json.
+    Prints side-by-side comparison + accuracy stats.
+    """
+    try:
+        with open(labels_path) as f:
+            labels = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return
+
+    # Build ground truth: page_index → doc_type
+    gt_pages: dict[int, str] = {}
+    for p in labels.get("pages", []):
+        gt_pages[p["page_index"]] = p["doc_type"]
+
+    # Build ground truth document instances
+    gt_docs = labels.get("documents", [])
+
+    # Build pipeline: page_index → doc_type
+    pred_pages: dict[int, str] = {}
+    for inst in doc_instances:
+        for pi in range(inst.start_page, inst.end_page + 1):
+            pred_pages[pi] = inst.doc_type
+
+    # Page-level accuracy
+    total_pages = len(gt_pages)
+    correct = sum(1 for pi in gt_pages if gt_pages[pi] == pred_pages.get(pi))
+
+    print("\n" + "=" * 70)
+    print("  COMPARISON — Pipeline vs Ground Truth")
+    print("=" * 70)
+
+    # Document-level comparison
+    print(f"\n  {'GROUND TRUTH':<35} {'PIPELINE OUTPUT':<35}")
+    print("-" * 70)
+
+    gt_idx = 0
+    pred_idx = 0
+    gt_doc_list = sorted(gt_docs, key=lambda d: d.get("start_page", d.get("order_index", 0)))
+    pred_doc_list = list(doc_instances)
+
+    # Walk through pages and show documents side by side
+    all_pages = sorted(set(list(gt_pages.keys()) + list(pred_pages.keys())))
+    shown_gt = set()
+    shown_pred = set()
+
+    for inst_gt in gt_doc_list:
+        sp = inst_gt.get("start_page", 0)
+        ep = inst_gt.get("end_page", sp)
+        gt_type = inst_gt.get("key", inst_gt.get("doc_type", "?"))
+        gt_str = f"{gt_type} (p{sp}-p{ep})"
+
+        # Find matching pipeline doc(s) for this page range
+        matched_preds = []
+        for inst_p in pred_doc_list:
+            if inst_p.start_page <= ep and inst_p.end_page >= sp:
+                if id(inst_p) not in shown_pred:
+                    matched_preds.append(inst_p)
+
+        if matched_preds:
+            first = matched_preds[0]
+            shown_pred.add(id(first))
+            pred_str = f"{first.doc_type} (p{first.start_page}-p{first.end_page})"
+
+            # Check match
+            pages_in_gt = set(range(sp, ep + 1))
+            pages_correct = sum(1 for pi in pages_in_gt if gt_pages.get(pi) == pred_pages.get(pi))
+            if pages_correct == len(pages_in_gt):
+                mark = "  OK"
+            else:
+                mark = f"  MISS ({pages_correct}/{len(pages_in_gt)})"
+
+            print(f"  {gt_str:<35} {pred_str:<30} {mark}")
+
+            # Show extra predictions if the pipeline split this doc
+            for extra in matched_preds[1:]:
+                shown_pred.add(id(extra))
+                pred_str2 = f"{extra.doc_type} (p{extra.start_page}-p{extra.end_page})"
+                print(f"  {'':<35} {pred_str2:<30}   ^split")
+        else:
+            print(f"  {gt_str:<35} {'--- MISSING ---':<30}   MISS")
+
+    # Per-type accuracy
+    type_stats: dict[str, dict] = {}
+    for pi in gt_pages:
+        gt = gt_pages[pi]
+        pred = pred_pages.get(pi, "???")
+        if gt not in type_stats:
+            type_stats[gt] = {"correct": 0, "total": 0, "wrong_as": {}}
+        type_stats[gt]["total"] += 1
+        if pred == gt:
+            type_stats[gt]["correct"] += 1
+        else:
+            type_stats[gt]["wrong_as"][pred] = type_stats[gt]["wrong_as"].get(pred, 0) + 1
+
+    print(f"\n  PAGE-LEVEL ACCURACY: {correct}/{total_pages} ({100*correct/total_pages:.1f}%)")
+    print("-" * 70)
+    print(f"  {'DOC TYPE':<28} {'CORRECT':>8} {'TOTAL':>6} {'ACC':>6}  CONFUSED AS")
+    print("-" * 70)
+    for dt in sorted(type_stats, key=lambda x: -type_stats[x]["total"]):
+        s = type_stats[dt]
+        acc = 100 * s["correct"] / s["total"] if s["total"] else 0
+        confused = ", ".join(f"{p}({n})" for p, n in sorted(s["wrong_as"].items(), key=lambda x: -x[1]))
+        flag = "" if acc >= 80 else " <--"
+        print(f"  {dt:<28} {s['correct']:>7}/{s['total']:<5} {acc:>5.0f}%  {confused}{flag}")
+    print("=" * 70)
+
+
+# ---------------------------------------------------------------------------
 # Core pipeline
 # ---------------------------------------------------------------------------
 
@@ -237,6 +383,7 @@ def run_pipeline(
     use_llm_stitcher: bool = True,
     jumbled: bool = False,
     output_pdf: str | None = None,
+    labels_path: str | None = None,
 ) -> dict:
     """
     Run the full pipeline on a single PDF.
@@ -478,6 +625,15 @@ def run_pipeline(
     cascade.print_summary()
 
     # ------------------------------------------------------------------ #
+    # Summary — always printed                                            #
+    # ------------------------------------------------------------------ #
+    _print_document_summary(doc_instances)
+
+    # Comparison with ground truth (if labels.json exists)
+    if labels_path and Path(labels_path).exists():
+        _print_comparison_summary(doc_instances, labels_path)
+
+    # ------------------------------------------------------------------ #
     # Output PDF (optional)                                               #
     # ------------------------------------------------------------------ #
     if output_pdf:
@@ -535,6 +691,13 @@ def main():
     print(f"[pipeline] PDF:    {pdf_path}")
     print(f"[pipeline] Output: {out_path}")
 
+    # Auto-detect labels.json for comparison mode
+    labels_file = None
+    if args.pkg:
+        lp = pkg_dir / "labels.json"
+        if lp.exists():
+            labels_file = str(lp)
+
     result = run_pipeline(
         pdf_path             = pdf_path,
         api_key              = args.api_key,
@@ -542,6 +705,7 @@ def main():
         use_llm_stitcher     = not args.no_stitch_llm,
         jumbled              = args.jumbled,
         output_pdf           = args.output_pdf,
+        labels_path          = labels_file,
     )
 
     out_file = Path(out_path)
