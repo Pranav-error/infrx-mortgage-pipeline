@@ -1,0 +1,24 @@
+Package:      pkg_000000
+PDF:          package.pdf  (61.9 MB)
+Elapsed:      3148.6s
+
+=== Extraction results ===
+  Pages processed:              200
+  Digital (pdfplumber):         52
+  Scanned (VLM / skipped):      148
+  Total fragments:              226
+    from pdfplumber:            75
+    from VLM:                   151
+  Pages with >= 1 fragment:     167
+
+=== vs Ground Truth (labels.json) ===
+  total pages                         OK
+  digital pages                       OK
+  scanned pages                       OK
+  pages with tables                   DIFF (got 167, expected 187)
+  fragments extracted                 226  (GT has 60 logical tables, 20 span multiple pages)
+
+=== Ground Truth reference ===
+  Document instances:           46
+  Logical tables total:         60
+  Multi-page tables:            20

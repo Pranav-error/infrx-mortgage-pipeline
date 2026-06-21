@@ -1,0 +1,1202 @@
+{
+  "package_id": "pkg_000017",
+  "total_pages": 166,
+  "qa": [
+    {
+      "id": "q001",
+      "question": "The single largest holding shown on the brokerage statement's asset-allocation chart — how many shares of it does the account hold per the holdings table?",
+      "question_rephrased": "Per the holdings table, how many shares are held of whichever position is the biggest slice on the brokerage statement's asset-allocation chart?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same multi-hop intent (largest slice -> share count); reworded; answer 164 still applies.",
+      "answer": "164",
+      "answer_type": "number",
+      "kind": "multi_hop_graph",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 3,
+          "bbox": [
+            43.199999999999996,
+            43.199999999999996,
+            503.19999999999993,
+            379.35384615384606
+          ],
+          "doc_type": "brokerage_stmt",
+          "chart_id": "brokerage_stmt:asset_mix",
+          "chart_kind": "donut",
+          "bbox_chart_px": [
+            346.45,
+            97.32,
+            498.59,
+            386.64
+          ],
+          "element_key": "VMFXX",
+          "element_label": "VMFXX (Vanguard Federal Money Market Fund)"
+        },
+        {
+          "page_index": 3,
+          "bbox": [
+            372.89,
+            418.68,
+            385.96,
+            427.43
+          ],
+          "doc_type": "brokerage_stmt"
+        }
+      ]
+    },
+    {
+      "id": "q002",
+      "question": "How many pages does the single longest document in this file span?",
+      "question_rephrased": "Across all documents in this file, what is the page count of the one that runs the longest?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (longest document's page span); reworded; answer 42 unchanged.",
+      "answer": "42",
+      "answer_type": "count",
+      "kind": "structure",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 48,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q003",
+      "question": "What is the borrower's mother's maiden name?",
+      "question_rephrased": "Can you tell me the maiden name of the borrower's mother?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same referent (mother's maiden name); reworded; remains unanswerable.",
+      "answer": "Not in file",
+      "answer_type": "unanswerable",
+      "kind": "unanswerable",
+      "difficulty": "hard",
+      "answerable": false,
+      "evidence": []
+    },
+    {
+      "id": "q004",
+      "question": "What is the average total-deposits figure per checking statement in the file?",
+      "question_rephrased": "Averaged across the checking statements in the file, what does the total-deposits amount come to per statement?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (average total-deposits per checking statement); reworded; answer unchanged.",
+      "answer": "$1,184,489.47",
+      "answer_type": "currency",
+      "kind": "aggregation",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 8,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 9,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 10,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 11,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 48,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 49,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 50,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 51,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 122,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 123,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 124,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 125,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q005",
+      "question": "On what date does the bank statement's daily-balance chart reach its lowest point?",
+      "question_rephrased": "Looking at the daily-balance chart on the bank statement, which date marks the trough where the balance bottoms out?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (date of lowest point on daily-balance chart); reworded; same evidence/answer.",
+      "answer": "2023-02-12",
+      "answer_type": "date",
+      "kind": "plot_reading",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 122,
+          "bbox": [
+            36.0,
+            190.72499999999997,
+            536.0,
+            376.43928571428563
+          ],
+          "doc_type": "bank_stmt_checking",
+          "chart_id": "bank_stmt_checking#1:daily_balance",
+          "chart_kind": "line",
+          "bbox_chart_px": [
+            227.62,
+            176.34,
+            235.62,
+            184.34
+          ],
+          "element_key": "2023-02-12",
+          "element_label": "Feb 12"
+        }
+      ]
+    },
+    {
+      "id": "q006",
+      "question": "What was the subject property's prior sale price?",
+      "question_rephrased": "At what price was the subject property previously sold?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (prior sale price of subject property); reworded; remains unanswerable.",
+      "answer": "Not in file",
+      "answer_type": "unanswerable",
+      "kind": "unanswerable",
+      "difficulty": "hard",
+      "answerable": false,
+      "evidence": []
+    },
+    {
+      "id": "q007",
+      "question": "On how many documents (urla 1003, form 1008, closing disclosure, loan estimate) does the loan amount appear?",
+      "question_rephrased": "Counting among the URLA 1003, Form 1008, Closing Disclosure, and Loan Estimate, on how many of these documents is the loan amount stated?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same doc set and intent (count of docs showing loan amount); reworded; answer 4 unchanged.",
+      "answer": "4",
+      "answer_type": "count",
+      "kind": "multi_hop",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 107,
+          "bbox": [
+            142.31,
+            457.51,
+            185.88,
+            466.26
+          ],
+          "doc_type": "urla_1003"
+        },
+        {
+          "page_index": 97,
+          "bbox": [
+            247.49,
+            205.21,
+            291.06,
+            213.96
+          ],
+          "doc_type": "form_1008"
+        },
+        {
+          "page_index": 94,
+          "bbox": [
+            322.8,
+            228.58,
+            370.96,
+            238.26
+          ],
+          "doc_type": "closing_disclosure"
+        },
+        {
+          "page_index": 110,
+          "bbox": [
+            226.5,
+            191.7,
+            269.84,
+            200.4
+          ],
+          "doc_type": "loan_estimate"
+        }
+      ]
+    },
+    {
+      "id": "q008",
+      "question": "What is the combined total of deposits across all checking statements?",
+      "question_rephrased": "If you add up the deposits from every checking statement, what is the aggregate figure?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (combined total of deposits across checking statements); reworded; answer unchanged.",
+      "answer": "$3,553,468.41",
+      "answer_type": "currency",
+      "kind": "aggregation",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 8,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 9,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 10,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 11,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 48,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 49,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 50,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 51,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 122,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 123,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 124,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 125,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q009",
+      "question": "On the EARLIEST paystub in the file, what is the gross pay for that period?",
+      "question_rephrased": "Taking the EARLIEST paystub found in the file, what were the gross earnings reported for that pay period?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (gross pay for the period on the earliest paystub); reworded; answer unchanged.",
+      "answer": "$18,000.00",
+      "answer_type": "currency",
+      "kind": "duplicate",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 0,
+          "bbox": [
+            268.97,
+            402.28,
+            310.25,
+            411.49
+          ],
+          "doc_type": "paystub"
+        }
+      ]
+    },
+    {
+      "id": "q010",
+      "question": "What are the W-2 box 1 (wages) for the borrower?",
+      "question_rephrased": "For the borrower, what wage amount is reported in Box 1 of the W-2?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (W-2 Box 1 wages for borrower); reworded; answer unchanged.",
+      "answer": "$204,180.00",
+      "answer_type": "currency",
+      "kind": "lookup",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 90,
+          "bbox": [
+            243.13,
+            333.3,
+            286.27,
+            342.92
+          ],
+          "doc_type": "w2"
+        }
+      ]
+    },
+    {
+      "id": "q011",
+      "question": "What is the property's annual HOA special-assessment amount (separate from regular dues)?",
+      "question_rephrased": "Apart from the standard dues, what does the property owe each year as an HOA special assessment?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (annual HOA special-assessment, separate from dues); reworded; remains unanswerable.",
+      "answer": "Not in file",
+      "answer_type": "unanswerable",
+      "kind": "unanswerable",
+      "difficulty": "hard",
+      "answerable": false,
+      "evidence": []
+    },
+    {
+      "id": "q012",
+      "question": "What is the single largest deposit found on any checking statement in the file?",
+      "question_rephrased": "Across every checking statement in the file, what is the value of the biggest individual deposit?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (single largest deposit across checking statements); reworded; answer unchanged.",
+      "answer": "$4,991.06",
+      "answer_type": "currency",
+      "kind": "aggregation",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 41,
+          "bbox": [
+            471.54,
+            393.53,
+            502.04,
+            402.28
+          ],
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q013",
+      "question": "What is the down payment (purchase price minus loan amount)?",
+      "question_rephrased": "Subtracting the loan amount from the purchase price, what down payment does that leave?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent and formula (purchase price minus loan amount = down payment); reworded; answer unchanged.",
+      "answer": "$31,698.00",
+      "answer_type": "currency",
+      "kind": "multi_hop",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 107,
+          "bbox": [
+            447.71,
+            500.5,
+            486.92,
+            509.26
+          ],
+          "doc_type": "urla_1003"
+        }
+      ]
+    },
+    {
+      "id": "q014",
+      "question": "What is the borrower's total monthly debt obligation per the credit report — the sum of the monthly payments of every non-mortgage tradeline (i.e. all tradelines except mortgages)?",
+      "question_rephrased": "Per the credit report, if you total the monthly payments on all tradelines other than mortgages, what is the borrower's combined monthly debt obligation?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (sum of non-mortgage tradeline monthly payments per credit report); reworded; answer unchanged.",
+      "answer": "$42,778.00",
+      "answer_type": "currency",
+      "kind": "multi_hop",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 113,
+          "bbox": null,
+          "doc_type": "credit_report"
+        },
+        {
+          "page_index": 114,
+          "bbox": null,
+          "doc_type": "credit_report"
+        },
+        {
+          "page_index": 115,
+          "bbox": null,
+          "doc_type": "credit_report"
+        },
+        {
+          "page_index": 116,
+          "bbox": null,
+          "doc_type": "credit_report"
+        }
+      ]
+    },
+    {
+      "id": "q015",
+      "question": "Which checking statement contains the most transactions, and how many?",
+      "question_rephrased": "Of the checking statements, which one logs the greatest number of transactions, and what is that count?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same two-part intent (which statement has most transactions and how many); reworded; answer unchanged.",
+      "answer": "1987 (period 04/08/2023–05/07/2023)",
+      "answer_type": "string",
+      "kind": "comparison",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 48,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 49,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 50,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 51,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q016",
+      "question": "On which page (1-based) does the Form 1003 (URLA) begin?",
+      "question_rephrased": "Using 1-based numbering, what page number is the start of the Form 1003 (URLA)?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (1-based start page of Form 1003); reworded; answer 105 unchanged.",
+      "answer": "105",
+      "answer_type": "page",
+      "kind": "pagination",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 104,
+          "bbox": null,
+          "doc_type": "urla_1003"
+        }
+      ]
+    },
+    {
+      "id": "q017",
+      "question": "On what date does the bank statement's daily-balance chart reach its lowest point?",
+      "question_rephrased": "According to the daily-balance chart on the bank statement, on which calendar date does the balance dip to its minimum?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (date of lowest point on daily-balance chart); reworded; same evidence/answer. Same inherent statement-ambiguity as original q005, preserved faithfully.",
+      "answer": "2023-04-09",
+      "answer_type": "date",
+      "kind": "plot_reading",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 48,
+          "bbox": [
+            36.0,
+            190.72499999999997,
+            536.0,
+            376.43928571428563
+          ],
+          "doc_type": "bank_stmt_checking",
+          "chart_id": "bank_stmt_checking#3:daily_balance",
+          "chart_kind": "line",
+          "bbox_chart_px": [
+            153.17,
+            133.29,
+            161.17,
+            141.29
+          ],
+          "element_key": "2023-04-09",
+          "element_label": "Apr 09"
+        }
+      ]
+    },
+    {
+      "id": "q018",
+      "question": "What is the difference between the appraised value and the purchase price?",
+      "question_rephrased": "By how much does the appraised value diverge from the purchase price?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (difference between appraised value and purchase price); reworded; answer unchanged.",
+      "answer": "$12,679.38",
+      "answer_type": "currency",
+      "kind": "multi_hop",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 104,
+          "bbox": null,
+          "doc_type": "urla_1003"
+        },
+        {
+          "page_index": 105,
+          "bbox": null,
+          "doc_type": "urla_1003"
+        },
+        {
+          "page_index": 106,
+          "bbox": null,
+          "doc_type": "urla_1003"
+        },
+        {
+          "page_index": 107,
+          "bbox": null,
+          "doc_type": "urla_1003"
+        }
+      ]
+    },
+    {
+      "id": "q019",
+      "question": "What is the loan term in months?",
+      "question_rephrased": "Expressed in months, how long is the loan term?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (loan term in months); reworded; answer 180 unchanged.",
+      "answer": "180",
+      "answer_type": "number",
+      "kind": "lookup",
+      "difficulty": "easy",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 107,
+          "bbox": [
+            447.71,
+            486.17,
+            460.78,
+            494.93
+          ],
+          "doc_type": "urla_1003"
+        }
+      ]
+    },
+    {
+      "id": "q020",
+      "question": "Over the statement period shown on the bank statement's daily-balance chart, did the balance trend upward, downward, or stay flat?",
+      "question_rephrased": "Across the period plotted on the bank statement's daily-balance chart, was the overall balance movement rising, falling, or flat?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent and trichotomy (up/down/flat trend); rising maps to 'up'; reworded; answer unchanged.",
+      "answer": "up",
+      "answer_type": "string",
+      "kind": "plot_reading",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 8,
+          "bbox": [
+            36.0,
+            190.72499999999997,
+            536.0,
+            376.43928571428563
+          ],
+          "doc_type": "bank_stmt_checking",
+          "chart_id": "bank_stmt_checking#2:daily_balance",
+          "chart_kind": "line"
+        }
+      ]
+    },
+    {
+      "id": "q021",
+      "question": "What is the loan amount?",
+      "question_rephrased": "How much is the loan for?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (loan amount); reworded; answer unchanged.",
+      "answer": "$602,271.00",
+      "answer_type": "currency",
+      "kind": "lookup",
+      "difficulty": "easy",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 107,
+          "bbox": [
+            142.31,
+            457.51,
+            185.88,
+            466.26
+          ],
+          "doc_type": "urla_1003"
+        }
+      ]
+    },
+    {
+      "id": "q022",
+      "question": "Do the W-2 box 1 wages reconcile with the wages on the Form 1040? State the reconciled amount.",
+      "question_rephrased": "Does the Box 1 wage figure on the W-2 line up with the wages reported on the Form 1040, and what is the reconciled value?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (W-2 Box 1 vs 1040 wages reconciliation + reconciled amount); reworded; answer unchanged.",
+      "answer": "$204,180.00",
+      "answer_type": "currency",
+      "kind": "multi_hop",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 90,
+          "bbox": [
+            243.13,
+            333.3,
+            286.27,
+            342.92
+          ],
+          "doc_type": "w2"
+        },
+        {
+          "page_index": 160,
+          "bbox": [
+            540.83,
+            248.12,
+            565.05,
+            255.92
+          ],
+          "doc_type": "form_1040"
+        }
+      ]
+    },
+    {
+      "id": "q023",
+      "question": "What is the monthly principal and interest (P&I) payment?",
+      "question_rephrased": "Each month, how much goes toward principal and interest (P&I)?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (monthly P&I payment); reworded; answer unchanged.",
+      "answer": "$5,329.55",
+      "answer_type": "currency",
+      "kind": "lookup",
+      "difficulty": "easy",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 97,
+          "bbox": [
+            255.38,
+            312.55,
+            290.24,
+            321.31
+          ],
+          "doc_type": "form_1008"
+        }
+      ]
+    },
+    {
+      "id": "q024",
+      "question": "There are 3 checking statements. What is the ending balance on the MOST RECENT one (period 04/08/2023–05/07/2023)?",
+      "question_rephrased": "Out of the 3 checking statements, what ending balance is shown on the MOST RECENT one covering the 04/08/2023–05/07/2023 period?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (ending balance of most-recent statement, period specified); reworded; answer unchanged.",
+      "answer": "$387,882.21",
+      "answer_type": "currency",
+      "kind": "duplicate",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 48,
+          "bbox": [
+            525.62,
+            158.91,
+            571.49,
+            168.13
+          ],
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q025",
+      "question": "How much did the checking ending balance change from the earliest to the latest statement in the file?",
+      "question_rephrased": "Comparing the earliest checking statement against the latest one in the file, what is the change in ending balance between them?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (change in ending balance from earliest to latest statement); reworded; answer unchanged.",
+      "answer": "$77,394.24",
+      "answer_type": "currency",
+      "kind": "comparison",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 122,
+          "bbox": [
+            525.62,
+            158.91,
+            571.49,
+            168.13
+          ],
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 48,
+          "bbox": [
+            525.62,
+            158.91,
+            571.49,
+            168.13
+          ],
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q026",
+      "question": "How many transactions are listed across all checking statements combined?",
+      "question_rephrased": "When you tally the transactions from every checking statement together, what is the total number listed?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (total transactions across all checking statements); reworded; answer 5520 unchanged.",
+      "answer": "5520",
+      "answer_type": "count",
+      "kind": "aggregation",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 8,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 9,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 10,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 11,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 48,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 49,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 50,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 51,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 122,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 123,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 124,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 125,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q027",
+      "question": "The representative credit score appears on both the credit report and the Form 1008. What is the reconciled score?",
+      "question_rephrased": "Since the representative credit score is shown on the credit report as well as the Form 1008, what is the reconciled value of that score?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (reconciled representative credit score across credit report and 1008); reworded; answer 714 unchanged.",
+      "answer": "714",
+      "answer_type": "number",
+      "kind": "multi_hop",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 113,
+          "bbox": [
+            358.17,
+            158.96,
+            388.45,
+            179.23
+          ],
+          "doc_type": "credit_report"
+        },
+        {
+          "page_index": 97,
+          "bbox": [
+            544.47,
+            370.25,
+            557.55,
+            379.0
+          ],
+          "doc_type": "form_1008"
+        }
+      ]
+    },
+    {
+      "id": "q028",
+      "question": "How many separate documents are in this loan file?",
+      "question_rephrased": "What is the count of distinct documents making up this loan file?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (number of separate documents in the loan file); reworded; answer 35 unchanged.",
+      "answer": "35",
+      "answer_type": "count",
+      "kind": "counting",
+      "difficulty": "easy",
+      "answerable": true,
+      "evidence": []
+    },
+    {
+      "id": "q029",
+      "question": "Which checking statement has the highest ending balance, and what is that balance?",
+      "question_rephrased": "Among the checking statements, which one closes with the largest ending balance, and what does that balance amount to?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same two-part intent (which statement has highest ending balance and the amount); reworded; answer unchanged.",
+      "answer": "$387,882.21 (period 04/08/2023–05/07/2023)",
+      "answer_type": "string",
+      "kind": "comparison",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 48,
+          "bbox": [
+            525.62,
+            158.91,
+            571.49,
+            168.13
+          ],
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q030",
+      "question": "On the brokerage statement's asset-allocation chart, what percentage of the portfolio is held in SPY?",
+      "question_rephrased": "Per the asset-allocation chart on the brokerage statement, what share of the portfolio does SPY represent?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (SPY's percentage share of the portfolio per chart); 'share' = percentage; reworded; answer unchanged.",
+      "answer": "1.153%",
+      "answer_type": "percent",
+      "kind": "plot_reading",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 3,
+          "bbox": [
+            43.199999999999996,
+            43.199999999999996,
+            503.19999999999993,
+            379.35384615384606
+          ],
+          "doc_type": "brokerage_stmt",
+          "chart_id": "brokerage_stmt:asset_mix",
+          "chart_kind": "donut",
+          "bbox_chart_px": [
+            335.44,
+            97.32,
+            346.45,
+            161.45
+          ],
+          "element_key": "SPY",
+          "element_label": "SPY (SPDR S&P 500 ETF)"
+        }
+      ]
+    },
+    {
+      "id": "q031",
+      "question": "Locate the bank statement whose daily-balance chart hit the highest peak of any statement in the file; how many transactions are listed on that statement?",
+      "question_rephrased": "Find the statement whose daily-balance chart reaches the tallest peak of any in the file, then tell me the number of transactions recorded on it.",
+      "rephrase_ok": true,
+      "rephrase_note": "Same multi-hop intent (highest-peak statement -> transaction count); reworded; stored answer returned identically (note: stored answer '1987' looks like an account id rather than a count, but that is a pre-existing answer issue, not introduced by the rephrasing).",
+      "answer": "1987",
+      "answer_type": "count",
+      "kind": "multi_hop_graph",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 48,
+          "bbox": [
+            36.0,
+            190.72499999999997,
+            536.0,
+            376.43928571428563
+          ],
+          "doc_type": "bank_stmt_checking",
+          "chart_id": "bank_stmt_checking#3:daily_balance",
+          "chart_kind": "line",
+          "bbox_chart_px": [
+            785.58,
+            50.1,
+            793.58,
+            58.1
+          ],
+          "element_key": "2023-05-07",
+          "element_label": "May 07"
+        },
+        {
+          "page_index": 48,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 49,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 50,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 51,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q032",
+      "question": "What is the borrower's employer-sponsored pension vesting percentage?",
+      "question_rephrased": "To what percentage is the borrower vested in their employer-sponsored pension?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (employer-sponsored pension vesting percentage); reworded; remains unanswerable.",
+      "answer": "Not in file",
+      "answer_type": "unanswerable",
+      "kind": "unanswerable",
+      "difficulty": "hard",
+      "answerable": false,
+      "evidence": []
+    },
+    {
+      "id": "q033",
+      "question": "What is the total market value of all holdings shown in the brokerage statement's asset-allocation chart?",
+      "question_rephrased": "Adding up every holding depicted in the brokerage statement's asset-allocation chart, what is their combined market value?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (total market value of all holdings on the chart); reworded; answer unchanged.",
+      "answer": "$171,341.59",
+      "answer_type": "currency",
+      "kind": "plot_reading",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 3,
+          "bbox": [
+            43.199999999999996,
+            43.199999999999996,
+            503.19999999999993,
+            379.35384615384606
+          ],
+          "doc_type": "brokerage_stmt",
+          "chart_id": "brokerage_stmt:asset_mix",
+          "chart_kind": "donut"
+        }
+      ]
+    },
+    {
+      "id": "q034",
+      "question": "How many separate paystubs are included in this loan file?",
+      "question_rephrased": "What is the number of individual paystubs bundled into this loan file?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (count of separate paystubs in the file); reworded; answer 13 unchanged.",
+      "answer": "13",
+      "answer_type": "count",
+      "kind": "duplicate",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 0,
+          "bbox": null,
+          "doc_type": "paystub"
+        },
+        {
+          "page_index": 1,
+          "bbox": null,
+          "doc_type": "paystub"
+        },
+        {
+          "page_index": 7,
+          "bbox": null,
+          "doc_type": "paystub"
+        },
+        {
+          "page_index": 91,
+          "bbox": null,
+          "doc_type": "paystub"
+        }
+      ]
+    },
+    {
+      "id": "q035",
+      "question": "How many total pages are in this loan file?",
+      "question_rephrased": "What is the overall page count of this loan file?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (total pages in the loan file); reworded; answer 166 unchanged.",
+      "answer": "166",
+      "answer_type": "count",
+      "kind": "counting",
+      "difficulty": "easy",
+      "answerable": true,
+      "evidence": []
+    },
+    {
+      "id": "q036",
+      "question": "Sum the ending balances of every checking-account statement in the file.",
+      "question_rephrased": "What do you get when you add together the ending balances from all of the file's checking-account statements?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (sum of ending balances across checking statements); reworded; answer unchanged.",
+      "answer": "$1,052,633.53",
+      "answer_type": "currency",
+      "kind": "aggregation",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 8,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 9,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 10,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 11,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 48,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 49,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 50,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 51,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 122,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 123,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 124,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 125,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ]
+    },
+    {
+      "id": "q037",
+      "question": "The file contains 13 paystubs. On the MOST RECENT paystub (by pay date), what is the year-to-date gross pay?",
+      "question_rephrased": "Given the 13 paystubs in the file, what year-to-date gross pay is shown on the MOST RECENT one ranked by pay date?",
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (YTD gross on most-recent-by-pay-date paystub, 13 paystubs); reworded; answer unchanged.",
+      "answer": "$36,000.00",
+      "answer_type": "currency",
+      "kind": "duplicate",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 99,
+          "bbox": [
+            520.76,
+            402.28,
+            562.04,
+            411.49
+          ],
+          "doc_type": "paystub"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1408 @@
+{
+  "package_id": "pkg_000020",
+  "total_pages": 169,
+  "qa": [
+    {
+      "id": "q001",
+      "question": "On what date does the bank statement's daily-balance chart reach its lowest point?",
+      "question_rephrased": "Looking at the daily-balance chart on the bank statement, which date corresponds to the minimum balance plotted?",
+      "answer": "2023-04-10",
+      "answer_type": "date",
+      "kind": "plot_reading",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 62,
+          "bbox": [
+            36.0,
+            190.72499999999997,
+            536.0,
+            376.43928571428563
+          ],
+          "doc_type": "bank_stmt_checking",
+          "chart_id": "bank_stmt_checking#3:daily_balance",
+          "chart_kind": "line",
+          "bbox_chart_px": [
+            183.13,
+            96.25,
+            191.13,
+            104.25
+          ],
+          "element_key": "2023-04-10",
+          "element_label": "Apr 10"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Same intent (date of chart minimum); answer 2023-04-10 holds; reworded, no leak."
+    },
+    {
+      "id": "q002",
+      "question": "How much did the checking ending balance change from the earliest to the latest statement in the file?",
+      "question_rephrased": "Comparing the oldest statement against the newest one in the file, by what amount did the checking ending balance shift?",
+      "answer": "$281,717.26",
+      "answer_type": "currency",
+      "kind": "comparison",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 22,
+          "bbox": [
+            525.62,
+            158.91,
+            571.49,
+            168.13
+          ],
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 0,
+          "bbox": [
+            525.62,
+            158.91,
+            571.49,
+            168.13
+          ],
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Oldest-vs-newest ending-balance change preserved; 'shift' keeps magnitude meaning; answer holds."
+    },
+    {
+      "id": "q003",
+      "question": "On the bank statement's daily-balance chart, how much did the balance change from the start to the end of the period?",
+      "question_rephrased": "Per the daily-balance chart on the bank statement, what was the net movement in balance between the period's opening and closing points?",
+      "answer": "$71,145.65",
+      "answer_type": "currency",
+      "kind": "plot_reading",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 62,
+          "bbox": [
+            36.0,
+            190.72499999999997,
+            536.0,
+            376.43928571428563
+          ],
+          "doc_type": "bank_stmt_checking",
+          "chart_id": "bank_stmt_checking#3:daily_balance",
+          "chart_kind": "line"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Start-to-end balance change on chart preserved as 'opening/closing net movement'; answer holds."
+    },
+    {
+      "id": "q004",
+      "question": "What is the borrower's total monthly debt obligation per the credit report \u2014 the sum of the monthly payments of every non-mortgage tradeline (i.e. all tradelines except mortgages)?",
+      "question_rephrased": "Adding up the monthly payment on each tradeline that isn't a mortgage, what total monthly debt does the credit report show the borrower carrying?",
+      "answer": "$54,468.50",
+      "answer_type": "currency",
+      "kind": "multi_hop",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 77,
+          "bbox": null,
+          "doc_type": "credit_report"
+        },
+        {
+          "page_index": 78,
+          "bbox": null,
+          "doc_type": "credit_report"
+        },
+        {
+          "page_index": 79,
+          "bbox": null,
+          "doc_type": "credit_report"
+        },
+        {
+          "page_index": 80,
+          "bbox": null,
+          "doc_type": "credit_report"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Sum of non-mortgage tradeline monthly payments preserved; answer holds; reworded."
+    },
+    {
+      "id": "q005",
+      "question": "What is the representative credit score?",
+      "question_rephrased": "Which value is reported as the representative credit score?",
+      "answer": "764",
+      "answer_type": "number",
+      "kind": "lookup",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 77,
+          "bbox": [
+            85.92,
+            158.96,
+            116.2,
+            179.23
+          ],
+          "doc_type": "credit_report"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Representative credit score asked identically in meaning; answer 764 holds."
+    },
+    {
+      "id": "q006",
+      "question": "How many total pages are in this loan file?",
+      "question_rephrased": "What is the overall page count for this loan file?",
+      "answer": "169",
+      "answer_type": "count",
+      "kind": "counting",
+      "difficulty": "easy",
+      "answerable": true,
+      "evidence": [],
+      "rephrase_ok": true,
+      "rephrase_note": "Total page count preserved; answer 169 holds; reworded."
+    },
+    {
+      "id": "q007",
+      "question": "Sum the ending balances of every checking-account statement in the file.",
+      "question_rephrased": "Taking each checking-account statement in the file, what do all their ending balances add up to?",
+      "answer": "$2,570,893.64",
+      "answer_type": "currency",
+      "kind": "aggregation",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 0,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 1,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 2,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 3,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 22,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 23,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 24,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 25,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 39,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 40,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 41,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 42,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 62,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 63,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 64,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 65,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 89,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 90,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 91,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 92,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 106,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 107,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 108,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 109,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 145,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 146,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 147,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 148,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Sum of checking ending balances preserved; answer holds."
+    },
+    {
+      "id": "q008",
+      "question": "What is the annual flood-insurance premium for the subject property?",
+      "question_rephrased": "For the subject property, what does flood insurance cost per year?",
+      "answer": "Not in file",
+      "answer_type": "unanswerable",
+      "kind": "unanswerable",
+      "difficulty": "hard",
+      "answerable": false,
+      "evidence": [],
+      "rephrase_ok": true,
+      "rephrase_note": "Annual flood-insurance premium; remains unanswerable; reworded."
+    },
+    {
+      "id": "q009",
+      "question": "What is the subject property address?",
+      "question_rephrased": "Where is the subject property located \u2014 what is its full address?",
+      "answer": "0153 Daniel Walk Apt. 220, South Alan, NC 85300",
+      "answer_type": "string",
+      "kind": "lookup",
+      "difficulty": "easy",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 84,
+          "bbox": [
+            142.22,
+            118.75,
+            322.97,
+            127.5
+          ],
+          "doc_type": "form_1008"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Subject property full address preserved; answer holds."
+    },
+    {
+      "id": "q010",
+      "question": "There are 7 checking statements. What is the ending balance on the MOST RECENT one (period 08/08/2023\u201309/07/2023)?",
+      "question_rephrased": "Of the 7 checking statements, the latest one covers 08/08/2023\u201309/07/2023 \u2014 what ending balance does it report?",
+      "answer": "$546,088.77",
+      "answer_type": "currency",
+      "kind": "duplicate",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 0,
+          "bbox": [
+            525.62,
+            158.91,
+            571.49,
+            168.13
+          ],
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Most-recent statement (08/08-09/07/2023) ending balance preserved; period kept; answer holds."
+    },
+    {
+      "id": "q011",
+      "question": "What is the property's annual HOA special-assessment amount (separate from regular dues)?",
+      "question_rephrased": "Apart from the ordinary HOA dues, how much is the property's yearly HOA special assessment?",
+      "answer": "Not in file",
+      "answer_type": "unanswerable",
+      "kind": "unanswerable",
+      "difficulty": "hard",
+      "answerable": false,
+      "evidence": [],
+      "rephrase_ok": true,
+      "rephrase_note": "HOA special-assessment (vs regular dues) preserved; remains unanswerable."
+    },
+    {
+      "id": "q012",
+      "question": "How many separate paystubs are included in this loan file?",
+      "question_rephrased": "Counting distinct paystubs, how many are present in this loan file?",
+      "answer": "10",
+      "answer_type": "count",
+      "kind": "duplicate",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 34,
+          "bbox": null,
+          "doc_type": "paystub"
+        },
+        {
+          "page_index": 36,
+          "bbox": null,
+          "doc_type": "paystub"
+        },
+        {
+          "page_index": 37,
+          "bbox": null,
+          "doc_type": "paystub"
+        },
+        {
+          "page_index": 38,
+          "bbox": null,
+          "doc_type": "paystub"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Count of distinct paystubs preserved; answer 10 holds (evidence sparseness is pre-existing)."
+    },
+    {
+      "id": "q013",
+      "question": "What is the co-borrower's credit score?",
+      "question_rephrased": "What credit score is recorded for the co-borrower?",
+      "answer": "Not in file",
+      "answer_type": "unanswerable",
+      "kind": "unanswerable",
+      "difficulty": "hard",
+      "answerable": false,
+      "evidence": [],
+      "rephrase_ok": true,
+      "rephrase_note": "Co-borrower credit score; remains unanswerable; reworded."
+    },
+    {
+      "id": "q014",
+      "question": "Among all the bank-statement daily-balance charts in this file, find the statement that reached the single highest peak balance, then report THAT statement's ending balance.",
+      "question_rephrased": "Across every daily-balance chart in the file, identify the statement whose balance peaked highest, and then give that statement's ending balance.",
+      "answer": "$546,088.77",
+      "answer_type": "currency",
+      "kind": "multi_hop_graph",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 0,
+          "bbox": [
+            36.0,
+            190.72499999999997,
+            536.0,
+            376.43928571428563
+          ],
+          "doc_type": "bank_stmt_checking",
+          "chart_id": "bank_stmt_checking#7:daily_balance",
+          "chart_kind": "line",
+          "bbox_chart_px": [
+            785.58,
+            50.1,
+            793.58,
+            58.1
+          ],
+          "element_key": "2023-09-07",
+          "element_label": "Sep 07"
+        },
+        {
+          "page_index": 0,
+          "bbox": [
+            525.62,
+            158.91,
+            571.49,
+            168.13
+          ],
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Highest-peak statement's ending balance preserved; answer holds."
+    },
+    {
+      "id": "q015",
+      "question": "What is the total monthly housing payment (PITI)?",
+      "question_rephrased": "What does the monthly housing payment add up to, counting principal, interest, taxes, and insurance (PITI)?",
+      "answer": "$2,438.35",
+      "answer_type": "currency",
+      "kind": "lookup",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 84,
+          "bbox": [
+            255.38,
+            391.71,
+            290.24,
+            400.46
+          ],
+          "doc_type": "form_1008"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Total monthly PITI preserved (acronym expanded, not leaking); answer holds."
+    },
+    {
+      "id": "q016",
+      "question": "What is the loan amount?",
+      "question_rephrased": "How much is the loan for?",
+      "answer": "$241,846.00",
+      "answer_type": "currency",
+      "kind": "lookup",
+      "difficulty": "easy",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 129,
+          "bbox": [
+            142.31,
+            638.93,
+            185.88,
+            647.69
+          ],
+          "doc_type": "urla_1003"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Loan amount preserved; answer holds; reworded."
+    },
+    {
+      "id": "q017",
+      "question": "Find the highest-utilization revolving account on the credit report's utilization chart; what is that account's credit limit per the tradeline table?",
+      "question_rephrased": "Using the credit report's utilization chart to pinpoint the revolving account with the greatest utilization, what credit limit does the tradeline table list for it?",
+      "answer": "$23,000.00",
+      "answer_type": "currency",
+      "kind": "multi_hop_graph",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 77,
+          "bbox": [
+            36.0,
+            220.31437499999998,
+            506.0,
+            586.9369711538461
+          ],
+          "doc_type": "credit_report",
+          "chart_id": "credit_report:credit_utilization",
+          "chart_kind": "bar",
+          "bbox_chart_px": [
+            156.81,
+            68.88,
+            543.02,
+            102.05
+          ],
+          "element_key": "****3289",
+          "element_label": "WELLS FARGO CARD"
+        },
+        {
+          "page_index": 78,
+          "bbox": [
+            398.03,
+            83.13,
+            437.24,
+            91.89
+          ],
+          "doc_type": "credit_report"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Highest-utilization revolving account's credit limit preserved; answer holds."
+    },
+    {
+      "id": "q018",
+      "question": "On which page (1-based) does the credit report begin?",
+      "question_rephrased": "Counting pages from 1, at which page number does the credit report start?",
+      "answer": "78",
+      "answer_type": "page",
+      "kind": "pagination",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 77,
+          "bbox": null,
+          "doc_type": "credit_report"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "1-based start page of credit report preserved; answer 78 holds."
+    },
+    {
+      "id": "q019",
+      "question": "On the EARLIEST paystub in the file, what is the gross pay for that period?",
+      "question_rephrased": "Looking at the oldest paystub in the file, how much gross pay was earned in that pay period?",
+      "answer": "$4,791.67",
+      "answer_type": "currency",
+      "kind": "duplicate",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 134,
+          "bbox": [
+            269.98,
+            402.28,
+            306.68,
+            411.49
+          ],
+          "doc_type": "paystub"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Earliest paystub gross pay preserved; answer holds."
+    },
+    {
+      "id": "q020",
+      "question": "How many transactions are listed across all checking statements combined?",
+      "question_rephrased": "Totaling the transactions on every checking statement together, how many are there?",
+      "answer": "5523",
+      "answer_type": "count",
+      "kind": "aggregation",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 0,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 1,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 2,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 3,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 22,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 23,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 24,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 25,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 39,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 40,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 41,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 42,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 62,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 63,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 64,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 65,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 89,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 90,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 91,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 92,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 106,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 107,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 108,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 109,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 145,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 146,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 147,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 148,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Total transactions across checking statements preserved; answer 5523 holds."
+    },
+    {
+      "id": "q021",
+      "question": "How many pages does the single longest document in this file span?",
+      "question_rephrased": "What is the page length of the lengthiest individual document contained in this file?",
+      "answer": "22",
+      "answer_type": "count",
+      "kind": "structure",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 0,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Page span of longest single document preserved; answer 22 holds."
+    },
+    {
+      "id": "q022",
+      "question": "What is the single largest deposit found on any checking statement in the file?",
+      "question_rephrased": "Across all checking statements in the file, what is the biggest individual deposit?",
+      "answer": "$4,999.60",
+      "answer_type": "currency",
+      "kind": "aggregation",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 63,
+          "bbox": [
+            471.54,
+            616.82,
+            502.04,
+            625.57
+          ],
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Largest single deposit across checking statements preserved; answer holds."
+    },
+    {
+      "id": "q023",
+      "question": "The representative credit score appears on both the credit report and the Form 1008. What is the reconciled score?",
+      "question_rephrased": "Both the credit report and the Form 1008 list the representative credit score; once reconciled, what is that score?",
+      "answer": "764",
+      "answer_type": "number",
+      "kind": "multi_hop",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 77,
+          "bbox": [
+            85.92,
+            158.96,
+            116.2,
+            179.23
+          ],
+          "doc_type": "credit_report"
+        },
+        {
+          "page_index": 84,
+          "bbox": [
+            544.47,
+            370.25,
+            557.55,
+            379.0
+          ],
+          "doc_type": "form_1008"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Reconciled rep credit score across credit report and 1008 preserved; answer 764 holds."
+    },
+    {
+      "id": "q024",
+      "question": "The file contains 10 paystubs. On the MOST RECENT paystub (by pay date), what is the year-to-date gross pay?",
+      "question_rephrased": "There are 10 paystubs on file; on the one with the latest pay date, what YTD gross pay figure is shown?",
+      "answer": "$19,166.68",
+      "answer_type": "currency",
+      "kind": "duplicate",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 144,
+          "bbox": [
+            520.76,
+            402.28,
+            562.04,
+            411.49
+          ],
+          "doc_type": "paystub"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Most-recent paystub YTD gross preserved; count of 10 kept; answer holds."
+    },
+    {
+      "id": "q025",
+      "question": "What is the difference between the appraised value and the purchase price?",
+      "question_rephrased": "By how much does the appraised value differ from the purchase price?",
+      "answer": "$23,710.40",
+      "answer_type": "currency",
+      "kind": "multi_hop",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 126,
+          "bbox": null,
+          "doc_type": "urla_1003"
+        },
+        {
+          "page_index": 127,
+          "bbox": null,
+          "doc_type": "urla_1003"
+        },
+        {
+          "page_index": 128,
+          "bbox": null,
+          "doc_type": "urla_1003"
+        },
+        {
+          "page_index": 129,
+          "bbox": null,
+          "doc_type": "urla_1003"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Appraised value vs purchase price difference preserved; answer holds."
+    },
+    {
+      "id": "q026",
+      "question": "What is the combined total of deposits across all checking statements?",
+      "question_rephrased": "When you add together the deposits on every checking statement, what is the grand total?",
+      "answer": "$3,562,610.58",
+      "answer_type": "currency",
+      "kind": "aggregation",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 0,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 1,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 2,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 3,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 22,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 23,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 24,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 25,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 39,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 40,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 41,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 42,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 62,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 63,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 64,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 65,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 89,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 90,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 91,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 92,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 106,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 107,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 108,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 109,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 145,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 146,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 147,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 148,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Combined deposits across checking statements preserved; answer holds."
+    },
+    {
+      "id": "q027",
+      "question": "On the bank statement's daily-balance chart, how much did the balance change from the start to the end of the period?",
+      "question_rephrased": "According to the daily-balance chart on the bank statement, what is the change in balance measured from the period's beginning to its end?",
+      "answer": "$87,135.52",
+      "answer_type": "currency",
+      "kind": "plot_reading",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 106,
+          "bbox": [
+            36.0,
+            190.72499999999997,
+            536.0,
+            376.43928571428563
+          ],
+          "doc_type": "bank_stmt_checking",
+          "chart_id": "bank_stmt_checking#5:daily_balance",
+          "chart_kind": "line"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Start-to-end balance change on chart preserved; answer holds (distinct page/value)."
+    },
+    {
+      "id": "q028",
+      "question": "What is the borrower's mother's maiden name?",
+      "question_rephrased": "Under what maiden name did the borrower's mother go?",
+      "answer": "Not in file",
+      "answer_type": "unanswerable",
+      "kind": "unanswerable",
+      "difficulty": "hard",
+      "answerable": false,
+      "evidence": [],
+      "rephrase_ok": true,
+      "rephrase_note": "Mother's maiden name; remains unanswerable; reworded."
+    },
+    {
+      "id": "q029",
+      "question": "Over the statement period shown on the bank statement's daily-balance chart, did the balance trend upward, downward, or stay flat?",
+      "question_rephrased": "Across the period plotted on the bank statement's daily-balance chart, was the balance's overall direction rising, falling, or flat?",
+      "answer": "down",
+      "answer_type": "string",
+      "kind": "plot_reading",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 145,
+          "bbox": [
+            36.0,
+            190.72499999999997,
+            536.0,
+            376.43928571428563
+          ],
+          "doc_type": "bank_stmt_checking",
+          "chart_id": "bank_stmt_checking#4:daily_balance",
+          "chart_kind": "line"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Trend direction (up/down/flat) preserved with same options; answer 'down' holds."
+    },
+    {
+      "id": "q030",
+      "question": "On how many documents (urla 1003, form 1008, closing disclosure, loan estimate) does the loan amount appear?",
+      "question_rephrased": "Out of the urla 1003, form 1008, closing disclosure, and loan estimate, on how many of them is the loan amount stated?",
+      "answer": "4",
+      "answer_type": "count",
+      "kind": "multi_hop",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 129,
+          "bbox": [
+            142.31,
+            638.93,
+            185.88,
+            647.69
+          ],
+          "doc_type": "urla_1003"
+        },
+        {
+          "page_index": 84,
+          "bbox": [
+            247.49,
+            205.21,
+            291.06,
+            213.96
+          ],
+          "doc_type": "form_1008"
+        },
+        {
+          "page_index": 163,
+          "bbox": [
+            322.8,
+            228.58,
+            370.96,
+            238.26
+          ],
+          "doc_type": "closing_disclosure"
+        },
+        {
+          "page_index": 141,
+          "bbox": [
+            226.5,
+            191.7,
+            269.84,
+            200.4
+          ],
+          "doc_type": "loan_estimate"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Count of the four named docs showing loan amount preserved; answer 4 holds."
+    },
+    {
+      "id": "q031",
+      "question": "Which checking statement contains the most transactions, and how many?",
+      "question_rephrased": "Which of the checking statements carries the greatest number of transactions, and what is that count?",
+      "answer": "984 (period 08/08/2023\u201309/07/2023)",
+      "answer_type": "string",
+      "kind": "comparison",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 0,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 1,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 2,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        },
+        {
+          "page_index": 3,
+          "bbox": null,
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Statement with most transactions and the count preserved; answer holds."
+    },
+    {
+      "id": "q032",
+      "question": "What is the single largest withdrawal found on any checking statement in the file?",
+      "question_rephrased": "Among every checking statement in the file, what is the largest withdrawal recorded?",
+      "answer": "$1,500.91",
+      "answer_type": "currency",
+      "kind": "aggregation",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 43,
+          "bbox": [
+            406.74,
+            295.84,
+            437.24,
+            304.59
+          ],
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Largest single withdrawal across checking statements preserved; answer holds."
+    },
+    {
+      "id": "q033",
+      "question": "How many separate documents are in this loan file?",
+      "question_rephrased": "What is the number of distinct documents making up this loan file?",
+      "answer": "37",
+      "answer_type": "count",
+      "kind": "counting",
+      "difficulty": "easy",
+      "answerable": true,
+      "evidence": [],
+      "rephrase_ok": true,
+      "rephrase_note": "Count of distinct documents preserved; answer 37 holds; reworded."
+    },
+    {
+      "id": "q034",
+      "question": "Do the W-2 box 1 wages reconcile with the wages on the Form 1040? State the reconciled amount.",
+      "question_rephrased": "Check whether the box 1 wages on the W-2 match the wages reported on the Form 1040, and give the reconciled figure.",
+      "answer": "$107,210.00",
+      "answer_type": "currency",
+      "kind": "multi_hop",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 59,
+          "bbox": [
+            243.13,
+            333.3,
+            286.27,
+            342.92
+          ],
+          "doc_type": "w2"
+        },
+        {
+          "page_index": 88,
+          "bbox": [
+            540.83,
+            248.12,
+            565.05,
+            255.92
+          ],
+          "doc_type": "form_1040"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "W-2 box1 vs 1040 wage reconciliation preserved; answer holds."
+    },
+    {
+      "id": "q035",
+      "question": "On the Closing Disclosure, what do Total Loan Costs and Total Other Costs sum to?",
+      "question_rephrased": "Per the Closing Disclosure, what is the combined figure when Total Loan Costs is added to Total Other Costs?",
+      "answer": "$7,255.38",
+      "answer_type": "currency",
+      "kind": "multi_hop",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 163,
+          "bbox": [
+            274.09,
+            495.6,
+            310.79,
+            504.81
+          ],
+          "doc_type": "closing_disclosure"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Total Loan Costs + Total Other Costs on CD preserved; answer holds."
+    },
+    {
+      "id": "q036",
+      "question": "Which checking statement has the highest ending balance, and what is that balance?",
+      "question_rephrased": "Of all the checking statements, which one closes with the largest ending balance, and what does that balance come to?",
+      "answer": "$546,088.77 (period 08/08/2023\u201309/07/2023)",
+      "answer_type": "string",
+      "kind": "comparison",
+      "difficulty": "hard",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 0,
+          "bbox": [
+            525.62,
+            158.91,
+            571.49,
+            168.13
+          ],
+          "doc_type": "bank_stmt_checking"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Highest ending-balance statement and its balance preserved; answer holds."
+    },
+    {
+      "id": "q037",
+      "question": "On what date does the bank statement's daily-balance chart reach its lowest point?",
+      "question_rephrased": "At which date does the balance bottom out on the bank statement's daily-balance chart?",
+      "answer": "2023-03-14",
+      "answer_type": "date",
+      "kind": "plot_reading",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 39,
+          "bbox": [
+            36.0,
+            190.72499999999997,
+            536.0,
+            376.43928571428563
+          ],
+          "doc_type": "bank_stmt_checking",
+          "chart_id": "bank_stmt_checking#2:daily_balance",
+          "chart_kind": "line",
+          "bbox_chart_px": [
+            276.15,
+            125.16,
+            284.15,
+            133.16
+          ],
+          "element_key": "2023-03-14",
+          "element_label": "Mar 14"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Date of chart minimum preserved; answer 2023-03-14 holds."
+    },
+    {
+      "id": "q038",
+      "question": "On the brokerage statement's asset-allocation chart, which holding has the largest market value?",
+      "question_rephrased": "In the asset-allocation chart on the brokerage statement, which holding accounts for the greatest market value?",
+      "answer": "BND",
+      "answer_type": "string",
+      "kind": "plot_reading",
+      "difficulty": "medium",
+      "answerable": true,
+      "evidence": [
+        {
+          "page_index": 137,
+          "bbox": [
+            43.199999999999996,
+            43.199999999999996,
+            503.19999999999993,
+            379.35384615384606
+          ],
+          "doc_type": "brokerage_stmt",
+          "chart_id": "brokerage_stmt:asset_mix",
+          "chart_kind": "donut",
+          "bbox_chart_px": [
+            346.45,
+            97.32,
+            495.76,
+            232.5
+          ],
+          "element_key": "BND",
+          "element_label": "BND (Vanguard Total Bond ETF)"
+        }
+      ],
+      "rephrase_ok": true,
+      "rephrase_note": "Largest-market-value holding on asset-allocation chart preserved; answer BND holds."
+    }
+  ]
+}

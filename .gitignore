@@ -1,14 +1,10 @@
-DataSet/
-DataSet */
 __pycache__/
 *.pyc
 .env
 .DS_Store
-FAQ.md
 test_2000pages.pdf
 test_2000pages_output.json
-results/*/run.log
-results/*/package.pdf
 web/node_modules/
 web/.next/
 web/.env.local
+tmp/
