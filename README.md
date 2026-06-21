@@ -1,7 +1,7 @@
 # InfrX Mortgage Pipeline
 
 **InfrX 2026 Hackathon — Problem Statement B**
-**🥈 2nd Place — Team Noobda · REVA University, Bengaluru**
+**🥈 2nd Place — ₹75,000 Prize — Team Noobda · REVA University, Bengaluru**
 
 ---
 
@@ -13,7 +13,7 @@
 
 | Metric | Value |
 |---|---|
-| Hackathon placement | **2nd place — InfrX 2026** |
+| Hackathon placement | **2nd place — InfrX 2026 · ₹75,000 prize** |
 | Classification accuracy | **91.0%** (40 packages · 1,845 pages) |
 | Test set | 17 PDFs · 2,295 pages · 742 documents detected |
 | Document types supported | 27 mortgage types |
@@ -750,5 +750,5 @@ npm run dev                         # http://localhost:3000
 
 ---
 
-*Team Noobda · REVA University · InfrX 2026 · 2nd Place*
+*Team Noobda · REVA University · InfrX 2026 · 2nd Place · ₹75,000*
 *See `Team_Noobda_REVA University.pdf` for the full presentation. See `Algorithm.md` for deeper algorithm notes.*
