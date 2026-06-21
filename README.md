@@ -1,11 +1,15 @@
 # InfrX Mortgage Pipeline
 
-**InfrX 2026 Hackathon — Problem Statement B**
-**🥈 2nd Place — ₹75,000 Prize — Team Noobda · REVA University, Bengaluru**
+---
+
+## 🥈 2nd Place — InfrX 2026 Hackathon · ₹75,000 Prize
+
+> **Team Noobda · REVA University, Bengaluru**
+> Problem Statement B — out of all competing teams nationwide.
 
 ---
 
-> A mortgage loan package is a 100–2,000 page blob: bank statements, pay stubs, tax returns, contracts — all merged into one PDF with zero structure. This pipeline reads that blob and reconstructs it: which pages belong to which document, where each document starts and ends, and which table rows on page 47 are actually the continuation of the table that started on page 44.
+A mortgage loan package is a 100–2,000 page blob: bank statements, pay stubs, tax returns, contracts — all merged into one PDF with zero structure. This pipeline reads that blob and reconstructs it: which pages belong to which document, where each document starts and ends, and which table rows on page 47 are actually the continuation of the table that started on page 44.
 
 ---
 
