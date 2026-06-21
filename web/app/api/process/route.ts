@@ -110,6 +110,30 @@ export async function POST(req: NextRequest) {
               pageCount: d.page_count,
               attr: d.distinguishing_attr,
             })),
+            tables: (raw.tables as Array<{
+              table_id: string
+              doc_instance_id: string
+              doctype: string
+              page_span: { start_page: number; end_page: number }
+              row_count_logical: number
+              n_fragments: number
+              columns: Array<{ col_idx: number }>
+              cells: Array<{ row_idx: number; col_idx: number; text: string; is_header: boolean }>
+            }>).map((t) => ({
+              id: t.table_id,
+              docId: t.doc_instance_id,
+              docType: t.doctype,
+              startPage: t.page_span?.start_page,
+              endPage: t.page_span?.end_page,
+              rows: t.row_count_logical,
+              fragments: t.n_fragments,
+              cols: t.columns?.length ?? 0,
+              // Include first few rows of data for preview
+              preview: t.cells
+                ?.filter(c => c.is_header || c.row_idx >= 0)
+                ?.slice(0, 20)
+                ?.map(c => ({ r: c.row_idx, c: c.col_idx, t: c.text, h: c.is_header })) ?? [],
+            })),
           }
 
           send({ type: 'done', sessionId, result })

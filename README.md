@@ -1,17 +1,31 @@
-# DocCompiler-Lite + PTT
-**InfrX 2026 Hackathon — Problem Statement B**
+# InfrX Mortgage Pipeline
+**InfrX 2026 Hackathon — Problem Statement B · 2nd Place**
 *Team Noobda · REVA University, Bengaluru*
 
-> "Compile the document, then reason on it."
+> Took home **2nd place** out of all competing teams at InfrX 2026 for building an end-to-end mortgage document compiler that handles 100–2,000 page PDFs with 91%+ classification accuracy.
 
 ---
 
-## What we're building
+## What it does
 
-A system that takes a large, unstructured multi-page mortgage loan PDF (100–2,000 pages) and gives it structure in two ways:
+Takes a large, unstructured multi-page mortgage loan PDF and gives it structure in two ways:
 
-1. **Logical Pagination** — split the blob into individual document instances with exact start/end pages, including telling apart multiple instances of the same document type back-to-back (e.g. 3× Form 1040, 9× paystubs)
-2. **Table Recovery** — reconstruct tables that span page boundaries using Probabilistic Table Threading (PTT), a 5-signal Bayesian belief graph that decides whether two adjacent table fragments belong to the same logical table
+1. **Logical Pagination** — splits the blob into individual document instances with exact start/end pages, including multiple back-to-back instances of the same type (e.g. 3× Form 1040, 9× paystubs)
+2. **Table Recovery** — reconstructs tables that span page boundaries using **Probabilistic Table Threading (PTT)**, a 5-signal Naive Bayes model that decides whether two adjacent table fragments belong to the same logical table
+
+---
+
+## Results
+
+| Metric | Value |
+|---|---|
+| **Hackathon placement** | **2nd place — InfrX 2026** |
+| Classification accuracy | **91.0%** (40 packages, 1,845 pages) |
+| Test set | 17 PDFs, 2,295 pages, 742 documents detected |
+| Pipeline speed (VLM mode) | ~3 min for a 100-page scanned PDF |
+| Pipeline speed (Tesseract mode) | ~6.5 pages/sec, no API cost |
+| Doc types supported | 27 mortgage document types |
+| Tables extracted (sample) | 66 logical tables from a single 150-page package |
 
 ---
 
@@ -22,11 +36,12 @@ Raw PDF (scan / native / photo)
         │
         ▼
 ┌─────────────────────────────────────────────┐
-│           DOCUMENT COMPILER                 │
+│           STAGE 1 — EXTRACTION              │
 │  extract.py                                 │
 │  • pdfplumber  → native pages (free, fast)  │
-│  • GPT-4o-mini VLM → scanned pages only      │
-│  Output: PageRecord + FragmentRecord per pg │
+│  • GPT-4o-mini VLM → scanned pages only     │
+│  • Tesseract triage → text vs table pages   │
+│  Output: PageRecord + FragmentRecord/page   │
 └────────────────────┬────────────────────────┘
                      │
                      ▼
@@ -37,19 +52,20 @@ Raw PDF (scan / native / photo)
           ┌──────────┴──────────┐
           ▼                     ▼
 ┌──────────────────┐   ┌─────────────────────────┐
-│   classify.py    │   │       stitch.py          │
-│                  │   │  PTT Belief Graph        │
-│ 27 doc types     │   │  5-signal Bayesian fusion│
-│ heuristic first  │   │  per adjacent frag pair  │
-│ GPT-4o-mini par  │   │                          │
-│ carry-forward    │   │  P > 0.9 → auto-merge    │
-│ 91% accuracy     │   │  P 0.7–0.9 → LLM arbiter │
-└──────────────────┘   │  P < 0.3 → reject        │
+│  STAGE 2         │   │  STAGE 3 — PTT           │
+│  classify.py     │   │  stitch.py               │
+│                  │   │                          │
+│  27 doc types    │   │  5-signal Bayes fusion   │
+│  heuristic first │   │  per adjacent frag pair  │
+│  GPT-4o-mini par │   │                          │
+│  carry-forward   │   │  P ≥ 0.75 → merge        │
+│  91% accuracy    │   │  P 0.5–0.75 → LLM judge  │
+└──────────────────┘   │  P < 0.3  → reject       │
                        └─────────────────────────┘
                                     │
                                     ▼
-                      Grounded Output
-                      threaded tables · cells · bbox · confidence
+                         pipeline_output.json
+                   documents[] · tables[] · pages[]
 ```
 
 ---
@@ -69,9 +85,20 @@ src/
 ├── stitching/
 │   └── stitch.py           # Naive Bayes PTT + LLM arbiter
 ├── pipeline/
-│   └── run_pipeline.py     # End-to-end orchestrator (classify → segment → stitch → render)
+│   └── run_pipeline.py     # End-to-end orchestrator
 └── output/
     └── render.py           # Final JSON output assembler
+
+web/                        # Next.js web UI — upload PDF, view results live
+├── app/
+│   ├── page.tsx            # Main UI (upload, log stream, split view)
+│   └── api/
+│       ├── process/route.ts  # SSE endpoint — streams pipeline progress
+│       └── pdf/[id]/route.ts # Serves PDF for viewer
+└── components/
+    ├── PdfViewer.tsx        # PDF.js viewer with page navigation
+    ├── DocSidebar.tsx       # Document list sidebar with type colours
+    └── UploadZone.tsx       # Drag-and-drop upload
 
 DataSet /
 ├── pkg_000000/ … pkg_000039/   # 40 packages with labels.json ground truth
@@ -81,167 +108,122 @@ pagination-test/
 
 results/
 ├── summary.json                # Aggregated results for all 17 test PDFs
-├── README.md                   # How to verify results
-├── doc_000/
-│   └── pipeline_output.json    # Full output: pages[], documents[], tables[]
-├── ...
-└── doc_016/
-    └── pipeline_output.json
+├── README.md                   # Verification guide
+├── Pipeline-Architecture.pdf   # Architecture deck
+└── doc_000/ … doc_016/
+    └── pipeline_output.json    # Full output per test PDF
 
-run.sh                  # Convenience runner (eval / pipeline modes)
 Algorithm.md            # Detailed algorithm reference
-requirements.txt        # pip dependencies
+requirements.txt        # Python dependencies
+run.sh                  # Convenience runner (eval / pipeline modes)
 ```
 
 ---
 
-## Module details
+## Classification — 3-tier cascade
 
-### `src/extract.py`
-Page-level extraction — Step 2 of the pipeline.
-
-- **Native PDF pages** → `pdfplumber` (free, deterministic, zero AI cost)
-- **Scanned/photo pages** → GPT-4o-mini VLM (selective fallback only, with Tesseract triage)
-
-**Output per page:**
-```python
-PageRecord(page_index, text, has_text_layer, page_height, page_width)
-FragmentRecord(fragment_id, page_index, bbox, headers, rows, last_row, page_height, page_width, source)
-```
-
-**Run:**
-```bash
-python3 src/run_extraction.py --pkg "DataSet /pkg_000000"
-# add --no-vlm to skip scanned pages (no API key needed)
-```
-
----
-
-### `src/classify.py`
-Document-type classification — Step 3 of the pipeline.
-
-**27 document types** matching `labels.json` `doc_type` / `doc_type_label_id` exactly:
-
-| label_id | key | section |
-|---|---|---|
-| 0 | urla_1003 | application |
-| 1 | form_1008 | application |
-| 2 | loan_estimate | disclosures |
-| 3 | closing_disclosure | disclosures |
-| 4 | paystub | income |
-| 5 | w2 | income |
-| 6 | voe | income |
-| 7 | form_1040 | income |
-| 8 | schedule_1 | income |
-| 9 | schedule_c | income |
-| 10 | bank_stmt_checking | assets |
-| 11 | bank_stmt_combo | assets |
-| 12 | brokerage_stmt | assets |
-| 13 | check_image | assets |
-| 14 | deposit_receipt | assets |
-| 15 | credit_report | credit |
-| 16 | du_findings | underwriting |
-| 17 | lpa_feedback | underwriting |
-| 18 | purchase_contract | property |
-| 19 | purchase_addendum | property |
-| 20 | options_addendum | property |
-| 21 | email_correspondence | misc |
-| 22 | letter_of_explanation | misc |
-| 23 | gift_letter | misc |
-| 24 | insurance_declaration | property |
-| 25 | loan_summary | underwriting |
-| 26 | filler | misc |
-
-**Classification strategy (3-tier):**
+Every page goes through three tiers in order, stopping at the first confident answer:
 
 ```
 Page text
    │
-   ├─ continuation page? (transaction rows, no header)
-   │    → carry_forward from previous confident type  [0 cost]
+   ├─ 1. Table-header fingerprint (27 hardcoded column combos)
+   │       e.g. {date, description, withdrawals, deposits, balance} → bank_stmt_checking @ 0.98
+   │       [0 cost, runs first]
    │
-   ├─ heuristic keyword confidence ≥ 0.6?
-   │    → return immediately                          [0 cost]
+   ├─ 2. Keyword heuristic score ≥ 0.6
+   │       hits / total_patterns for each of 27 doc types
+   │       [0 cost]
    │
-   └─ ambiguous → Claude Haiku (parallel async)       [~$0.0003/page]
+   ├─ 3. Continuation check (carry-forward)
+   │       blank / mid-table pages inherit last confident type
+   │       capped at 8 consecutive carries to prevent boundary bleed
+   │       [0 cost]
+   │
+   └─ 4. GPT-4o-mini (parallel async, closed-set or open-set prompt)
+           only ambiguous pages that pass all above without a hit
+           [~$0.0003/page]
 ```
 
-**Output per page:**
-```python
-{
-  "page_index": 0,
-  "doc_type": "bank_stmt_checking",
-  "doc_type_label_id": 10,
-  "confidence": 0.94,
-  "method": "heuristic" | "llm" | "carry_forward"
-}
-```
+**27 supported document types:**
 
-**Performance (40 packages, 1,845 digital pages):**
-
-| Metric | Value |
-|---|---|
-| **Overall accuracy** | **91.0%** |
-| Packages evaluated | 40 |
-| Total pages | 1,845 digital |
-| 100% accuracy types | `bank_stmt_checking`, `closing_disclosure`, `paystub`, `form_1008`, `du_findings`, `loan_summary`, `brokerage_stmt`, `purchase_contract`, `form_1040`, `w2` |
-
-Note: scanned pages get text from `extract.py`'s VLM pass first — classifier never calls a model twice on the same page. With OCR support, scanned pages (73% of dataset) are now fully classified.
-
-**Usage:**
-```python
-from src.extract import extract_pdf
-from src.classify import classify_pages
-
-pages, fragments = extract_pdf("DataSet /pkg_000000/package.pdf")
-results = classify_pages(pages)
-# → [{"page_index": 0, "doc_type": "bank_stmt_checking", "doc_type_label_id": 10, ...}]
-```
-
----
-
-### `src/eval_classify.py`
-Evaluation script — runs classifier against labels.json ground truth.
-
-```bash
-python3 src/eval_classify.py                          # all 6 packages
-python3 src/eval_classify.py --pkg "DataSet /pkg_000000"  # single package
-```
-
-Outputs per-doc-type accuracy, confusion matrix, and LLM call count.
+| ID | Type | Category |
+|---|---|---|
+| 0 | urla_1003 | Application |
+| 1 | form_1008 | Application |
+| 2 | loan_estimate | Disclosures |
+| 3 | closing_disclosure | Disclosures |
+| 4 | paystub | Income |
+| 5 | w2 | Income |
+| 6 | voe | Income |
+| 7 | form_1040 | Income |
+| 8 | schedule_1 | Income |
+| 9 | schedule_c | Income |
+| 10 | bank_stmt_checking | Assets |
+| 11 | bank_stmt_combo | Assets |
+| 12 | brokerage_stmt | Assets |
+| 13 | check_image | Assets |
+| 14 | deposit_receipt | Assets |
+| 15 | credit_report | Credit |
+| 16 | du_findings | Underwriting |
+| 17 | lpa_feedback | Underwriting |
+| 18 | purchase_contract | Property |
+| 19 | purchase_addendum | Property |
+| 20 | options_addendum | Property |
+| 21 | email_correspondence | Misc |
+| 22 | letter_of_explanation | Misc |
+| 23 | gift_letter | Misc |
+| 24 | insurance_declaration | Property |
+| 25 | loan_summary | Underwriting |
+| 26 | filler | Misc |
 
 ---
 
 ## PTT — Probabilistic Table Threading
 
-The core of the system. For every pair of adjacent table fragments, PTT computes 5 independent signals and fuses them via Bayesian belief fusion to decide: **same logical table or different table?**
+The core innovation. For every pair of adjacent table fragments, PTT fuses 5 independent signals via Naive Bayes belief fusion to decide: **same logical table or different table?**
 
-| Signal | What it measures |
-|---|---|
-| Header similarity | Cosine over header-token embeddings — survives reworded headers |
-| Column-width fingerprint | Normalised column boundaries (0–1) — survives font/header drift |
-| Value-type continuity | date/currency/text consistent across boundary? Mismatch = strong negative |
-| Spatial flow direction | Does A end near page bottom and B start near page top? |
-| Subtotal pattern | Subtotal row on last line = table end (negative signal) |
+```
+log_odds      = log(prior) + Σ weight × log( P(signal|same) / P(signal|different) )
+P(same_table) = sigmoid(log_odds)
+```
 
-**Decision thresholds:**
-- `P > 0.9` → auto-merge (~85% of pairs, no LLM)
-- `P 0.7–0.9` → LLM arbiter (~15%, structured judgment)
-- `P < 0.3` → reject edge (different table)
+| Signal | What it checks | Weight |
+|---|---|---|
+| `spatial` | Do column X-positions line up across the break? | **1.8** |
+| `subtotal` | Did the last page end with a TOTAL row? (table ended) | **1.5** (negative) |
+| `header` | Are the column headers the same? | 1.2 |
+| `fingerprint` | Do column widths match? | 1.1 |
+| `value_type` | Do column data types match (dates, $, text)? | 1.0 |
+
+Weights are calibrated from **40 same-table + 47 different-table pairs** measured on `pkg_000000`:
+- `weight = (mu_same − mu_diff) / sigma` — higher SNR → higher weight
+- `spatial` scores 1.8 because column misalignment has a 0.608 separation gap, the strongest discriminator
+
+**Thresholds:**
+- `P ≥ 0.75` → auto-merge (~85% of pairs, zero LLM cost)
+- `P 0.5–0.75` → LLM arbiter (~15%, structured judgment call)
+- `P < 0.3` → reject (different table)
 
 ---
 
-## Efficiency story
+## Web UI
 
-| Stage | AI used? | Detail |
-|---|---|---|
-| Native PDF extraction | No | pdfplumber — free |
-| Scanned page extraction | Yes (VLM) | GPT-4o-mini, only pages with no text layer; Tesseract triage |
-| Document classification | Conditional | Heuristic first; LLM only for ambiguous pages (parallel) |
-| PTT 5-signal scoring | No | Pure deterministic math |
-| LLM arbiter | ~15% of boundary pairs | Only uncertain edges |
+A Next.js app that wraps the pipeline with a live streaming interface:
 
-**At 2,000-page scale:** majority of pages never touch a model. Classification runs in ~15–20s with parallel async. VLM extraction uses Tesseract triage (text-only pages get lightweight OCR prompt, table pages get full extraction), image resize to 512px, JPEG quality 70, and 50 concurrent workers — reducing VLM cost and time by ~3×.
+- Drag-and-drop PDF upload
+- Choose mode: **VLM + Tesseract** (accurate) or **Tesseract-only** (fast, free)
+- Live log stream via SSE while pipeline runs
+- Split view: PDF viewer + document sidebar with type-colour coded sections
+- Click any document in the sidebar to jump to that page in the viewer
+
+```bash
+cd web
+npm install
+npm run dev      # http://localhost:3000
+```
+
+Set `OPENAI_API_KEY` in `web/.env.local` for VLM mode.
 
 ---
 
@@ -251,37 +233,44 @@ The core of the system. For every pair of adjacent table fragments, PTT computes
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-# also: brew install poppler  (for pdf2image on macOS)
+# macOS: brew install poppler tesseract
 
 export OPENAI_API_KEY=sk-...
+
+# Run full pipeline on a test PDF
+python3 src/pipeline/run_pipeline.py --pdf pagination-test/doc_000.pdf --out out.json
+
+# Tesseract-only (no API key needed)
+python3 src/pipeline/run_pipeline.py --pdf pagination-test/doc_000.pdf --out out.json --no-vlm
 
 # Evaluate classifier on all 40 packages
 ./run.sh eval
 
-# Evaluate single package
-./run.sh eval pkg_000005
-
-# Run full pipeline (classify → segment → stitch → render)
+# Run full pipeline on a package
 ./run.sh pipeline pkg_000005
 ```
 
 ---
 
-## Speed Optimizations for 2000+ Page PDFs
+## Speed optimisations
 
-| Optimization | Impact |
+| Optimisation | Impact |
 |---|---|
-| **Tesseract triage** | Classifies pages as text-only vs table-bearing; text-only pages get lightweight OCR prompt (1500 tokens) instead of full extraction (4096 tokens) |
-| **Image resize to 512px** | Reduces vision API token count by ~4× vs full resolution |
-| **JPEG quality 70** | Smaller payloads → faster upload |
-| **Batch rendering (50 pages/batch)** | Avoids OOM on large PDFs, shows progress |
-| **50 concurrent VLM workers** | Saturates API rate limits |
-| **Blank page detection** | Numpy pixel density check skips near-white pages entirely |
-| **Parallel Tesseract** | ThreadPoolExecutor(8) for OCR triage |
+| Tesseract triage | Text-only pages get lightweight OCR prompt (1,500 tokens) instead of full extraction (4,096 tokens) |
+| Image resize to 512px | Reduces vision API token count ~4× vs full resolution |
+| JPEG quality 70 | Smaller payloads → faster upload |
+| Batch rendering (50 pages/batch) | Avoids OOM on large PDFs |
+| 50 concurrent VLM workers | Saturates API rate limits |
+| Blank page detection | Pixel density check skips near-white pages |
+| Parallel Tesseract | `ThreadPoolExecutor(8)` for OCR triage |
+| Carry-forward (capped at 8) | Continuation pages skip classifier entirely |
 
-## Pipeline Output
+---
 
-The pipeline generates:
-- **Document summary** — all detected document instances with page ranges and type counts
-- **Ground truth comparison** (when `labels.json` exists) — side-by-side accuracy table with per-type breakdown
-- **JSON output file** — `pipeline_output.json` in the package directory
+## Team
+
+**Team Noobda — REVA University, Bengaluru**
+InfrX 2026 Hackathon · Problem Statement B · **2nd Place**
+
+See `Team_Noobda_REVA University.pdf` for the full presentation deck.
+See `Algorithm.md` for the detailed algorithm reference.
